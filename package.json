@@ -1,0 +1,28 @@
+{
+  "name": "reacteduclass",
+  "version": "1.0.0",
+  "description": "express react react-dom axios ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanganu/reacteduclass.git"
+  },
+  "keywords": [
+    "express",
+    "react",
+    "dom",
+    "axios"
+  ],
+  "author": "Sangeetha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sanganu/reacteduclass/issues"
+  },
+  "homepage": "https://github.com/sanganu/reacteduclass#readme",
+  "dependencies": {
+    "create-react-app": "^1.5.2"
+  }
+}
