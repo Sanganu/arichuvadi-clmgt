@@ -4,7 +4,10 @@
   "description": "express react react-dom axios ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "installDeps": "yarn && cd client && yarn"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,14 @@
   },
   "homepage": "https://github.com/sanganu/reacteduclass#readme",
   "dependencies": {
-    "create-react-app": "^1.5.2"
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "create-react-app": "^1.5.2",
+    "express": "^4.16.3",
+    "mongod": "^2.0.0",
+    "mongoose": "^5.0.14",
+    "nodemon": "^1.17.3",
+    "react-router-dom": "^4.2.2"
   }
 }

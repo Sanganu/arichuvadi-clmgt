@@ -17,14 +17,10 @@ app.use(routes);
 mongoose.Promise = Promise;
 
 if(process.env.MONGODB_URI) {
-      mongoose.connect(process.env.MONGODB_URI, {
-        useMongoClient: true
-      });
+      mongoose.connect(process.env.MONGODB_URI);
 }
 else {
-      mongoose.connect("mongodb://localhost/gkedutrack1", {
-        useMongoClient: true
-      });
+      mongoose.connect("mongodb://localhost/gkedutrack1");
       console.log("mongoose connected")
 }
 
