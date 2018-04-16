@@ -5,6 +5,16 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 8000;
 const path = require("path");
+const sec = require("./OAuth");
+
+//OAuth Set up
+const passport = require("passport");
+const FacebookStratergy = require('passport-facebook');
+const request = require('request-promise');
+const session = require('express-session');
+//OAuth Variables
+const facebook_app_id = '';
+const FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET || sec;
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));

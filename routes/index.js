@@ -75,7 +75,8 @@ router.post('/api/teacher/student/new',function(req,res) {
                 pwd: dbstudentdetails.passw
               } ;
               console.log("Inserted student record",dbstudentdetails);
-              return db.batchdetails.findOneAndUpdate({_id:req.body.batchid}, {$push:{students:dbstudentdetails._id}});
+              return db.batchdetails.findOneAndUpdate({_id:req.body.batchid},
+                 {$push:{students:dbstudentdetails._id}});
 
            })
            .then(function(data){
