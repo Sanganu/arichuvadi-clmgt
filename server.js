@@ -13,7 +13,7 @@ const FacebookStratergy = require('passport-facebook');
 const request = require('request-promise');
 const session = require('express-session');
 //OAuth Variables
-const facebook_app_id = '';
+const FACEBOOK_APP_ID = '';
 const FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET || sec;
 
 // Configure body parser for AJAX requests
@@ -41,17 +41,10 @@ app.listen(PORT, function() {
   yesapp = true;
 });
 
-/*
-//The whole Login Stratergy
-const passport = require("passport");
-const facebookstrategy = require('passport-facebook').Strategy;
-const request = require('request');
-const session = require('express-session');
-//FB app
-const FACEBOOK_APP_ID = "",
-const FACEBOOK_APP_SECRET = "",
 
-passport.use(new facebookstrategy({
+
+
+passport.use(new FacebookStratergy({
       clientID: FACEBOOK_APP_ID,
       clientSecret : FACEBOOK_APP_SECRET,
       callbackURL: `http://localhost:${PORT}/auth/facebook/done`
@@ -64,7 +57,6 @@ function(acessToken,refreshToken,profile,done){
   profile.accessToken = accessToken;
   done(null,profile);
 }));
-
 passport.serializeUser(function(user,done) {
   done(null,user);
 });
@@ -144,4 +136,4 @@ function isLoggedIn() {
 		res.sendStatus(401);
 	};
 }
-*/
+

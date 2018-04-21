@@ -214,7 +214,9 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
 
 
 
-
+router.get("/user",(req,res) => {
+    console.log("Entered user route");
+});
 
 
 //To ddd class details -Get All Student details for the batch for class entry - implemented
