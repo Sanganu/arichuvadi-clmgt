@@ -11,7 +11,7 @@ class Searchstudents extends Component{
    }
 
    searchrecords = () => {
-
+    console.log("BEfore axios call - search str",this.state.searchstring)
     axios.get(`/api/teacher/studentdetails/str=${this.state.searchstring}`)
          .then((response) => {
              console.log("Results from search",response);
@@ -41,10 +41,10 @@ class Searchstudents extends Component{
         return(<div><Teacherheader />
             <h4>Search Student Details </h4>
             <form className="inputsection">
-                  
                   <div className = "form-group row">
-                         <label forhtml = "searchstr" id ="lsearchstr">Search By Student Name / Email / Parentname  </label><br />
-                         <input className="textarea" onChange  = {this.handleInputChange} type="text" name="searchstr" id="searchstr" value={this.state.searchstr} /><br />.
+                         <label forhtml = "searchstring" id ="lsearchstr">Search By Student Name / Email / Parentname  </label><br />
+                         <input className="textarea" onChange  = {this.handleInputChange} type="text" name="searchstring"  value={this.state.searchstring} /><br />.
+                         <button name = "searchbtn" onClick = {this.searchrecords}>Search</button>
                   </div>
              </form>            
         </div>);

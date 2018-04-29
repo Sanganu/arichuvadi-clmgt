@@ -1,21 +1,8 @@
 import React,{ Component } from 'react';
 
 
-class Allclasses extends Component
+const Allclasses =() =>
 {
-   state = {
-
-   }
-  //axios.get('/api/teachers/')
-  componentDidMount = () => {
-    console.log("all class =Inside component did mount before placing the axios call");
-
-
-  } // end component did mount
-
-
-    render()
-    {
       const classrec = this.props.classrecords;
       return(<div>
                     <h6 className ="tablehead">Class Details </h6>
@@ -33,8 +20,7 @@ class Allclasses extends Component
                           </table>
                     </div>
             </div>); // end return
-      } // end render
-} //end allbatches
+ } //end allbatches
 export default Allclasses;
 
 /*
