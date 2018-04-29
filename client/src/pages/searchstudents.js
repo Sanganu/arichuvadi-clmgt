@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
-import axios from axios;
+import axios from 'axios';
 
 
-class SearchStudents extends Component{
+class Searchstudents extends Component{
 
    state = {
        searchstring: '',
@@ -17,7 +17,7 @@ class SearchStudents extends Component{
              console.log("Results from search",response);
              this.setState({results: response.data},
                   () => {
-                      console.log("State",results);
+                      console.log("State",this.state.results);
                   });
          })
          .catch((err) => {
@@ -38,7 +38,7 @@ class SearchStudents extends Component{
 
   
     render(){
-        return(<Teacherheader />
+        return(<div><Teacherheader />
             <h4>Search Student Details </h4>
             <form className="inputsection">
                   
@@ -47,8 +47,9 @@ class SearchStudents extends Component{
                          <input className="textarea" onChange  = {this.handleInputChange} type="text" name="searchstr" id="searchstr" value={this.state.searchstr} /><br />.
                   </div>
              </form>            
-        );
+        </div>);
     }
     
 }
-  
+export default Searchstudents;
+

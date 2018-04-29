@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
-import axios from axios;
+import axios from 'axios';
 
 
-class SearchStudents extends Component{
+class Searchstudents extends Component{
 
     state = {
         searchstring: '',
@@ -32,7 +32,7 @@ class SearchStudents extends Component{
       });
      
      render(){
-         return(Teacherheader />
+         return(<Teacherheader />
             <h4>Search Batch Details </h4>
             <form className="inputsection">
                   
@@ -40,8 +40,8 @@ class SearchStudents extends Component{
                          <label forhtml = "searchstr" id ="lemail">Search By  </label><br />
                          <input className="textarea" onChange  = {this.handleInputChange} type="text" name="searchstr"  value={this.state.searchstr} /><br />.
                   </div>
-             </form>            
+             </form>           
+         )}
+}   //  end search students
 
-         );
-     }
-}     
+export default Searchstudents;

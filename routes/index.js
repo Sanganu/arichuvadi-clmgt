@@ -3,18 +3,7 @@ const router = require("express").Router();
 const db = require('../models')
 
 const passport = require("passport");
-// const request = require('request-promise');
-// const session = require('express-session');
 
-// passport.serializeUser(function(user,done) {
-//   done(null,user._id);
-// });
-
-// passport.deserializeUser(function(is,done){
-//   User.findById(id,function(err,user){
-//       done(err,user);
-//   });
-// });
 
 //Create new batch -- implemented
 router.post('/api/teacher/batch/new',function(req,res) {
@@ -199,13 +188,7 @@ router.post('/api/others/student/login',function(req,res) {
                   });
 
   }
-  
-  
-  
-  
-  ))
-  
- 
+ ));
 });  // student login route
 
 
@@ -341,7 +324,7 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
 
 
 
-//Search Option: -- pending
+//Search Option: -- pending-working
 router.get("/api/teacher/batch/:searchstr",(req,res) => {
     db.batchdetails.find({batchdesc : req.params.searchstr})
        .then((data) => {
@@ -351,7 +334,7 @@ router.get("/api/teacher/batch/:searchstr",(req,res) => {
        .catch((error) => {
          console.log("Search string batch not found",error);
          res.json({err:"Batch details does not exit"});
-       })
+       });
 });
 
 
