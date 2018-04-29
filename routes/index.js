@@ -155,7 +155,7 @@ router.post('/api/others/student/login',function(req,res) {
                             var classdetails = [];
                             console.log("Studet",studentdet);
                             console.log("batch",studentdet.batchid);
-                            console.log("class",studentdet.batchid.classid);
+                             console.log("class",studentdet.batchid.classid);
                             for(let i = 0; i < studentdet.batchid.classid.length;i++)
                             {
                                 var homework = studentdet.batchid.classid[i].homework;
@@ -356,25 +356,7 @@ router.get("/api/teacher/batch/:searchstr",(req,res) => {
 
 
 
-// Route to get maxbat
-/*
-router.get('/api/teacher/batch/maxid',function(req,res) {
-        console.log("in the router to get max");
 
-        db.batchdetails
-           .find({$max : "$batchid"})
-           .then(function(data){
-             res.json(data);
-           })
-           .catch(function(err){
-             if (err)
-             {
-               console.log("error...",err);
-               res.json(err);
-             }
-           });
-});
-*/
 
 //Delete Student -- pending
 router.delete('/api/batch/student/delete/',(req,res) => {
@@ -396,12 +378,72 @@ router.delete('/api/batch/student/delete/',(req,res) => {
             });
 });
 
+// Search Student Records
+
+router.get('/api/teacher/studentdetails/str/:str',(req,res) => {
+  db.studentdetails
+      .findOne({ $or:[
+                 {loginemail : req.body.str},
+                {username : req.body.str},
+                {parentname: req.body.str}
+                ]})
+      .populate({
+        path: 'batchid',
+        populate: {
+          path: 'classid', select: 'homework lessoncovered students'
+        },
+        select: 'batchdesc subject level rateperhour'
+      })
+      .then((studentdet) =>
+        {
+                var classdetails = [];
+                console.log("Studet",studentdet);
+                console.log("batch",studentdet.batchid);
+                console.log("class",studentdet.batchid.classid);
+                for(let i = 0; i < studentdet.batchid.classid.length;i++)
+                 {
+                     var homework = studentdet.batchid.classid[i].homework;
+                     var lesson = studentdet.batchid.classid[i].lessoncovered;
+                     var attendance = studentdet.batchid.classid[i].students
+                     console.log("for",homework,lesson,attendance);
+  
+                     if ( attendance.indexOf(studentdet._id))
+                     {
+                       var present= "Y";
+                     }
+                     else {
+                       var present= "N";
+                     }
+                     classdetails.push ({
+                            homework : homework,
+                            lesson: lesson,
+                            present: present
+                          });
+                }
+                var studentrecord = {
+                     fname: studentdet.studentfname,
+                     lname: studentdet.studentlname,
+                     parent: studentdet.parentname,
+                     phone: studentdet.parentphonenumber,
+                     email: studentdet.loginemail,
+                     uname: studentdet.username,
+                     batch: studentdet.batchid.batchdesc,
+                     subject: studentdet.batchid.subject,
+                     level: studentdet.batchid.level,
+                     rate: studentdet.batchid.rateperhour,
+                 }
+                console.log("Valid student login",studentrecord);
+                console.log("Classdetails array",classdetails);
+                res.json({studentrecord:studentrecord,classes:classdetails});
+      })
+      .catch((err) => {
+        console.log("Error - Invalid Student Credentials",err);
+        res.json(err);
+      });
+  
+});
+
 module.exports =router;
 
 
 
-// .exec(function(err,data){
-//   if (err) return res.json(err);
-//   console.log('The Result from fetch student and batch',data);
-//   res.json(data);
-// });
