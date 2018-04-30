@@ -120,13 +120,15 @@ router.get("/api/teacher/batch/all",(req,res) => {
            });
 });
 
+router('/api/other/student/login',function(req,res){
+  console.log("req",req);
+  console.log("res",res);
+})
+
 // Student Login route -- implemented
-router.post('/api/others/student/login',function(req,res) {
+router.post('/api/student/details',function(req,res) {
    console.log("Inside route to validate student loginemail",req.body);
-   passport.use('login',new LocalStrategy({
-     passReqToCallbck: true
-   },  function(req,done){
-                  db.studentdetails
+             db.studentdetails
                   .findOne({ $and:[
                             {loginemail : req.body.semail},
                             {username : req.body.suname},
@@ -164,7 +166,7 @@ router.post('/api/others/student/login',function(req,res) {
                                         lesson: lesson,
                                         present: present
                                       });
-                            }
+                            } // end of for loop
                             var studentrecord = {
                                 fname: studentdet.studentfname,
                                 lname: studentdet.studentlname,
@@ -179,16 +181,17 @@ router.post('/api/others/student/login',function(req,res) {
                             }
                             console.log("Valid student login",studentrecord);
                             console.log("Classdetails array",classdetails);
-                            //res.json({studentrecord:studentrecord,classes:classdetails});
-                            return done(null,{studentrecord:studentrecord,classes:classdetails})                 })
+
+                            res.json({studentrecord:studentrecord,classes:classdetails}) 
+                          }) // end then
+                            //return done(null,{studentrecord:studentrecord,classes:classdetails})                 })
                   .catch((err) => {
                     console.log("Error - Invalid Student Credentials",err);
-                    //res.json(err);
-                    return done(null,false,req.flash('message','Invalid Student login credentials'));
-                  });
+                    res.json(err);
+                    //return done(null,false,req.flash('message','Invalid Student login credentials'));
+                  }); //end catch
 
-  }
- ));
+ 
 });  // student login route
 
 

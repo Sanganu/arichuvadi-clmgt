@@ -8,8 +8,7 @@ const path = require("path");
 const sec = require("./OAuth");
 
 //OAuth Set up
-const passport = require("passport");
-const FacebookStratergy = require('passport-facebook');
+const passport = require("./OAuth/localpassport.js");
 const request = require('request-promise');
 const session = require('express-session');
 
@@ -25,6 +24,9 @@ app.use(express.static(path.join(__dirname,"client/build")));
 // Add routes, both API and view
 app.use(routes);
 
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Set up promises
@@ -38,6 +40,10 @@ else {
       console.log("mongoose connected")
 }
 
+app.post('/api/others/student/login',passport.authenticate('local',{
+     failureRedirect: '/api/other/student/login',
+     successRedirect: '/api/student/details'
+}));
 
 // Start the API server
 app.listen(PORT, function() {
@@ -45,21 +51,15 @@ app.listen(PORT, function() {
   yesapp = true;
 });
 
+// app.post('/api/others/student/login',passport.authenticate('local',{
+//       failureRedirect: 'res.json({err:"Invalid Credentials})',
+//       successRedirect: 'res.json({studentrecord:studentrecord,classes:classdetails})'
+//     }));
 
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
-passport.serializeUser(function(user,done) {
-  done(null,user._id);
-});
 
-passport.deserializeUser(function(is,done){
-  User.findById(id,function(err,user){
-      done(err,user);
-  });
-});
 
 
 
