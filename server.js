@@ -1,33 +1,29 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 8000;
 const path = require("path");
 const sec = require("./OAuth");
 
-//OAuth Set up
-const passport = require("./OAuth/localpassport.js");
-const request = require('request-promise');
-const session = require('express-session');
-
-//OAuth Variables
-// const FACEBOOK_APP_ID = '';
-// const FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET || sec;
+const passport = require("passport");
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 // Serve up static assets
 app.use(express.static(path.join(__dirname,"client/build")));
-// Add routes, both API and view
-app.use(routes);
 
-// Passport
+// Passport - setup 
+const request = require('request-promise');
+const session = require('express-session');
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Routes
+const routes = require("./routes");
+app.use(routes);
 
 // Set up promises
 mongoose.Promise = Promise;
@@ -37,19 +33,22 @@ if(process.env.MONGODB_URI) {
 }
 else {
       mongoose.connect("mongodb://localhost/gkedutrack1");
-      console.log("mongoose connected")
+      console.log("mongodb connected")
 }
 
-app.post('/api/others/student/login',passport.authenticate('local',{
-     failureRedirect: '/api/other/student/login',
-     successRedirect: '/api/student/details'
-}));
 
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-  yesapp = true;
+//   yesapp = true;
 });
+
+// Instead of having seperate file
+
+
+
+
+
 
 // app.post('/api/others/student/login',passport.authenticate('local',{
 //       failureRedirect: 'res.json({err:"Invalid Credentials})',
@@ -59,8 +58,15 @@ app.listen(PORT, function() {
 
 
 
+//OAuth Variables
+// const FACEBOOK_APP_ID = '';
+// const FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET || sec;
 
 
+// app.post('/api/others/student/login',passport.authenticate('local',{
+//      failureRedirect: '/api/student/login/failure',
+//      successRedirect: '/api/student/details'
+// }));
 
 
 // passport.use(new FacebookStratergy({
