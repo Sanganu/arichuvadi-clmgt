@@ -1,16 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const morgan = require('morgan')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const app = express();
 const PORT = process.env.PORT || 8000;
 const path = require("path");
 const sec = require("./OAuth");
-
 const passport = require("passport");
+// Loading environment variables
+require('dotenv').config()
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+//Middleware - Logger
+app.use(morgan('dev'))
 
 // Serve up static assets
 app.use(express.static(path.join(__dirname,"client/build")));
@@ -18,9 +24,15 @@ app.use(express.static(path.join(__dirname,"client/build")));
 // Passport - setup 
 const request = require('request-promise');
 const session = require('express-session');
+app.use(session({
+      secret: process.env.APP_SECRET || 'The default secret',
+      store: new MongoStore({mongooseConnection: dbConnection}),
+      resave: false,
+      saveUninitialized: false
+}));
 app.use(passport.initialize());
-app.use(passport.session());
-
+app.use(passport.session();
+) 
 // Routes
 const routes = require("./routes");
 app.use(routes);
