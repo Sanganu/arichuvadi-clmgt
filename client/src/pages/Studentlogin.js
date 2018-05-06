@@ -49,11 +49,11 @@ class Studentlogin extends Component
                            }
                         else {
                           console.log(this.state.vemail, this.state.vpword,this.state.vuname);
-                           axios.post('/api/others/student/login',
+                           axios.post('/auth/student/login',
                                   {
-                                    semail: this.state.vemail,
-                                    suname : this.state.vuname,
-                                    spword: this.state.vpword
+                                    loginemail: this.state.vemail,
+                                    // suname : this.state.vuname,
+                                    passw: this.state.vpword
                                   })
                                   .then( (response) =>{
                                          console.log("The response from axios",response);

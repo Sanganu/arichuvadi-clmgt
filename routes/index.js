@@ -1,4 +1,4 @@
-const path = require("path");
+ const path = require("path");
 const router = require("express").Router();
 const db = require('../models')
 
@@ -120,37 +120,10 @@ router.get("/api/teacher/batch/all",(req,res) => {
             });
 });
 
-//Invalid student login
-router.get('/api/student/login/failure',function(req,res){
-  console.log("failure login");
-  res.json({err:"Invalid credentials"});
-});
 
-//Passport Authentication Route
-// router.post('/api/others/student/login',passport.authenticate('local',{
-//   failureRedirect: '/api/student/login/failure',
-//   successRedirect: '/api/student/details'
-// }));
-// Another
- router.post('/api/student/login',function(req,res,next){
-   passport.authenticate('local',function(err,user,info){
-     if (err) { return next(err)}
-     if (!user) {
-       res.redirect('/api/student/login/failure')
-     }
-     req.logIn(user,function(err){
-       if (err) {return next(err);}
-           res.redirect('/api/student/details');
-     });
-   });
- });
-
-//  passport.authenticate('local',{
-//   failureRedirect: '/api/student/login/failure',
-//   successRedirect: '/api/student/details'
-//  });
 // Student Login route -- implemented
-router.post('/api/student/details',function(req,res) {
+
+router.post('/api/student/details',function(req,res,next) {
    console.log("Inside route to validate student loginemail",req.body);
    if (req.session.passport.user === undefined){
      res.json({err:"Invalid credentials"});
@@ -160,7 +133,7 @@ router.post('/api/student/details',function(req,res) {
              db.studentdetails
                   .findOne({ $and:[
                             {_id : req.session.passport.user._id},
-                            {username : req.session.passport.user.name},
+                            // {username : req.session.passport.user.name},
                             {loginemail: req.session.passport.user.email}
                             ]})
                   .populate({
