@@ -28,27 +28,28 @@ router.post(
 		console.log("The Req",req.body)
 		// console.log("The Res",res,next)
     	passport.authenticate('local', function(err,user,info){
-		console.log('POST to /login',req.body)
-		console.log("The Authentication -- Student Login",user);
-		 
-		// const newuser = JSON.parse(JSON.stringify(req.user)) // hack
-		const cleanUser = Object.assign({}, user)
-		if (cleanUser.local) {
-			console.log(`Deleting ${cleanUser.local.password}`)
-			delete cleanUser.local.password
-		}
-		console.log("The clean user : ",cleanUser)
-		res.json({ user: cleanUser })
+					console.log('POST to /login',req.body)
+					console.log("The Authentication -- Student Login",user);
+					
+					// const newuser = JSON.parse(JSON.stringify(req.user)) // hack
+					const cleanUser = Object.assign({}, user)
+					if (cleanUser.local) {
+						console.log(`Deleting ${cleanUser.local.password}`)
+						delete cleanUser.local.password
+					}
+					console.log("The clean user : ",cleanUser)
+					res.json({ user: cleanUser })
 	
-        }) (req,res,next);
+        });// (req,res,next);
 });
 
-// router.post(
-// 	'/student/login',
-// 	 passport.authenticate('local', {
-// 		  successRedirect: '/api/student/details',
-// 		  failureRedirect: '/user'
-// 	 })
+// router.post('/student/login',
+// 		function(req,res,next){
+// 			passport.authenticate('local', {
+// 				successRedirect: '/api/student/details',
+// 				failureRedirect: '/user'
+// 	     	}) (req,res,next);
+// 		}
 // );
 
 router.post('/logout', (req, res) => {

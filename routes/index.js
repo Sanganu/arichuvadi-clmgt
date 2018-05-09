@@ -293,7 +293,7 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
 
 
 router.get( "/user",(req,res) => {
-    console.log("Entered user route");
+    console.log("Entered user route",req.body);
 });
 
 
