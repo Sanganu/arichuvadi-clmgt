@@ -95,11 +95,11 @@ class Addstudent extends Component {
                             <p>Rate: {bdetails.rateperhour}$</p>
                      </div>
 
-
                     <br />
+                    <h3 className = "subhead">Add Students to the Batch</h3>
+                    <p className="errmsg">{this.state.errmsg}</p>
+                              
                     <form className="form-inline">
-                                <h3 className = "subhead">Add Students to the Batch</h3>
-                                <p className="errmsg">{this.state.errmsg}</p>
                                 <div className = "form-group row">
                                       <label forhtml="studentfname">Student Firstname </label>
                                       <input type = "text"   value={this.state.studentfname} onChange = {this.handleInputChange} name = "studentfname" id = "studentfname" />
@@ -120,7 +120,7 @@ class Addstudent extends Component {
                                         <label forhtml="parentphonenumber">Parent Phone number</label>
                                         <input type = "text"   value={this.state.parentphonenumber} onChange = {this.handleInputChange} name = "parentphonenumber" id = "parentphonenumber" />
                                      </div>
-                                     <button className = "btn btn-info"  name = "clcreation" onClick = {this.handleStudentCreation}>Create Student account</button>
+                                     <button className = "createbutton"  name = "clcreation" onClick = {this.handleStudentCreation}>Create Student account</button>
                     </form>
                      <br />
                       <h6 className ="tablehead">Student Details </h6>

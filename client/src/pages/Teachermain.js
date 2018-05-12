@@ -60,25 +60,25 @@ class Teachermain extends Component
                                          <Header />
                                          <div className = "tloginsection container">
                                              <div className = "row">
-                                                  <div className = "col-sm-6">
+                                             <h3 id="tlogin">Teacher Login</h3>
+                                                  {/*<div className = "col-sm-6">*/}
                                                       <form className="inputsection">
-                                                                    <h3 id="tlogin">Teacher Login</h3>
                                                                      <div className = "form-group row">
-                                                                          <label forhtml = "vemail" id ="lemail">Email Addess  </label><br />
-                                                                          <input className="textarea" onChange  = {this.handleInputChange} type="text" name="vemail" id="vemail" value={this.state.vemai} /><br />
+                                                                          <label className = "leftside" forhtml = "vemail" id ="lemail">Email Addess  </label><br />
+                                                                          <input className="textarea rightside" onChange  = {this.handleInputChange} type="text" name="vemail" id="vemail" value={this.state.vemai} /><br />
                                                                       </div>
                                                                       <div className = "form-group row">
-                                                                          <label forhtml = "vpword" id = "lpsword">Password  </label><br />
-                                                                          <input className="textarea" onChange = {this.handleInputChange} type="password" name="vpword" id ="vpword" value ={this.state.vpword} /><br />
+                                                                          <label className= "leftside" forhtml = "vpword" id = "lpsword">Password  </label><br />
+                                                                          <input className="textarea rightside" onChange = {this.handleInputChange} type="password" name="vpword" id ="vpword" value ={this.state.vpword} /><br />
                                                                       </div>
                                                                      <br />
                                                                        <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
-                                                                       <button className ="btn btn-lg btn-info" id = "blogin" onClick={this.logincheck}>Login</button>
+                                                                       <button className = "createbutton" id = "blogin" onClick={this.logincheck}>Login</button>
                                                        </form>
-                                                    </div>
+                                                {/*    </div>
                                                     <div className = "col-sm-6">
-                                                          <img id = "timg" src = {require("./teacherquote.jpg")} alt="teachers teach from heart"  className="img-responsive" />
-                                                    </div>
+                                                          <img id = "timg" alt="teachers teach from heart"  className="img-responsive" />
+                                                </div> */}
                                                </div>
                                           </div>
                                   </div>
