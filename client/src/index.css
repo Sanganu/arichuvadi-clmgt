@@ -2,10 +2,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-   
-  background-image: url('wood.jpg');
+  
+  /* background-image: url('wood.jpg'); */
   color:white;
-  /* background-color: black; */
+  background-color: black;
 }
 
 .form-group {
@@ -17,7 +17,7 @@ body {
 }
 
 .errmsg {
-  color: black;
+  
   padding-left: 3%;
 }
 
