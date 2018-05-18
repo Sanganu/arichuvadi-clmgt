@@ -1,56 +1,40 @@
 const express = require('express')
 const router = express.Router()
+const Students = require('../models/Students')
 const passport = require('../passport')
 
-// router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
-// router.get(
-// 	'/google/callback',
-// 	passport.authenticate('google', {
-// 		successRedirect: '/',
-// 		failureRedirect: '/login'
-// 	})
-// )
-
 // this route is just used to get the user basic info
-router.get('/user', (req, res, next) => {
+router.get('/student', (req, res, next) => {
 	console.log('===== user!!======')
-	console.log(req.user)
-	if (req.user) {
-		return res.json({ user: req.user })
+	console.log(req.student)
+	if (req.student) {
+		return res.json({ student: req.student })
 	} else {
-		return res.json({ user: null })
+		return res.json({ student: null })
 	}
 })
 
 router.post(
-	'/student/login',
+	'/login',
 	function(req, res, next) {
-		console.log("The Req",req.body)
-		// console.log("The Res",res,next)
-    	passport.authenticate('local', function(err,user,info){
-					console.log('POST to /login',req.body)
-					console.log("The Authentication -- Student Login",user);
-					
-					// const newuser = JSON.parse(JSON.stringify(req.user)) // hack
-					const cleanUser = Object.assign({}, user)
-					if (cleanUser.local) {
-						console.log(`Deleting ${cleanUser.local.password}`)
-						delete cleanUser.local.password
-					}
-					console.log("The clean user : ",cleanUser)
-					res.json({ user: cleanUser })
-	
-        });// (req,res,next);
-});
-
-// router.post('/student/login',
-// 		function(req,res,next){
-// 			passport.authenticate('local', {
-// 				successRedirect: '/api/student/details',
-// 				failureRedirect: '/user'
-// 	     	}) (req,res,next);
-// 		}
-// );
+		console.log(req.body)
+		console.log('================')
+		//next()
+		res.json({ student: "INvalid Credentials",status:"401"})
+		//res.sendStatus(401)
+	},
+	passport.authenticate('local'),
+	(req, res) => {
+		console.log('POST to /login - passport.authenticate callback')
+		const user = JSON.parse(JSON.stringify(req.user)) // hack
+		const cleanUser = Object.assign({}, user)
+		if (cleanUser) {
+			console.log(`Deleting ${cleanUser.password}`)
+			delete cleanUser.password
+		}
+		res.json({ user: cleanUser })
+	}
+)
 
 router.post('/logout', (req, res) => {
 	if (req.user) {
@@ -60,56 +44,34 @@ router.post('/logout', (req, res) => {
 	} else {
 		return res.json({ msg: 'no user to log out!' })
 	}
-});
+})
 
-//Invalid student login
-router.get('/api/student/login/failure',function(req,res){
-  console.log("failure login");
-  res.json({err:"Invalid credentials"});
-});
- 
-// //Passport Authentication Route
-// router.post('/student/login',passport.authenticate('local',{
-//   failureRedirect: '/api/student/login/failure',
-//   successRedirect: '/api/student/details'
-// }));
- 
-//  router.post('/student/login',function(req,res,next){
-//    passport.authenticate('local',function(err,user,info){
-//      if (err) { return next(err)}
-//      if (!user) {
-//        res.redirect('/api/student/login/failure')
-//      }
-//      req.logIn(user,function(err){
-//        if (err) {return next(err);}
-//            res.redirect('/api/student/details');
-//      });
-//    });
-//  });
-
-//  passport.authenticate('local',{
-//   failureRedirect: '/api/student/login/failure',
-//   successRedirect: '/api/student/details'
-//  });
-
-// router.post('/signup', (req, res) => {
-// 	const { username, password } = req.body
-// 	// ADD VALIDATION
-// 	User.findOne({ 'local.username': username }, (err, userMatch) => {
-// 		if (userMatch) {
-// 			return res.json({
-// 				error: `Sorry, already a user with the username: ${username}`
-// 			})
-// 		}
-// 		const newUser = new User({
-// 			'local.username': username,
-// 			'local.password': password
-// 		})
-// 		newUser.save((err, savedUser) => {
-// 			if (err) return res.json(err)
-// 			return res.json(savedUser)
-// 		})
-// 	})
-// })
+router.post('/ssignup', (req, res) => {
+	const { email,name, password } = req.body
+	// ADD VALIDATION
+	console.log("The Request - to create account",req.body)
+	Students.findOne({ 'email': email }, (err, studentMatch) => {
+		if (studentMatch) {
+			return res.json({
+				error: `Sorry, already a user with the username: ${username}`
+			})
+		}
+		const newStudent = new Students({
+			email:email,
+			name:name,
+			password:password
+		})
+		console.log("New student",newStudent)
+		newStudent.save((err, savedUser) => {
+			if (err) return res.json(err)
+			returnstudent = {
+				email: savedUser.email,
+				name: savedUser.name
+			}
+			console.log("return",returnstudent)
+			return res.json(returnstudent)
+		})
+	})
+})
 
 module.exports = router

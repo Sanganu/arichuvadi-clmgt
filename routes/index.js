@@ -1,6 +1,9 @@
  const path = require("path");
 const router = require("express").Router();
-const db = require('../models')
+const batchdetails = require('../models/BatchDetails.js')
+const studentdetails = require('../models/Students.js')
+const classdetails = require('../models/Classdetails.js')
+
 
 const passport = require("passport");
 
@@ -10,7 +13,7 @@ router.post('/api/teacher/batch/new',function(req,res) {
       var newrecord = req.body;
        console.log("Insiderouter to add new batch",req.body);
 
-      db.batchdetails
+      batchdetails
              .create(newrecord)
              .then(function(dbdetails){
                 console.log("Inserted record details",dbdetails);
@@ -42,13 +45,13 @@ router.post('/api/teacher/batch/new',function(req,res) {
                     }
 
              }); //end catch section
-}); // end db.batchdetails
+}); // end batchdetails
 
 
 ////Add New student And Update Batches table -- implemented
 router.post('/api/teacher/student/new',function(req,res) {
         console.log("Insiderouter to add new student",req.body);
-        var uname = (req.body.studentfname).substr(0,1) +(req.body.studentlname);
+        // 
         var pword = (req.body.parentphonenumber).substr(0,3) + (req.body.studentfname);
         var newrecord = {
           studentfname :req.body.studentfname,
@@ -56,26 +59,23 @@ router.post('/api/teacher/student/new',function(req,res) {
           parentname: req.body.parentname,
           loginemail: req.body.loginemail,
           parentphonenumber: req.body.parentphonenumber,
-          username : uname,
-          passw : pword,
+          password : pword,
           batchid:[req.body.batchid]
         };
         var insertstudent = {
              studentfname : '',
              studentlname : '',
              loginemail: '',
-             uname: '',
-             pwd: ''
+             password: ''
         };
-        db.studentdetails
+        studentdetails
            .create(newrecord)
            .then(function(dbstudentdetails){
               insertedstudent ={
                 studentfname : dbstudentdetails.studentfname,
                 studentlname : dbstudentdetails.studentlname,
                 loginemail : dbstudentdetails.loginemail,
-                uname: dbstudentdetails.username,
-                pwd: dbstudentdetails.passw
+                password: dbstudentdetails.password
               } ;
               console.log("Inserted student record",dbstudentdetails);
               return db.batchdetails.findOneAndUpdate({_id:req.body.batchid},
@@ -89,6 +89,7 @@ router.post('/api/teacher/student/new',function(req,res) {
            .catch(function(err){
                    if (err)
                    {
+                         console.log("error in student batch")
                          var vrmsg  = (err.errmsg).substr(0,6);
                          if( vrmsg === 'E11000')
                          {
@@ -108,7 +109,7 @@ router.post('/api/teacher/student/new',function(req,res) {
 // Get All batch details -- implemented
 router.get("/api/teacher/batch/all",(req,res) => {
       console.log("inside router to get all batch records");
-        db.batchdetails.find({})
+        batchdetails.find({})
            .populate('students')
            .then((data) => {
                console.log("Batch details",data);
@@ -130,7 +131,7 @@ router.post('/api/student/details',function(req,res,next) {
    }
    else
    {
-             db.studentdetails
+             studentdetails
                   .findOne({ $and:[
                             {_id : req.session.passport.user._id},
                             // {username : req.session.passport.user.name},
@@ -194,7 +195,7 @@ router.post('/api/student/details',function(req,res,next) {
                   }); //end catch
       }  // End else part
  
-});  // student loin route
+});  // student login route
 
 
 // // Student Login route -- implemented
@@ -268,7 +269,7 @@ router.post('/api/student/details',function(req,res,next) {
 router.post('/api/teacher/batch/class/add',function(req,res) {
         console.log("Insiderouter to add class details",req.body);
       var newrecord = req.body;
-        db.classdetails
+        classdetails
            .create(newrecord)
            .then(function(dbclassdetails)
            {
@@ -301,7 +302,7 @@ router.get( "/user",(req,res) => {
 router.get("/api/teacher/batch/:batchid", (req,res) => {
   console.log("In router",req.params.batchid);
   //var bid = mongoose.Types.ObjectId.fromString(batchid);
-  db.batchdetails.findOne({_id:req.params.batchid})
+    batchdetails.findOne({_id:req.params.batchid})
      .populate('students')
       .then((data) => {
            console.log("Result from batch - student",data);
@@ -317,7 +318,7 @@ router.get("/api/teacher/batch/:batchid", (req,res) => {
 
 router.delete("/api/teacher/batch/delete",(req,res) => {
      console.log("Inside delete route for batch to student to class");
-     db.batchdetails.findOne({_id:req.body.batchid})
+     batchdetails.findOne({_id:req.body.batchid})
        .populate('class')
        .then((data) => {
          console.log("data",data);
@@ -331,7 +332,7 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
 
 //Search Option: -- pending-working
 router.get("/api/teacher/batch/:searchstr",(req,res) => {
-    db.batchdetails.find({batchdesc : req.params.searchstr})
+    batchdetails.find({batchdesc : req.params.searchstr})
        .then((data) => {
          console.log("The response",data)
          res.json(data);
@@ -348,7 +349,7 @@ router.get("/api/teacher/batch/:searchstr",(req,res) => {
 
 //Delete Student -- pending
 router.delete('/api/batch/student/delete/',(req,res) => {
-          db.batchdetails.findone({_id: req.body.batchid})
+          batchdetails.findone({_id: req.body.batchid})
             .then((data) => {
                 data.students.remove(req.params.studentid);
                 return data.save();
@@ -369,7 +370,7 @@ router.delete('/api/batch/student/delete/',(req,res) => {
 // Search Student Records
 
 router.get('/api/teacher/studentdetails/str/:str',(req,res) => {
-  db.studentdetails
+    studentdetails
       .findOne({ $or:[
                  {loginemail : req.body.str},
                 {username : req.body.str},

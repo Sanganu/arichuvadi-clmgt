@@ -30,8 +30,9 @@ const App = () =>
                    <Route exact path ="/teacher/batch/alldetails" component={Completebatchdetails} />
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
                    <Route exact path ="/teacher/studentrecords" component={Searchstudents} />
-                 
-                   <Route path ="/*" component={Homepage} />
+                   <Switch>
+                      <Route path ="/*" component={Homepage} />
+                   </Switch> 
             </Switch>
           </div>
   </Router>;

@@ -1,17 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const morgan = require('morgan')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
+const passport = require("./passport");
+const dbConnection = require('./models')
 const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require("path");
-//const sec = require("./OAuth");
-const passport = require("./passport");
+const routes = require("./routes");
 
-// Loading environment variables
 require('dotenv').config()
+
+
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,19 +20,19 @@ app.use(bodyParser.json());
 //Middleware - Logger
 app.use(morgan('dev'))
 
-// Set up promises
-mongoose.Promise = Promise;
-if(process.env.MONGODB_URI) {
-      mongoose.connect(process.env.MONGODB_URI);
-}
-else {
-      mongoose.connect("mongodb://localhost/gkedutrack1");
-      console.log("mongodb connected")
-}
+// Express session
+app.use(
+      session({
+		secret: process.env.APP_SECRET || 'this is the default passphrase',
+		store: new MongoStore({ mongooseConnection: dbConnection }),
+		resave: false,
+		saveUninitialized: false
+	})    
+)
+
 
 
 // Express app & auth routes
-const routes = require("./routes");
 app.use(routes);
 app.use('/auth',require('./auth'))
 
@@ -39,12 +40,12 @@ app.use('/auth',require('./auth'))
 // Serve up static assets
 app.use(express.static(path.join(__dirname,"client/build")));
 
-// session and persistent storage  
-const request = require('request-promise');
+// // session and persistent storage  
+// const request = require('request-promise');
 
 app.use(session({
       secret: process.env.APP_SECRET || 'The default secret',
-      // store: new MongoStore({mongooseConnection: dbConnection}),
+      store: new MongoStore({mongooseConnection: dbConnection}),
       resave: false,
       saveUninitialized: false
 }));

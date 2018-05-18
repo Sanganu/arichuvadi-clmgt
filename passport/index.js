@@ -1,8 +1,7 @@
 const passport = require('passport')
-const LocalStrategy = require('./localStrategy')
-//const GoogleStratgey = require('./googleStrategy')
-const db = require('../models')
-
+const LocalStrategy = require('./localStrategy.js')
+// const GoogleStratgey = require('./googleStrategy')
+const Students = require('../models/Students')
 
 passport.serializeUser((user, done) => {
 	console.log('=== serialize ... called ===')
@@ -13,7 +12,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
 	console.log('DEserialize ... called')
-	db.studentdetails.findOne(
+    Students.findOne(
 		{ _id: id },
 		'firstName lastName photos local.username',
 		(err, user) => {
@@ -27,7 +26,6 @@ passport.deserializeUser((id, done) => {
 
 // ==== Register Strategies ====
 passport.use(LocalStrategy)
-//passport.use(GoogleStratgey)
+// passport.use(GoogleStratgey)
 
-module.exports = passport
- 
+module.exports = passport   
