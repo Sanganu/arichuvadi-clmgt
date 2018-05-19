@@ -77,19 +77,19 @@ router.post('/api/teacher/student/new',function(req,res) {
                 loginemail : dbstudentdetails.loginemail,
                 password: dbstudentdetails.password
               } ;
-              console.log("Inserted student record",dbstudentdetails);
-              return db.batchdetails.findOneAndUpdate({_id:req.body.batchid},
-                 {$push:{students:dbstudentdetails._id}});
-
+              console.log("Inserted student record",dbstudentdetails,req.body.batchid);
+               return batchdetails.findOneAndUpdate({_id:req.body.batchid},
+                 {$push:{students: dbstudentdetails._id}});
+                  
            })
            .then(function(data){
-             console.log("Inserted student and updated batchdetails with studentid",data);
+             console.log("Inserted student and updated batchdetails with studentid",data,"\n");
              res.json(insertedstudent);
            })
            .catch(function(err){
                    if (err)
                    {
-                         console.log("error in student batch")
+                         console.log("error in student batch",err)
                          var vrmsg  = (err.errmsg).substr(0,6);
                          if( vrmsg === 'E11000')
                          {
@@ -274,7 +274,7 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
            .then(function(dbclassdetails)
            {
               console.log("The class details entered : ",dbclassdetails)
-              return db.batchdetails.findOneAndUpdate({_id:req.body.batch}, {$push:{classid:dbclassdetails._id}});
+              return batchdetails.findOneAndUpdate({_id:req.body.batch}, {$push:{classid:dbclassdetails._id}});
             })
            .then(function(data){
              console.log("Inserted class details and updated batchdetails with classid",data);
@@ -355,7 +355,7 @@ router.delete('/api/batch/student/delete/',(req,res) => {
                 return data.save();
             })
             .then(() => {
-              db.studentdetails.remove({_id:req.params.studentid});
+               studentdetails.remove({_id:req.params.studentid});
             })
             .then((data) => {
               console.log("Student delet",data);
