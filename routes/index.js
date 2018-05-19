@@ -43,7 +43,6 @@ router.post('/api/teacher/batch/new',function(req,res) {
                         }
 
                     }
-
              }); //end catch section
 }); // end batchdetails
 
@@ -52,15 +51,14 @@ router.post('/api/teacher/batch/new',function(req,res) {
 router.post('/api/teacher/student/new',function(req,res) {
         console.log("Insiderouter to add new student",req.body);
         // 
-        var pword = (req.body.parentphonenumber).substr(0,3) + (req.body.studentfname);
         var newrecord = {
           studentfname :req.body.studentfname,
           studentlname: req.body.studentlname,
           parentname: req.body.parentname,
           loginemail: req.body.loginemail,
           parentphonenumber: req.body.parentphonenumber,
-          password : pword,
-          batchid:[req.body.batchid]
+          password : req.body.password,
+          batchid:req.body.batchid
         };
         var insertstudent = {
              studentfname : '',
@@ -80,27 +78,29 @@ router.post('/api/teacher/student/new',function(req,res) {
               console.log("Inserted student record",dbstudentdetails,req.body.batchid);
                return batchdetails.findOneAndUpdate({_id:req.body.batchid},
                  {$push:{students: dbstudentdetails._id}});
-                  
            })
            .then(function(data){
              console.log("Inserted student and updated batchdetails with studentid",data,"\n");
              res.json(insertedstudent);
            })
            .catch(function(err){
-                   if (err)
-                   {
-                         console.log("error in student batch",err)
-                         var vrmsg  = (err.errmsg).substr(0,6);
-                         if( vrmsg === 'E11000')
+                      console.log("error in student batch",err)
+                         if (err.errmsg)
                          {
-                           console.log("Student Login - already exist");
-                           res.json({error: "Student email already exist :"});
+                              if( (err.errmsg).substr(0,6) === 'E11000')
+                              {
+                                console.log("Student Login - already exist");
+                                res.json({error: "Student email already exist :"});
+                              }
+                              else {
+                                console.log("Error in updating Batch and Student details",err)
+                                res.json(err);
+                              }
                          }
-                         else {
-                           console.log("The Error",err)
+                        else {
+                           console.log("Exceptional Error: ",err)
                            res.json(err);
                          }
-                   }
            });
 });
 
