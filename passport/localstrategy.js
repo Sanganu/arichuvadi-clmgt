@@ -5,18 +5,18 @@ const strategy = new LocalStrategy(
 	{
 		usernameField: 'loginemail' // not necessary, DEFAULT
 	},
-		function(email, password, done) {
-					Students.findOne({ 'email': email } , (err, studentMatch) => {
+		function(loginemail, password, done) {
+					Students.findOne({ 'loginemail': loginemail } , (err, studentMatch) => {
+						console.log("The Local strategy - to find the user",studentMatch);
 						if (err) {
 							return done(err)
 						}
 						if (!studentMatch) {
-							return done(null, false, { message: 'Incorrect username' })
+							return done(null, false, { message: 'Incorrect Email' })
 						}
 						if (!studentMatch.checkPassword(password)) {
 							return done(null, false, { message: 'Incorrect password' })
 						}
-						console.log("The Local strategy - to find the user");
 						return done(null, studentMatch)
 					})
 		}

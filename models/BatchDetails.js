@@ -19,7 +19,7 @@ const batchdetailsSchema = new Schema({
         },
         students: [{
           type: Schema.Types.ObjectId,
-          ref: 'Students'
+          ref: 'studentdetails'
         }],
         classid :[{
           type:Schema.Types.ObjectId,

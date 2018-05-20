@@ -11,6 +11,7 @@ class Addstudent extends Component {
           loginemail: "",
           parentname: "",
           parentphonenumber: "",
+          password: "",
           studentrecs: [],
           errmsg:''
         };
@@ -37,7 +38,8 @@ class Addstudent extends Component {
             this.state.studentlname === "" ||
              this.state.loginemail === "" ||
              this.state.parentname === "" ||
-             this.state.parentphonenumber === "")
+             this.state.parentphonenumber === "" ||
+            this.state.password === "")
              {
                console.log("Empty fields not accepted");
                this.setState({errmsg: " Empty fields not accepted"})
@@ -49,6 +51,7 @@ class Addstudent extends Component {
                     studentlname: this.state.studentlname,
                     parentname: this.state.parentname,
                     loginemail: this.state.loginemail,
+                    password: this.state.password,
                     parentphonenumber: this.state.parentphonenumber,
                     batchid: this.props.batchdet.bid
                   })
@@ -60,7 +63,6 @@ class Addstudent extends Component {
                           stdlname : res.data.studentlname,
                           stdemail : res.data.loginemail,
                           stduname: res.data.uname,
-                          stdpwd: res.data.pwd
                       }
                       strecs.push(newstrec);
                       this.setState({studentrecs : strecs},
@@ -100,27 +102,13 @@ class Addstudent extends Component {
                     <p className="errmsg">{this.state.errmsg}</p>
                               
                     <form className="form-inline">
-                                <div className = "form-group row">
-                                      <label forhtml="studentfname">Student Firstname </label>
-                                      <input type = "text"   value={this.state.studentfname} onChange = {this.handleInputChange} name = "studentfname" id = "studentfname" />
-                                  </div>
-                                  <div className = "form-group row">
-                                       <label forhtml="studentlname">Student Lastname  </label>
-                                       <input type = "text"   value={this.state.studentlname} onChange = {this.handleInputChange} name = "studentlname" id = "studentlname" />
-                                  </div>
-                                  <div className = "form-group row">
-                                    <label forhtml="parentname">Parent/Guardian name   </label>
-                                    <input type = "text"   value={this.state.parentname} onChange = {this.handleInputChange} name = "parentname" id = "parentname" />
-                                  </div>
-                                    <div className = "form-group row">
-                                         <label forhtml="loginemail">Email </label>
-                                         <input type = "text"   value={this.state.loginemail} onChange = {this.handleInputChange} name = "loginemail" id = "loginemail" />
-                                    </div>
-                                    <div className = "form-group row">
-                                        <label forhtml="parentphonenumber">Parent Phone number</label>
-                                        <input type = "text"   value={this.state.parentphonenumber} onChange = {this.handleInputChange} name = "parentphonenumber" id = "parentphonenumber" />
-                                     </div>
-                                     <button className = "createbutton"  name = "clcreation" onClick = {this.handleStudentCreation}>Create Student account</button>
+                                      <input type = "text"  placeholder="Student First name" value={this.state.studentfname} onChange = {this.handleInputChange} placeholder = "Student Firstname"name = "studentfname" id = "studentfname" />
+                                       <input type = "text"  placeholder = "Student Last name" value={this.state.studentlname} onChange = {this.handleInputChange} name = "studentlname" id = "studentlname" />
+                                       <input type = "text" placeholder = "Parent name"  value={this.state.parentname} onChange = {this.handleInputChange} name = "parentname" id = "parentname" />
+                                       <input type = "text"  placeholder = "Login Email" value={this.state.loginemail} onChange = {this.handleInputChange} name = "loginemail" id = "loginemail" />
+                                       <input type = "password" plaecholder = "password"  value={this.state.password} onChange = {this.handleInputChange} name = "password" id = "password" />
+                                       <input type = "text"   placeholder = "Phone number" value={this.state.parentphonenumber} onChange = {this.handleInputChange} name = "parentphonenumber" id = "parentphonenumber" />
+                                      <button className = "createbutton"  name = "clcreation" onClick = {this.handleStudentCreation}>Create Student account</button>
                     </form>
                      <br />
                       <h6 className ="tablehead">Student Details </h6>
@@ -131,8 +119,7 @@ class Addstudent extends Component {
                                   <th>Firstname</th>
                                   <th>Lastname</th>
                                   <th>Email</th>
-                                  <th>Username</th>
-                                  <th>Password</th>
+                               
                              </tr>
 
                                <Allstudents studentrec = {this.state.studentrecs}/>

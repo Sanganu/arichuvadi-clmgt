@@ -9,8 +9,8 @@ class Allstudents extends Component
                   <tr key={index}><td>{data.stdfname}</td>
                        <td>{data.stdlname}</td>
                        <td>{data.stdemail}</td>
-                       <td>{data.stduname}</td>
-                       <td>{data.stdpwd}</td>
+                       <td><button>Delete Student</button></td>
+                       <td></td>
                   </tr>))
               );
     }

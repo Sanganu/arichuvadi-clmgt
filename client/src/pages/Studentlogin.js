@@ -39,8 +39,7 @@ class Studentlogin extends Component
                        event.preventDefault();
                        console.log("Student's Login");
                        if (this.state.vemail === "" ||
-                           this.state.vpword === "" ||
-                           this.state.vuname === "")
+                           this.state.vpword === "" )
                            {
                               console.log('Enter Valid Credentials in all fields');
                               this.setState({invalid:true,
@@ -52,8 +51,7 @@ class Studentlogin extends Component
                            axios.post('/auth/student/login',
                                   {
                                     loginemail: this.state.vemail,
-                                    // suname : this.state.vuname,
-                                    passw: this.state.vpword
+                                    password: this.state.vpword
                                   })
                                   .then( (response) =>{
                                          console.log("The response from axios",response);
@@ -103,10 +101,7 @@ class Studentlogin extends Component
                                                                 <label id ="lemail">Email Addess</label><br />
                                                                 <input className="textarea" onChange = {this.handleInputChange} type="text" name="vemail" value={this.state.vemail} /><br />
                                                             </div>
-                                                            <div className = "form-group">
-                                                                <label id ="lemail">User Name</label><br />
-                                                                <input className="textarea" onChange = {this.handleInputChange} type="text" name="vuname" value={this.state.vuname} /><br />
-                                                            </div>
+                                                           
                                                              <div className = "form-group">
                                                                 <label id = "lpsword">Password</label><br />
                                                                 <input className="textarea" onChange = {this.handleInputChange} type="password" name="vpword" value ={this.state.vpword} /><br />

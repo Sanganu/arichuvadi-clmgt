@@ -5,7 +5,7 @@ const passport = require('../passport')
 
 // this route is just used to get the user basic info
 router.get('/student', (req, res, next) => {
-	console.log('===== user!!======')
+	console.log('===== /student ===user!!======')
 	console.log(req.student)
 	if (req.student) {
 		return res.json({ student: req.student })
@@ -14,14 +14,26 @@ router.get('/student', (req, res, next) => {
 	}
 })
 
+// router.post(
+// 	'/student/login',
+// 	passport.authenticate('local'),
+// 	function(req, res) {
+// 		console.log('POST to /login - passport.authenticate callback')
+// 		const user = JSON.parse(JSON.stringify(req.user)) // hack
+// 		const cleanUser = Object.assign({}, user)
+// 		if (cleanUser) {
+// 			console.log(`Deleting ${cleanUser.password}`)
+// 			delete cleanUser.password
+// 		}
+// 		res.json({ user: cleanUser })
+// 	} // end function
+// )
 router.post(
-	'/login',
+	'/student/login',
 	function(req, res, next) {
 		console.log(req.body)
-		console.log('================')
-		//next()
-		res.json({ student: "INvalid Credentials",status:"401"})
-		//res.sendStatus(401)
+		console.log('=======++++=========')
+		next()
 	},
 	passport.authenticate('local'),
 	(req, res) => {
