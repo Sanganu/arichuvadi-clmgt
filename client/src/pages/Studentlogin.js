@@ -54,12 +54,12 @@ class Studentlogin extends Component
                                     password: this.state.vpword
                                   })
                                   .then( (response) =>{
-                                         console.log("The response from axios",response);
+                                         console.log("The response from axios",response.data);
                                          console.log("The classes details", response.data.classes);
-                                         if ( response.data.studentrecord)
+                                         if ( response.data.user)
                                          {
                                          this.setState({    showstlogin:false,
-                                                            studentrecord:(response.data.studentrecord),
+                                                            studentrecord:(response.data.user),
                                                             classdet:(response.data.classes)},
                                                             () => {
                                                               console.log("State updates",this.state.studentrecord);

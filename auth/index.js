@@ -14,20 +14,6 @@ router.get('/student', (req, res, next) => {
 	}
 })
 
-// router.post(
-// 	'/student/login',
-// 	passport.authenticate('local'),
-// 	function(req, res) {
-// 		console.log('POST to /login - passport.authenticate callback')
-// 		const user = JSON.parse(JSON.stringify(req.user)) // hack
-// 		const cleanUser = Object.assign({}, user)
-// 		if (cleanUser) {
-// 			console.log(`Deleting ${cleanUser.password}`)
-// 			delete cleanUser.password
-// 		}
-// 		res.json({ user: cleanUser })
-// 	} // end function
-// )
 router.post(
 	'/student/login',
 	function(req, res, next) {
@@ -44,9 +30,15 @@ router.post(
 			console.log(`Deleting ${cleanUser.password}`)
 			delete cleanUser.password
 		}
-		res.json({ user: cleanUser })
+		//res.json({ user: cleanUser })
+		//res.redirect('/ssignup' + {usecr:cleanUser})
+		//getStudentDetails({user:cleanUser})
+		getStudentDetails(req,res)
 	}
 )
+
+// router.post('/student/login',passport.authenticate('local',
+//              ))
 
 router.post('/logout', (req, res) => {
 	if (req.user) {
@@ -59,7 +51,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.post('/ssignup', (req, res) => {
-	const { email,name, password } = req.body
+	const { email, password } = req.body
 	// ADD VALIDATION
 	console.log("The Request - to create account",req.body)
 	Students.findOne({ 'email': email }, (err, studentMatch) => {
@@ -87,3 +79,72 @@ router.post('/ssignup', (req, res) => {
 })
 
 module.exports = router
+
+function getStudentDetails(req,res) {
+	console.log("Get Student Details", req.session.passport.user._id)
+	if (req.session.passport.user._id === undefined){
+     res.json({err:"Invalid credentials"});
+   }
+   else
+   {
+             Students
+                  .findOne({_id : req.session.passport.user._id})
+                  .populate({
+                    path: 'batchid',
+                    populate: {
+                      path: 'classid', select: 'homework lessoncovered students'
+                    },
+                    select: 'batchdesc subject level rateperhour'
+                  })
+                  .then((studentdet) =>
+                    {
+                            var classdetails = [];
+                            console.log("Studet",studentdet);
+                            console.log("batch",studentdet.batchid);
+                             console.log("class",studentdet.batchid.classid);
+                            for(let i = 0; i < studentdet.batchid.classid.length;i++)
+                            {
+                                var homework = studentdet.batchid.classid[i].homework;
+                                var lesson = studentdet.batchid.classid[i].lessoncovered;
+                                var attendance = studentdet.batchid.classid[i].students
+                                console.log("for",homework,lesson,attendance);
+
+                                if ( attendance.indexOf(studentdet._id))
+                                {
+                                  var present= "Y";
+                                }
+                                else {
+                                  var present= "N";
+                                }
+                                classdetails.push ({
+                                        homework : homework,
+                                        lesson: lesson,
+                                        present: present
+                                      });
+                            } // end of for loop
+                            var studentrecord = {
+                                fname: studentdet.studentfname,
+                                lname: studentdet.studentlname,
+                                parent: studentdet.parentname,
+                                phone: studentdet.parentphonenumber,
+                                email: studentdet.loginemail,
+                                uname: studentdet.username,
+                                batch: studentdet.batchid.batchdesc,
+                                subject: studentdet.batchid.subject,
+                                level: studentdet.batchid.level,
+                                rate: studentdet.batchid.rateperhour,
+                            }
+                            console.log("Valid student login",studentrecord);
+                            console.log("Classdetails array",classdetails);
+
+                            res.json({studentrecord:studentrecord,classes:classdetails}) 
+                          }) // end then
+                            //return done(null,{studentrecord:studentrecord,classes:classdetails})                 })
+                  .catch((err) => {
+                    console.log("Error - Invalid Student Credentials",err);
+                    res.json(err);
+                    //return done(null,false,req.flash('message','Invalid Student login credentials'));
+                  }); //end catch
+      }  // End else part
+}
+
