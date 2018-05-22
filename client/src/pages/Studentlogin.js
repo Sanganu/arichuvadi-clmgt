@@ -47,28 +47,30 @@ class Studentlogin extends Component
 
                            }
                         else {
+                          this.setState({errmsg: ""});
+
                           console.log(this.state.vemail, this.state.vpword,this.state.vuname);
                            axios.post('/auth/student/login',
                                   {
                                     loginemail: this.state.vemail,
                                     password: this.state.vpword
-                                  })
+                                  })  
                                   .then( (response) =>{
                                          console.log("The response from axios",response.data);
                                          console.log("The classes details", response.data.classes);
-                                         if ( response.data.user)
-                                         {
+                                         if ( response.data.studentrecord)
+                                           {
                                          this.setState({    showstlogin:false,
-                                                            studentrecord:(response.data.user),
+                                                            studentrecord:(response.data.studentrecord),
                                                             classdet:(response.data.classes)},
                                                             () => {
                                                               console.log("State updates",this.state.studentrecord);
                                                             });
                                           }
                                           else {
-                                            console.log("Error in validating student login - student login does not exist",);
+                                            console.log("Error!! - student login does not exist",);
                                             this.setState({
-                                                           errmsg: "Invaild Student login exist .. Enter valid credentials or Contact your Teacher",
+                                                           errmsg: "Error!! Enter valid credentials or Contact your Teacher",
                                                            showstlogin: true
                                                            });
                                           }
@@ -77,7 +79,7 @@ class Studentlogin extends Component
 
                                        console.log("Error in validating student login ",error);
                                        this.setState({
-                                                      errmsg: "Invaild Student login exist .. Enter valid credentials or Contact your Teacher",
+                                                      errmsg: "Invaild Student login! Enter valid credentials or Contact your Teacher",
                                                       showstlogin: true
                                                       });
                                    });

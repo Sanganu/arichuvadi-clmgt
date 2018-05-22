@@ -21,7 +21,6 @@ class Studentmain extends Component
                      <br />
                            <div>
                                  <p>Parent: {this.props.studentdet.parent}</p>
-                                 <p>Username:{this.props.studentdet.uname} </p>
                                  <p>Phone number:{this.props.studentdet.phone}</p>
                                  <p>Subject: {this.props.studentdet.subject}</p>
                                  <p>Email: {this.props.studentdet.email}</p>
@@ -30,7 +29,7 @@ class Studentmain extends Component
                                   <p>Batch Description: {this.props.studentdet.batch}</p>
 
                              </div>
-                             <Allclasses classrecords = {this.props.classrecords}/>
+                            <Allclasses classrecords = {this.props.classrecords}/> 
                  </div>)
       }
 }

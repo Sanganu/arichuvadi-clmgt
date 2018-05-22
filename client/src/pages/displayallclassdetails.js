@@ -1,9 +1,9 @@
 import React,{ Component } from 'react';
 
 
-const Allclasses =() =>
+const Allclasses =(props) =>
 {
-      const classrec = this.props.classrecords;
+      const classrec = props.classrecords;
       return(<div>
                     <h6 className ="tablehead">Class Details </h6>
                     <div className = "table-responsive">
@@ -20,7 +20,7 @@ const Allclasses =() =>
                           </table>
                     </div>
             </div>); // end return
- } //end allbatches
+}
 export default Allclasses;
 
 /*
