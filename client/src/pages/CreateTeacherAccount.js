@@ -21,7 +21,7 @@ class CreateTeacherAccount extends Component{
                     event.preventDefault();
                      console.log("In Teacher Account Creation state values",this.state);
                      //var myDate = new Date(this.state.startdate);
-                     if(  this.state. === "" ||
+                     if(  this.state.batchdesc === "" ||
                          this.state.subject === "" ||
                          this.state.level === "" ||
                         this.state.rateperhour === "")
@@ -42,8 +42,6 @@ class CreateTeacherAccount extends Component{
                                 let newteacher = {
                                     
                                 }
-                                5
-
                                 //window.location = '/teacher/batch/addstudent/'+response._id;
                                 //return <Addstudent />
                             })

@@ -23,7 +23,4 @@ const Allclasses =(props) =>
 }
 export default Allclasses;
 
-/*
-<button className ="btn btn-large-info" id = "blogin" onClick={this.onClassclick}>Add Class Details</button>
-{this.displayclass ? <Addclassdetails btrecs = {this.state.batchrecords}/> :<div></div>}
-*/
+

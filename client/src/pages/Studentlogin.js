@@ -109,7 +109,7 @@ class Studentlogin extends Component
                                                                 <input className="textarea" onChange = {this.handleInputChange} type="password" name="vpword" value ={this.state.vpword} /><br />
                                                              </div>
                                                              <br />
-                                                               <button className ="btn btn-lg-info" id = "blogin" onClick={this.logincheck}>Login</button>
+                                                               <button className = "createbutton" id = "blogin" onClick={this.logincheck}>Login</button>
                                                          </form>
                                                    </div>
                                               </div>
