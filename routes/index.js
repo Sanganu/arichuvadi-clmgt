@@ -32,7 +32,7 @@ router.post('/api/teacher/batch/new',function(req,res) {
                                  err : err
                                 });
                            }
-                         else
+                        else
                         {
                             console.log("Error on saving batch details",err);
                             res.json({
@@ -122,7 +122,7 @@ router.get("/api/teacher/batch/all",(req,res) => {
 });
 
 
-// Student Login route -- implemented
+// Student Login route -- implemented- with OAuth Local
 
 router.post('/api/student/details',function(req,res,next) {
    console.log("Inside route to fetch student details after valid student",req.body);
@@ -163,7 +163,7 @@ router.post('/api/student/details',function(req,res,next) {
                                 }
                                 else {
                                   var present= "N";
-                                }
+                                }  
                                 classdetails.push ({
                                         homework : homework,
                                         lesson: lesson,
@@ -174,7 +174,7 @@ router.post('/api/student/details',function(req,res,next) {
                                 fname: studentdet.studentfname,
                                 lname: studentdet.studentlname,
                                 parent: studentdet.parentname,
-                                phone: studentdet.parentphonenumber,
+                                 phone: studentdet.parentphonenumber,
                                 email: studentdet.loginemail,
                                 uname: studentdet.username,
                                 batch: studentdet.batchid.batchdesc,
@@ -292,16 +292,9 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
 
 
 
-
-router.get( "/user",(req,res) => {
-    console.log("Entered user route",req.body);
-});
-
-
-//To ddd class details -Get All Student details for the batch for class entry - implemented
+//To add class details(Attendance) -Get All Student details for the batch for class entry - implemented
 router.get("/api/teacher/batch/:batchid", (req,res) => {
-  console.log("In router",req.params.batchid);
-  //var bid = mongoose.Types.ObjectId.fromString(batchid);
+  console.log("In router - to fetch students for class",req.params.batchid);
     batchdetails.findOne({_id:req.params.batchid})
      .populate('students')
       .then((data) => {
@@ -315,7 +308,6 @@ router.get("/api/teacher/batch/:batchid", (req,res) => {
 });
 
 //Delete Batch (cascading) - pending ()
-
 router.delete("/api/teacher/batch/delete",(req,res) => {
      console.log("Inside delete route for batch to student to class");
      batchdetails.findOne({_id:req.body.batchid})
@@ -344,9 +336,6 @@ router.get("/api/teacher/batch/:searchstr",(req,res) => {
 });
 
 
-
-
-
 //Delete Student -- pending
 router.delete('/api/batch/student/delete/',(req,res) => {
           batchdetails.findone({_id: req.body.batchid})
@@ -369,64 +358,67 @@ router.delete('/api/batch/student/delete/',(req,res) => {
 
 // Search Student Records
 
-router.get('/api/teacher/studentdetails/str/:str',(req,res) => {
+router.get('/api/teacher/studentdetails/:str',(req,res) => {
+    
     studentdetails
-      .findOne({ $or:[
-                 {loginemail : req.body.str},
-                {username : req.body.str},
-                {parentname: req.body.str}
-                ]})
+      .find({ $or :
+        [
+          {studentfname : req.params.str},
+          {studentlname : req.params.str},
+          {loginemail : req.params.str},
+          {parentname : req.params.str},
+          {parentphonenumber : req.params.str}
+        ] })
       .populate({
-        path: 'batchid',
-        populate: {
-          path: 'classid', select: 'homework lessoncovered students'
-        },
+         path: 'batchid',
+         populate: {
+                path: 'classid', select: 'homework lessoncovered students'
+         },
         select: 'batchdesc subject level rateperhour'
-      })
-      .then((studentdet) =>
+       })
+       .then((studentdet) =>
         {
                 var classdetails = [];
                 console.log("Studet",studentdet);
-                console.log("batch",studentdet.batchid);
-                console.log("class",studentdet.batchid.classid);
-                for(let i = 0; i < studentdet.batchid.classid.length;i++)
-                 {
-                     var homework = studentdet.batchid.classid[i].homework;
-                     var lesson = studentdet.batchid.classid[i].lessoncovered;
-                     var attendance = studentdet.batchid.classid[i].students
-                     console.log("for",homework,lesson,attendance);
+                res.json(studentdet)
+                // for(let i = 0; i < studentdet.batchid.classid.length;i++)
+                //  {
+                //      var homework = studentdet.batchid.classid[i].homework;
+                //      var lesson = studentdet.batchid.classid[i].lessoncovered;
+                //      var attendance = studentdet.batchid.classid[i].students
+                //      console.log("for",homework,lesson,attendance);
   
-                     if ( attendance.indexOf(studentdet._id))
-                     {
-                       var present= "Y";
-                     }
-                     else {
-                       var present= "N";
-                     }
-                     classdetails.push ({
-                            homework : homework,
-                            lesson: lesson,
-                            present: present
-                          });
-                }
-                var studentrecord = {
-                     fname: studentdet.studentfname,
-                     lname: studentdet.studentlname,
-                     parent: studentdet.parentname,
-                     phone: studentdet.parentphonenumber,
-                     email: studentdet.loginemail,
-                     uname: studentdet.username,
-                     batch: studentdet.batchid.batchdesc,
-                     subject: studentdet.batchid.subject,
-                     level: studentdet.batchid.level,
-                     rate: studentdet.batchid.rateperhour,
-                 }
-                console.log("Valid student login",studentrecord);
-                console.log("Classdetails array",classdetails);
-                res.json({studentrecord:studentrecord,classes:classdetails});
+                //      if ( attendance.indexOf(studentdet._id))
+                //      {
+                //        var present= "Y";
+                //      }
+                //      else {
+                //        var present= "N";
+                //      }
+                //      classdetails.push ({
+                //             homework : homework,
+                //             lesson: lesson,
+                //             present: present
+                //           });
+                // }
+                // var studentrecord = {
+                //      fname: studentdet.studentfname,
+                //      lname: studentdet.studentlname,
+                //      parent: studentdet.parentname,
+                //      phone: studentdet.parentphonenumber,
+                //      email: studentdet.loginemail,
+                //      uname: studentdet.username,
+                //      batch: studentdet.batchid.batchdesc,
+                //      subject: studentdet.batchid.subject,
+                //      level: studentdet.batchid.level,
+                //      rate: studentdet.batchid.rateperhour,
+                //  }
+                // console.log("Valid student login",studentrecord);
+                // console.log("Classdetails array",classdetails);
+                // res.json({studentrecord:studentrecord,classes:classdetails});
       })
       .catch((err) => {
-        console.log("Error - Invalid Student Credentials",err);
+        console.log("No records found",err);
         res.json(err);
       });
   

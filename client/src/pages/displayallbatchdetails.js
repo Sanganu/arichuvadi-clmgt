@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+ import React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 //import Listbatch from './Listbatch';
@@ -12,7 +12,6 @@ class Allbatches extends Component
      batchrecords: [],
      diplayclass : false,
      recid : '',
-     recbatid : '',
      recdesc : '',
      recsubj : '',
      reclevel: '',
@@ -32,7 +31,6 @@ class Allbatches extends Component
               //  console.log("Records",response.data[i]._id,response.data[i].batchdesc,response.data[i].batchid,response.data[i].subject,response.data[i].level,response.data[i].rateperhour);
                  let currentrec = {
                          recid: response.data[i]._id,
-                         recbatid: response.data[i].batchid,
                          recdesc: response.data[i].batchdesc,
                          recsubj: response.data[i].subject,
                          reclevel: response.data[i].level,
