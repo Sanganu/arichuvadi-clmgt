@@ -78,7 +78,14 @@ class Searchstudents extends Component{
              </form> 
              {this.state.foundrecords ?
               <div>{resultset.map((data,index) =>
-                <Resultrecords recdetails = {data} key={index} /> )}</div> :<div></div>}
+                <Resultrecords recid = {data.id} 
+                               key={index}
+                               recbatchid = {data.batch}
+                               reclogin = {data.loginemail}
+                               recparent = {data.parentname}
+                               recphone = {data.phone}
+                               recstudent = {data.student}
+                                /> )}</div> :<div></div>}
               {this.state.displaymessage ? <div>No Student details found</div>:<div></div>}          
         </div>);
     }

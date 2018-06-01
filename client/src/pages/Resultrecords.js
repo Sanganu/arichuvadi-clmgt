@@ -6,7 +6,11 @@ class Resultrecords extends Component
     {
          
             return(<div>
-                         {this.props.recdetails}
+                         {this.props.recbatchid}
+                         {this.props.reclogin}
+                         {this.props.recparent}
+                         {this.props.recphone}
+                         {this.props.recstudent}
                          {this.props.key}
                    </div>);
     }
