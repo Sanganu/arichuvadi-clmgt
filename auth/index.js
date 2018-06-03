@@ -13,7 +13,7 @@ router.get('/student', (req, res, next) => {
 		return res.json({ student: null })
 	}
 })
-
+  
 router.post(
 	'/student/login',
 	function(req, res, next) {
@@ -32,7 +32,7 @@ router.post(
 		}
 		//res.json({ user: cleanUser })
 		//res.redirect('/ssignup' + {usecr:cleanUser})
-		//getStudentDetails({user:cleanUser})
+		//getStudentDetails({user:cleanUser})   
 		getStudentDetails(req,res)
 	}
 )
@@ -99,19 +99,18 @@ function getStudentDetails(req,res) {
                   .then((studentdet) =>
                     {
                             var classdetails = [];
-                            console.log("Studet",studentdet);
-                            console.log("batch",studentdet.batchid);
-                             console.log("class",studentdet.batchid.classid);
+                            // console.log("Studet",studentdet);
+                            // console.log("batch",studentdet.batchid);
+                            //  console.log("class",studentdet.batchid.classid);
                             for(let i = 0; i < studentdet.batchid.classid.length;i++)
                             {
                                 var homework = studentdet.batchid.classid[i].homework;
                                 var lesson = studentdet.batchid.classid[i].lessoncovered;
                                 var attendance = studentdet.batchid.classid[i].students
-                                console.log("for",homework,lesson,attendance);
-
-                                if ( attendance.indexOf(studentdet._id))
+                                console.log("for", attendance.indexOf(studentdet._id))
+                                if ( attendance.indexOf(studentdet._id)!== -1)
                                 {
-                                  var present= "Y";
+                                  var present= "   Y";
                                 }
                                 else {
                                   var present= "N";
@@ -123,7 +122,7 @@ function getStudentDetails(req,res) {
                                       });
                             } // end of for loop
                             var studentrecord = {
-                                fname: studentdet.studentfname,
+                                 fname: studentdet.studentfname,
                                 lname: studentdet.studentlname,
                                 parent: studentdet.parentname,
                                 phone: studentdet.parentphonenumber,
@@ -140,7 +139,7 @@ function getStudentDetails(req,res) {
                             res.json({studentrecord:studentrecord,classes:classdetails}) 
                           }) // end then
                             //return done(null,{studentrecord:studentrecord,classes:classdetails})                 })
-                  .catch((err) => {
+                  .catch((err) => { 
                     console.log("Error - Invalid Student Credentials",err);
                     res.json(err);
                     //return done(null,false,req.flash('message','Invalid Student login credentials'));
