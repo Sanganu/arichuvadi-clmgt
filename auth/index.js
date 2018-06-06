@@ -114,7 +114,7 @@ function getStudentDetails(req,res) {
                                 }
                                 else {
                                   var present= "N";
-                                }
+                                } 
                                 classdetails.push ({
                                         homework : homework,
                                         lesson: lesson,

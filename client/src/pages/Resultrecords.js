@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 
 class Resultrecords extends Component
-{
+{  
     render()
     {
          
@@ -10,10 +10,11 @@ class Resultrecords extends Component
                          {this.props.reclogin}
                          {this.props.recparent}
                          {this.props.recphone}
-                         {this.props.recstudent}
+                         {this.props.recstudent}  
                          {this.props.key}
+                         <button onClick ={this.props.detailsdisplay} />
                    </div>);
     }
-}
+}  
 
 export default Resultrecords;

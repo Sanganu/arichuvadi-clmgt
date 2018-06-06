@@ -99,14 +99,14 @@ class Studentlogin extends Component
                                                   <div>
                                                        <h5 className ="errmsg">{this.state.errmsg}</h5>
                                                         <form className="inputsection">
-                                                            <div className = "form-group">
+                                                            <div className = "form-group row">
                                                                 <label id ="lemail">Email Addess</label><br />
-                                                                <input className="textarea" onChange = {this.handleInputChange} type="text" name="vemail" value={this.state.vemail} /><br />
+                                                                <input className="textarea rightside" onChange = {this.handleInputChange} type="text" name="vemail" value={this.state.vemail} /><br />
                                                             </div>
                                                            
-                                                             <div className = "form-group">
+                                                             <div className = "form-group row">
                                                                 <label id = "lpsword">Password</label><br />
-                                                                <input className="textarea" onChange = {this.handleInputChange} type="password" name="vpword" value ={this.state.vpword} /><br />
+                                                                <input className="textarea rightside" onChange = {this.handleInputChange} type="password" name="vpword" value ={this.state.vpword} /><br />
                                                              </div>
                                                              <br />
                                                                <button className = "createbutton" id = "blogin" onClick={this.logincheck}>Login</button>

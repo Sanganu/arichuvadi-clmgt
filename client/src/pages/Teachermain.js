@@ -64,11 +64,11 @@ class Teachermain extends Component
                                                   {/*<div className = "col-sm-6">*/}
                                                       <form className="inputsection">
                                                                      <div className = "form-group row">
-                                                                          <label className = "leftside" forhtml = "vemail" id ="lemail">Email Addess  </label><br />
+                                                                          <label  id ="lemail">Email Addess  </label><br />
                                                                           <input className="textarea rightside" onChange  = {this.handleInputChange} type="text" name="vemail" id="vemail" value={this.state.vemai} /><br />
                                                                       </div>
                                                                       <div className = "form-group row">
-                                                                          <label className= "leftside" forhtml = "vpword" id = "lpsword">Password  </label><br />
+                                                                          <label  id = "lpsword">Password  </label><br />
                                                                           <input className="textarea rightside" onChange = {this.handleInputChange} type="password" name="vpword" id ="vpword" value ={this.state.vpword} /><br />
                                                                       </div>
                                                                      <br />

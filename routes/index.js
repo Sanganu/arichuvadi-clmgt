@@ -1,4 +1,4 @@
-const path = require("path");
+ const path = require("path");
 const router = require("express").Router();
 const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
@@ -78,12 +78,12 @@ router.post('/api/teacher/student/new',function(req,res) {
               console.log("Inserted student record",dbstudentdetails,req.body.batchid);
                return batchdetails.findOneAndUpdate({_id:req.body.batchid},
                  {$push:{students: dbstudentdetails._id}});
-           })
+           }) 
            .then(function(data){
              console.log("Inserted student and updated batchdetails with studentid",data,"\n");
              res.json(insertedstudent);
            })
-           .catch(function(err){
+           .catch(function(err) {
                       console.log("error in student batch",err)
                          if (err.errmsg)
                          {
@@ -98,7 +98,8 @@ router.post('/api/teacher/student/new',function(req,res) {
                               }
                          }
                         else {
-                           console.log("Exceptional Error: ",err)
+          
+                          console.log("Exceptional Error: ",err)
                            res.json(err);
                          }
            });
@@ -215,6 +216,11 @@ router.delete('/api/batch/student/delete/',(req,res) => {
 // Search Student Records
 
 router.get('/api/teacher/studentdetails/:str',(req,res) => {
+    let student_details = {}
+    let batch_details = {}
+    let err1 = {}
+    let err2 = {}
+    // Search for Student details
     studentdetails
       .find({ $or :
         [
@@ -228,18 +234,37 @@ router.get('/api/teacher/studentdetails/:str',(req,res) => {
          path: 'batchid',
          select: 'batchdesc subject level rateperhour'
        })
-       .then((studentdet) =>
+      .then((studentdet) =>
         {
-                var classdetails = [];
-                console.log("Studet",studentdet);
-                res.json(studentdet)
-       
-      })
+              console.log("Studet",studentdet);
+              student_details = studentdet;
+                // res.json(studentdet)
+        })
       .catch((err) => {
         console.log("No records found",err);
-        res.json(err);
+        // res.json(err);
+        err1 = err
       });
-  
+      // the Batch Schema
+      batchdetails.find({$or:[
+        {batchdesc : req.params.str},
+        {level: req.params.str},
+        {subject: req.params.str}
+      ]})
+      .populate({
+        path: 'students',
+        select:'studentfname studentlname loginemail parentname' 
+      })
+      .then((batchdet) => {
+        batch_details = batchdet
+        console.log("Bathc",batch_det)
+        res.json({student:student_details, batch: batch_details,err: err1, err: err2})
+      })
+      .catch((err) => {
+        console.log("No Records found",err);
+        err2 = err
+        res.json(({student:student_details, batch: batch_details,err1:err1, err2:err2}))
+      });
 });
 
 // Student Login route -- implemented- with OAuth Local

@@ -38,27 +38,7 @@ const studentSchema = new Schema({
             ref: 'batchdetails'
           }
 });
-// studentSchema.methods = {
-// 	checkPassword: function(inputPassword) {
-// 		return bcrypt.compareSync(inputPassword, this.local.password)
-// 	},
-// 	hashPassword: plainTextPassword => {
-// 		return bcrypt.hashSync(plainTextPassword, 10)
-// 	}
-// }
 
-// // Define hooks for pre-saving
-// studentSchema.pre('save', function(next) {
-// 	if (!this.local.password) {
-// 		console.log('=======NO PASSWORD PROVIDED=======')
-// 		next()
-// 	} else {
-// 		this.local.password = this.hashPassword(this.local.password)
-// 		next()
-// 	}
-// 	// this.password = this.hashPassword(this.password)
-// 	// next()
-// })
 
 studentSchema.methods = {
 	checkPassword: function(inputPassword) {
@@ -78,8 +58,6 @@ studentSchema.pre('save', function(next) {
 		this.password = this.hashPassword(this.password)
 		next()
 	}
-	// this.password = this.hashPassword(this.password)
-	// next()
 });
 
 // Define hooks for pre-saving
@@ -91,8 +69,6 @@ studentSchema.pre('create', function(next) {
 		this.password = this.hashPassword(this.password)
 		next()
 	}
-	// this.password = this.hashPassword(this.password)
-	// next()
 });
 
 const Students = mongoose.model("studentdetails", studentSchema);
