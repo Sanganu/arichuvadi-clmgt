@@ -179,20 +179,6 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
 
 
 
-//Search Option: -- pending-working
-router.get("/api/teacher/batch/:searchstr",(req,res) => {
-    batchdetails.find({batchdesc : req.params.searchstr})
-       .then((data) => {
-         console.log("The response",data)
-         res.json(data);
-       })
-       .catch((error) => {
-         console.log("Search string batch not found",error);
-         res.json({err:"Batch details does not exit"});
-       });
-});
-
-
 //Delete Student -- pending
 router.delete('/api/batch/student/delete/',(req,res) => {
           batchdetails.findone({_id: req.body.batchid})
@@ -213,7 +199,7 @@ router.delete('/api/batch/student/delete/',(req,res) => {
             });
 });
 
-// Search Student Records
+// Search Student & Batch Records
 
 router.get('/api/teacher/search/:str',(req,res) => {
     let student_details
@@ -260,18 +246,7 @@ router.get('/api/teacher/search/:str',(req,res) => {
         // res.json(err);
         res.json({err})
       });
-      // // the Batch Schema
-      // .then((batchdet) => {
-      //   batch_details = batchdet
-      //   console.log("Batch",batch_details)
-      //   res.json({student:student_details, batch: batch_details,err: err1, err: err2})
-      // })
-      // .catch((err) => {
-      //   console.log("No Records found",err);
-      //   console.log("The Response",{student:student_details, batch: batch_details,err1:err1, err2:err2})
-      //   err2 = err
-      //   res.json(({student:student_details, batch: batch_details,err1:err1, err2:err2}))
-      // });
+   
 });
 
 // Student Login route -- implemented- with OAuth Local
