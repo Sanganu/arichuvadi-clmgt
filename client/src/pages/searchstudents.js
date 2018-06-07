@@ -16,7 +16,7 @@ class Searchstudents extends Component{
    searchrecords = (event) => {
         event.preventDefault();
         console.log("BEfore axios call - search str",this.state.searchstring)
-        axios.get(`/api/teacher/studentdetails/${this.state.searchstring}`)
+        axios.get(`/api/teacher/search/${this.state.searchstring}`)
             .then((response) => {
                 console.log("Results from search",response);
                 let matchrecords = [];
@@ -75,7 +75,7 @@ detailsdisplay = () => {
             <form className="inputsection">
                   <div className = "form-group row">
                                <label forhtml = "searchstring" id ="lsearchstr">Search By Student Name / Email / Parentname  </label><br />
-                         <input classNam e="textarea" onChange  = {this.handleInputChange} type="text" name="searchstring"  value={this.state.searchstring} /><br />.
+                         <input className="textarea" onChange  = {this.handleInputChange} type="text" name="searchstring"  value={this.state.searchstring} /><br />.
                          <button name = "searchbtn" onClick = {this.searchrecords}>Search</button>
                   </div>
              </form> 
