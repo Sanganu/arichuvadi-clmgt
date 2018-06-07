@@ -76,8 +76,8 @@ class Allbatches extends Component
                     </div>
                     <div className = "otherlinks">
                            <Link to = '/teacher/batchmain' className = 'mainlink'>Create New Batch</Link>
-                           <Link to = '/teacher/studentrecords' className = 'mainlink'>Search Student Records</Link>
-                           <Link to = '/teacher/batchrecords' className = 'mainlink'>Search Batch Records</Link>
+                           <Link to = '/teacher/studentrecords' className = 'mainlink'>Search</Link>
+                      
                     </div>
 
             </div>); // end return

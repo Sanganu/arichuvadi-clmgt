@@ -10,7 +10,7 @@ import Completebatchdetails from "./pages/Completebatchdetails";
 import Allbatches from "./pages/displayallbatchdetails"
 import Studentlogin from "./pages/Studentlogin";
 import Addclass from "./pages/Addclassdetails";
-import Searchstudents from "./pages/Searchstudents";
+import Search from "./pages/Search";
 
 
 const App = () =>
@@ -29,7 +29,7 @@ const App = () =>
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
                    <Route exact path ="/teacher/batch/alldetails" component={Completebatchdetails} />
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
-                   <Route exact path ="/teacher/studentrecords" component={Searchstudents} />
+                   <Route exact path ="/teacher/studentrecords" component={Search} />
                    <Switch>
                       <Route path ="/*" component={Homepage} />
                    </Switch> 
