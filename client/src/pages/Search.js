@@ -19,12 +19,13 @@ class Searchstudents extends Component{
         axios.get(`/api/teacher/search/${this.state.searchstring}`)
             .then((response) => {
                 console.log("Results from search",response);
-                let matchrecords = [];
+                let matchrecords1 = [];
+                let matchrecords2 = []
                 let found = false;
                 let displaymessage = false;
-                if (response.data.studentdetails.length > 0 ||
-                    response.data.batchdetails.length > 0){
-                    found = true;
+                if ((response.data.studentdetails.length > 0) ||
+                    (response.data.batchdetails.length > 0))
+                {   found = true;
                     displaymessage = false
                     for (let i =0; i < response.data.studentdetails.length; i++)
                     {
@@ -37,7 +38,7 @@ class Searchstudents extends Component{
                             phone : response.data.studentdetails[i].parentphonenumber,
                             student : response.data.studentdetails[i].studentfname+ " "+response.data.studentdetails[i].studentlname
                         }
-                        matchrecords.push(currentrec)
+                        matchrecords1.push(currentrec)
                     } 
                     for (let i =0; i < response.data.batchdetails.length; i++)
                     {
@@ -51,14 +52,14 @@ class Searchstudents extends Component{
                            student : response.data.batchdetails[i].students,
                            classes: response.data.batchdetails[i].classes
                        }
-                       matchrecords.push(currentrec)
+                       matchrecords2.push(currentrec)
                     } 
                 } 
                 else{
                      displaymessage = true
                      found = false;
                 }  
-                this.setState({results: matchrecords,foundrecords: found,displaymessage : displaymessage},
+                this.setState({results: matchrecords1,foundrecords: found,displaymessage : displaymessage},
                     () => {
                         console.log("State",this.state.results,'found', this.state.foundrecords);
                     });
@@ -80,7 +81,7 @@ class Searchstudents extends Component{
 };
 
 detailsdisplay = () => {
-      
+      console.log("Details Display")
  }
   
     render(){
@@ -102,7 +103,7 @@ detailsdisplay = () => {
                                reclogin = {data.loginemail}
                                recparent = {data.parentname}
                                recphone = {data.phone}
-                               recstudent = {data.student}
+                            //    recstudent = {data.student}
                                 /> )}</div> :<div></div>}
               {this.state.displaymessage ? <div>No Student details found</div>:<div></div>}          
         </div>);

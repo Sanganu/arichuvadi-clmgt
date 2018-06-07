@@ -10,8 +10,7 @@ class Resultrecords extends Component
                          {this.props.reclogin}
                          {this.props.recparent}
                          {this.props.recphone}
-                         {this.props.recstudent}  
-                        
+                       
                          <button onClick ={this.props.detailsdisplay} />
                    </div>);
     }
