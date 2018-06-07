@@ -204,8 +204,7 @@ router.delete('/api/batch/student/delete/',(req,res) => {
 router.get('/api/teacher/search/:str',(req,res) => {
     let student_details
     let batch_details 
-    let err1 = {}
-    let err2 = {}
+  
     // Search for Student details
     studentdetails
       .find({ $or :
@@ -224,9 +223,9 @@ router.get('/api/teacher/search/:str',(req,res) => {
         {
               student_details = studentdet;
               batchdetails.find({$or:[
-                {batchdesc : req.params.str,$caseSensitive : false},
-                {level: req.params.str,$caseSensitive : false},
-                {subject: req.params.str, $caseSensitive: false}
+                {batchdesc : req.params.str},
+                {level: req.params.str},
+                {subject: req.params.str}
               ]})
               .populate({
                 path: 'students',

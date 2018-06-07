@@ -22,22 +22,37 @@ class Searchstudents extends Component{
                 let matchrecords = [];
                 let found = false;
                 let displaymessage = false;
-                if (response.data.length > 0){
+                if (response.data.studentdetails.length > 0 ||
+                    response.data.batchdetails.length > 0){
                     found = true;
                     displaymessage = false
-                   for (let i =0; i < response.data.length; i++)
-                   {
+                    for (let i =0; i < response.data.studentdetails.length; i++)
+                    {
+                        
+                        let currentrec = {
+                            id : response.data.studentdetails[i]._id,
+                            batch: response.data.studentdetails[i].batchid,
+                            loginemail: response.data.studentdetails[i].loginemail,
+                            parentname : response.data.studentdetails[i].parentname,
+                            phone : response.data.studentdetails[i].parentphonenumber,
+                            student : response.data.studentdetails[i].studentfname+ " "+response.data.studentdetails[i].studentlname
+                        }
+                        matchrecords.push(currentrec)
+                    } 
+                    for (let i =0; i < response.data.batchdetails.length; i++)
+                    {
                       
                        let currentrec = {
-                           id : response.data[i]._id,
-                           batch: response.data[i].batchid.batchdesc,
-                           loginemail: response.data[i].loginemail,
-                           parentname : response.data[i].parentname,
-                           phone : response.data[i].parentphonenumber,
-                           student : response.data[i].studentfname+ " "+response.data[i].studentlname
+                           id : response.data.batchdetails[i]._id,
+                           batch: response.data.batchdetails[i].batchdesc,
+                           loginemail: response.data.batchdetails[i].subject,
+                           parentname : response.data.batchdetails[i].level,
+                           phone : response.data.batchdetails[i].rateperhout,
+                           student : response.data.batchdetails[i].students,
+                           classes: response.data.batchdetails[i].classes
                        }
                        matchrecords.push(currentrec)
-                   } 
+                    } 
                 } 
                 else{
                      displaymessage = true
