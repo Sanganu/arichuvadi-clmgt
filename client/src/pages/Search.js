@@ -33,11 +33,11 @@ class Searchstudents extends Component{
                         
                         let currentrec = {
                             field1 : response.data.studentdetails[i]._id,
-                            field2 : response.data.studentdetails[i].batchdesc,
+                            field2 : "Student: "+ response.data.studentdetails[i].studentfname+ " "+response.data.studentdetails[i].studentlname,
                             field3: response.data.studentdetails[i].loginemail,
                             field4 : response.data.studentdetails[i].parentname,
                             field5 : response.data.studentdetails[i].parentphonenumber,
-                            field6 : response.data.studentdetails[i].studentfname+ " "+response.data.studentdetails[i].studentlname
+                            field6 : response.data.studentdetails[i].batchdesc
                         }
                         matchrecords.push(currentrec)
                     } 
@@ -46,11 +46,11 @@ class Searchstudents extends Component{
                       
                        let currentrec = {
                            field1 : response.data.batchdetails[i]._id,
-                           field2: response.data.batchdetails[i].batchdesc,
+                           field2: "Batch: "+ response.data.batchdetails[i].batchdesc,
                            field3: response.data.batchdetails[i].subject,
                            field4 : response.data.batchdetails[i].level,
-                           field5 : response.data.batchdetails[i].rateperhout,
-                           field6 : ''
+                           field5 : response.data.batchdetails[i].rateperhour,
+                           field6 : "Number of Students: "+response.data.batchdetails[i].students.length
                         //    student : response.data.batchdetails[i].students,
                         //    classes: response.data.batchdetails[i].classes
                        }

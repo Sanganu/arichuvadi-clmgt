@@ -6,12 +6,12 @@ class Resultrecords extends Component
     {
             
             return(<div>
-                         {this.props.field1}
-                         {this.props.field2}
-                         {this.props.field3}
-                         {this.props.field4}
-                         {this.props.field5}
-                         {this.props.field6}
+                        {/* <h4>{this.props.field1}</h4> */}
+                         <h4>{this.props.field2}</h4>
+                         <p>{this.props.field3}</p>
+                         <p>{this.props.field4}</p>
+                         <p>{this.props.field5}</p>
+                         <p>{this.props.field6}</p>
                    </div>);
     }
 }  
