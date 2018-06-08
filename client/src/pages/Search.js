@@ -51,8 +51,6 @@ class Searchstudents extends Component{
                            field4 : response.data.batchdetails[i].level,
                            field5 : response.data.batchdetails[i].rateperhour,
                            field6 : "Number of Students: "+response.data.batchdetails[i].students.length
-                        //    student : response.data.batchdetails[i].students,
-                        //    classes: response.data.batchdetails[i].classes
                        }
                        matchrecords.push(currentrec)
                     }   

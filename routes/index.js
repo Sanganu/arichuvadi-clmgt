@@ -215,10 +215,6 @@ router.get('/api/teacher/search/:str',(req,res) => {
           {parentname : req.params.str},
           {parentphonenumber : req.params.str}
         ] })
-      // .populate({
-      //    path: 'batchid',
-      //    select: 'batchdesc subject level rateperhour'
-      //  })
       .then((studentdet) =>
         {
               student_details = studentdet;
@@ -227,10 +223,6 @@ router.get('/api/teacher/search/:str',(req,res) => {
                 {level: req.params.str},
                 {subject: req.params.str}
               ]})
-              // .populate({
-              //   path: 'students',
-              //   select:'studentfname studentlname loginemail parentname' 
-              // })
               .then((batchdet) => {
                 console.log(studentdet,batchdet)
                   res.json ({studentdetails:studentdet,batchdetails:batchdet})
