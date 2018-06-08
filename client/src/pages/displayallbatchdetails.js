@@ -1,10 +1,8 @@
- import React,{ Component } from 'react';
-import { Link } from 'react-router-dom';
+import React,{ Component } from 'react';
 import axios from 'axios';
-//import Listbatch from './Listbatch';
 import BatchRecAddclass from './Addclassdetails';
 import Teacherheader from '../components/Teacherheader';
-
+import Topmenu from './Topmenu';
 
 class Allbatches extends Component
 {
@@ -53,7 +51,7 @@ class Allbatches extends Component
       const stbatchrec = this.state.batchrecords;
       return(<div>
                     <Teacherheader />
-
+                    <Topmenu />
                     <div className = "table-responsive">
                       <table className = "table table-hover">
                           <thead>
@@ -74,11 +72,7 @@ class Allbatches extends Component
                            </tbody>
                        </table>
                     </div>
-                    <div className = "otherlinks">
-                           <Link to = '/teacher/batchmain' className = 'mainlink'>Create New Batch</Link>
-                           <Link to = '/teacher/studentrecords' className = 'mainlink'>Search</Link>
-                      
-                    </div>
+                   
 
             </div>); // end return
       } // end render

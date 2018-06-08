@@ -2,9 +2,7 @@ import React,{ Component } from 'react';
 
 class Resultrecords extends Component
 {  
-    render()
-    {
-            
+    render(){
             return(<div>
                         {/* <h4>{this.props.field1}</h4> */}
                          <h4>{this.props.field2}</h4>

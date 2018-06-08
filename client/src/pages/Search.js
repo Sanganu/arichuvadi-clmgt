@@ -21,7 +21,6 @@ class Searchstudents extends Component{
             .then((response) => {
                 console.log("Results from search",response);
                 let matchrecords = [];
-                let matchrecords2 = []
                 let found = false;
                 let displaymessage = false;
                 if ((response.data.studentdetails.length > 0) ||
@@ -81,11 +80,7 @@ class Searchstudents extends Component{
        [name]: value
      });
 };
-
-detailsdisplay = () => {
-      console.log("Details Display")
- }
-  
+ 
     render(){
         let resultset = this.state.results
        
