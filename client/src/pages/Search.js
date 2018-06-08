@@ -11,6 +11,7 @@ class Searchstudents extends Component{
        results: [{}],
        foundrecords: false,
        displaymessage: false,
+       records:[{}]
     }
 
    searchrecords = (event) => {
@@ -19,7 +20,7 @@ class Searchstudents extends Component{
         axios.get(`/api/teacher/search/${this.state.searchstring}`)
             .then((response) => {
                 console.log("Results from search",response);
-                let matchrecords1 = [];
+                let matchrecords = [];
                 let matchrecords2 = []
                 let found = false;
                 let displaymessage = false;
@@ -31,35 +32,38 @@ class Searchstudents extends Component{
                     {
                         
                         let currentrec = {
-                            id : response.data.studentdetails[i]._id,
-                            batch: response.data.studentdetails[i].batchid,
-                            loginemail: response.data.studentdetails[i].loginemail,
-                            parentname : response.data.studentdetails[i].parentname,
-                            phone : response.data.studentdetails[i].parentphonenumber,
-                            student : response.data.studentdetails[i].studentfname+ " "+response.data.studentdetails[i].studentlname
+                            field1 : response.data.studentdetails[i]._id,
+                            field2 : response.data.studentdetails[i].batchdesc,
+                            field3: response.data.studentdetails[i].loginemail,
+                            field4 : response.data.studentdetails[i].parentname,
+                            field5 : response.data.studentdetails[i].parentphonenumber,
+                            field6 : response.data.studentdetails[i].studentfname+ " "+response.data.studentdetails[i].studentlname
                         }
-                        matchrecords1.push(currentrec)
+                        matchrecords.push(currentrec)
                     } 
                     for (let i =0; i < response.data.batchdetails.length; i++)
                     {
                       
                        let currentrec = {
-                           id : response.data.batchdetails[i]._id,
-                           batch: response.data.batchdetails[i].batchdesc,
-                           loginemail: response.data.batchdetails[i].subject,
-                           parentname : response.data.batchdetails[i].level,
-                           phone : response.data.batchdetails[i].rateperhout,
-                           student : response.data.batchdetails[i].students,
-                           classes: response.data.batchdetails[i].classes
+                           field1 : response.data.batchdetails[i]._id,
+                           field2: response.data.batchdetails[i].batchdesc,
+                           field3: response.data.batchdetails[i].subject,
+                           field4 : response.data.batchdetails[i].level,
+                           field5 : response.data.batchdetails[i].rateperhout,
+                           field6 : ''
+                        //    student : response.data.batchdetails[i].students,
+                        //    classes: response.data.batchdetails[i].classes
                        }
-                       matchrecords2.push(currentrec)
-                    } 
+                       matchrecords.push(currentrec)
+                    }   
                 } 
                 else{
                      displaymessage = true
                      found = false;
                 }  
-                this.setState({results: matchrecords1,foundrecords: found,displaymessage : displaymessage},
+                this.setState({results: matchrecords,
+                               foundrecords: found,
+                               displaymessage : displaymessage},
                     () => {
                         console.log("State",this.state.results,'found', this.state.foundrecords);
                     });
@@ -86,6 +90,7 @@ detailsdisplay = () => {
   
     render(){
         let resultset = this.state.results
+       
         return(<div><Teacherheader />
             <h4>Search Student Details </h4>
             <form className="inputsection">
@@ -95,16 +100,17 @@ detailsdisplay = () => {
                          <button name = "searchbtn" onClick = {this.searchrecords}>Search</button>
                   </div>
              </form> 
-             {this.state.foundrecords ?
+             {this.state.foundrecords  ?
               <div>{resultset.map((data,index) =>
-                <Resultrecords recid = {data.id} 
+                   <Resultrecords field1 = {data.field1} 
                                key={index}
-                               recbatchid = {data.batch}
-                               reclogin = {data.loginemail}
-                               recparent = {data.parentname}
-                               recphone = {data.phone}
-                            //    recstudent = {data.student}
-                                /> )}</div> :<div></div>}
+                               field2 = {data.field2}
+                               field3 = {data.field3}
+                               field4 = {data.field4}
+                               field5 = {data.field5}
+                               field6 = {data.field6}
+                                /> )}
+                </div> :<div></div>} 
               {this.state.displaymessage ? <div>No Student details found</div>:<div></div>}          
         </div>);
     }
