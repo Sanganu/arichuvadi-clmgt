@@ -1,5 +1,5 @@
  const passport = require('passport')
-const LocalStrategy = require('./localStrategy.js')
+const LocalStrategy = require('./localstrategy.js')
 // const GoogleStratgey = require('./googleStrategy')
 const Students = require('../models/Students')
 
