@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import BatchInfo from './BatchInfo';
 // import {Link} from 'react-router-dom';
 
 //import Classentry from './Classentry';
@@ -35,7 +36,8 @@ class BatchRecAddclass extends Component
                        strecords: [],
                        lessoncovered:'',
                        homework: '',
-                       updatestatus: ''
+                       updatestatus: '',
+                       detailbatch:false
                }; // end
          } ;// end constructor
 
@@ -105,8 +107,10 @@ class BatchRecAddclass extends Component
                  cbsubj: this.props.bsubj,
                  cblevel: this.props.blevel,
                  cbrate: this.props.brate,
-                 modalIsOpen:true,
-                 strecords: this.props.studentdet }, () => {  console.log("Entry in class details---",this.props);});
+                 detailbatch : true,
+                //  modalIsOpen:true,
+                strecords: this.props.studentdet },
+                () => {  console.log("Entry in class details---",this.props);});
           } // end addClassInfo
 
           deleteBatch = () => {
@@ -133,8 +137,9 @@ class BatchRecAddclass extends Component
                                       <td>{this.props.bsubj}</td>
                                       <td>{this.props.brate}</td>
                                       <td><button className = "addclass"
-                                                onClick = {this.addClassInfo}>Add Class Details
+                                                onClick = {this.addClassInfo}>Batch Details
                                           </button></td>
+                                      {this.state.detailbatch ? <BatchInfo />:<div></div>}  
 
                                       <Modal
                                             isOpen = {this.state.modalIsOpen}

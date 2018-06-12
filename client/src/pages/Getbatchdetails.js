@@ -39,9 +39,6 @@ class BatchRecAddclass extends Component
                }; // end
          } ;// end constructor
 
-       closeModal(){
-          this.setState({modalIsOpen:false});
-        }
 
         handleInputChange = (event) => {
               const target = event.target;
@@ -106,7 +103,7 @@ class BatchRecAddclass extends Component
                  cblevel: this.props.blevel,
                  cbrate: this.props.brate,
                  modalIsOpen:true,
-                 strecords: this.props.studentdet }, () => {  console.log("Entry in class details---",this.props);});
+                strecords: this.props.studentdet }, () => {  console.log("Entry in class details---",this.props);});
           } // end addClassInfo
 
           deleteBatch = () => {
@@ -124,53 +121,18 @@ class BatchRecAddclass extends Component
                   }); // end catch
           }
 
+          
+
       render()
       {
 
 
-          return(<tr>
+          return(<tr onClick = {this.props.getBatchDetails}>
                                       <td>{this.props.bdesc}</td>
                                       <td>{this.props.bsubj}</td>
                                       <td>{this.props.brate}</td>
-                                      <td><button className = "addclass"
-                                                onClick = {this.addClassInfo}>Add Class Details
-                                          </button></td>
-
-                                      <Modal
-                                            isOpen = {this.state.modalIsOpen}
-                                            onRequestClose={this.closeModal}
-                                            style = {customStyle}
-                                            contentLabel="Class Details"
-                                            strecords={this.state.strecords}
-                                            >
-                                            <h5 className="modaltitle">Batch : {this.state.cbdesc} - Class details entry</h5>
-                                            <h5 className="errmsg">{this.state.updatestatus}</h5><br />
-                                            <form>
-                                                <div className = "form-group row">
-                                                    <label forhtml = "lessoncovered">Lesson Covered : </label>
-                                                    <input type = "text"   value={this.state.lessoncovered} onChange = {this.handleInputChange} name = "lessoncovered"  id = "lessoncovered" placeholder="Lesson Covered" />
-                                                </div>
-                                                <div className = "form-group row">
-                                                     <label forhtml = "homework">Homework : </label>
-                                                     <input type = "text"   value={this.state.homework} onChange = {this.handleInputChange} name = "homework" id = "homework" placeholder = "Homework assigned"/>
-                                                </div>
-                                                  <label>Attendance</label><br /><br />
-                                                  {this.state.strecords.map((data,index) =>
-                                                    <div key={index} className="form-check form-check-inline">
-                                                         <label className = "form-check-label">
-                                                        <input type="checkbox" value={data._id} onChange = {this.handleInputChange} />{data.studentfname}{data.studentlname}
-                                                       </label>
-                                                    </div>
-                                                 )}
-                                                 <br />
-
-                                                 <button className = "mybtn btn btn-lg-info"   name = "clcreation" onClick = {this.saveClassDetails}>Save Details</button>
-                                                 <button className = "mybtn btn btn-lg-info"  name = "clclose" onClick = {this.closeModal.bind(this)}>Close</button>
-
-                                            </form>
-                                      </Modal>
-                        </tr>
-                   ) //end return
+                                      
+                </tr>) //end return
       } // end render
 } // end component
 
