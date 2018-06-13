@@ -10,7 +10,7 @@ class Topmenu extends Component {
                    
                            <Link to = '/teacher/batchmain' className = 'mainlink'>Create New Batch</Link>
                            <Link to = '/teacher/studentrecords' className = 'mainlink'>Search</Link>
-                            <Link to = '/teacher/addstudent' classname  = 'mainlink'>Student Details</Link> 
+                            <Link to = '/teacher/addstudent' className  = 'mainlink'>Student Details</Link> 
                    
             </div>); //end return
         } //end render

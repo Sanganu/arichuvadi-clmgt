@@ -63,9 +63,10 @@ class Allbatches extends Component
                           <thead>
 
                           </thead>
-                          <tbody>
+                          
                                {this.state.allbatches ?
                                 <div>{stbatchrec.map((data,index) =>
+                                 
                                           <BatchRecAddclass
                                                       bid = {data.recid}
                                                       bdesc = {data.recdesc}
@@ -77,7 +78,7 @@ class Allbatches extends Component
                                                       key={index}
                                                        />
                                 )}</div>:<div></div>}
-                           </tbody>
+                           
                        </table>
                     </div>
                    
