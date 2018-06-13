@@ -1,0 +1,200 @@
+2018-06-13T15:04:07.899663+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=587bf085-b8ad-48e9-a683-bd9d8f596ba8 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:04:08.669303+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=e402d3b2-4dc5-418d-ad19-e3fc8a5fb48a fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:17:37.000000+00:00 app[api]: Build started by user kspmfamily@gmail.com
+2018-06-13T15:18:02.015155+00:00 heroku[web.1]: State changed from crashed to starting
+2018-06-13T15:18:01.738463+00:00 app[api]: Deploy dc89e054 by user kspmfamily@gmail.com
+2018-06-13T15:18:01.738463+00:00 app[api]: Release v9 created by user kspmfamily@gmail.com
+2018-06-13T15:18:02.000000+00:00 app[api]: Build succeeded
+2018-06-13T15:18:06.642609+00:00 heroku[web.1]: Starting process with command `npm start`
+2018-06-13T15:18:10.471397+00:00 app[web.1]: 
+2018-06-13T15:18:10.471416+00:00 app[web.1]: > reacteduclass@1.0.0 start /app
+2018-06-13T15:18:10.471418+00:00 app[web.1]: > concurrently "nodemon server.js" "npm run client"
+2018-06-13T15:18:10.471420+00:00 app[web.1]: 
+2018-06-13T15:18:11.197665+00:00 app[web.1]: [0] /bin/sh: 1: nodemon: not found
+2018-06-13T15:18:11.226938+00:00 app[web.1]: [0] nodemon server.js exited with code 127
+2018-06-13T15:18:12.317688+00:00 app[web.1]: [1]
+2018-06-13T15:18:12.317695+00:00 app[web.1]: [1] > reacteduclass@1.0.0 client /app
+2018-06-13T15:18:12.317697+00:00 app[web.1]: [1] > node scripts/start-client.js
+2018-06-13T15:18:12.317699+00:00 app[web.1]: [1]
+2018-06-13T15:18:14.542325+00:00 app[web.1]: [1]
+2018-06-13T15:18:14.542340+00:00 app[web.1]: [1] > client@0.1.0 start /app/client
+2018-06-13T15:18:14.542342+00:00 app[web.1]: [1] > react-scripts start
+2018-06-13T15:18:14.542344+00:00 app[web.1]: [1]
+2018-06-13T15:18:14.589532+00:00 app[web.1]: [1] sh: 1: react-scripts: not found
+2018-06-13T15:18:14.615220+00:00 app[web.1]: [1] npm ERR! file sh
+2018-06-13T15:18:14.617645+00:00 app[web.1]: [1] npm ERR! code ELIFECYCLE
+2018-06-13T15:18:14.641662+00:00 app[web.1]: [1] npm ERR! errno ENOENT
+2018-06-13T15:18:14.647381+00:00 app[web.1]: [1] npm ERR! syscall spawn
+2018-06-13T15:18:14.654135+00:00 app[web.1]: [1] npm ERR! client@0.1.0 start: `react-scripts start`
+2018-06-13T15:18:14.668583+00:00 app[web.1]: [1] npm ERR! spawn ENOENT
+2018-06-13T15:18:14.669966+00:00 app[web.1]: [1] npm ERR!
+2018-06-13T15:18:14.673955+00:00 app[web.1]: [1] npm ERR! Failed at the client@0.1.0 start script.
+2018-06-13T15:18:14.681165+00:00 app[web.1]: [1] npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:18:14.732597+00:00 app[web.1]: [1] npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+2018-06-13T15:18:14.732600+00:00 app[web.1]: [1]
+2018-06-13T15:18:14.732602+00:00 app[web.1]: [1] npm ERR! A complete log of this run can be found in:
+2018-06-13T15:18:14.732605+00:00 app[web.1]: [1] npm ERR!     /app/.npm/_logs/2018-06-13T15_18_14_687Z-debug.log
+2018-06-13T15:18:14.840138+00:00 app[web.1]: [1] npm run client exited with code 0
+2018-06-13T15:18:14.850127+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2018-06-13T15:18:14.850565+00:00 app[web.1]: npm ERR! errno 1
+2018-06-13T15:18:14.856723+00:00 app[web.1]: npm ERR! reacteduclass@1.0.0 start: `concurrently "nodemon server.js" "npm run client"`
+2018-06-13T15:18:14.856907+00:00 app[web.1]: npm ERR! Exit status 1
+2018-06-13T15:18:14.857205+00:00 app[web.1]: npm ERR!
+2018-06-13T15:18:14.857391+00:00 app[web.1]: npm ERR! Failed at the reacteduclass@1.0.0 start script.
+2018-06-13T15:18:14.857566+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:18:14.873095+00:00 app[web.1]: 
+2018-06-13T15:18:14.873339+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2018-06-13T15:18:14.873466+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2018-06-13T15_18_14_859Z-debug.log
+2018-06-13T15:18:14.966919+00:00 heroku[web.1]: State changed from starting to crashed
+2018-06-13T15:18:14.969039+00:00 heroku[web.1]: State changed from crashed to starting
+2018-06-13T15:18:14.950900+00:00 heroku[web.1]: Process exited with status 1
+2018-06-13T15:18:18.889078+00:00 heroku[web.1]: Starting process with command `npm start`
+2018-06-13T15:18:21.027160+00:00 app[web.1]: 
+2018-06-13T15:18:21.027179+00:00 app[web.1]: > reacteduclass@1.0.0 start /app
+2018-06-13T15:18:21.027181+00:00 app[web.1]: > concurrently "nodemon server.js" "npm run client"
+2018-06-13T15:18:21.027183+00:00 app[web.1]: 
+2018-06-13T15:18:21.281395+00:00 app[web.1]: [0] /bin/sh: 1: nodemon: not found
+2018-06-13T15:18:21.283340+00:00 app[web.1]: [0] nodemon server.js exited with code 127
+2018-06-13T15:18:21.742515+00:00 app[web.1]: [1]
+2018-06-13T15:18:21.742533+00:00 app[web.1]: [1] > reacteduclass@1.0.0 client /app
+2018-06-13T15:18:21.742535+00:00 app[web.1]: [1] > node scripts/start-client.js
+2018-06-13T15:18:21.742537+00:00 app[web.1]: [1]
+2018-06-13T15:18:22.407853+00:00 app[web.1]: [1] > client@0.1.0 start /app/client
+2018-06-13T15:18:22.407826+00:00 app[web.1]: [1]
+2018-06-13T15:18:22.407856+00:00 app[web.1]: [1] > react-scripts start
+2018-06-13T15:18:22.407858+00:00 app[web.1]: [1]
+2018-06-13T15:18:22.419885+00:00 app[web.1]: [1] sh: 1: react-scripts: not found
+2018-06-13T15:18:22.424903+00:00 app[web.1]: [1] npm ERR! file sh
+2018-06-13T15:18:22.424906+00:00 app[web.1]: [1] npm ERR! code ELIFECYCLE
+2018-06-13T15:18:22.425655+00:00 app[web.1]: [1] npm ERR! errno ENOENT
+2018-06-13T15:18:22.426216+00:00 app[web.1]: npm ERR! syscall spawn
+2018-06-13T15:18:22.427062+00:00 app[web.1]: [1] npm ERR! client@0.1.0 start: `react-scripts start`
+2018-06-13T15:18:22.427271+00:00 app[web.1]: npm ERR! spawn ENOENT
+2018-06-13T15:18:22.427467+00:00 app[web.1]: npm ERR!
+2018-06-13T15:18:22.427649+00:00 app[web.1]: npm ERR! Failed at the client@0.1.0 start script.
+2018-06-13T15:18:22.434650+00:00 app[web.1]: [1]
+2018-06-13T15:18:22.435050+00:00 app[web.1]: [1] npm ERR! A complete log of this run can be found in:
+2018-06-13T15:18:22.427652+00:00 app[web.1]: [1] npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:18:22.433720+00:00 app[web.1]: [1] npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+2018-06-13T15:18:22.435054+00:00 app[web.1]: [1] npm ERR!     /app/.npm/_logs/2018-06-13T15_18_22_429Z-debug.log
+2018-06-13T15:18:22.458634+00:00 app[web.1]: [1] npm run client exited with code 0
+2018-06-13T15:18:22.467440+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2018-06-13T15:18:22.467894+00:00 app[web.1]: npm ERR! errno 1
+2018-06-13T15:18:22.469507+00:00 app[web.1]: npm ERR! reacteduclass@1.0.0 start: `concurrently "nodemon server.js" "npm run client"`
+2018-06-13T15:18:22.469715+00:00 app[web.1]: npm ERR! Exit status 1
+2018-06-13T15:18:22.470057+00:00 app[web.1]: npm ERR!
+2018-06-13T15:18:22.470244+00:00 app[web.1]: npm ERR! Failed at the reacteduclass@1.0.0 start script.
+2018-06-13T15:18:22.470434+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:18:22.476992+00:00 app[web.1]: 
+2018-06-13T15:18:22.477488+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2018-06-13T15:18:22.477663+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2018-06-13T15_18_22_472Z-debug.log
+2018-06-13T15:18:22.560748+00:00 heroku[web.1]: State changed from starting to crashed
+2018-06-13T15:18:22.534662+00:00 heroku[web.1]: Process exited with status 1
+2018-06-13T15:18:23.898218+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=9d4aba92-7b92-4769-ab98-d49a0c5d4a5e fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:18:24.773467+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=cf31eb6b-1e09-4a8f-b75c-724ac9cddcaa fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:18:57.890261+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=08bb4b92-ef4b-47c5-98cd-e6af945590e4 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:18:58.281733+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=e0927a47-f25a-4f1f-b542-668ab678777e fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:00.253840+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=0d876112-f9fe-4d35-aa7d-84b2ac5a35ad fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:00.505046+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=34c00dd1-89a7-49ba-9dab-017f4a0c50a9 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:03.320549+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=b3dbdcdd-74cd-46f6-980a-5db4df0c4e18 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:03.547929+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=4b319fd4-f4f0-4e00-b6cb-b2986afcf40f fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:18:23.898218+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=9d4aba92-7b92-4769-ab98-d49a0c5d4a5e fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:18:24.773467+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=cf31eb6b-1e09-4a8f-b75c-724ac9cddcaa fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:18:57.890261+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=08bb4b92-ef4b-47c5-98cd-e6af945590e4 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:18:58.281733+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=e0927a47-f25a-4f1f-b542-668ab678777e fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:00.253840+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=0d876112-f9fe-4d35-aa7d-84b2ac5a35ad fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:00.505046+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=34c00dd1-89a7-49ba-9dab-017f4a0c50a9 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:03.320549+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=b3dbdcdd-74cd-46f6-980a-5db4df0c4e18 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:19:03.547929+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=4b319fd4-f4f0-4e00-b6cb-b2986afcf40f fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:31:23.445900+00:00 app[api]: Set NODE_ENV config vars by user kspmfamily@gmail.com
+2018-06-13T15:31:23.445900+00:00 app[api]: Release v10 created by user kspmfamily@gmail.com
+2018-06-13T15:31:24.674776+00:00 heroku[web.1]: State changed from crashed to starting
+2018-06-13T15:31:27.361552+00:00 heroku[web.1]: Starting process with command `npm start`
+2018-06-13T15:31:29.240685+00:00 app[web.1]: 
+2018-06-13T15:31:29.240711+00:00 app[web.1]: > reacteduclass@1.0.0 start /app
+2018-06-13T15:31:29.240713+00:00 app[web.1]: > concurrently "nodemon server.js" "npm run client"
+2018-06-13T15:31:29.240715+00:00 app[web.1]: 
+2018-06-13T15:31:29.482262+00:00 app[web.1]: [0] /bin/sh: 1: nodemon: not found
+2018-06-13T15:31:29.484078+00:00 app[web.1]: [0] nodemon server.js exited with code 127
+2018-06-13T15:31:29.780626+00:00 app[web.1]: [1]
+2018-06-13T15:31:29.780658+00:00 app[web.1]: [1] > node scripts/start-client.js
+2018-06-13T15:31:29.780659+00:00 app[web.1]: [1]
+2018-06-13T15:31:29.780656+00:00 app[web.1]: [1] > reacteduclass@1.0.0 client /app
+2018-06-13T15:31:30.179596+00:00 app[web.1]: [1]
+2018-06-13T15:31:30.179610+00:00 app[web.1]: [1] > client@0.1.0 start /app/client
+2018-06-13T15:31:30.179612+00:00 app[web.1]: [1] > react-scripts start
+2018-06-13T15:31:30.179614+00:00 app[web.1]: [1]
+2018-06-13T15:31:30.184858+00:00 app[web.1]: [1] sh: 1: react-scripts: not found
+2018-06-13T15:31:30.189316+00:00 app[web.1]: [1] npm ERR! file sh
+2018-06-13T15:31:30.189471+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2018-06-13T15:31:30.189473+00:00 app[web.1]: [1] npm ERR! errno ENOENT
+2018-06-13T15:31:30.190824+00:00 app[web.1]: [1] npm ERR! client@0.1.0 start: `react-scripts start`
+2018-06-13T15:31:30.189668+00:00 app[web.1]: [1] npm ERR! syscall spawn
+2018-06-13T15:31:30.190826+00:00 app[web.1]: [1] npm ERR! spawn ENOENT
+2018-06-13T15:31:30.190827+00:00 app[web.1]: [1] npm ERR!
+2018-06-13T15:31:30.191076+00:00 app[web.1]: npm ERR! Failed at the client@0.1.0 start script.
+2018-06-13T15:31:30.191078+00:00 app[web.1]: [1] npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:31:30.196116+00:00 app[web.1]: [1] npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+2018-06-13T15:31:30.196564+00:00 app[web.1]: [1]
+2018-06-13T15:31:30.196851+00:00 app[web.1]: [1] npm ERR! A complete log of this run can be found in:
+2018-06-13T15:31:30.196853+00:00 app[web.1]: [1] npm ERR!     /app/.npm/_logs/2018-06-13T15_31_30_192Z-debug.log
+2018-06-13T15:31:30.215686+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2018-06-13T15:31:30.215962+00:00 app[web.1]: npm ERR! errno 1
+2018-06-13T15:31:30.216936+00:00 app[web.1]: npm ERR! reacteduclass@1.0.0 start: `concurrently "nodemon server.js" "npm run client"`
+2018-06-13T15:31:30.217044+00:00 app[web.1]: npm ERR! Exit status 1
+2018-06-13T15:31:30.209919+00:00 app[web.1]: [1] npm run client exited with code 0
+2018-06-13T15:31:30.217217+00:00 app[web.1]: npm ERR!
+2018-06-13T15:31:30.217321+00:00 app[web.1]: npm ERR! Failed at the reacteduclass@1.0.0 start script.
+2018-06-13T15:31:30.217422+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:31:30.221173+00:00 app[web.1]: 
+2018-06-13T15:31:30.221309+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2018-06-13T15:31:30.221384+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2018-06-13T15_31_30_218Z-debug.log
+2018-06-13T15:31:30.266631+00:00 heroku[web.1]: Process exited with status 1
+2018-06-13T15:31:35.200140+00:00 heroku[web.1]: State changed from starting to crashed
+2018-06-13T15:31:35.202026+00:00 heroku[web.1]: State changed from crashed to starting
+2018-06-13T15:31:38.728766+00:00 heroku[web.1]: Starting process with command `npm start`
+2018-06-13T15:31:41.681907+00:00 app[web.1]: 
+2018-06-13T15:31:41.681933+00:00 app[web.1]: > reacteduclass@1.0.0 start /app
+2018-06-13T15:31:41.681935+00:00 app[web.1]: > concurrently "nodemon server.js" "npm run client"
+2018-06-13T15:31:41.681936+00:00 app[web.1]: 
+2018-06-13T15:31:42.054769+00:00 app[web.1]: [0] /bin/sh: 1: nodemon: not found
+2018-06-13T15:31:42.057571+00:00 app[web.1]: [0] nodemon server.js exited with code 127
+2018-06-13T15:31:42.616250+00:00 app[web.1]: [1]
+2018-06-13T15:31:42.616265+00:00 app[web.1]: [1] > reacteduclass@1.0.0 client /app
+2018-06-13T15:31:42.616267+00:00 app[web.1]: [1] > node scripts/start-client.js
+2018-06-13T15:31:42.616268+00:00 app[web.1]: [1]
+2018-06-13T15:31:43.254022+00:00 app[web.1]: [1]
+2018-06-13T15:31:43.254035+00:00 app[web.1]: [1] > client@0.1.0 start /app/client
+2018-06-13T15:31:43.254038+00:00 app[web.1]: [1] > react-scripts start
+2018-06-13T15:31:43.254039+00:00 app[web.1]: [1]
+2018-06-13T15:31:43.260820+00:00 app[web.1]: [1] sh: 1: react-scripts: not found
+2018-06-13T15:31:43.265644+00:00 app[web.1]: [1] npm ERR! file sh
+2018-06-13T15:31:43.265940+00:00 app[web.1]: [1] npm ERR! code ELIFECYCLE
+2018-06-13T15:31:43.266247+00:00 app[web.1]: [1] npm ERR! errno ENOENT
+2018-06-13T15:31:43.266493+00:00 app[web.1]: npm ERR! syscall spawn
+2018-06-13T15:31:43.267986+00:00 app[web.1]: [1] npm ERR! client@0.1.0 start: `react-scripts start`
+2018-06-13T15:31:43.268241+00:00 app[web.1]: npm ERR! spawn ENOENT
+2018-06-13T15:31:43.268466+00:00 app[web.1]: npm ERR!
+2018-06-13T15:31:43.268468+00:00 app[web.1]: [1] npm ERR! Failed at the client@0.1.0 start script.
+2018-06-13T15:31:43.268727+00:00 app[web.1]: [1] npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:31:43.275756+00:00 app[web.1]: [1] npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+2018-06-13T15:31:43.276396+00:00 app[web.1]: [1]
+2018-06-13T15:31:43.276684+00:00 app[web.1]: [1] npm ERR! A complete log of this run can be found in:
+2018-06-13T15:31:43.276687+00:00 app[web.1]: [1] npm ERR!     /app/.npm/_logs/2018-06-13T15_31_43_269Z-debug.log
+2018-06-13T15:31:43.294616+00:00 app[web.1]: [1] npm run client exited with code 0
+2018-06-13T15:31:43.301600+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2018-06-13T15:31:43.301880+00:00 app[web.1]: npm ERR! errno 1
+2018-06-13T15:31:43.302966+00:00 app[web.1]: npm ERR! reacteduclass@1.0.0 start: `concurrently "nodemon server.js" "npm run client"`
+2018-06-13T15:31:43.303087+00:00 app[web.1]: npm ERR! Exit status 1
+2018-06-13T15:31:43.303309+00:00 app[web.1]: npm ERR!
+2018-06-13T15:31:43.303489+00:00 app[web.1]: npm ERR! Failed at the reacteduclass@1.0.0 start script.
+2018-06-13T15:31:43.303641+00:00 app[web.1]: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+2018-06-13T15:31:43.308410+00:00 app[web.1]: 
+2018-06-13T15:31:43.308604+00:00 app[web.1]: npm ERR! A complete log of this run can be found in:
+2018-06-13T15:31:43.308733+00:00 app[web.1]: npm ERR!     /app/.npm/_logs/2018-06-13T15_31_43_304Z-debug.log
+2018-06-13T15:31:43.424077+00:00 heroku[web.1]: State changed from starting to crashed
+2018-06-13T15:31:43.375111+00:00 heroku[web.1]: Process exited with status 1
+2018-06-13T15:34:47.256541+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=baa6e306-312d-421f-944a-274cb4c3a21a fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:34:48.178848+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=15c738a2-02f8-4dd5-8776-7d8868ce6428 fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:35:14.794716+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=damp-hamlet-76522.herokuapp.com request_id=25ad3411-4492-4de6-a645-d09a054a2d9c fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
+2018-06-13T15:35:15.396484+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=damp-hamlet-76522.herokuapp.com request_id=4c86fc1e-ef0d-4590-bd57-8a5e7c816c6f fwd="184.96.176.72" dyno= connect= service= status=503 bytes= protocol=https
