@@ -15,14 +15,14 @@ class Allbatches extends Component
      recsubj : '',
      reclevel: '',
      recrate : '',
-     allbatched: true
+     allbatches: true
    }
 
   //axios.get('/api/teachers/')
     componentDidMount = () => {
           console.log("Inside component displayallbatchdetails before placing the axios call");
           let batchrecords = this.state.batchrecords;
-
+          let allbatches = false
           axios.get('/api/teacher/batch/all')
               .then(response =>
                 {
@@ -40,10 +40,12 @@ class Allbatches extends Component
                       }
                     batchrecords.push(currentrec);
                   } // end for
-                  this.setState({batchrecords : batchrecords}, () => { console.log("State of records",this.state.batchrecords)});
+                  if (response.data.length > 0) allbatches = true;
+                  this.setState({batchrecords : batchrecords, allbatches:allbatches}, () => { console.log("State of records",this.state.batchrecords)});
 
                 }) // end then
-                .catch( error => {
+                 .catch( error => {
+                  this.setState({allbatches : false})
                   console.log("Error in getting batch records!!!",error);
                 });
     } // end component did mount
@@ -65,7 +67,7 @@ class Allbatches extends Component
                           </thead>
                           
                                {this.state.allbatches ?
-                                <div>{stbatchrec.map((data,index) =>
+                                <tbody>{stbatchrec.map((data,index) =>
                                  
                                           <BatchRecAddclass
                                                       bid = {data.recid}
@@ -77,9 +79,9 @@ class Allbatches extends Component
                                                       getBatchDetails = {this.getBatchDetails }
                                                       key={index}
                                                        />
-                                )}</div>:<div></div>}
-                           
-                       </table>
+                                )}</tbody>:<tbody></tbody>}
+                      </table>   
+                      
                     </div>
                    
 
