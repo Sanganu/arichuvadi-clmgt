@@ -39,7 +39,8 @@ class BatchRecAddclass extends Component
         let brate = this.props.brate;
         let blevel = this.props.blevel;
         let bsubj = this.props.bsubj;
-        this.props.getBatchDetails(bid,bdesc,brate,blevel,bsubj)
+        let student = this.props.studentdet;
+        this.props.getBatchDetails(bid,bdesc,brate,blevel,bsubj,student)
       }           
 
       render()

@@ -66,7 +66,8 @@ class Allbatches extends Component
         slevel : blevel,
         sbsubj: bsubj,
         student: student,
-        details: true
+        details: true,
+        allbatches: false
       }, () => console.log("State of selected batch"))      
       console.log("Inside getbatchetails")
     }
@@ -98,17 +99,19 @@ class Allbatches extends Component
                                       </tbody>
                                   </table> :
                                  <div>{this.state.details ?
-                                         <BatchInfo />
+                                         <BatchInfo 
+                                            bid = {this.state.sbatchid}
+                                            bdesc = {this.state.sbdesc}
+                                            rate = {this.state.srate}
+                                            level = {this.state.slevel}
+                                            subject = {this.state.sbsubj}
+                                            students = {this.state.student}/>
                                       :<p></p>
                                     }
                                  </div>
                                 }
                       </div>   
-                      
-                    </div>
-                   
-
-            </div>); // end return
+             </div>); // end return
       } // end render
 } //end allbatches
 export default Allbatches;
