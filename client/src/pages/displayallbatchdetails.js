@@ -16,7 +16,14 @@ class Allbatches extends Component
      recsubj : '',
      reclevel: '',
      recrate : '',
-     allbatches: true
+     allbatches: true,
+     sbatchid: '',
+     sbdesc: '',
+     srate: '',
+     slevel: '',
+     sbsubj: '',
+     student: '',
+     details: false
    }
 
   //axios.get('/api/teachers/')
@@ -51,8 +58,17 @@ class Allbatches extends Component
                 });
     } // end component did mount
 
-    getBatchDetails = () =>{
-            console.log("Inside getbatchetails")
+    getBatchDetails = (bid,bdesc,brate,blevel,bsubj,student) =>{
+      this.setState({
+        sbatchid : bid,
+        sbdesc: bdesc,
+        srate : brate,
+        slevel : blevel,
+        sbsubj: bsubj,
+        student: student,
+        details: true
+      }, () => console.log("State of selected batch"))      
+      console.log("Inside getbatchetails")
     }
 
     render()
@@ -82,8 +98,8 @@ class Allbatches extends Component
                                       </tbody>
                                   </table> :
                                  <div>{this.state.details ?
-                                      <BatchInfo />
-                                      :<p>Currently no batches created...</p>
+                                         <BatchInfo />
+                                      :<p></p>
                                     }
                                  </div>
                                 }

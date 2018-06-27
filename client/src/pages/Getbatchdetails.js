@@ -20,25 +20,7 @@ const customStyle = {
 class BatchRecAddclass extends Component
 {
 
-        constructor(props)
-        {
-                super(props);
-                this.state = {
-                       cbid :'',
-                       cbdesc : '',
-                       cbsubj : '',
-                       cblevel : '',
-                       cbrate : '',
-                       studentsid: [],
-                       classdate: '',
-                       modalIsOpen: false,
-                       strecords: [],
-                       lessoncovered:'',
-                       homework: '',
-                       updatestatus: ''
-               }; // end
-         } ;// end constructor
-
+        
 
        
         componentWillReceiveProps = () => {
@@ -52,7 +34,12 @@ class BatchRecAddclass extends Component
           
       getBatchDet = () =>
       {
-        this.props.getBatchDetails()
+        let bid = this.props.bid;
+        let bdesc = this.props.bdesc;
+        let brate = this.props.brate;
+        let blevel = this.props.blevel;
+        let bsubj = this.props.bsubj;
+        this.props.getBatchDetails(bid,bdesc,brate,blevel,bsubj)
       }           
 
       render()
@@ -61,7 +48,7 @@ class BatchRecAddclass extends Component
                                       <td>{this.props.bdesc}</td>
                                       <td>{ this.props.bsubj}</td>
                                       <td>{this.props.brate}</td>
-                                      <td>{this.props.level}</td> 
+                                      <td>{this.props.blevel}</td> 
                                       <td>{this.props.bid}</td> 
                 </tr>) //end return
       } // end render
