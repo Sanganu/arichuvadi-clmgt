@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import axios from 'axios';
 // import BatchRecAddclass from './Addclassdetails';
 import BatchRecAddclass from './Getbatchdetails';
+import BatchInfo from './BatchInfo';
 import Teacherheader from '../components/Teacherheader';
 import Topmenu from './Topmenu';
 
@@ -60,27 +61,33 @@ class Allbatches extends Component
       return(<div>
                     <Teacherheader />
                     <Topmenu />
-                    <div className = "table-responsive">
-                      <table className = "table table-hover">
-                          <thead>
-
-                          </thead>
-                          
-                               {this.state.allbatches ?
-                                <tbody>{stbatchrec.map((data,index) =>
-                                 
-                                          <BatchRecAddclass
-                                                      bid = {data.recid}
-                                                      bdesc = {data.recdesc}
-                                                      bsubj = {data.recsubj}
-                                                      blevel = {data.reclevel}
-                                                      brate = {data.recrate}
-                                                      studentdet =  {data.recstudents}
-                                                      getBatchDetails = {this.getBatchDetails }
-                                                      key={index}
-                                                       />
-                                )}</tbody>:<tbody></tbody>}
-                      </table>   
+                    <div>
+                              {this.state.allbatches ?
+                                  <table className = "table table-hover table-responsive">
+                                      <thead>
+                                      </thead>
+                                      <tbody>{stbatchrec.map((data,index) =>
+                                    
+                                              <BatchRecAddclass
+                                                          bid = {data.recid}
+                                                          bdesc = {data.recdesc}
+                                                          bsubj = {data.recsubj}
+                                                          blevel = {data.reclevel}
+                                                          brate = {data.recrate}
+                                                          studentdet =  {data.recstudents}
+                                                          getBatchDetails = {this.getBatchDetails }
+                                                          key={index}
+                                                          />
+                                              )}
+                                      </tbody>
+                                  </table> :
+                                 <div>{this.state.details ?
+                                      <BatchInfo />
+                                      :<p>Currently no batches created...</p>
+                                    }
+                                 </div>
+                                }
+                      </div>   
                       
                     </div>
                    
