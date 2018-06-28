@@ -26,7 +26,6 @@ class Allbatches extends Component
      details: false
    }
 
-  //axios.get('/api/teachers/')
     componentDidMount = () => {
           console.log("Inside component displayallbatchdetails before placing the axios call");
           let batchrecords = this.state.batchrecords;
@@ -65,7 +64,7 @@ class Allbatches extends Component
         srate : brate,
         slevel : blevel,
         sbsubj: bsubj,
-        student: student,
+        
         details: true,
         allbatches: false
       }, () => console.log("State of selected batch"))      

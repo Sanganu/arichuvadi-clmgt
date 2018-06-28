@@ -83,10 +83,16 @@ class BatchInfo extends Component {
     {
         return(<div>
             <div>
-                  <h4>Batch :</h4>
+                  
+                 <input value={this.props.bdesc} placeholder={this.props.bdesc}  onChange = {this.handleInputChange}/>
+                 <input value={this.props.rate} placeholder= {this.props.rate}  onChange = {this.handleInputChange}/>
+                 <input value = {this.props.level} plceholder ={this.props.level} onChange = {this.handleInputChange}/>
+                 <input value = {this.props.subject} placeholder = {this.props.subject} onChange = {this.handleInputChange} />
+                  {this.props.students}
+                 <button>Save Changes</button> 
             </div>
         </div>)
     } 
 }
 
-export default BatchInfo;
+export default BatchInfo
