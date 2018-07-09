@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class BatchInfo extends Component {
-
+    state = {
+      bid: '',
+      bdesc: '',
+      rate: '',
+      level: '',
+      subject: '',
+      students: ''
+    }
     deleteBatch = () => {
         axios.delete('/api/teacher/batch/delete',
                     {
@@ -50,22 +57,17 @@ class BatchInfo extends Component {
 
           handleInputChange = (event) => {
             const target = event.target;
-            const value =  target.value; //target.type === 'checkbox' ? target.checked :
-            const name  = target.name;
-            if ( target.type === 'checkbox')
-            {
-                  let studentsidlist = this.state.studentsid;
-                  studentsidlist.push(value);
-                  this.setState({
-                    studentsid : studentsidlist
-                  }, () => { console.log("Setting students record");});
-            }
-            else {
-              this.setState({
-                 [name]: value
-               } );
-            }
-      }; //End handle Input change
+            const value = target.type === 'checkbox' ? target.name : target.value;
+            const name = target.type === 'checkbox' ? 'daysofweek' : target.name;
+            //console.log('The Value in input change',value,name);
+
+            this.setState({
+              [name]: value
+            } /*,
+            () =>{
+              console.log('Set State in Main Section',value,name);
+            } */);
+          }; //End handle Input change
 
       addClassInfo = () =>
           {
@@ -79,15 +81,26 @@ class BatchInfo extends Component {
                 strecords: this.props.studentdet }, () => {  console.log("Entry in class details---",this.props);});
           } // end addClassInfo
 
+    componentWillReceiveProps = () =>{
+      this.setState({
+        bdesc: this.props.bdesc,
+        rate : this.props.rate,
+        level : this.props.level,
+        subject: this.props.subject,
+        bid: this.props.bid,
+        students: this.props.students
+      },
+    () => {console.log("state - batchinfo",this.state)})
+    }
     render()
     {
         return(<div>
             <div>
                   
-                 <input value={this.props.bdesc} placeholder={this.props.bdesc}  onChange = {this.handleInputChange}/>
-                 <input value={this.props.rate} placeholder= {this.props.rate}  onChange = {this.handleInputChange}/>
-                 <input value = {this.props.level} plceholder ={this.props.level} onChange = {this.handleInputChange}/>
-                 <input value = {this.props.subject} placeholder = {this.props.subject} onChange = {this.handleInputChange} />
+                 <input value={this.state.bdesc} placeholder={this.props.bdesc} name = "bdesc" onChange = {this.handleInputChange}/>
+                 <input value={this.state.rate} placeholder= {this.props.rate}  name = "rate" onChange = {this.handleInputChange}/>
+                 <input value = {this.state.level} placeholder ={this.props.level} name = "level" onChange = {this.handleInputChange}/>
+                 <input value = {this.state.subject} placeholder = {this.props.subject} name = "subject" onChange = {this.handleInputChange} />
                   {this.props.students}
                  <button>Save Changes</button> 
             </div>

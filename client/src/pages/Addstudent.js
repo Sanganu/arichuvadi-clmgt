@@ -62,7 +62,7 @@ class Addstudent extends Component {
                           stdfname : res.data.studentfname,
                           stdlname : res.data.studentlname,
                           stdemail : res.data.loginemail,
-                          stduname: res.data.uname,
+                          phonenumber: res.data.phonenumber
                       }
                       strecs.push(newstrec);
                       this.setState({studentrecs : strecs},

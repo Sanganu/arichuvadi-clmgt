@@ -73,7 +73,7 @@ router.post('/api/teacher/student/new',function(req,res) {
                 studentfname : dbstudentdetails.studentfname,
                 studentlname : dbstudentdetails.studentlname,
                 loginemail : dbstudentdetails.loginemail,
-                password: dbstudentdetails.password
+                phonenumber : dbstudentdetails.parentphonenumber
               } ;
               console.log("Inserted student record",dbstudentdetails,req.body.batchid);
                return batchdetails.findOneAndUpdate({_id:req.body.batchid},
@@ -111,7 +111,7 @@ router.post('/api/teacher/student/new',function(req,res) {
 router.get("/api/teacher/batch/all",(req,res) => {
       console.log("inside router to get all batch records");
         batchdetails.find({})
-           .populate('students')
+           .populate('students') /* Should be removed when click on batch to details of batch */
            .then((data) => {
                console.log("Batch details",data);
                res.json(data);

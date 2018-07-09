@@ -64,7 +64,6 @@ class Allbatches extends Component
         srate : brate,
         slevel : blevel,
         sbsubj: bsubj,
-        
         details: true,
         allbatches: false
       }, () => console.log("State of selected batch"))      
@@ -97,7 +96,7 @@ class Allbatches extends Component
                                               )}
                                       </tbody>
                                   </table> :
-                                 <div>{this.state.details ?
+                                  <div>{this.state.details ?
                                          <BatchInfo 
                                             bid = {this.state.sbatchid}
                                             bdesc = {this.state.sbdesc}
