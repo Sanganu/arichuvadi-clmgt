@@ -35,12 +35,12 @@ class Addstudent extends Component {
        console.log("In Student Creation");
        let strecs = this.state.studentrecs;
        if( this.state.studentfname === "" ||
-            this.state.studentlname === "" ||
-             this.state.loginemail === "" ||
-             this.state.parentname === "" ||
-             this.state.parentphonenumber === "" ||
-            this.state.password === "")
-             {
+           this.state.studentlname === "" ||
+           this.state.loginemail === "" ||
+           this.state.parentname === "" ||
+           this.state.parentphonenumber === "" ||
+           this.state.password === "")
+           {
                console.log("Empty fields not accepted");
                this.setState({errmsg: " Empty fields not accepted"})
              }
@@ -53,7 +53,7 @@ class Addstudent extends Component {
                     loginemail: this.state.loginemail,
                     password: this.state.password,
                     parentphonenumber: this.state.parentphonenumber,
-                    batchid: this.props.batchdet.bid
+                    batchid: this.props.batchdet.bid || this.props.bid
                   })
                   .then(res =>
                     {
@@ -86,17 +86,18 @@ class Addstudent extends Component {
 
 
       render() {
-        const bdetails = this.props.batchdet;
+        const bdetails = this.props.batchdet || false;
             return(
               <div>
                  <Teacherheader />
+                    {bdetails ? 
                     <div>
                             <h4 className = "text-center">Batch:  {bdetails.batchdesc}</h4>
                             <p>Subject:   {bdetails.subject}</p>
                             <p>Level: {bdetails.level}</p>
                             <p>Rate: {bdetails.rateperhour}$</p>
                      </div>
-
+                    : <div></div>}
                     <br />
                     <h3 className = "subhead">Add Students to the Batch</h3>
                     <p className="errmsg">{this.state.errmsg}</p>

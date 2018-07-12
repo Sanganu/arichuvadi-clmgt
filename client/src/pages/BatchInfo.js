@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Addstudent from './Addstudent.js';
 
 class BatchInfo extends Component {
     state = {
@@ -103,6 +104,8 @@ class BatchInfo extends Component {
                  <input value = {this.state.subject} placeholder = {this.props.subject} name = "subject" onChange = {this.handleInputChange} />
                   {this.props.students}
                  <button>Save Changes</button> 
+                 <Addstudent bid = {this.state.bid} />
+                 
             </div>
         </div>)
     } 
