@@ -26,36 +26,27 @@ class BatchInfo extends Component {
               }); // end catch
       }
 
-      saveClassDetails = (event) =>
-        {
-                event.preventDefault();
-                console.log("Save class details",this.state.lessoncovered,this.state.homework,this.state.cbid,this.state.studentsid);
-                axios.post('/api/teacher/batch/class/add',
-                            {
-                               lessoncovered : this.state.lessoncovered,
-                               homework : this.state.homework,
-                               batch: this.state.cbid,
-                               students: this.state.studentsid,
-                               classdate: this.state.classdate
-                            })
-                    .then(response =>
-                      {
-                         console.log("Class details updated")
-                          this.setState({ classdetentry : false,
-                                          updatestatus :'Class details updated',
-                                          lessoncovered : '',
-                                          homework: ''
-                                        } ,
-                                   () => { console.log("Class details updated batch and class table") }  );
-                      }) //end then
-                      .catch( error => {
-                        this.setState({errmsg : "Error in saving class records"+error,updatestatus: 'Error in updating class details'+error},
-                              () =>{
-                                   console.log("Error in saving class records!!!",error);
-                              });
-                      }); // end catch
-          } // end saveClassDetails
-
+      updateBatch = () => {
+        console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.cbsubj,this.state.cblevel,this.state.cbrate     )
+        axios.put('/api/teacher/batch/update',
+                  {
+                    batchid:this.state.bid,
+                    batchdesc : this.state.bdesc,
+                    subject : this.state.subject,
+                    level : this.state.level,
+                    rate : this.state.rate
+                  })
+                  .then(response => 
+                  {
+                    console.log("The response from update"+ response);
+                  })
+                  .catch( error => {
+                    this.setState({errmsg : "Error in saving class records"+error,updatestatus: 'Error in updating class details'+error},
+                          () =>{
+                               console.log("Error in saving class records!!!",error);
+                          });
+                  }); // end catch
+      }
           handleInputChange = (event) => {
             const target = event.target;
             const value = target.type === 'checkbox' ? target.name : target.value;
@@ -70,17 +61,6 @@ class BatchInfo extends Component {
             } */);
           }; //End handle Input change
 
-      addClassInfo = () =>
-          {
-                 this.setState({
-                 cbid: this.props.bid,
-                 cbdesc: this.props.bdesc,
-                 cbsubj: this.props.bsubj,
-                 cblevel: this.props.blevel,
-                 cbrate: this.props.brate,
-                 modalIsOpen:true,
-                strecords: this.props.studentdet }, () => {  console.log("Entry in class details---",this.props);});
-          } // end addClassInfo
 
     componentWillReceiveProps = () =>{
       this.setState({
@@ -102,7 +82,8 @@ class BatchInfo extends Component {
                  <input value={this.state.rate} placeholder= {this.props.batchdetails.rateperhour}  name = "rate" onChange = {this.handleInputChange}/>
                  <input value = {this.state.level} placeholder ={this.props.batchdetails.level} name = "level" onChange = {this.handleInputChange}/>
                  <input value = {this.state.subject} placeholder = {this.props.batchdetails.subject} name = "subject" onChange = {this.handleInputChange} />
-                 <button>Save Changes</button> 
+                 <button onClick = {this.updateBatch}>Save Changes</button>
+                 <button onClick = {this.deleteBatch}>Delete Batch</button>
                  <Addstudent batchdet = {this.state.brecords} />
                  {/* <Allstudents studentrec = {this.state.studentrecs}/> */}
             </div>

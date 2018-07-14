@@ -167,7 +167,7 @@ router.get("/api/teacher/batch/:batchid", (req,res) => {
 //Delete Batch (cascading) - pending ()
 router.delete("/api/teacher/batch/delete",(req,res) => {
      console.log("Inside delete route for batch to student to class");
-     batchdetails.findOne({_id:req.body.batchid})
+     batchdetails.deleteOne({_id:req.body.batchid})
        .populate('class')
        .then((data) => {
          console.log("data",data);
@@ -177,7 +177,42 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
        })
 })
 
+// Update Batch 
+router.put("/api/teacher/batch/update",(req,res) => {
+     
+      batchdetails.updateOne(
+        {_id: req.body.btchid},
+        {$set: {batchdesc : req.body.batchdesc,
+             subject: req.body.subject,
+            level: req.body.level,
+          rate: req.body.rate}}
+      ).then((data) => {
+        console.log("Updated BAtch",data)
+        res.json(data)
+      }).catch((error) => {
+        console.log("Error",error);
+        res.json("Error in updating bacth details",error)
+      });
+});
 
+// Update Student
+router.put("/api/teacher/student/update",(req,res) => {
+     
+  bstudentdetails.updateOne(
+    {_id: req.body.studentid},
+    {$set: {batchdesc : req.body.batchdesc,
+         subject: req.body.subject,
+        level: req.body.level,
+      rate: req.body.rate}}
+  ).then((data) => {
+    console.log("Updated BAtch",data)
+    res.json(data)
+  }).catch((error) => {
+    console.log("Error",error);
+    res.json("Error in updating bacth details",error)
+  });
+
+});
 
 //Delete Student -- pending
 router.delete('/api/batch/student/delete/',(req,res) => {

@@ -26,7 +26,6 @@ class BatchRecAddclass extends Component
         }
 
       getBatchDet = () => 
-          
       {
         
         let newbatch = {
