@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Addstudent from './Addstudent.js';
+import Modal from 'react-modal';
 
 class BatchInfo extends Component {
     state = {
@@ -11,14 +12,14 @@ class BatchInfo extends Component {
       subject: this.props.batchdetails.subject||'',
       students: this.props.batchdetails.students || ''
     }
-    deleteBatch = () => {
-        axios.delete('/api/teacher/batch/delete',
+    deleteStudent = () => {
+        axios.delete('/api/teacher/student/delete',
                     {
                       batchid:this.props.bid
                     })
             .then(response =>
               {
-                 console.log("Batch details / Class details /Student details deleted")
+                 console.log("Student Details deleted ")
               }) //end then
               .catch( error => {
                            console.log("Error in deleting batch student class records!!!",error);
@@ -85,7 +86,10 @@ class BatchInfo extends Component {
                  <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
                  <label>{this.state.students}</label>
                  <button onClick = {this.updateBatch}>Save Changes</button>
-                 <button onClick = {this.deleteBatch}>Delete Batch</button>
+                 
+                 <Modal onRequestClose={this.closeModal}
+                        isOpen = {this.state.modalIsOpen}>
+                  </Modal> 
                  <Addstudent batchdet = {this.state.brecords} />
                  {/* <Allstudents studentrec = {this.state.studentrecs}/> */}
             </div>
@@ -94,3 +98,4 @@ class BatchInfo extends Component {
 }
 
 export default BatchInfo
+  
