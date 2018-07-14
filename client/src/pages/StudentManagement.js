@@ -45,15 +45,16 @@ class Addstudent extends Component {
                this.setState({errmsg: " Empty fields not accepted"})
              }
         else {
+            let newrecord = {
+                studentfname: this.state.studentfname,
+                studentlname: this.state.studentlname,
+                parentname: this.state.parentname,
+                loginemail: this.state.loginemail,
+                password: this.state.password,
+                parentphonenumber: this.state.parentphonenumber,
+              }
         axios.post('/api/teacher/student/new',
-                  {
-                    studentfname: this.state.studentfname,
-                    studentlname: this.state.studentlname,
-                    parentname: this.state.parentname,
-                    loginemail: this.state.loginemail,
-                    password: this.state.password,
-                    parentphonenumber: this.state.parentphonenumber,
-                  })
+                  {newrecord})
                   .then(res =>
                     {
                        console.log("The response from adding student",res);

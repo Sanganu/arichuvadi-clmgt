@@ -1,4 +1,4 @@
- const path = require("path");
+const path = require("path");
 const router = require("express").Router();
 const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
@@ -48,7 +48,7 @@ router.post('/api/teacher/batch/new',function(req,res) {
 
 
 ////Add New student And Update Batches table -- implemented
-router.post('/api/teacher/student/new',function(req,res) {
+router.post('/api/teacher/batch/student/new',function(req,res) {
         console.log("Insiderouter to add new student",req.body);
         // 
         var newrecord = {
@@ -195,23 +195,59 @@ router.put("/api/teacher/batch/update",(req,res) => {
       });
 });
 
-// Update Student
-router.put("/api/teacher/student/update",(req,res) => {
-     
-  bstudentdetails.updateOne(
-    {_id: req.body.studentid},
-    {$set: {batchdesc : req.body.batchdesc,
-         subject: req.body.subject,
-        level: req.body.level,
-      rate: req.body.rate}}
-  ).then((data) => {
-    console.log("Updated BAtch",data)
-    res.json(data)
-  }).catch((error) => {
-    console.log("Error",error);
-    res.json("Error in updating bacth details",error)
+// Add Student Record
+router.post("/api/teacher/student/new",(req,res) => {
+        let insertedstudent
+          studentdetails
+          .create(req.body.newrecord)
+          .then(function(dbstudentdetails){
+             insertedstudent = {
+              studentfname : dbstudentdetails.studentfname,
+              studentlname : dbstudentdetails.studentlname,
+              loginemail : dbstudentdetails.loginemail,
+              phonenumber : dbstudentdetails.parentphonenumber
+            } ;
+            console.log("Inserted student record",dbstudentdetails,req.body.batchid);
+            res.json(insertedstudent);
+          }) 
+         .catch(function(err) {
+                    console.log("error in student batch",err)
+                        if (err.errmsg)
+                        {
+                            if( (err.errmsg).substr(0,6) === 'E11000')
+                            {
+                              console.log("Student Login - already exist");
+                              res.json({error: "Student email already exist :"});
+                            }
+                            else {
+                              console.log("Error in Creating Student details",err)
+                              res.json(err);
+                            }
+                        }
+                      else {
+        
+                        console.log("Exceptional Error: ",err)
+                          res.json(err);
+                        }
   });
 
+})
+
+// Update Student
+router.put("/api/teacher/student/update",(req,res) => {
+      bstudentdetails.updateOne(
+        {_id: req.body.studentid},
+        {$set: {batchdesc : req.body.batchdesc,
+            subject: req.body.subject,
+            level: req.body.level,
+          rate: req.body.rate}}
+      ).then((data) => {
+        console.log("Updated BAtch",data)
+        res.json(data)
+      }).catch((error) => {
+        console.log("Error",error);
+        res.json("Error in updating bacth details",error)
+      });
 });
 
 //Delete Student -- pending

@@ -45,7 +45,7 @@ class Addstudent extends Component {
                this.setState({errmsg: " Empty fields not accepted"})
              }
         else {
-        axios.post('/api/teacher/student/new',
+        axios.post('/api/teacher/batch/student/new',
                   {
                     studentfname: this.state.studentfname,
                     studentlname: this.state.studentlname,
