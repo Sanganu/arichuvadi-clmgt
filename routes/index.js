@@ -180,12 +180,12 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
 // Update Batch 
 router.put("/api/teacher/batch/update",(req,res) => {
      
-      batchdetails.updateOne(
-        {_id: req.body.btchid},
+      batchdetails.update(
+        {_id: req.body.batchid},
         {$set: {batchdesc : req.body.batchdesc,
-             subject: req.body.subject,
-            level: req.body.level,
-          rate: req.body.rate}}
+                subject: req.body.subject,
+                level: req.body.level,
+                rateperhour: req.body.rate}}
       ).then((data) => {
         console.log("Updated BAtch",data)
         res.json(data)
