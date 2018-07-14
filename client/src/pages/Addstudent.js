@@ -109,7 +109,7 @@ class Addstudent extends Component {
                                        <input type = "text"  placeholder = "Login Email" value={this.state.loginemail} onChange = {this.handleInputChange} name = "loginemail" id = "loginemail" />
                                        <input type = "password" placeholder = "password"  value={this.state.password} onChange = {this.handleInputChange} name = "password" id = "password" />
                                        <input type = "text"   placeholder = "Phone number" value={this.state.parentphonenumber} onChange = {this.handleInputChange} name = "parentphonenumber" id = "parentphonenumber" />
-                                       <button className = "createbutton"  name = "clcreation" onClick = {this.handleStudentCreation}>Create Student account</button>
+                                       <button className = "createbutton"  name = "creation" onClick = {this.handleStudentCreation}>Create Student account</button>
                     </form>
                      <br />
                       <h6 className ="tablehead">Student Details </h6>

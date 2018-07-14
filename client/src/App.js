@@ -11,7 +11,7 @@ import Allbatches from "./pages/displayallbatchdetails"
 import Studentlogin from "./pages/Studentlogin";
 import Addclass from "./pages/Addclassdetails";
 import Search from "./pages/Search";
-
+import StudentManagement from './pages/StudentManagement';
 
 const App = () =>
  <Router>
@@ -29,7 +29,8 @@ const App = () =>
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
                    <Route exact path ="/teacher/batch/alldetails" component={Completebatchdetails} />
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
-                   <Route exact path ="/teacher/studentrecords" component={Search} />
+                   <Route exact path ="/teacher/searchrecords" component={Search} />
+                   <Route exact path = "/teacher/studentmanagement" component = {StudentManagement} />
                    <Switch>
                       <Route path ="/*" component={Homepage} />
                    </Switch> 
