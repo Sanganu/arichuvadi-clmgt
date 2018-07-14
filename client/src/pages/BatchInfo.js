@@ -4,12 +4,12 @@ import Addstudent from './Addstudent.js';
 
 class BatchInfo extends Component {
     state = {
-      bid: '',
-      bdesc: '',
-      rate: '',
-      level: '',
-      subject: '',
-      students: ''
+      bid: this.props.batchdetails.bid || '',
+      bdesc: this.props.batchdetails.batchdesc || '',
+      rate: this.props.batchdetails.rateperhour || '',
+      level: this.props.batchdetails.level || '',
+      subject: this.props.batchdetails.subject||'',
+      students: this.props.batchdetails.students || ''
     }
     deleteBatch = () => {
         axios.delete('/api/teacher/batch/delete',
@@ -27,7 +27,7 @@ class BatchInfo extends Component {
       }
 
       updateBatch = () => {
-        console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.cbsubj,this.state.cblevel,this.state.cbrate     )
+        console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
         axios.put('/api/teacher/batch/update',
                   {
                     batchid:this.state.bid,
@@ -47,7 +47,8 @@ class BatchInfo extends Component {
                           });
                   }); // end catch
       }
-          handleInputChange = (event) => {
+
+      handleInputChange = (event) => {
             const target = event.target;
             const value = target.type === 'checkbox' ? target.name : target.value;
             const name = target.type === 'checkbox' ? 'daysofweek' : target.name;
@@ -59,7 +60,7 @@ class BatchInfo extends Component {
             () =>{
               console.log('Set State in Main Section',value,name);
             } */);
-          }; //End handle Input change
+      } //End handle Input change
 
 
     componentWillReceiveProps = () =>{
@@ -78,10 +79,11 @@ class BatchInfo extends Component {
         return(<div>
             <div>
                   
-                 <input value={this.state.bdesc} placeholder={this.props.batchdetails.batchdesc} name = "bdesc" onChange = {this.handleInputChange}/>
-                 <input value={this.state.rate} placeholder= {this.props.batchdetails.rateperhour}  name = "rate" onChange = {this.handleInputChange}/>
-                 <input value = {this.state.level} placeholder ={this.props.batchdetails.level} name = "level" onChange = {this.handleInputChange}/>
-                 <input value = {this.state.subject} placeholder = {this.props.batchdetails.subject} name = "subject" onChange = {this.handleInputChange} />
+                 <input value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" onChange = {this.handleInputChange}/>
+                 <input value={this.state.rate} placeholder= {this.state.rate}  name = "rate" onChange = {this.handleInputChange}/>
+                 <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
+                 <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
+                 <label>{this.state.students}</label>
                  <button onClick = {this.updateBatch}>Save Changes</button>
                  <button onClick = {this.deleteBatch}>Delete Batch</button>
                  <Addstudent batchdet = {this.state.brecords} />

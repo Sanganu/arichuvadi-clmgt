@@ -20,10 +20,10 @@ const customStyle = {
 class BatchRecAddclass extends Component
 {
 
-        componentWillReceiveProps = () => {
-          console.log("Props",this.props);
-          console.log("student",this.props.studentdet)
-        }
+        // componentWillReceiveProps = () => {
+        //   console.log("Props",this.props);
+        //   console.log("student",this.props.studentdet)
+        // }
 
       getBatchDet = () => 
       {
@@ -34,6 +34,7 @@ class BatchRecAddclass extends Component
           subject: this.props.bsubj,
           level: this.props.blevel,
           rateperhour : this.props.brate,
+          students: this.props.studentdet
         }
         this.props.getBatchDetails(newbatch)
       }           

@@ -27,13 +27,13 @@ class Allbatches extends Component
    }        
 
     componentDidMount = () => {
-          console.log("Inside component displayallbatchdetails before placing the axios call");
+          // console.log("Inside component displayallbatchdetails before placing the axios call");
           let batchrecords = this.state.batchrecords;
           let allbatches = false
           axios.get('/api/teacher/batch/all')
               .then(response =>
                 {
-                  console.log("The Batch Details of  - axios call");
+                  // console.log("The Batch Details of  - axios call");
                   for (let i =0; i<response.data.length;i++)
                   {
                     //  console.log("Records",response.data[i]._id,response.data[i].batchdesc,response.data[i].batchid,response.data[i].subject,response.data[i].level,response.data[i].rateperhour);
@@ -48,7 +48,7 @@ class Allbatches extends Component
                     batchrecords.push(currentrec);
                   } // end for
                   if (response.data.length > 0) allbatches = true;
-                  this.setState({batchrecords : batchrecords, allbatches:allbatches}, () => { console.log("State of records",this.state.batchrecords)});
+                  this.setState({batchrecords : batchrecords, allbatches:allbatches}, () => { console.log("State of records")});
 
                 }) // end then
                  .catch( error => {     
@@ -62,8 +62,7 @@ class Allbatches extends Component
         batchdet : batchselected,
         details: true,
         allbatches: false
-      }, () => console.log("State of selected batch"))      
-      console.log("Inside getbatchetails")
+       }, () => console.log("selected batch",this.state.batchdet))      
     }
 
     render()
@@ -71,7 +70,6 @@ class Allbatches extends Component
       const stbatchrec = this.state.batchrecords;   
       return(<div>
                     <Teacherheader />
-                    
                     <div>
                               {this.state.allbatches ?
                                   <div>
@@ -80,7 +78,6 @@ class Allbatches extends Component
                                       <thead>
                                       </thead>
                                       <tbody>{stbatchrec.map((data,index) =>
-                                    
                                               <BatchRecord
                                                           bid = {data.recid}
                                                           bdesc = {data.recdesc}
