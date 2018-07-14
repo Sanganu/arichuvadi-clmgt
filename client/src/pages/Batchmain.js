@@ -22,7 +22,7 @@ class Batchmain extends Component {
             () => {
               this.setState({  displaybatch:false})
               console.log('Setstate callback-batchmain',this.state.batchdet);
-            }); //end this state
+            }); //end thistate
       }; // end handlebatchcreated
 
 
@@ -33,7 +33,7 @@ class Batchmain extends Component {
                {this.state.displaybatch ? <Createbatch
                                          onInsert={this.handleBatchCreated} />
                          : <Addstudent batchdet = {brecords}
-                                       onchange = {this.handleStudentAdded} />}
+                                        />}
               </div>) // end return
       }// end render
 

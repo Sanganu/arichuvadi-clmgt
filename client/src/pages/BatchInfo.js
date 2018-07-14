@@ -98,14 +98,13 @@ class BatchInfo extends Component {
         return(<div>
             <div>
                   
-                 <input value={this.state.bdesc} placeholder={this.props.bdesc} name = "bdesc" onChange = {this.handleInputChange}/>
-                 <input value={this.state.rate} placeholder= {this.props.rate}  name = "rate" onChange = {this.handleInputChange}/>
-                 <input value = {this.state.level} placeholder ={this.props.level} name = "level" onChange = {this.handleInputChange}/>
-                 <input value = {this.state.subject} placeholder = {this.props.subject} name = "subject" onChange = {this.handleInputChange} />
-                  {this.props.students}
+                 <input value={this.state.bdesc} placeholder={this.props.batchdetails.batchdesc} name = "bdesc" onChange = {this.handleInputChange}/>
+                 <input value={this.state.rate} placeholder= {this.props.batchdetails.rateperhour}  name = "rate" onChange = {this.handleInputChange}/>
+                 <input value = {this.state.level} placeholder ={this.props.batchdetails.level} name = "level" onChange = {this.handleInputChange}/>
+                 <input value = {this.state.subject} placeholder = {this.props.batchdetails.subject} name = "subject" onChange = {this.handleInputChange} />
                  <button>Save Changes</button> 
-                 <Addstudent bid = {this.state.bid} />
-                 
+                 <Addstudent batchdet = {this.state.brecords} />
+                 {/* <Allstudents studentrec = {this.state.studentrecs}/> */}
             </div>
         </div>)
     } 

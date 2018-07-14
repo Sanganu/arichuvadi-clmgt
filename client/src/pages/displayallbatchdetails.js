@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import axios from 'axios';
 // import BatchRecAddclass from './Addclassdetails';
-import BatchRecAddclass from './Getbatchdetails';
+import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
 import Teacherheader from '../components/Teacherheader';
 import Topmenu from './Topmenu';
@@ -11,7 +11,7 @@ class Allbatches extends Component
    state = {
      batchrecords: [],
      diplayclass : false,
-     recid : '',
+     recid : '',   
      recdesc : '',
      recsubj : '',
      reclevel: '',
@@ -24,7 +24,7 @@ class Allbatches extends Component
      sbsubj: '',
      student: '',
      details: false
-   }
+   }        
 
     componentDidMount = () => {
           console.log("Inside component displayallbatchdetails before placing the axios call");
@@ -51,19 +51,15 @@ class Allbatches extends Component
                   this.setState({batchrecords : batchrecords, allbatches:allbatches}, () => { console.log("State of records",this.state.batchrecords)});
 
                 }) // end then
-                 .catch( error => {
+                 .catch( error => {     
                   this.setState({allbatches : false})
                   console.log("Error in getting batch records!!!",error);
                 });
     } // end component did mount
 
-    getBatchDetails = (bid,bdesc,brate,blevel,bsubj,student) =>{
+    getBatchDetails = (batchselected) =>{
       this.setState({
-        sbatchid : bid,
-        sbdesc: bdesc,
-        srate : brate,
-        slevel : blevel,
-        sbsubj: bsubj,
+        batchdet : batchselected,
         details: true,
         allbatches: false
       }, () => console.log("State of selected batch"))      
@@ -75,15 +71,17 @@ class Allbatches extends Component
       const stbatchrec = this.state.batchrecords;   
       return(<div>
                     <Teacherheader />
-                    <Topmenu />
+                    
                     <div>
                               {this.state.allbatches ?
+                                  <div>
+                                  <Topmenu />
                                   <table className = "table table-hover table-responsive">
                                       <thead>
                                       </thead>
                                       <tbody>{stbatchrec.map((data,index) =>
                                     
-                                              <BatchRecAddclass
+                                              <BatchRecord
                                                           bid = {data.recid}
                                                           bdesc = {data.recdesc}
                                                           bsubj = {data.recsubj}
@@ -92,18 +90,15 @@ class Allbatches extends Component
                                                           studentdet =  {data.recstudents}
                                                           getBatchDetails = {this.getBatchDetails }
                                                           key={index}
-                                                          />
+                                                              />
                                               )}
                                       </tbody>
-                                  </table> :
+                                  </table>
+                                  </div> :
                                   <div>{this.state.details ?
                                          <BatchInfo 
-                                            bid = {this.state.sbatchid}
-                                            bdesc = {this.state.sbdesc}
-                                            rate = {this.state.srate}
-                                            level = {this.state.slevel}
-                                            subject = {this.state.sbsubj}
-                                            students = {this.state.student}/>
+                                            batchdetails = {this.state.batchdet}
+                                            />
                                       :<p></p>
                                     }
                                  </div>

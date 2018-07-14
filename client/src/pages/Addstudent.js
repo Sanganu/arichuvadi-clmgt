@@ -89,7 +89,7 @@ class Addstudent extends Component {
         const bdetails = this.props.batchdet || false;
             return(
               <div>
-                 <Teacherheader />
+                 {/* <Teacherheader /> */}
                     {bdetails ? 
                     <div>
                             <h4 className = "text-center">Batch:  {bdetails.batchdesc}</h4>

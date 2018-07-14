@@ -20,27 +20,23 @@ const customStyle = {
 class BatchRecAddclass extends Component
 {
 
-        
-
-       
         componentWillReceiveProps = () => {
           console.log("Props",this.props);
           console.log("student",this.props.studentdet)
         }
 
-        
+      getBatchDet = () => 
           
-
-          
-      getBatchDet = () =>
       {
-        let bid = this.props.bid;
-        let bdesc = this.props.bdesc;
-        let brate = this.props.brate;
-        let blevel = this.props.blevel;
-        let bsubj = this.props.bsubj;
-        let student = this.props.studentdet;
-        this.props.getBatchDetails(bid,bdesc,brate,blevel,bsubj,student)
+        
+        let newbatch = {
+          bid : this.props.bid,
+          batchdesc:this.props.bdesc,
+          subject: this.props.bsubj,
+          level: this.props.blevel,
+          rateperhour : this.props.brate,
+        }
+        this.props.getBatchDetails(newbatch)
       }           
 
       render()
