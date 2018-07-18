@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Allstudents from './displayallstudents';
+// import Allstudents from './displayallstudets';
+import Allstudents  from './displayallstudentsdetails';
 import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
 
@@ -12,7 +13,7 @@ class Addstudent extends Component {
           parentname: "",
           parentphonenumber: "",
           password: "",
-          studentrecs: [],
+          studentrecords: [],
           errmsg:''
         };
 
@@ -30,10 +31,31 @@ class Addstudent extends Component {
        } */);
     };
 
+    componentDidMount = (event) => {
+        let studentrecords = this.state.studentrecords;
+        console.log("ComponentDidmount")
+        axios.get("/api/teacher/students/all")
+          .then(response =>{
+            for(let i = 0;i < response.data.length;i++)
+            {
+                        let currentrec = {
+                            recid: response.   data[i]._id,
+                            recdesc: response.data[i].studentfname,
+                            recsubj: response.data[i].studentlname,
+                            reclevel: response.data[i].loginemail,
+                               recrate: response.data[i].parentname,
+                            recstudents: response.data[i].parentphonenumnber,
+                            recstudents: response.data[i].batchid,
+                        }
+                        studentrecords.push(currentrec);
+            } // end for
+            this.setState({studentrecords : studentrecords},() => console.log("Student Management:",studentrecords))
+        });
+    }
+  
     handleStudentCreation = (event) => {
         event.preventDefault();
-       console.log("In Student Creation");
-       let strecs = this.state.studentrecs;
+       let strecs = this.state.studentrecords;
        if( this.state.studentfname === "" ||
            this.state.studentlname === "" ||
            this.state.loginemail === "" ||
@@ -53,7 +75,7 @@ class Addstudent extends Component {
                 password: this.state.password,
                 parentphonenumber: this.state.parentphonenumber,
               }
-        axios.post('/api/teacher/student/new',
+              axios.post('/api/teacher/student/new',
                   {newrecord})
                   .then(res =>
                     {
@@ -65,7 +87,7 @@ class Addstudent extends Component {
                           phonenumber: res.data.phonenumber
                       }
                       strecs.push(newstrec);
-                      this.setState({studentrecs : strecs},
+                      this.setState({studentrecords : strecs},
                           () => {
                             this.setState({
                                   studentfname: '',
@@ -80,7 +102,7 @@ class Addstudent extends Component {
                      this.setState({errmsg:"Student Email already exist"});
                      console.log("Error!!!!",error)}
                 ); // End of axios
-              } //end if
+            } //end if
     }; // end of handleStudentCreation
 
 
@@ -111,10 +133,10 @@ class Addstudent extends Component {
                                   <th>Firstname</th>
                                   <th>Lastname</th>
                                   <th>Email</th>
-                               
+                                  <th>Phonenumber</th>
                              </tr>
 
-                               <Allstudents studentrec = {this.state.studentrecs}/>
+                               <Allstudents studentrec = {this.state.studentrecords}/>
                             </tbody>
                             </table>
                       </div>

@@ -3,8 +3,6 @@ const router = require("express").Router();
 const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
 const classdetails = require('../models/Classdetails.js')
-
-
 const passport = require("passport");
  
 
@@ -122,12 +120,34 @@ router.get("/api/teacher/batch/all",(req,res) => {
             });
 });
 
+// Get All Student Details
+router.get("/api/teacher/students/all",(req,res) => {
+   studentdetails.find({})
+       .populate({
+         path: 'batchid',
+         select: 'batchdesc subject' })
+       .then((data) => {
+        console.log("student details",data);
+        res.json(data);
+        })
+      .catch((err) => {
+        console.log("Error in fetching all Student details",err);
+        res.json(err);
+      });
+});
+
+
+
+
+
+
+
 ////Add Class details And Update Batches table - implemented
 router.post('/api/teacher/batch/class/add',function(req,res) {
         console.log("Insiderouter to add class details",req.body);
       var newrecord = req.body;
         classdetails
-           .create(newrecord)
+           .create(new record)
            .then(function(dbclassdetails)
            {
               console.log("The class details entered : ",dbclassdetails)
