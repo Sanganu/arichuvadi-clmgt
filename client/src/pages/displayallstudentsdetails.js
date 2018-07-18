@@ -2,22 +2,25 @@ import React,{ Component } from 'react';
 
 class Allstudents extends Component
 {
+    detleteStudent = () =>{
+         
+    }
     render()
     {
            const studentrec = this.props.studentrec;
            console.log("student",this.props.studentrec);
-            return(studentrec.map((data,index) => (
-                  <tr className = "addclass" key={index}><td>{data.stdfname}</td>
-                       <td>{data.stdlname}</td>
-                       <td>{data.stdemail}</td>
-                       <td>{data.parentname}</td>
-                       <td>{data.phonenumber}</td>
-                       <td>{data}</td>
-                       <td>{data.subject}</td>
-                       <td><button>Delete Student from batch</button></td>
+            return(
+                  <tr className = "addclass"><td>{this.props.stdfname}</td>
+                       <td>{this.props.stdlname}</td>
+                       <td>{this.props.stdemail}</td>
+                       <td>{this.props.parentname}</td>
+                       <td>{this.props.phonenumber}</td>
+                       
+                       <td>{this.props.subject}</td>
+                       <td><button onClick = {this.detleteStudent}>Delete Student details</button></td>
                        <td></td>
-                  </tr>))
-              );
+                  </tr>);
+              
     }
 }
 

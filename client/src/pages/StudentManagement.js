@@ -52,7 +52,10 @@ class Addstudent extends Component {
                         studentrecords.push(currentrec);
             } // end for
             this.setState({studentrecords : studentrecords},() => console.log("Student Management:",studentrecords))
-        });
+        }) //end then
+        .catch(error => {
+          console.log("Error is fetching all student records",error);
+        })
     }
   
     handleStudentCreation = (event) => {
@@ -107,10 +110,18 @@ class Addstudent extends Component {
             } //end if
     }; // end of handleStudentCreation
 
-
+    deleteStudentDetails = (id) => {
+      axios.delete("/api/teacher/student/delete/:id")
+          .then(response => {
+            console.log("the reponse",response)
+          })
+          .catch(error => {
+            console.log("Error in deleting student details",error);
+          })
+    }
 
       render() {
-        
+            const studentrecords = this.state.studentrecords;
             return(
               <div>
                  {/* <Teacherheader /> */}
@@ -137,8 +148,16 @@ class Addstudent extends Component {
                                   <th>Email</th>
                                   <th>Phonenumber</th>
                              </tr>
-
-                               <Allstudents studentrec = {this.state.studentrecords}/>
+                              {studentrecords.map((data,index) =>
+                                 <Allstudents  index={index}
+                                               stdlname = {data.stdlname}
+                                               stdid = {data.recid}
+                                               stdfname = {data.stdfname}
+                                               parentname = {data.parentname}
+                                               phonenumber = {data.phonenumber}
+                                               subject = {data.subject}
+                                               />
+                              )}
                             </tbody>
                             </table>
                       </div>
@@ -147,6 +166,6 @@ class Addstudent extends Component {
             ) //end return
       } // end render
 
-} // end class
+} // end class 
 
 export default Addstudent;
