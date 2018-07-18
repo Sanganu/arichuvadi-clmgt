@@ -12,6 +12,8 @@ class Allstudents extends Component
                        <td>{data.stdemail}</td>
                        <td>{data.parentname}</td>
                        <td>{data.phonenumber}</td>
+                       <td>{data}</td>
+                       <td>{data.subject}</td>
                        <td><button>Delete Student from batch</button></td>
                        <td></td>
                   </tr>))

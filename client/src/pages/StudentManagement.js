@@ -44,8 +44,10 @@ class Addstudent extends Component {
                             stdlname: response.data[i].studentlname,
                             stdemail: response.data[i].loginemail,
                             parentname: response.data[i].parentname,
-                            phonenumber: response.data[i].parentphonenumnber,
-                            recstudents: response.data[i].batchid,
+                            phonenumber: response.data[i].parentphonenumnber
+                            //batchid: response.data[i].batchid
+                            // batchdesc: response.data[i].batchid//.batchdesc,
+                            // //subject: response.data[i].batchid.subject
                         }
                         studentrecords.push(currentrec);
             } // end for

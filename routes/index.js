@@ -125,7 +125,7 @@ router.get("/api/teacher/students/all",(req,res) => {
    studentdetails.find({})
        .populate({
          path: 'batchid',
-         select: 'batchdesc subject' })
+         select: 'batchdesc,subject' })
        .then((data) => {
         console.log("student details",data);
         res.json(data);
