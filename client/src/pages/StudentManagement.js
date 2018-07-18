@@ -39,12 +39,12 @@ class Addstudent extends Component {
             for(let i = 0;i < response.data.length;i++)
             {
                         let currentrec = {
-                            recid: response.   data[i]._id,
-                            recdesc: response.data[i].studentfname,
-                            recsubj: response.data[i].studentlname,
-                            reclevel: response.data[i].loginemail,
-                               recrate: response.data[i].parentname,
-                            recstudents: response.data[i].parentphonenumnber,
+                            recid: response.data[i]._id,
+                            stdfname: response.data[i].studentfname,
+                            stdlname: response.data[i].studentlname,
+                            stdemail: response.data[i].loginemail,
+                            parentname: response.data[i].parentname,
+                            phonenumber: response.data[i].parentphonenumnber,
                             recstudents: response.data[i].batchid,
                         }
                         studentrecords.push(currentrec);
