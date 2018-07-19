@@ -44,10 +44,10 @@ class Addstudent extends Component {
                             stdlname: response.data[i].studentlname,
                             stdemail: response.data[i].loginemail,
                             parentname: response.data[i].parentname,
-                            phonenumber: response.data[i].parentphonenumnber
-                            //batchid: response.data[i].batchid
-                            // batchdesc: response.data[i].batchid//.batchdesc,
-                            // //subject: response.data[i].batchid.subject
+                            phonenumber: response.data[i].parentphonenumber,
+                            batchid: response.data[i].batchid._id,
+                            batchdesc: response.data[i].batchid.batchdesc,
+                            subject: response.data[i].batchid.subject
                         }
                         studentrecords.push(currentrec);
             } // end for
@@ -111,9 +111,18 @@ class Addstudent extends Component {
     }; // end of handleStudentCreation
 
     deleteStudentDetails = (id) => {
-      axios.delete("/api/teacher/student/delete/:id")
+      console.log("Deletestudentdetails-id",id);
+      axios.delete("/api/teacher/student/delete/"+id)
           .then(response => {
-            console.log("the reponse",response)
+            console.log("the response",response)
+            if (response.status === 200)
+            {
+               const newarray = this.state.studentrecords.filter(function(student){
+                 return (student.recid !== id )
+               });
+               console.log("The newarray",newarray)
+               this.setState({studentrecords : newarray})
+            }
           })
           .catch(error => {
             console.log("Error in deleting student details",error);
@@ -146,18 +155,21 @@ class Addstudent extends Component {
                                   <th>Firstname</th>
                                   <th>Lastname</th>
                                   <th>Email</th>
+                                  <th>Parent </th>
                                   <th>Phonenumber</th>
                              </tr>
                               {studentrecords.map((data,index) =>
-                                 <Allstudents  index={index}
+                                 <Allstudents  key={index}
                                                stdlname = {data.stdlname}
                                                stdid = {data.recid}
                                                stdfname = {data.stdfname}
                                                parentname = {data.parentname}
                                                phonenumber = {data.phonenumber}
+                                               stdemail = {data.stdemail }
                                                subject = {data.subject}
+                                               deleteStudentDetails = {this.deleteStudentDetails}
                                                />
-                              )}
+                                )}
                             </tbody>
                             </table>
                       </div>

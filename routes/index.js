@@ -123,9 +123,9 @@ router.get("/api/teacher/batch/all",(req,res) => {
 // Get All Student Details
 router.get("/api/teacher/students/all",(req,res) => {
    studentdetails.find({})
-       .populate({
+       .populate ({
          path: 'batchid',
-         select: 'batchdesc,subject' })
+         select: '_id batchdesc subject'})
        .then((data) => {
         console.log("student details",data);
         res.json(data);
@@ -163,7 +163,6 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
                  console.log("The Error",err)
                  res.json(err);
                }
-
            });
 });
 
@@ -199,7 +198,6 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
 
 // Update Batch 
 router.put("/api/teacher/batch/update",(req,res) => {
-     
       batchdetails.update(
         {_id: req.body.batchid},
         {$set: {batchdesc : req.body.batchdesc,
@@ -269,8 +267,20 @@ router.put("/api/teacher/student/update",(req,res) => {
         res.json("Error in updating bacth details",error)
       });
 });
+// Delete Student Details completely
+router.delete('/api/teacher/student/delete/:id',(req,res) => {
+       studentdetails.deleteOne({_id: req.params.id})
+       .then((data) => {
+          console.log("The deletion data",data);
+          res.json(data);
+       })
+       .catch((error) => {
+         console.log("Delete Student details completely",error);
+         res.json(error);
+       })
+});
 
-//Delete Student -- pending
+//Delete Student from a batch -- pending
 router.delete('/api/batch/student/delete/',(req,res) => {
           batchdetails.findone({_id: req.body.batchid})
             .then((data) => {

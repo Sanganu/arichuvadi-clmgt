@@ -33,10 +33,10 @@ const studentSchema = new Schema({
             type: Date,
             default: Date.now
           },
-          batchid : {
+          batchid : [{
             type: Schema.Types.ObjectId,
             ref: 'batchdetails'
-          }
+          }]
 });
 
 
