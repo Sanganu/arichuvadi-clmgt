@@ -121,7 +121,7 @@ class Addstudent extends Component {
                  return (student.recid !== id )
                });
                console.log("The newarray",newarray)
-               this.setState({studentrecords : newarray},() => console.log("The studentrecords",studentrecords))
+               this.setState({studentrecords : newarray},() => console.log("The studentrecords",this.state.studentrecords))
             }
           })
           .catch(error => {
