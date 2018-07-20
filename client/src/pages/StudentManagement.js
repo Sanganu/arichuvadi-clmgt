@@ -129,6 +129,16 @@ class Addstudent extends Component {
           })
     }
 
+    updateStudentDetails =(id,studentrecord) => {
+       axios("/api/teacher/student/delete/"+id, studentrecord)
+          .then(response => {
+            console.log("Student Details updated",response)
+          })
+          .catch(error => {
+            console.log("Error in Updating student records");
+
+          })
+    }
       render() {
             const studentrecords = this.state.studentrecords;
             return(
