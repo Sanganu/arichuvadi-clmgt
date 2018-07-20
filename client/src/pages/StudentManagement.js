@@ -45,9 +45,10 @@ class Addstudent extends Component {
                             stdemail: response.data[i].loginemail,
                             parentname: response.data[i].parentname,
                             phonenumber: response.data[i].parentphonenumber,
-                            batchid: response.data[i].batchid._id,
-                            batchdesc: response.data[i].batchid.batchdesc,
-                            subject: response.data[i].batchid.subject
+                            noofbatches: response.data[i].batchid.length
+                            // batchid: response.data[i].batchid._id,
+                            // batchdesc: response.data[i].batchid.batchdesc,
+                            // subject: response.data[i].batchid.subject
                         }
                         studentrecords.push(currentrec);
             } // end for
@@ -71,7 +72,7 @@ class Addstudent extends Component {
                console.log("Empty fields not accepted");
                this.setState({errmsg: " Empty fields not accepted"})
              }
-        else {
+         else {
             let newrecord = {
                 studentfname: this.state.studentfname,
                 studentlname: this.state.studentlname,
@@ -86,10 +87,13 @@ class Addstudent extends Component {
                     {
                        console.log("The response from adding student",res);
                       let newstrec = {
+                          recid : res.data._id,
                           stdfname : res.data.studentfname,
                           stdlname : res.data.studentlname,
                           stdemail : res.data.loginemail,
-                          phonenumber: res.data.phonenumber
+                          parentname : res.data.parentname,
+                          phonenumber: res.data.phonenumber,
+                          noofbatches : res.data.batchid.length
                       }
                       strecs.push(newstrec);
                       this.setState({studentrecords : strecs},
@@ -100,6 +104,7 @@ class Addstudent extends Component {
                                   parentname: '',
                                   loginemail: '',
                                   parentphonenumber: '',
+                                  password: ''
                             })
                           });
                     })
@@ -120,7 +125,7 @@ class Addstudent extends Component {
                const newarray = this.state.studentrecords.filter(function(student){
                  return (student.recid !== id )
                });
-               console.log("The newarray",newarray)
+               console.log("The newarray delee student",newarray)
                this.setState({studentrecords : newarray},() => console.log("The studentrecords",this.state.studentrecords))
             }
           })
@@ -129,18 +134,28 @@ class Addstudent extends Component {
           })
     }
 
-    updateStudentDetails =(id,studentrecord) => {
-       axios("/api/teacher/student/delete/"+id, studentrecord)
+    updateStudentDetails =(studentrecord) => {
+       axios.put("/api/teacher/student/update/"+ studentrecord.recid, studentrecord)
           .then(response => {
+            if (response.statatus === 200)
+            {
+              const newarray = this.state.studentrecords.filter(function(student){
+                return (student.recid !== studentrecord.id )
+                });
+              newarray.push(studentrecord);
+              console.log("The newarray-student update",newarray)
+              this.setState({studentrecords : newarray},() => console.log("The studentrecords",this.state.studentrecords))
+            }
             console.log("Student Details updated",response)
           })
           .catch(error => {
-            console.log("Error in Updating student records");
+            console.log("Error in Updating student records",error);
 
-          })
+          });
     }
+
       render() {
-            const studentrecords = this.state.studentrecords;
+            const studentrecords = this .state.studentrecords;
             return(
               <div>
                  {/* <Teacherheader /> */}
@@ -178,6 +193,7 @@ class Addstudent extends Component {
                                                stdemail = {data.stdemail }
                                                subject = {data.subject}
                                                deleteStudentDetails = {this.deleteStudentDetails}
+                                               updateStudentDetails = {this.updateStudentDetails}
                                                />
                                 )}
                             </tbody>

@@ -16,27 +16,42 @@ class Allstudents extends Component
     updateStudent = () =>{
         console.log("Update Student");
         let stdrecord = {
-            studentfname : this.state.stdfname,
-            studentlname : this.state.stdlname,
-            loginemail : this.state.stdemail,
+            recid: this.props.stdid,
+            stdfname : this.state.stdfname,
+            stdlname : this.state.stdlname,
+            stdemail : this.state.stdemail,
             parentname : this.state.parentname,
-            parentphonenumber : this.state.phonenumber
+            phonenumber : this.state.phonenumber,
+            noofbatches: this.props.noofbatches
         }
-        this.props.updateStudentDetails(this.props.stdid,stdrecord);
+        this.props.updateStudentDetails(stdrecord);
     }
+    handleInputChange = (event) => {
+        const target = event.target;
+        const value =  target.value;
+        const name =  target.name;
+          
+        this.setState({
+           [name]: value
+         } /*,
+         () =>{
+           console.log('Set State in Main Section',value,name);
+         } */);
+      };
+  
     render()
     {
           
             return(
-                  <tr className = "addclass"><td><input type="text" value={this.state.stdfname} onChange={this.handleInputChange} name= "studentfname" /></td>
-                       <td><input type="text" value={this.state.stdlname} onChange={this.handleInputChange} name = "studentlname"/></td>
-                       <td><input type="text" value={this.state.stdemail} onChange={this.handleInputChange} name="loginemail" /></td>
+                  <tr className = "addclass"><td><input type="text" value={this.state.stdfname} onChange={this.handleInputChange} name= "stdfname" /></td>
+                       <td><input type="text" value={this.state.stdlname} onChange={this.handleInputChange} name = "stdlname"/></td>
+                       <td><input type="text" value={this.state.stdemail} onChange={this.handleInputChange} name="stdemail" /></td>
                        <td><input type="text" value={this.state.parentname} onChange={this.handleInputChange} name="parentname"/></td>
-                       <td><input type="text" value={this.state.phonenumber} onChange={this.handleInputChange} name="parentphonenumber" /></td>
+                       <td><input type="text" value={this.state.phonenumber} onChange={this.handleInputChange} name="phonenumber" /></td>
                        <td>{this.props.batchdesc}</td>
                        <td>{this.props.subject}</td>
                        <td><button onClick = {this.deleteStudent}>Delete Student details</button></td>
-                       <td><button onClick ={this.updaeStudent}>Update Student</button></td>
+                       <td><button onClick ={this.updateStudent}>Update Student</button></td>
                   </tr>);
               
     }   

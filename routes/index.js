@@ -133,14 +133,8 @@ router.get("/api/teacher/students/all",(req,res) => {
       .catch((err) => {
         console.log("Error in fetching all Student details",err);
         res.json(err);
-      });
+      }); 
 });
-
-
-
-
-
-
 
 ////Add Class details And Update Batches table - implemented
 router.post('/api/teacher/batch/class/add',function(req,res) {
@@ -165,8 +159,6 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
                }
            });
 });
-
-
 
 //To add class details(Attendance) -Get All Student details for the batch for class entry - implemented
 router.get("/api/teacher/batch/:batchid", (req,res) => {
@@ -251,9 +243,9 @@ router.post("/api/teacher/student/new",(req,res) => {
 
 })
 
-// Update Student
-router.put("/api/teacher/student/update",(req,res) => {
-      bstudentdetails.updateOne(
+// Update Student - to add batch enrolled
+router.put("/api/teacher/studentbatch/update",(req,res) => {
+      studentdetails.updateOne(
         {_id: req.body.studentid},
         {$set: {batchdesc : req.body.batchdesc,
             subject: req.body.subject,
@@ -266,6 +258,24 @@ router.put("/api/teacher/student/update",(req,res) => {
         console.log("Error",error);
         res.json("Error in updating bacth details",error)
       });
+});
+
+// Update Student details
+router.put("/api/teacher/student/update/:id",(req,res) => {
+  studentdetails.updateOne(
+    {_id: req.params.id},
+    {$set: {studentfname : req.body.stdfname,
+        studentlname: req.body.stdlname,
+        loginemail: req.body.stdemail,
+        parentname: req.body.parentname,
+        parentphonenumber: req.body.phonenumber}}
+  ).then((data) => {
+    console.log("Updated Student personal details",data)
+    res.json(data)
+  }).catch((error) => {
+    console.log("Error - student personal details update",error);
+    res.json("Error in updating student personal details",error)
+  });
 });
 // Delete Student Details completely
 router.delete('/api/teacher/student/delete/:id',(req,res) => {
@@ -301,7 +311,6 @@ router.delete('/api/batch/student/delete/',(req,res) => {
 });
 
 // Search Student & Batch Records
-
 router.get('/api/teacher/search/:str',(req,res) => {
     let student_details
     let batch_details 
