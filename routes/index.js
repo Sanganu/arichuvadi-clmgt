@@ -208,14 +208,16 @@ router.put("/api/teacher/batch/update",(req,res) => {
 // Add Student Record
 router.post("/api/teacher/student/new",(req,res) => {
         let insertedstudent
-          studentdetails
+          studentdetails 
           .create(req.body.newrecord)
           .then(function(dbstudentdetails){
              insertedstudent = {
               studentfname : dbstudentdetails.studentfname,
               studentlname : dbstudentdetails.studentlname,
               loginemail : dbstudentdetails.loginemail,
-              phonenumber : dbstudentdetails.parentphonenumber
+              phonenumber : dbstudentdetails.parentphonenumber,
+              parentname : dbstudentdetails.parentname,
+
             } ;
             console.log("Inserted student record",dbstudentdetails,req.body.batchid);
             res.json(insertedstudent);
@@ -225,7 +227,7 @@ router.post("/api/teacher/student/new",(req,res) => {
                         if (err.errmsg)
                         {
                             if( (err.errmsg).substr(0,6) === 'E11000')
-                            {
+                            { 
                               console.log("Student Login - already exist");
                               res.json({error: "Student email already exist :"});
                             }

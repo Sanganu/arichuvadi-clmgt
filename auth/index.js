@@ -86,7 +86,7 @@ function getStudentDetails(req,res) {
      res.json({err:"Invalid credentials"});
    }
    else
-   {
+   {   
              Students
                   .findOne({_id : req.session.passport.user._id})
                   .populate({
@@ -102,8 +102,10 @@ function getStudentDetails(req,res) {
                             // console.log("Studet",studentdet);
                             // console.log("batch",studentdet.batchid);
                             //  console.log("class",studentdet.batchid.classid);
-                            for(let i = 0; i < studentdet.batchid.classid.length;i++)
-                            {
+                       if( studentdet.batchid.length >0)
+                       {
+                              for(let i = 0; i < studentdet.batchid.classid.length; i++)
+                              {
                                 var homework = studentdet.batchid.classid[i].homework;
                                 var lesson = studentdet.batchid.classid[i].lessoncovered;
                                 var attendance = studentdet.batchid.classid[i].students
@@ -120,25 +122,39 @@ function getStudentDetails(req,res) {
                                         lesson: lesson,
                                         present: present
                                       });
-                            } // end of for loop
+                              } // end of for loop
+                                var studentrecord = {
+                                    fname: studentdet.studentfname,
+                                    lname: studentdet.studentlname,
+                                    parent: studentdet.parentname,
+                                    phone: studentdet.parentphonenumber,
+                                    email: studentdet.loginemail,
+                                    uname: studentdet.username,
+                                    batch: studentdet.batchid.batchdesc,
+                                    subject: studentdet.batchid.subject,
+                                    level: studentdet.batchid.level,
+                                    rate: studentdet.batchid.rateperhour,
+                                }
+                                console.log("Valid student login",studentrecord);
+                                console.log("Classdetails array",classdetails);
+                                res.json({studentrecord:studentrecord,classes:classdetails});
+                          } // end of if check for class length
+                          else
+                          {
                             var studentrecord = {
-                                 fname: studentdet.studentfname,
-                                lname: studentdet.studentlname,
-                                parent: studentdet.parentname,
-                                phone: studentdet.parentphonenumber,
-                                email: studentdet.loginemail,
-                                uname: studentdet.username,
-                                batch: studentdet.batchid.batchdesc,
-                                subject: studentdet.batchid.subject,
-                                level: studentdet.batchid.level,
-                                rate: studentdet.batchid.rateperhour,
+                              fname: studentdet.studentfname,
+                              lname: studentdet.studentlname,
+                              parent: studentdet.parentname,
+                              phone: studentdet.parentphonenumber,
+                              email: studentdet.loginemail,
+                              uname: studentdet.username,
+                              message : "Student not enrolled in any batch contact Teacher"
                             }
-                            console.log("Valid student login",studentrecord);
-                            console.log("Classdetails array",classdetails);
-
-                            res.json({studentrecord:studentrecord,classes:classdetails}) 
-                          }) // end then
+                            res.json({studentrecord:studentrecord}) ;
+                            console.log("Valid Student Login",studentrecord);
+                          }
                             //return done(null,{studentrecord:studentrecord,classes:classdetails})                 })
+                        }) // end of then-studentdetails check
                   .catch((err) => { 
                     console.log("Error - Invalid Student Credentials",err);
                     res.json(err);
