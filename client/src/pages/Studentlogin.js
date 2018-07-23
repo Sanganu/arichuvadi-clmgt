@@ -49,20 +49,20 @@ class Studentlogin extends Component
                         else {
                           this.setState({errmsg: ""});
 
-                          console.log(this.state.vemail, this.state.vpword,this.state.vuname);
+                          // console.log(this.state.vemail, this.state.vpword,this.state.vuname);
                            axios.post('/auth/student/login',
                                   {
                                     loginemail: this.state.vemail,
                                     password: this.state.vpword
                                   })  
                                   .then( (response) =>{
-                                         console.log("The response from axios",response.data);
-                                         console.log("The classes details", response.data.classes);
+                                        //  console.log("The response from axios",response.data);
+                                        //  console.log("The classes details", response.data.classes);
                                          if ( response.data.studentrecord)
                                            {
                                          this.setState({    showstlogin:false,
                                                             studentrecord:(response.data.studentrecord),
-                                                            classdet:(response.data.classes)},
+                                                            classdet:(response.data.classes) || ''},
                                                             () => {
                                                               console.log("State updates",this.state.studentrecord);
                                                             });
@@ -89,7 +89,7 @@ class Studentlogin extends Component
 
 
                   render()
-                  {
+                  { 
                           return(<div>
                                        <Teacherheader/>
                                        {this.state.showstlogin ?
