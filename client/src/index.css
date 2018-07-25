@@ -4,8 +4,7 @@ body {
   font-family: sans-serif;
   
   /* background-image: url('wood.jpg'); */
-  color:white;
-  background-color: black;
+  
 }
 
 .form-group {
@@ -56,14 +55,9 @@ body {
   margin-left: 10%;
 }
 
-/* label {
-  margin-right : 10px;
-  padding-right: 20px;
-  border-bottom-right-radius: 5px,
-} */
 
 tr {
-  color: white;
+  
   font-weight: 500;
    font-style: normal;
    font-size: 0.825rem;
@@ -71,45 +65,33 @@ tr {
 }
 .card-body {
   opacity: 0.9;
-  background-color: #ffffff;
+  background-color: hsl(120, 72%, 38%);
   font-weight: bolder;
-  color:hsla(13, 94%, 2%, 0.97)
+  color:hsl(120, 72%, 8%); 
 }
 
 button{
-  background-color: hsla(360, 98%, 10%, 1);
-  /* font-family: 'Passion One', cursive;
-  color: hsla(360, 100%, 96%, 1);
-  align-content: center;
-  width: 80%;
-  max-height: 50%;
-  padding:5%; */
-
   display: inline-block;
-  
   text-transform: uppercase;
   font-weight: 500;
   font-style: normal;
   font-size: 0.625rem;
   letter-spacing: 0.3em;
-  color: rgba(231, 227, 216, 0.925);
-  border-radius: 0;
+  color: rgb(14, 11, 11);
+  border-radius: 30px;
   padding: 18px 80px 20px;
-  transition: all 0.7s ease-out;
-  background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
+  transition: all 0.7s  ease-out;
+  background: linear-gradient(270deg, rgba(161, 159, 152, 0.8), rgba(73, 160, 131, 0.8), rgba(168, 48, 78, 0), rgba(34,34,34,0));
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
   margin: 0.625rem;
-  border: none;
-  border: 1px solid hsla(360, 98%, 10%, 1);
+  border: 1px solid hsl(75, 40%, 2%);
+ }
  
-}
-
-button:hover {
-  color: #fff;
-  border: 1px solid rgba(223,190,106,0);
-  color: $white;
+ button:hover {
+  color: rgb(163, 19, 19);
+  border: 1px solid hsla(20, 67%, 4%, 0.925);
   background-position: 99% 50%;
 }
 
@@ -143,7 +125,7 @@ button:hover {
   font-family: 'Itim', cursive;
 }
 .flinks{
-  color: white;
+  color: rgb(20, 22, 19);
   margin-right:20px;
   float:left;
   padding-top: 1%;
@@ -163,8 +145,8 @@ padding-top: 2%;
 
 .modaltitle {
   width: 100%;
-  background-color: hsla(13, 79%, 13%, 0.97);
-  color:hsl(0, 1%, 100%);
+  background-color: hsla(202, 59%, 77%, 0.97);
+  color:rgb(20, 20, 20);
 }
 
 #tlogin {
