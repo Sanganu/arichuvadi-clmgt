@@ -14,7 +14,7 @@ class Visitors extends Component
     videos: []
   }
   componentDidMount = () =>{
-    YoutubeVideos({key:this.state.APIkey, term: 'tamil alphabets'},videos => {
+    YoutubeVideos({key:this.state.APIkey, channelId: 'UCuOkzLl_DwqbPuvxi774zmw'},videos => {
       console.log("Videos received",videos)
       this.setState({videos:videos});
     });
