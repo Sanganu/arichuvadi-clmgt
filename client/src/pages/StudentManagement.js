@@ -4,7 +4,7 @@ import axios from 'axios';
 import Allstudents  from './displayallstudentsdetails';
 import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
-
+  
 class Addstudent extends Component {
     state = {
           studentfname: "",
