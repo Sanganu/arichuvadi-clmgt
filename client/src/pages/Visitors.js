@@ -19,8 +19,8 @@ class Visitors extends Component
       this.setState({videos:videos});
     });
   }
-      render()
-      { const videos =  this.state.videos;
+  render() 
+        { const videos =  this.state.videos;
            return(<div>
                      <Teacherheader />
                    <div className = "vcontent">
@@ -33,5 +33,6 @@ class Visitors extends Component
       }
 }
 
-export default Visitors
+export default Visitors;
+
   

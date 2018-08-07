@@ -33,8 +33,8 @@ class Homepage extends Component {
                                 <Link to ="/other/users" className="mainlink">Visitors</Link>
                             </div>
                         </div>
-                    </div>
-                    <Footer />
+                </div>
+                <Footer />
            </div>
          );
       }
