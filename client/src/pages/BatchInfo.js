@@ -73,14 +73,16 @@ class BatchInfo extends Component {
         bid: this.props.bid,
         students: this.props.students
       },
-    () => {console.log("state - batchinfo",this.state)})
+    () => {console.log("state - batchinfo - student records",this.state.students)})
     }
     render()
     {
         return(<div>
-            <div>
-                  
-                 <input value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" onChange = {this.handleInputChange}/>
+            <form>
+                <div class="form-group">
+                  <label for="bdesc" className= "bmd-label-floating" >{this.state.bdesc}</label>
+                 <input className="form-control" value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
+                </div> 
                  <input value={this.state.rate} placeholder= {this.state.rate}  name = "rate" onChange = {this.handleInputChange}/>
                  <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
                  <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
@@ -92,7 +94,7 @@ class BatchInfo extends Component {
                   </Modal> 
                  <Addstudent batchdet = {this.state.brecords} />
                  {/* <Allstudents studentrec = {this.state.studentrecs}/> */}
-            </div>
+            </form>
         </div>)
     } 
 }
