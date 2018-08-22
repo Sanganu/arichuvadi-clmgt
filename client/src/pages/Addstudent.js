@@ -82,8 +82,17 @@ class Addstudent extends Component {
                 ); // End of axios
               } //end if
     }; // end of handleStudentCreation
-
-
+   
+componentDidMount = () => {
+  let bid = this.props.batchdet.bid;
+  axios.get('/api/teacher/batch/student/details/&bid')
+       .then(response => {
+         console.log("The Existing Students",response);
+       })
+       .catch(error => {
+         console.log("The Error Encountered in fetching exiting students details",error);
+       });
+}; // End Componentdidmount
 
       render() {
         const bdetails = this.props.batchdet || false;
@@ -99,7 +108,7 @@ class Addstudent extends Component {
                      </div>
                     : <div></div>}
                     <br />
-                    <h3 className = "subhead">Add Students to the Batch</h3>
+                    <h3 className = "subhead">Add N ew  Students to the Batch</h3>
                     <p className="errmsg">{this.state.errmsg}</p>
                               
                     <form className="form-inline">

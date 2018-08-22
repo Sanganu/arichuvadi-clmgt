@@ -25,7 +25,7 @@ class BatchInfo extends Component {
                            console.log("Error in deleting batch student class records!!!",error);
 
               }); // end catch
-      }
+      } //end of delete student
 
       updateBatch = () => {
         console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
@@ -37,7 +37,7 @@ class BatchInfo extends Component {
                     level : this.state.level,
                     rate : this.state.rate
                   })
-                  .then(response => 
+                  .then((response) => 
                   {
                     console.log("The response from update"+ response);
                   })
@@ -47,7 +47,7 @@ class BatchInfo extends Component {
                                console.log("Error in saving class records!!!",error);
                           });
                   }); // end catch
-      }
+      } // end of update batch
 
       handleInputChange = (event) => {
             const target = event.target;
@@ -73,31 +73,33 @@ class BatchInfo extends Component {
         bid: this.props.bid,
         students: this.props.students
       },
-    () => {console.log("state - batchinfo - student records",this.state.students)})
-    }
+      () => {console.log("state - batchinfo - student records",this.state.students)})
+    }  // end of componentwillreceiveprops
+
     render()
     {
         return(<div>
             <form>
-                <div class="form-group">
-                  <label for="bdesc" className= "bmd-label-floating" >{this.state.bdesc}</label>
-                 <input className="form-control" value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
+                <div className ="form-group">
+                  <label htmlFor="bdesc" className= "bmd-label-floating" >{this.state.bdesc}</label>
+                  <input className="form-control" value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
                 </div> 
                  <input value={this.state.rate} placeholder= {this.state.rate}  name = "rate" onChange = {this.handleInputChange}/>
                  <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
                  <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
                  <label>{this.state.students}</label>
                  <button onClick = {this.updateBatch}>Save Changes</button>
-                 
+            </form>  
                  <Modal onRequestClose={this.closeModal}
                         isOpen = {this.state.modalIsOpen}>
                   </Modal> 
-                 <Addstudent batchdet = {this.state.brecords} />
+                 <Addstudent batchdet = {this.props.batchdetails} />
                  {/* <Allstudents studentrec = {this.state.studentrecs}/> */}
-            </form>
+            
         </div>)
-    } 
-}
+    } // end of render
+} //end component
 
-export default BatchInfo
+export default BatchInfo;
+
   

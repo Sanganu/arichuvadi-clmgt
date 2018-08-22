@@ -42,8 +42,8 @@ class Allbatches extends Component
                               recdesc: response.data[i].batchdesc,
                               recsubj: response.data[i].subject,
                               reclevel: response.data[i].level,
-                              recrate: response.data[i].rateperhour,
-                              recstudents: response.data[i].students
+                              recrate: response.data[i].rateperhour
+                              //recstudents: response.data[i].students
                       }
                     batchrecords.push(currentrec);
                   } // end for

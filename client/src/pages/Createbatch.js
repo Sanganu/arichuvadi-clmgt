@@ -59,7 +59,7 @@ class Createbatch extends Component {
                           level: response.data.level,
                           rateperhour: response.data.rateperhour,
 
-                        }
+                         }
                         this.props.onInsert(newbatch)
                         //window.location = '/teacher/batch/addstudent/'+response._id;
                         //return <Addstudent />

@@ -22,8 +22,7 @@ class BatchRecAddclass extends Component
 
         // componentWillReceiveProps = () => {
         //   console.log("Props",this.props);
-        //   console.log("student",this.props.studentdet)
-        // }
+        //   console.log("student",this.props.studentdet)           
 
       getBatchDet = () => 
       {
@@ -33,8 +32,8 @@ class BatchRecAddclass extends Component
           batchdesc:this.props.bdesc,
           subject: this.props.bsubj,
           level: this.props.blevel,
-          rateperhour : this.props.brate,
-          students: this.props.studentdet
+          rateperhour : this.props.brate
+          // students: this.props.studentdet
         }
         this.props.getBatchDetails(newbatch)
       }           

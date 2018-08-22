@@ -54,7 +54,6 @@ router.post('/api/teacher/batch/student/new',function(req,res) {
           studentlname: req.body.studentlname,
           parentname: req.body.parentname,
           loginemail: req.body.loginemail,
-          parentphonenumber: req.body.parentphonenumber,
           password : req.body.password,
           batchid:req.body.batchid
         };
@@ -113,7 +112,7 @@ router.get("/api/teacher/batch/all",(req,res) => {
            .then((data) => {
                console.log("Batch details",data);
                res.json(data);
-           })
+           }) 
            .catch((err) => {
              console.log("Error in fetching all batch details",err);
              res.json(err);
@@ -351,6 +350,21 @@ router.get('/api/teacher/search/:str',(req,res) => {
       });
    
 });
+
+// Get Exisitng Student Details for the Batch
+
+router.get('/api/teacher/batch/student/details/:bid', (req,res) =>{
+       studentdetails.find({batchid:req.params.bid})
+          .then((Existingstudents) => {
+            console.log("Exisiting Students for the batch",Exisitingstudents);
+            res.json({Exisitingstudents})
+          })
+          .catch((err) => {
+            console.log("Unable to fetch student records",err);
+            res.json(err);
+          });
+});
+
 
 // Student Login route -- implemented- with OAuth Local
 
