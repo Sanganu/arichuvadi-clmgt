@@ -23,7 +23,8 @@ class BatchInfo extends Component {
               }) //end then
               .catch( error => {
                            console.log("Error in deleting batch student class records!!!",error);
-
+ 
+                            
               }); // end catch
       } //end of delete student
 

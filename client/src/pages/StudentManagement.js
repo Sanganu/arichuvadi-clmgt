@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import Allstudents from './displayallstudets';
 import Allstudents  from './displayallstudentsdetails';
-import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
   
 class Addstudent extends Component {
@@ -155,7 +154,7 @@ class Addstudent extends Component {
     }
 
       render() {
-            const studentrecords = this .state.studentrecords;
+            const studentrecords = this.state.studentrecords;
             return(
               <div>
                  {/* <Teacherheader /> */}

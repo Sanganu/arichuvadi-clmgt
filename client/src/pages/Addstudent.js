@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Allstudents from './displayallstudents';
-import Teacherheader from '../components/Teacherheader';
+// import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
 
 class Addstudent extends Component {
@@ -84,7 +84,7 @@ class Addstudent extends Component {
     }; // end of handleStudentCreation
    
 componentDidMount = () => {
-  let bid = this.props.batchdet.bid;
+  // let bid = this.props.batchdet.bid;
   axios.get('/api/teacher/batch/student/details/&bid')
        .then(response => {
          console.log("The Existing Students",response);
@@ -129,11 +129,9 @@ componentDidMount = () => {
                                   <th>Firstname</th>
                                   <th>Lastname</th>
                                   <th>Email</th>
-                               
                              </tr>
-
-                               <Allstudents studentrec = {this.state.studentrecs}/>
-                            </tbody>
+                             <Allstudents studentrec = {this.state.studentrecs}/>
+                            </tbody>    
                             </table>
                       </div>
                       <Footer />

@@ -10,7 +10,7 @@ class Batchmain extends Component {
           displaybatch : true
           }
       };
-
+             
       handleBatchCreated = (batchnew) => {
         //event.preventDefault();
         const batchdet = batchnew;
@@ -22,7 +22,7 @@ class Batchmain extends Component {
             () => {
               this.setState({  displaybatch:false})
               console.log('Setstate callback-batchmain',this.state.batchdet);
-            }); //end thistate
+            }); //    end thistate
       }; // end handlebatchcreated
 
 

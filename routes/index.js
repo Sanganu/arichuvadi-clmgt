@@ -4,7 +4,7 @@ const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
 const classdetails = require('../models/Classdetails.js')
 const passport = require("passport");
- 
+const youtubechannel = require('youtube-channel-videos');
 
 //Create new batch -- implemented
 router.post('/api/teacher/batch/new',function(req,res) {
@@ -365,6 +365,15 @@ router.get('/api/teacher/batch/student/details/:bid', (req,res) =>{
           });
 });
 
+//Visitors Login
+
+router.get("/api/visitors",(req,res) => {
+   youtubechannel.channelVideos("AIzaSyAkRFNuVZuXjsQR244svmxW44Jf2PvOUwQ","UCPhfI5zJU2vCnVBOA13Jrig",function(channelist){
+     console.log("The Channellist",channelist);
+     res.json(channelist);
+   });
+
+});
 
 // Student Login route -- implemented- with OAuth Local
 
