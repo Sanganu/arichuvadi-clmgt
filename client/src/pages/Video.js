@@ -7,14 +7,17 @@ class Video extends Component {
   }
   render()
   {
-    let sourceurl = "https://www.youtube.com/embed/"+this.props.content.id.videoId
+    let sourceurl = "https://www.youtube.com/embed/"+this.props.content.id
     return(<div>
          {/* <img src= {this.props.content.snippet.thumbnails.default.url} />  */}
          <iframe title = "Performance" src = {sourceurl} />
+         {this.props.content.title}
+         {this.props.content.description}
+         {this.props.content.thumbnail}
     </div>)
   }
     
 }
- 
+  
 export default Video;
  

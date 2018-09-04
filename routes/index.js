@@ -368,9 +368,23 @@ router.get('/api/teacher/batch/student/details/:bid', (req,res) =>{
 //Visitors Login
 
 router.get("/api/visitors",(req,res) => {
-   youtubechannel.channelVideos("AIzaSyAkRFNuVZuXjsQR244svmxW44Jf2PvOUwQ","UCPhfI5zJU2vCnVBOA13Jrig",function(channelist){
-     console.log("The Channellist",channelist);
-     res.json(channelist);
+   youtubechannel.channelVideos("AIzaSyAkRFNuVZuXjsQR244svmxW44Jf2PvOUwQ","UCPhfI5zJU2vCnVBOA13Jrig",function(channellist){
+     console.log("The Channellist",channellist.length);
+     let videoid =[];
+     for(let i =0; i < channellist.length;i++)
+     {
+       if(channellist[i].id.videoId)
+       {
+        videoid.push({
+          id:channellist[i].id.videoId,
+          title:channellist[i].snippet.title,
+          description:channellist[i].snippet.description,
+          // thumbnail:channellist[i].snippet.thumbnails.default
+        });
+       } // end if
+      console.log(videoid[i]);
+     } // end for
+     res.json(videoid);
    });
 
 });
