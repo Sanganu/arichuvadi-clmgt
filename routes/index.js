@@ -108,7 +108,7 @@ router.post('/api/teacher/batch/student/new',function(req,res) {
 router.get("/api/teacher/batch/all",(req,res) => {
       console.log("inside router to get all batch records");
         batchdetails.find({})
-           .populate('students') /* Should be removed when click on batch to details of batch */
+          //  .populate('students') /* Should be removed when click on batch to details of batch */
            .then((data) => {
                console.log("Batch details",data);
                res.json(data);
@@ -189,6 +189,7 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
 
 // Update Batch 
 router.put("/api/teacher/batch/update",(req,res) => {
+  console.log("The batch id: ",req.body.batchid);
       batchdetails.update(
         {_id: req.body.batchid},
         {$set: {batchdesc : req.body.batchdesc,
@@ -196,11 +197,11 @@ router.put("/api/teacher/batch/update",(req,res) => {
                 level: req.body.level,
                 rateperhour: req.body.rate}}
       ).then((data) => {
-        console.log("Updated BAtch",data)
+        console.log("Updated Batch detils",data)
         res.json(data)
       }).catch((error) => {
         console.log("Error",error);
-        res.json("Error in updating bacth details",error)
+        res.json("Error in updating batch details",error)
       });
 });
 
@@ -278,6 +279,7 @@ router.put("/api/teacher/student/update/:id",(req,res) => {
     res.json("Error in updating student personal details",error)
   });
 });
+
 // Delete Student Details completely
 router.delete('/api/teacher/student/delete/:id',(req,res) => {
        studentdetails.deleteOne({_id: req.params.id})
@@ -315,7 +317,7 @@ router.delete('/api/batch/student/delete/',(req,res) => {
 router.get('/api/teacher/search/:str',(req,res) => {
     let student_details
     let batch_details 
-  
+ 
     // Search for Student details
     studentdetails
       .find({ $or :
@@ -351,24 +353,22 @@ router.get('/api/teacher/search/:str',(req,res) => {
    
 });
 
-// Get Exisitng Student Details for the Batch
+// // Get Exisitng Student Details for the Batch
+// router.get('/api/teacher/batch/student/details/:bid', (req,res) =>{
+//        studentdetails.find({batchid:req.params.bid})
+//           .then((Existingstudents) => {
+//             console.log("Exisiting Students for the batch",Exisitingstudents);
+//             res.json({Exisitingstudents})
+//           })
+//           .catch((err) => {
+//             console.log("Unable to fetch student records",err);
+//             res.json(err);
+//           });
+// });
 
-router.get('/api/teacher/batch/student/details/:bid', (req,res) =>{
-       studentdetails.find({batchid:req.params.bid})
-          .then((Existingstudents) => {
-            console.log("Exisiting Students for the batch",Exisitingstudents);
-            res.json({Exisitingstudents})
-          })
-          .catch((err) => {
-            console.log("Unable to fetch student records",err);
-            res.json(err);
-          });
-});
-
-//Visitors Login
-
+//Visitors Login - API to get Channel Videos and serve front end
 router.get("/api/visitors",(req,res) => {
-   youtubechannel.channelVideos("AIzaSyAkRFNuVZuXjsQR244svmxW44Jf2PvOUwQ","UCPhfI5zJU2vCnVBOA13Jrig",function(channellist){
+    youtubechannel.channelVideos(process.env.API_Youtube_Key,process.env.API_Youtube_Channel,function(channellist){
      console.log("The Channellist",channellist.length);
      let videoid =[];
      for(let i =0; i < channellist.length;i++)
@@ -388,6 +388,24 @@ router.get("/api/visitors",(req,res) => {
    });
 
 });
+
+// Fetch student records for the specific batch
+router.get('/api/teacher/batch/student/details/:bid',(req,res) => {
+   let batchid = req.params.bid;
+   studentdetails.find({
+     batchid : batchid
+   })
+   .then((records) => {
+     console.log("Student records fetched for the batch",records);
+     res.json(records);
+   })
+   .catch((error) => {
+     console.log("Unable to fetch student records for the batch",error);
+     res.json(error);
+   }); // end Studentdetails find
+});
+
+
 
 // Student Login route -- implemented- with OAuth Local
 

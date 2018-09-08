@@ -5,17 +5,17 @@ import React, { Component } from 'react';
 
 //import Classentry from './Classentry';
 //import Teacherheader from '../components/Teacherheader';
-const customStyle = {
-      content: {
-        top:'50%',
-        left:'50%',
-        right:'auto',
-        bottom:'auto',
-        marginRight:'-50%',
-        transform: 'translate(-50%,-50%)',
-        color:  'hsla(360, 100%, 8%, 1)'
-      }
-};
+// const customStyle = {
+//       content: {
+//         top:'50%',
+//         left:'50%',
+//         right:'auto',
+//         bottom:'auto',
+//         marginRight:'-50%',
+//         transform: 'translate(-50%,-50%)',
+//         color:  'hsla(360, 100%, 8%, 1)'
+//       }
+// };
 
 class BatchRecAddclass extends Component
 {

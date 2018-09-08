@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Addstudent from './Addstudent.js';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 
 class BatchInfo extends Component {
     state = {
@@ -91,9 +91,9 @@ class BatchInfo extends Component {
                  <label>{this.state.students}</label>
                  <button onClick = {this.updateBatch}>Save Changes</button>
             </form>  
-                 <Modal onRequestClose={this.closeModal}
+                 {/* <Modal onRequestClose={this.closeModal}
                         isOpen = {this.state.modalIsOpen}>
-                  </Modal> 
+                  </Modal>  */}
                  <Addstudent batchdet = {this.props.batchdetails} />
                  {/* <Allstudents studentrec = {this.state.studentrecs}/> */}
             
