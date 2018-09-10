@@ -80,7 +80,7 @@ class Allbatches extends Component
                                       <tbody>{stbatchrec.map((data,index) =>
                                               <BatchRecord
                                                           bid = {data.recid}
-                                                          bdesc = {data.recdesc}
+                                                           bdesc = {data.recdesc}
                                                           bsubj = {data.recsubj}
                                                           blevel = {data.reclevel}
                                                           brate = {data.recrate}

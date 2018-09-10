@@ -1,6 +1,7 @@
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 import Createbatch from './Createbatch';
 import Addstudent from './Addstudent';
+import BatchInfo from './BatchInfo';
 
 class Batchmain extends Component {
       constructor(props) {
@@ -32,8 +33,7 @@ class Batchmain extends Component {
         return(<div>
                {this.state.displaybatch ? <Createbatch
                                          onInsert={this.handleBatchCreated} />
-                         : <Addstudent batchdet = {brecords}
-                                        />}
+               : <BatchInfo batchdetails = {brecords}  /> }                                                           
               </div>) // end return
       }// end render
 

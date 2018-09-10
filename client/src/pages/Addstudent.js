@@ -16,7 +16,7 @@ class Addstudent extends Component {
           errmsg:''
         };
 
-    handleInputChange = (event) => {
+    handleInputChange = (event) => { 
       const target = event.target;
       const value = target.type === 'checkbox' ? target.name : target.value;
       const name = target.type === 'checkbox' ? 'daysofweek' : target.name;
@@ -46,10 +46,10 @@ class Addstudent extends Component {
              }
         else {
         axios.post('/api/teacher/batch/student/new',
-                  {
+                  {   
                     studentfname: this.state.studentfname,
                     studentlname: this.state.studentlname,
-                    parentname: this.state.parentname,
+                     parentname: this.state.parentname,
                     loginemail: this.state.loginemail,
                     password: this.state.password,
                     parentphonenumber: this.state.parentphonenumber,
@@ -57,7 +57,7 @@ class Addstudent extends Component {
                   })
                   .then(res =>
                     {
-                       console.log("The response from adding student",res);
+                       console.log("Te response from adding student",res);
                       let newstrec = {
                           stdfname : res.data.studentfname,
                           stdlname : res.data.studentlname,
@@ -93,27 +93,27 @@ componentDidMount = () => {
          {
            this.setState({studentrecs: response.data},() => {
              console.log("The student records",response.data);
-           })
-         }
-       })
+           }); // End Set state
+         } // end if part
+       }) // end then part
        .catch(error => {
          console.log("The Error Encountered in fetching exiting students details",error);
        });
 }; // End Componentdidmount
 
-      render() {
+      render() {      
         const bdetails = this.props.batchdet || false;
             return(
               <div>
                  {/* <Teacherheader /> */}
-                    {bdetails ? 
-                    <div>
+                    {/* {bdetails ? 
+                    <div>   
                             <h4 className = "text-center">Batch:  {bdetails.batchdesc}</h4>
                             <p>Subject:   {bdetails.subject}</p>
                             <p>Level: {bdetails.level}</p>
                             <p>Rate: {bdetails.rateperhour}$</p>
                      </div>
-                    : <div></div>}
+                    : <div></div>} */}
                     <br />
                     <h3 className = "subhead">Add New  Students to the Batch</h3>
                     <p className="errmsg">{this.state.errmsg}</p>
