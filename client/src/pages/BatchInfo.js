@@ -10,8 +10,10 @@ class BatchInfo extends Component {
       rate: this.props.batchdetails.rateperhour || '',
       level: this.props.batchdetails.level || '',
       subject: this.props.batchdetails.subject||'',
-      students: this.props.batchdetails.students || ''
+      students: this.props.batchdetails.students || '',
+      bdescription: this.props.batchdetails.batchdesc || ''
     }
+
     deleteStudent = () => {
         axios.delete('/api/teacher/student/delete',
                     {
@@ -41,6 +43,9 @@ class BatchInfo extends Component {
                   .then((response) => 
                   {
                     console.log("The response from update"+ response);
+                    this.setState({ bdescription:this.state.bdesc}, () =>{
+                      console.log("The set state",this.state.bdescription);
+                    });
                   })
                   .catch( error => {
                     this.setState({errmsg : "Error in saving class records"+error,updatestatus: 'Error in updating class details'+error},
@@ -82,7 +87,7 @@ class BatchInfo extends Component {
         return(<div>
             <form>
                 <div className ="form-group">
-                  <label htmlFor="bdesc" className= "bmd-label-floating" >{this.state.bdesc}</label>
+                  <label htmlFor="bdesc" className= "bmd-label-floating" >{this.state.bdescription}</label>
                   <input className="form-control" value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
                 </div> 
                  <input value={this.state.rate} placeholder= {this.state.rate}  name = "rate" onChange = {this.handleInputChange}/>

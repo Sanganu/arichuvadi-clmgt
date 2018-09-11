@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Createbatch from './Createbatch';
-import Addstudent from './Addstudent';
+// import Addstudent from './Addstudent';
 import BatchInfo from './BatchInfo';
 
 class Batchmain extends Component {

@@ -32,7 +32,6 @@ class Addstudent extends Component {
 
     handleStudentCreation = (event) => {
         event.preventDefault();
-       console.log("In Student Creation");
        let strecs = this.state.studentrecs;
        if( this.state.studentfname === "" ||
            this.state.studentlname === "" ||
@@ -78,23 +77,34 @@ class Addstudent extends Component {
                     })
                   .catch(error =>{
                      this.setState({errmsg:"Student Email already exist"});
-                     console.log("Error!!!!",error)}
+                     console.log("Error - student email already exist !!!!",error)}
                 ); // End of axios
               } //end if
     }; // end of handleStudentCreation
    
 componentDidMount = () => {
    let bid = this.props.batchdet.bid;
+   let strecs = this.state.studentrecs;
    console.log("Th props receives in Addstudent: ",this.props.batchdet.bid);
   axios.get('/api/teacher/batch/student/details/'+bid)
        .then(response => {
          console.log("The Existing Students",response.data);
          if( response.data.length > 0)
          {
-           this.setState({studentrecs: response.data},() => {
-             console.log("The student records",response.data);
-           }); // End Set state
-         } // end if part
+              for(let i =0; i <response.data.length;i++)
+              {
+                let newstrec = {
+                  stdfname : response.data[i].studentfname,
+                  stdlname : response.data[i].studentlname,
+                  stdemail : response.data[i].loginemail,
+                  phonenumber: response.data[i].phonenumber
+                  }
+               strecs.push(newstrec);
+              } // en for loop
+              this.setState({studentrecs : strecs},() => {
+                  console.log("Set State:",this.state.studentrecs)
+                }); // End Set state 
+         } ;// end if part
        }) // end then part
        .catch(error => {
          console.log("The Error Encountered in fetching exiting students details",error);
@@ -102,19 +112,10 @@ componentDidMount = () => {
 }; // End Componentdidmount
 
       render() {      
-        const bdetails = this.props.batchdet || false;
+        // const bdetails = this.props.batchdet || false;
             return(
               <div>
-                 {/* <Teacherheader /> */}
-                    {/* {bdetails ? 
-                    <div>   
-                            <h4 className = "text-center">Batch:  {bdetails.batchdesc}</h4>
-                            <p>Subject:   {bdetails.subject}</p>
-                            <p>Level: {bdetails.level}</p>
-                            <p>Rate: {bdetails.rateperhour}$</p>
-                     </div>
-                    : <div></div>} */}
-                    <br />
+                                <br />
                     <h3 className = "subhead">Add New  Students to the Batch</h3>
                     <p className="errmsg">{this.state.errmsg}</p>
                               

@@ -130,7 +130,7 @@ class Addstudent extends Component {
           })
           .catch(error => {
             console.log("Error in deleting student details",error);
-          })
+          });
     }
 
     updateStudentDetails =(studentrecord) => {
@@ -160,7 +160,6 @@ class Addstudent extends Component {
                  {/* <Teacherheader /> */}
                     <h3 className = "subhead">Students Record Management</h3>
                     <p className="errmsg">{this.state.errmsg}</p>
-                              
                     <form className="form-inline">
                                       <input type = "text"  value={this.state.studentfname} onChange = {this.handleInputChange} placeholder = "Student Firstname" id = "studentfname" name =  "studentfname" />
                                        <input type = "text"  placeholder = "Student Last name" value={this.state.studentlname} onChange = {this.handleInputChange} name = "studentlname" id = "studentlname" />
