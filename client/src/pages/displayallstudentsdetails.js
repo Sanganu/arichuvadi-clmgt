@@ -44,9 +44,7 @@ class Allstudents extends Component
     render()
     {
           
-            return(
-                //  <div>
-                //    {this.state.display ?
+            return(                
                    <tr className = "addclass"><td><input type="text" value={this.state.stdfname} onChange={this.handleInputChange} name= "stdfname" /></td>
                        <td><input type="text" value={this.state.stdlname} onChange={this.handleInputChange} name = "stdlname"/></td>
                        <td><input type="text" value={this.state.stdemail} onChange={this.handleInputChange} name="stdemail" /></td>
@@ -56,9 +54,8 @@ class Allstudents extends Component
                        <td>{this.props.subject}</td>
                        <td><button onClick = {this.deleteStudent}>Delete Student details</button></td>
                        <td><button onClick ={this.updateStudent}>Update Student</button></td>
-                   </tr> 
-                //    </div>
-            );
+                   </tr>
+               );
               
     }   
 }
