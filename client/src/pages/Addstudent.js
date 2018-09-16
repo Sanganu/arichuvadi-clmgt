@@ -29,7 +29,7 @@ class Addstudent extends Component {
          console.log('Set State in Main Section',value,name);
        } */);
     };
-
+ 
     handleStudentCreation = (event) => {
         event.preventDefault();
        let strecs = this.state.studentrecs;
@@ -43,7 +43,7 @@ class Addstudent extends Component {
                console.log("Empty fields not accepted");
                this.setState({errmsg: " Empty fields not accepted"})
              }
-        else {
+         else {
         axios.post('/api/teacher/batch/student/new',
                   {   
                     studentfname: this.state.studentfname,

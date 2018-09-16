@@ -353,18 +353,7 @@ router.get('/api/teacher/search/:str',(req,res) => {
    
 });
 
-// // Get Exisitng Student Details for the Batch
-// router.get('/api/teacher/batch/student/details/:bid', (req,res) =>{
-//        studentdetails.find({batchid:req.params.bid})
-//           .then((Existingstudents) => {
-//             console.log("Exisiting Students for the batch",Exisitingstudents);
-//             res.json({Exisitingstudents})
-//           })
-//           .catch((err) => {
-//             console.log("Unable to fetch student records",err);
-//             res.json(err);
-//           });
-// });
+
 
 //Visitors Login - API to get Channel Videos and serve front end
 router.get("/api/visitors",(req,res) => {
@@ -374,7 +363,7 @@ router.get("/api/visitors",(req,res) => {
      for(let i =0; i < channellist.length;i++)
      {
        if(channellist[i].id.videoId)
-       {
+       { 
         videoid.push({
           id:channellist[i].id.videoId,
           title:channellist[i].snippet.title,
@@ -406,145 +395,6 @@ router.get('/api/teacher/batch/student/details/:bid',(req,res) => {
 });
 
 
-
-// Student Login route -- implemented- with OAuth Local
-
-// router.post('/api/student/details',function(req,res,next) {
-//   console.log("Inside route to fetch student details after valid student",req.body);
-//   if (req.session.passport.user === undefined){
-//     res.json({err:"Invalid credentials"});
-//   }
-//   else
-//   {
-//             studentdetails
-//                  .findOne({ $and:[
-//                            {_id : req.session.passport.user._id},
-//                            {loginemail: req.session.passport.user.email}
-//                            ]})
-//                  .populate({
-//                    path: 'batchid',
-//                    populate: {
-//                      path: 'classid', select: 'homework lessoncovered students'
-//                    },
-//                    select: 'batchdesc subject level rateperhour'
-//                  })
-//                  .then((studentdet) =>
-//                    {
-//                            var classdetails = [];
-//                            // console.log("Studet",studentdet);
-//                            // console.log("batch",studentdet.batchid);
-//                            //  console.log("class",studentdet.batchid.classid);
-//                            for(let i = 0; i < studentdet.batchid.classid.length;i++)
-//                            {
-//                                var homework = studentdet.batchid.classid[i].homework;
-//                                var lesson = studentdet.batchid.classid[i].lessoncovered;
-//                                var attendance = studentdet.batchid.classid[i].students
-//                                // console.log("for",homework,lesson,attendance);
-//                                console.log("Atte-DET",attendance,studentdet._id)
-//                                if ( attendance.indexOf(studentdet._id))
-//                                {
-//                                  var present= "Y";
-//                                }
-//                                else {
-//                                  var present= "N";
-//                                }  
-//                                classdetails.push ({
-//                                        homework : homework,
-//                                        lesson: lesson,
-//                                        present: present
-//                                      });
-//                            } // end of for loop
-//                            var studentrecord = {
-//                                fname: studentdet.studentfname,
-//                                lname: studentdet.studentlname,
-//                                parent: studentdet.parentname,
-//                                 phone: studentdet.parentphonenumber,
-//                                email: studentdet.loginemail,
-//                                uname: studentdet.username,
-//                                batch: studentdet.batchid.batchdesc,
-//                                subject: studentdet.batchid.subject,
-//                                level: studentdet.batchid.level,
-//                                rate: studentdet.batchid.rateperhour,
-//                            }
-//                            // console.log("Valid student login",studentrecord);
-//                            // console.log("Classdetails array",classdetails);
-
-//                            res.json({studentrecord:studentrecord,classes:classdetails}) 
-//                          }) // end then
-//                            //return done(null,{studentrecord:studentrecord,classes:classdetails})                 })
-//                  .catch((err) => {
-//                    console.log("Error - Invalid Student Credentials",err);
-//                    res.json(err);
-//                    //return done(null,false,req.flash('message','Invalid Student login credentials'));
-//                  }); //end catch 
-//      }  // End else part
-
-// });  // student login route
-
-
-// Student Login route -- implemented --no auth -- OLDER VERSION
-// router.post('/api/others/student/login',function(req,res) {
-//   db.studentdetails
-//    .findOne({ $and:[
-//               {loginemail : req.body.semail},
-//              {username : req.body.suname},
-//              {passw: req.body.spword}
-//              ]})
-//    .populate({
-//      path: 'batchid',
-//      populate: {
-//        path: 'classid', select: 'homework lessoncovered students'
-//      },
-//      select: 'batchdesc subject level rateperhour'
-//    })
-//    .then((studentdet) =>
-//      {
-//              var classdetails = [];
-//              // console.log("Studet",studentdet);
-//              // console.log("batch",studentdet.batchid);
-//              // console.log("class",studentdet.batchid.classid);
-//               for(let i = 0; i < studentdet.batchid.classid.length;i++)
-//               {
-//                   var homework = studentdet.batchid.classid[i].homework;
-//                   var lesson = studentdet.batchid.classid[i].lessoncovered;
-//                   var attendance = studentdet.batchid.classid[i].students
-//                  //  console.log("for",homework,lesson,attendance);
-//                  console.log(attendance,"ATT -DET",studentdet._id)
-//                   if ( attendance.indexOf(studentdet._id))
-//                   {
-//                     var present= "Y";
-//                   }
-//                   else {
-//                     var present= "N";
-//                   }
-//                   classdetails.push ({
-//                          homework : homework,
-//                          lesson: lesson,
-//                          present: present
-//                        });
-//              }
-//              var studentrecord = {
-//                   fname: studentdet.studentfname,
-//                   lname: studentdet.studentlname,
-//                   parent: studentdet.parentname,
-//                   phone: studentdet.parentphonenumber,
-//                   email: studentdet.loginemail,
-//                   uname: studentdet.username,
-//                   batch: studentdet.batchid.batchdesc,
-//                   subject: studentdet.batchid.subject,
-//                   level: studentdet.batchid.level,
-//                   rate: studentdet.batchid.rateperhour,
-//               }
-//              console.log("Valid student login",studentrecord);
-//              console.log("Classdetails array",classdetails);
-//              res.json({studentrecord:studentrecord,classes:classdetails});
-//    })
-//    .catch((err) => {
-//      console.log("Error - Invalid Student Credentials",err);
-//      res.json(err);
-//    });
-
-// });  // student login route
 
 
 

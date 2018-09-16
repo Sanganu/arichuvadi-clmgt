@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
 import axios from 'axios';
-// import YoutubeVideos from 'youtube-api-search';
 import Video from "./Video";
 import API from "./keyvalues" ;
 
