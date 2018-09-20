@@ -82,34 +82,34 @@ class Addstudent extends Component {
               } //end if
     }; // end of handleStudentCreation
    
-componentDidMount = () => {
-   let bid = this.props.batchdet.bid;
-   let strecs = this.state.studentrecs;
-   console.log("Th props receives in Addstudent: ",this.props.batchdet.bid);
-  axios.get('/api/teacher/batch/student/details/'+bid)
-       .then(response => {
-         console.log("The Existing Students",response.data);
-         if( response.data.length > 0)
-         {
-              for(let i =0; i <response.data.length;i++)
-              {
-                let newstrec = {
-                  stdfname : response.data[i].studentfname,
-                  stdlname : response.data[i].studentlname,
-                  stdemail : response.data[i].loginemail,
-                  phonenumber: response.data[i].phonenumber
-                  }
-               strecs.push(newstrec);
-              } // en for loop
-              this.setState({studentrecs : strecs},() => {
-                  console.log("Set State:",this.state.studentrecs)
-                }); // End Set state 
-         } ;// end if part
-       }) // end then part
-       .catch(error => {
-         console.log("The Error Encountered in fetching exiting students details",error);
-       });
-}; // End Componentdidmount
+// componentDidMount = () => {
+//    let bid = this.props.batchdet.bid;
+//    let strecs = this.state.studentrecs;
+//    console.log("Th props receives in Addstudent: ",this.props.batchdet.bid);
+//   axios.get('/api/teacher/batch/student/details/'+bid)
+//        .then(response => {
+//          console.log("The Existing Students",response.data);
+//          if( response.data.length > 0)
+//          {
+//               for(let i =0; i <response.data.length;i++)
+//               {
+//                 let newstrec = {
+//                   stdfname : response.data[i].studentfname,
+//                   stdlname : response.data[i].studentlname,
+//                   stdemail : response.data[i].loginemail,
+//                   phonenumber: response.data[i].phonenumber
+//                   }
+//                strecs.push(newstrec);
+//               } // en for loop
+//               this.setState({studentrecs : strecs},() => {
+//                   console.log("Set State:",this.state.studentrecs)
+//                 }); // End Set state 
+//          } ;// end if part
+//        }) // end then part
+//        .catch(error => {
+//          console.log("The Error Encountered in fetching exiting students details",error);
+//        });
+// }; // End Componentdidmount
 
       render() {      
         // const bdetails = this.props.batchdet || false;

@@ -57,12 +57,13 @@ class Allbatches extends Component
                 });
     } // end component did mount
 
-    getBatchDetails = (batchselected) =>{
-      this.setState({
-        batchdet : batchselected,
-        details: true,
-        allbatches: false
-       }, () => console.log("selected batch",this.state.batchdet))      
+    getBatchDetails = (batchselected) => {
+      let bid = batchselected.bid;      
+            this.setState({
+                batchdet : batchselected,
+                details: true,
+                allbatches: false
+              }, () => console.log("selected bxz cvc nbmatch",this.state.batchdet));  
     }
 
     render()
