@@ -12,7 +12,8 @@ class BatchInfo extends Component {
       subject: this.props.batchdetails.subject||'',
       students: this.props.batchdetails.students || '',
       bdescription: this.props.batchdetails.batchdesc || '',
-      studentrecs: ''
+      studentrecs: '',
+      classrecs: ''
     }
 
     deleteStudent = () => {
@@ -64,16 +65,19 @@ class BatchInfo extends Component {
       } //End handle Input change
 
     componentDidMount = () => {
-      let bid = this.props.batchdet.bid;
+      let bid = this.props.batchdetails.bid;
+      let strecs = this.state.studentrecs;
+      let clrecs = this.state.classrecs;
+      console.log("The batch selected details received",this.props)
       if( this.props.newbatch === false)
       {
         axios.get('/api/teacher/batch/student/class/details/'+bid)
         .then(response => {
-          console.log("The Existing Students",response.data);
+          console.log("The Existing Students",response);
           if( response.data.srecords.length > 0)
           {
                for(let i =0; i <response.data.srecords.length;i++)
-               {
+               { 
                  let newstrec = {
                    stdfname  : response.data[i].studentfname,
                    stdlname : response.data[i].studentlname,
@@ -86,10 +90,27 @@ class BatchInfo extends Component {
                this.setState({studentrecs : strecs},() => {
                    console.log("Set State:",this.state.studentrecs)
                  }); // End Set state 
-          } ;// end if part
+            } ;// end if part
+            if( response.data.crecords.length > 0)
+            {
+                 for(let i =0; i <response.data.crecords.length;i++)
+                 {
+                   let newclrec = {
+                     lessoncov : response.data[i].lessoncovered,
+                     homework : response.data[i].homework,
+                     cldate : response.data[i].classdate
+                     }
+                  clrecs.push(newclrec);  
+                 } // end for loop
+                       
+                 this.setState({studentrecs : strecs,
+                     classrecs : clrecs},() => {
+                     console.log("Set State:",this.state.studentrecs)
+                   }); // End Set state 
+              } ;// end if part
         }) // end then part
         .catch(error => {
-          console.log("The Error Encountered in fetching exiting students details",error);
+          console.log("The Error Encountered in fetching exiting students and class details",error);
         }); // End Axios
       } // End if part
    } // End ()

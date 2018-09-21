@@ -58,7 +58,7 @@ class Allbatches extends Component
     } // end component did mount
 
     getBatchDetails = (batchselected) => {
-      let bid = batchselected.bid;      
+      //let bid = batchselected.bid;      
             this.setState({
                 batchdet : batchselected,
                 details: true,
@@ -96,6 +96,7 @@ class Allbatches extends Component
                                   <div>{this.state.details ?
                                          <BatchInfo 
                                             batchdetails = {this.state.batchdet}
+                                            newbatch = {false}
                                             />
                                       :<p></p>
                                     }

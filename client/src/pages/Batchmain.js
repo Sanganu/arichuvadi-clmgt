@@ -33,7 +33,8 @@ class Batchmain extends Component {
         return(<div>
                {this.state.displaybatch ? <Createbatch
                                          onInsert={this.handleBatchCreated} />
-               : <BatchInfo batchdetails = {this.state.batchdet}  /> }                                                           
+               : <BatchInfo batchdetails = {this.state.batchdet} 
+                  newbatch = {true} /> }                                                           
               </div>) // end return
       }// end render
 
