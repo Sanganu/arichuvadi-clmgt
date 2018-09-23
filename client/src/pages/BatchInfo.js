@@ -52,7 +52,7 @@ class BatchInfo extends Component {
                           () =>{
                                console.log("Error in saving class records!!!",error);
                           });
-                  }); // end catch
+                    }); // end catch
       } // end of update batch
 
       handleInputChange = (event) => {
@@ -66,14 +66,16 @@ class BatchInfo extends Component {
 
     componentDidMount = () => {
       let bid = this.props.batchdetails.bid;
-      let strecs = this.state.studentrecs;
-      let clrecs = this.state.classrecs;
+      let strecs = this.state.studentrecs || [];
+      let clrecs = this.state.classrecs || [];
       console.log("The batch selected details received",this.props)
       if( this.props.newbatch === false)
       {
         axios.get('/api/teacher/batch/student/class/details/'+bid)
         .then(response => {
           console.log("The Existing Students & Class",response.data);
+          if(!response.data)
+          {
           if( response.data.srecords.length > 0)
           {
                for(let i =0; i <response.data.srecords.length;i++)
@@ -91,7 +93,7 @@ class BatchInfo extends Component {
                    console.log("Set State:",this.state.studentrecs)
                  }); // End Set state 
             } ;// end if part
-            if( response.data.crecords.length > 0)
+             if( response.data.crecords.length > 0)
             {
                  for(let i =0; i <response.data.crecords.length;i++)
                  {
@@ -108,11 +110,13 @@ class BatchInfo extends Component {
                      console.log("Set State:",this.state.studentrecs)
                    }); // End Set state 
               } ;// end if part
+            }    
         }) // end then part
         .catch(error => {
           console.log("The Error Encountered in fetching exiting students and class details",error);
         }); // End Axios
       } // End if part
+  
    } // End ()
 
     //   componentDidMount = () => {

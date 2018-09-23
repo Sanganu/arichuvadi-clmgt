@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
 // import {Link} from 'react-router-dom';
-
 //import Classentry from './Classentry';
 //import Teacherheader from '../components/Teacherheader';
 // const customStyle = {
@@ -63,7 +62,7 @@ class BatchRecAddclass extends Component
         }; //End handle Input change
 
         componentDidmount = () => {
-          console.log("Add classdetails - Props",this.props);
+            console.log("Add classdetails - Props",this.props);
           console.log("Add Classdetails -- props check",this.props.batchdet)
         }
         saveClassDetails = (event) =>

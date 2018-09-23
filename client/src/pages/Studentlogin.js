@@ -54,15 +54,15 @@ class Studentlogin extends Component
                                   {
                                     loginemail: this.state.vemail,
                                     password: this.state.vpword
-                                  })  
+                                  })   
                                   .then( (response) =>{
-                                        //  console.log("The response from axios",response.data);
+                                        console.log("The response from axios",response.data);
                                         //  console.log("The classes details", response.data.classes);
                                          if ( response.data.studentrecord)
                                            {
                                          this.setState({    showstlogin:false,
                                                             studentrecord:(response.data.studentrecord),
-                                                            classdet:(response.data.classes) || ''},
+                                                            classdet:(response.data.classes) || [{homework: "No Class details Available"}]},
                                                             () => {
                                                               console.log("State updates",this.state.studentrecord);
                                                             });
@@ -70,7 +70,7 @@ class Studentlogin extends Component
                                           else {
                                             console.log("Error!! - student login does not exist",);
                                             this.setState({
-                                                           errmsg: "Error!! Enter valid credentials or Contact your Teacher",
+                                                           errmsg: "Erro  r!! Enter valid credentials or Contact your Teacher",
                                                            showstlogin: true
                                                            });
                                           }
