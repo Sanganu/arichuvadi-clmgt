@@ -73,7 +73,7 @@ class BatchInfo extends Component {
       {
         axios.get('/api/teacher/batch/student/class/details/'+bid)
         .then(response => {
-          console.log("The Existing Students",response);
+          console.log("The Existing Students & Class",response.data);
           if( response.data.srecords.length > 0)
           {
                for(let i =0; i <response.data.srecords.length;i++)

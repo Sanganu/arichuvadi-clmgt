@@ -378,11 +378,14 @@ router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
    }).then((records) => {
      console.log("Student records fetched for the batch",records);
      studentrecords = records.data;
-     return classdetails.find({
-       batchid: batchid});
-   }).then((rec) => {
-      console.log("Class details fetched --",rec, studentrecords)
-      res.json({srecords : studentrecords, crecords : rec.data  });
+       classdetails.find({
+       batchid: batchid}).then((recs) => {
+        console.log("Class details fetched --",recs, studentrecords);
+        res.json({srecords : studentrecords, crecords : recs.data  });
+         })  ;
+  //  }).then((rec) => {
+      
+      
    }).catch((error) => {
      console.log("Unable to fetch student  and class records for the batch",error);
      res.json(error);
