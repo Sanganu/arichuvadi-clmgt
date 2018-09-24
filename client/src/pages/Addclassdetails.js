@@ -138,8 +138,8 @@ class BatchRecAddclass extends Component
                       <label forhtml = "homework">Date: </label>
                       <input type = "text"   value={this.state.date} onChange = {this.handleInputChange} name = "date" id = "date" placeholder = "Date"/>
                   </div>
-                  <button className = "addclass"
-                          onClick = {this.addClassInfo}>Add Class Details
+                  <button className = "createbutton"
+                          onClick = {this.saveClassDetails}>Add Class Details
                   </button>
                   </form>
                    ) //end return

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Addstudent from './Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
+import Allstudents from './displayallstudents.js';
+import Allclasses from './displayallclassdetails.js';  
 
-class BatchInfo extends Component {
+class BatchInfo extends Component {  
     state = {
       bid: this.props.batchdetails.bid || '',
       bdesc: this.props.batchdetails.batchdesc || '',
@@ -68,7 +70,7 @@ class BatchInfo extends Component {
       let bid = this.props.batchdetails.bid;
       let strecs = this.state.studentrecs || [];
       let clrecs = this.state.classrecs || [];
-      console.log("The batch selected details received",this.props)
+      //console.log("The batch selected details received",this.props)
       if( this.props.newbatch === false)
       {
         axios.get('/api/teacher/batch/student/class/details/'+bid)
@@ -85,13 +87,13 @@ class BatchInfo extends Component {
                    stdlname : response.data[i].studentlname,
                    stdemail : response.data[i].loginemail,
                    phonenumber: response.data[i].phonenumber
-                   }
+                   } // end rec
                 strecs.push(newstrec);  
                } // end for loop
-                     
-               this.setState({studentrecs : strecs},() => {
-                   console.log("Set State:",this.state.studentrecs)
-                 }); // End Set state 
+              console.log("The student recs",strecs);  
+              //  this.setState({studentrecs : strecs},() => {
+              //      console.log("Set State:",this.state.studentrecs)
+              //    }); // End Set state 
             } ;// end if part
              if( response.data.crecords.length > 0)
             {
@@ -119,36 +121,6 @@ class BatchInfo extends Component {
   
    } // End ()
 
-    //   componentDidMount = () => {
-    //     let bid = this.state.bid;
-    //     let strecs = this.state.studentrecs;
-      
-    //    axios.get('/api/teacher/batch/student/details/'+bid)
-    //         .then(response => {
-    //           console.log("The Existing Students",response.data);
-    //           if( response.data.length > 0)
-    //           {
-    //                for(let i =0; i <response.data.length;i++)
-    //                {
-    //                  let newstrec = {
-    //                zaAXSCAX D    stdfname : response.data[i].studentfname,
-    //                    stdlname : response.data[i].studentlname,  
-    //                    stdemail : response.data[i].loginemail,
-    //                    phonenumber: response.data[i].phonenumber
-    //                    }
-    //                 strecs.push(newstrec);
-    //                } // end for loop
-    //                this.setState({studentrecs : strecs},() => {
-    //                    console.log("Set State:",this.state.studentrecs)
-    //                  }); // End Set state 
-    //           } ;// end if part
-    //         }) // end then part
-    //         .catch(error => {
-    //           console.log("The Error Encountered in fetching exiting students details",error);
-    //         });
-    //  }; // End Componentdidmount
-   
-
     render()
     {
         return(<div>
@@ -165,7 +137,33 @@ class BatchInfo extends Component {
                 </form>  
               <Addstudent batchdet = {this.props.batchdetails} />
               <BatchAddClassDetails batchdet = {this.props.batchdetails} />
-              </div>)
+              <h6 className ="tablehead">Student Details ---</h6>
+                      <div className = "table-responsive">
+                            <table className = "table table-hover">
+                            <tbody>
+                             <tr>
+                                  <th>Firstname</th>
+                                  <th>Lastname</th>
+                                  <th>Email</th>
+                             </tr>
+                             <Allstudents studentrec = {this.state.studentrecs}/>
+                            </tbody>    
+                            </table>
+                      </div>
+                      <h6 className ="tablehead">Class Details--- </h6>
+                      <div className = "table-responsive">
+                            <table className = "table table-hover">
+                            <tbody>
+                             <tr>
+                                  <th>Lessons Covered</th>
+                                  <th>Homework</th>
+                                  <th>Attendance</th>
+                             </tr>
+                             <Allclasses classrec = {this.state.classrecs}/>
+                            </tbody>    
+                            </table>
+                            </div>        
+              </div>) 
     } // end of render
 } //end component
 

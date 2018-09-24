@@ -4,8 +4,9 @@ class Allstudents extends Component
 {
     render()
     {
-           const studentrec = this.props.studentrec;
-            return(studentrec.map((data,index) => (
+           const studentrec = this.props.studentrec || [];
+            return(   
+                studentrec.map((data,index) => (
                   <tr key={index}><td>{data.stdfname}</td>
                        <td>{data.stdlname}</td>
                        <td>{data.stdemail}</td>
@@ -13,6 +14,7 @@ class Allstudents extends Component
                        <td><button>Delete Student</button></td>
                        <td></td>
                   </tr>))
+                  
               );
     }
 }
