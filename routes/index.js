@@ -368,7 +368,7 @@ router.get("/api/visitors",(req,res) => {
     }); // End of youtube api
 }); // end of visitors
 
-// Fetch student records for the specific batch
+// Fetch student records  and class details for the specific batch
 router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
    let batchid = req.params.bid;
    let studentrecords = [];
@@ -377,11 +377,10 @@ router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
      batchid : batchid
    }).then((records) => {
      console.log("Student records fetched for the batch",records);
-     studentrecords = records.data;
        classdetails.find({
        batchid: batchid}).then((recs) => {
-        console.log("Class details fetched --",recs, studentrecords);
-        res.json({srecords : studentrecords, crecords : recs.data  });
+        console.log("Class details fetched --",recs.data, records.data);
+        res.json({srecords : records, crecords : recs});
          })  ;
   //  }).then((rec) => {
       

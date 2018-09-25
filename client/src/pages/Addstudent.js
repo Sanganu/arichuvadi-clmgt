@@ -5,33 +5,30 @@ import Allstudents from './displayallstudents';
 import Footer from '../components/Footer';
 
 class Addstudent extends Component {
-    state = {
-          studentfname: "",
-          studentlname: "",
-          loginemail: "",
-          parentname: "",
-          parentphonenumber: "",
-          password: "",
-          studentrecs: [],
-          errmsg:''
-        };
+  state = {
+      studentfname: "",
+      studentlname: "",
+      loginemail: "",
+      parentname: "",
+      parentphonenumber: "",
+      password: "",
+      errmsg:''
+    };
+    
+  
 
     handleInputChange = (event) => { 
       const target = event.target;
       const value = target.type === 'checkbox' ? target.name : target.value;
       const name = target.type === 'checkbox' ? 'daysofweek' : target.name;
       //console.log('The Value in input change',value,name);
-
       this.setState({
          [name]: value
-       } /*,
-       () =>{
-         console.log('Set State in Main Section',value,name);
-       } */);
+       });
     };
  
     handleStudentCreation = (event) => {
-        event.preventDefault();
+       event.preventDefault();
        let strecs = this.state.studentrecs;
        if( this.state.studentfname === "" ||
            this.state.studentlname === "" ||
@@ -48,7 +45,7 @@ class Addstudent extends Component {
                   {   
                     studentfname: this.state.studentfname,
                     studentlname: this.state.studentlname,
-                     parentname: this.state.parentname,
+                    parentname: this.state.parentname,
                     loginemail: this.state.loginemail,
                     password: this.state.password,
                     parentphonenumber: this.state.parentphonenumber,
@@ -56,30 +53,27 @@ class Addstudent extends Component {
                   })
                   .then(res =>
                     {
-                       console.log("Te response from adding student",res);
+                       console.log("The response from adding student",res);
                       let newstrec = {
                           stdfname : res.data.studentfname,
                           stdlname : res.data.studentlname,
                           stdemail : res.data.loginemail,
                           phonenumber: res.data.phonenumber
-                      }
-                      strecs.push(newstrec);
-                      this.setState({studentrecs : strecs},
-                          () => {
-                            this.setState({
+                      };
+                      this.setState({
                                   studentfname: '',
                                   studentlname: '',
                                   parentname: '',
                                   loginemail: '',
                                   parentphonenumber: '',
-                            })
-                          });
+                      });
+                      this.props.newStudent(newstrec);
                     })
                   .catch(error =>{
                      this.setState({errmsg:"Student Email already exist"});
                      console.log("Error - student email already exist !!!!",error)}
                 ); // End of axios
-              } //end if
+              } //end if  
     }; // end of handleStudentCreation
    
 
@@ -102,8 +96,8 @@ class Addstudent extends Component {
                                        <button className = "createbutton"  name = "creation" onClick = {this.handleStudentCreation}>Create Student account</button>
                     </form>
                      <br />
-                      
-                      <Footer />
+{/*                       
+                      <Footer /> */}
               </div>
             ) //end return
       } // end render
