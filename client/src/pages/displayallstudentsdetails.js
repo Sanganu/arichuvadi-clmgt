@@ -43,7 +43,6 @@ class Allstudents extends Component
   
     render()
     {
-          
             return(                
                    <tr className = "addclass"><td><input type="text" value={this.state.stdfname} onChange={this.handleInputChange} name= "stdfname" /></td>
                        <td><input type="text" value={this.state.stdlname} onChange={this.handleInputChange} name = "stdlname"/></td>
@@ -56,7 +55,6 @@ class Allstudents extends Component
                        <td><button onClick ={this.updateStudent}>Update Student</button></td>
                    </tr>
                );
-              
     }   
 }
 

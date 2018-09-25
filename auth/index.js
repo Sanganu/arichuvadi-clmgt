@@ -50,7 +50,7 @@ router.post('/logout', (req, res) => {
 	}
 })
 
-router.post('/ssignup', (req, res) => {
+router.post('/student/create', (req, res) => {
 	const { email, password } = req.body
 	// ADD VALIDATION
 	console.log("The Request - to create account",req.body)

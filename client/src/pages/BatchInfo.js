@@ -18,7 +18,8 @@ class BatchInfo extends Component {
       classrecs: ''
     }
 
-    deleteStudent = () => {
+    deleteStudent = (event) => {
+      event.preventDefault(); 
         axios.delete('/api/teacher/student/delete',
                     {
                       batchid:this.props.bid

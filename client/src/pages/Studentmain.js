@@ -16,7 +16,6 @@ class Studentmain extends Component
       render()
       {
            return(<div>
-
                      <h4 className = "subhead">Welcome {this.props.studentdet.fname}    {this.props.studentdet.lname} </h4>
                      <br />
                            <div>
@@ -27,9 +26,12 @@ class Studentmain extends Component
                                  <p>Level: {this.props.studentdet.level}</p>
                                  <p>Rate: {this.props.studentdet.rate}</p>
                                   <p>Batch Description: {this.props.studentdet.batch}</p>
-
                              </div>
-                            <Allclasses classrecords = {this.props.classrecords}/> 
+                             <table>
+                             <tbody>
+                              <Allclasses classrecords = {this.props.classrecords}/> 
+                             </tbody> 
+                            </table>
                  </div>)
       }
 }
