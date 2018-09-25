@@ -30,15 +30,11 @@ router.post(
 			console.log(`Deleting ${cleanUser.password}`)
 			delete cleanUser.password
 		}
-		//res.json({ user: cleanUser })
-		//res.redirect('/ssignup' + {usecr:cleanUser})
-		//getStudentDetails({user:cleanUser})   
 		getStudentDetails(req,res)
 	}
 )
 
-// router.post('/student/login',passport.authenticate('local',
-//              ))
+
 
 router.post('/logout', (req, res) => {
 	if (req.user) {
@@ -51,32 +47,33 @@ router.post('/logout', (req, res) => {
 })
 
 router.post('/student/create', (req, res) => {
-	const { email, password } = req.body
 	// ADD VALIDATION
 	console.log("The Request - to create account",req.body)
-	Students.findOne({ 'email': email }, (err, studentMatch) => {
-		if (studentMatch) {
-			return res.json({
-				error: `Sorry, already a user with the username: ${username}`
-			})
-		}
-		const newStudent = new Students({
-			email:email,
-			name:name,
-			password:password
-		})
-		console.log("New student",newStudent)
-		newStudent.save((err, savedUser) => {
-			if (err) return res.json(err)
-			returnstudent = {
-				email: savedUser.email,
-				name: savedUser.name
-			}
-			console.log("return",returnstudent)
-			return res.json(returnstudent)
-		})
-	})
-})
+      Students.findOne({ 'email': email }, (err, studentMatch) => {
+        if (studentMatch) {
+          return res.json({
+            error: `Sorry, already a user with the username: ${username}`
+          })
+        }
+        else
+        {
+          Students.create(req.body.newrecord)
+          .then(function(dbstudentdetails){
+            insertedstudent = {
+            studentfname : dbstudentdetails.studentfname,
+            studentlname : dbstudentdetails.studentlname,
+            loginemail : dbstudentdetails.loginemail,
+            phonenumber : dbstudentdetails.parentphonenumber,
+            parentname : dbstudentdetails.parentname
+            } ;
+          console.log("Inserted student record",dbstudentdetails,req.body.batchid);
+          res.json(insertedstudent);
+          }).catch(err => {
+            res.json(err)
+          }) // end create new record
+        } // end else part
+      }); // end student findone
+}); // end route
 
 module.exports = router
 
@@ -91,45 +88,50 @@ function getStudentDetails(req,res) {
                   .findOne({_id : req.session.passport.user._id})
                   .populate({
                     path: 'batchid',
+                    select: 'batchdesc subject level rateperhour',
                     populate: {
                       path: 'classid', select: 'homework lessoncovered students'
-                    },
-                    select: 'batchdesc subject level rateperhour'
+                    }                    
                   })
                   .then((studentdet) =>
                     {
-                            var classdetails = [];
-                            // console.log("Studet",studentdet);
-                            // console.log("batch",studentdet.batchid);
-                            //  console.log("class",studentdet.batchid.classid);
-                       if( studentdet.batchid.length >0)
+                       var classdetails = [];
+                       console.log("Studet",studentdet);
+                       console.log("batch",studentdet.batchid);
+                       console.log("class",studentdet.batchid.classid);
+                       if( studentdet.batchid !== undefined)
                        {
+                          if( studentdet.batchid.classid !== undefined)
+                          {
                               for(let i = 0; i < studentdet.batchid.classid.length; i++)
                               {
-                                var homework = studentdet.batchid.classid[i].homework;
-                                var lesson = studentdet.batchid.classid[i].lessoncovered;
-                                var attendance = studentdet.batchid.classid[i].students
-                                console.log("for", attendance.indexOf(studentdet._id))
-                                if ( attendance.indexOf(studentdet._id)!== -1)
-                                {
-                                  var present= "   Y";
-                                }
-                                else {
-                                  var present= "N";
-                                } 
-                                classdetails.push ({
-                                        homework : homework,
-                                        lesson: lesson,
-                                        present: present
-                                      });
+                                  var homework = studentdet.batchid.classid[i].homework;
+                                  var lesson = studentdet.batchid.classid[i].lessoncovered;
+                                  var attendance = studentdet.batchid.classid[i].students
+                                  console.log("for", attendance.indexOf(studentdet._id))
+                                  if ( attendance.indexOf(studentdet._id)!== -1)
+                                  {
+                                    var present= "   Y";
+                                  }
+                                  else {
+                                    var present= "N";
+                                  } 
+                                  classdetails.push ({
+                                          homework : homework,
+                                          lesson: lesson,
+                                          present: present
+                                        });
                               } // end of for loop
+                            } // end if part check for class
+                            else {
+                              classdetails = "No Class Details exist";
+                            }  // end check for class details     
                                 var studentrecord = {
                                     fname: studentdet.studentfname,
                                     lname: studentdet.studentlname,
                                     parent: studentdet.parentname,
                                     phone: studentdet.parentphonenumber,
                                     email: studentdet.loginemail,
-                                    uname: studentdet.username,
                                     batch: studentdet.batchid.batchdesc,
                                     subject: studentdet.batchid.subject,
                                     level: studentdet.batchid.level,
@@ -138,7 +140,7 @@ function getStudentDetails(req,res) {
                                 console.log("Valid student login",studentrecord);
                                 console.log("Classdetails array",classdetails);
                                 res.json({studentrecord:studentrecord,classes:classdetails});
-                          } // end of if check for class length
+                          } // end of if check for batch details
                           else
                           {
                             var studentrecord = {
@@ -152,9 +154,8 @@ function getStudentDetails(req,res) {
                             }
                             res.json({studentrecord:studentrecord}) ;
                             console.log("Valid Student Login",studentrecord);
-                          }
-                            //return done(null,{studentrecord:studentrecord,classes:classdetails})                 })
-                        }) // end of then-studentdetails check
+                          } // end else part
+                        }) // end of then -studentdetails check
                   .catch((err) => { 
                     console.log("Error - Invalid Student Credentials",err);
                     res.json(err);

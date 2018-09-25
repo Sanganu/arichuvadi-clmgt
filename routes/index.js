@@ -239,7 +239,7 @@ router.post("/api/teacher/student/new",(req,res) => {
           }); // end db studentdetails
 }); // End router
 
-// Update Student - to add batch enrolled
+// Update Student - to add batch enrolled (need to check)
 router.put("/api/teacher/studentbatch/update",(req,res) => {
       studentdetails.updateOne(
         {_id: req.body.studentid},
