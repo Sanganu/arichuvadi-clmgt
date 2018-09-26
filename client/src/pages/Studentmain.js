@@ -21,11 +21,11 @@ class Studentmain extends Component
                            <div>
                                  <p>Parent: {this.props.studentdet.parent}</p>
                                  <p>Phone number:{this.props.studentdet.phone}</p>
-                                 <p>Subject: {this.props.studentdet.subject}</p>
                                  <p>Email: {this.props.studentdet.email}</p>
+                                 <p>Batch Description: {this.props.studentdet.batch}</p>
+                                 <p>Subject: {this.props.studentdet.subject}</p>
                                  <p>Level: {this.props.studentdet.level}</p>
                                  <p>Rate: {this.props.studentdet.rate}</p>
-                                  <p>Batch Description: {this.props.studentdet.batch}</p>
                              </div>
                              <table>
                              <tbody>

@@ -48,9 +48,7 @@ class Studentlogin extends Component
                            }
                         else {
                           this.setState({errmsg: ""});
-
-                          // console.log(this.state.vemail, this.state.vpword,this.state.vuname);
-                           axios.post('/auth/student/login',
+                          axios.post('/auth/student/login',
                                   {
                                     loginemail: this.state.vemail,
                                     password: this.state.vpword
@@ -62,7 +60,7 @@ class Studentlogin extends Component
                                            {
                                          this.setState({    showstlogin:false,
                                                             studentrecord:(response.data.studentrecord),
-                                                            classdet:(response.data.classes) || [{homework: "No Class details Available"}]},
+                                                            classdet:(response.data.classes) },
                                                             () => {
                                                               console.log("State updates",this.state.studentrecord);
                                                             });
@@ -70,7 +68,7 @@ class Studentlogin extends Component
                                           else {
                                             console.log("Error!! - student login does not exist",);
                                             this.setState({
-                                                           errmsg: "Erro  r!! Enter valid credentials or Contact your Teacher",
+                                                           errmsg: "Error!! Enter valid credentials !!!",
                                                            showstlogin: true
                                                            });
                                           }

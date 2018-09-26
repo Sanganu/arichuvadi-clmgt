@@ -98,48 +98,38 @@ function getStudentDetails(req,res) {
                        var classdetails = [];
                        console.log("Studet",studentdet);
                        console.log("batch",studentdet.batchid);
-                       console.log("class",studentdet.batchid.classid);
-                       if( studentdet.batchid !== undefined)
+                       console.log("class",studentdet.batchid[0].classid);
+                       if( studentdet.batchid.length > 0)
                        {
-                          if( studentdet.batchid.classid !== undefined)
-                          {
-                              for(let i = 0; i < studentdet.batchid.classid.length; i++)
+                              if( studentdet.batchid[0].classid !== undefined)
                               {
-                                  var homework = studentdet.batchid.classid[i].homework;
-                                  var lesson = studentdet.batchid.classid[i].lessoncovered;
-                                  var attendance = studentdet.batchid.classid[i].students
-                                  console.log("for", attendance.indexOf(studentdet._id))
-                                  if ( attendance.indexOf(studentdet._id)!== -1)
-                                  {
-                                    var present= "   Y";
-                                  }
-                                  else {
-                                    var present= "N";
-                                  } 
-                                  classdetails.push ({
-                                          homework : homework,
-                                          lesson: lesson,
-                                          present: present
-                                        });
-                              } // end of for loop
-                            } // end if part check for class
-                            else {
-                              classdetails = "No Class Details exist";
-                            }  // end check for class details     
-                                var studentrecord = {
-                                    fname: studentdet.studentfname,
-                                    lname: studentdet.studentlname,
-                                    parent: studentdet.parentname,
-                                    phone: studentdet.parentphonenumber,
-                                    email: studentdet.loginemail,
-                                    batch: studentdet.batchid.batchdesc,
-                                    subject: studentdet.batchid.subject,
-                                    level: studentdet.batchid.level,
-                                    rate: studentdet.batchid.rateperhour,
-                                }
-                                console.log("Valid student login",studentrecord);
-                                console.log("Classdetails array",classdetails);
-                                res.json({studentrecord:studentrecord,classes:classdetails});
+                                      for(let i = 0; i < studentdet.batchid[0].classid.length; i++)
+                                      {
+                                          let { homework,lesson,classdate } = studentdet.batchid[0].classid[i];
+                                          classdetails.push ({
+                                                  homework : homework,
+                                                  lesson: lesson,
+                                                  classdate: classdate      
+                                                });
+                                      } // end of for loop
+                                } // end if part check for class
+                                else {
+                                  classdetails = [{homework: "No Class details Available"}];
+                                }  // end check for class details     
+                                    var studentrecord = {
+                                        fname: studentdet.studentfname,
+                                        lname: studentdet.studentlname,
+                                        parent: studentdet.parentname,
+                                        phone: studentdet.parentphonenumber,
+                                        email: studentdet.loginemail,
+                                        batch: studentdet.batchid[0].batchdesc || "Student not enrolled in any batch",
+                                        subject: studentdet.batchid[0].subject || "N/A",
+                                        level: studentdet.batchid[0].level || "N/A",
+                                        rate: studentdet.batchid[0].rateperhour,
+                                    }
+                                    console.log("Valid student login",studentrecord);
+                                    console.log("Classdetails array",classdetails);
+                                    res.json({studentrecord:studentrecord,classes:classdetails});
                           } // end of if check for batch details
                           else
                           {
@@ -149,8 +139,7 @@ function getStudentDetails(req,res) {
                               parent: studentdet.parentname,
                               phone: studentdet.parentphonenumber,
                               email: studentdet.loginemail,
-                              uname: studentdet.username,
-                              message : "Student not enrolled in any batch contact Teacher"
+                              batch : "Student not enrolled in any batch contact Teacher"
                             }
                             res.json({studentrecord:studentrecord}) ;
                             console.log("Valid Student Login",studentrecord);

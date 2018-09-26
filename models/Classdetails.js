@@ -13,11 +13,12 @@ const classdetailsSchema = new Schema({
         batch: {
           type: Schema.Types.ObjectId,
           ref: 'batchdetails'
-        },
-       students: [{
-            type : Schema.Types.ObjectId,
-            ref: 'studentdetails'
-        }],
+          },
+      //   },
+      //  students: [{
+      //       type : Schema.Types.ObjectId,
+      //       ref: 'studentdetails'
+      //   }],
         classdate :{
           type: Date,
         },
