@@ -18,6 +18,7 @@ class BatchInfo extends Component {
       classrecs: ''
     }
 
+     
     deleteStudent = (event) => {
       event.preventDefault(); 
         axios.delete('/api/teacher/student/delete',
@@ -76,13 +77,20 @@ class BatchInfo extends Component {
         studentrecs : studentrecs
       },() =>{ console.log("The Student Records - update with add student",studentrecs);});
     }
+
+    handleClassDetails = (nclass) => {
+      let classrecs = this.state.classrecs;
+      classrecs.push(nclass);
+      this.setState({classrecs},() => {console.log("Class details",classrecs)});
+    }
+    
     componentDidMount = () => {
       let bid = this.props.batchdetails.bid;
       let strecs = this.state.studentrecs || [];
       let clrecs = this.state.classrecs || [];
       //console.log("The batch selected details received",this.props)
       if( this.props.newbatch === false)
-      {;
+      {
         axios.get('/api/teacher/batch/student/class/details/'+bid)
         .then(response => {
           console.log("The Existing Students & Class",response.data);
@@ -130,46 +138,47 @@ class BatchInfo extends Component {
     render()
     {
         return(<div>
-                <form>
-                    <div className ="form-group">
-                      <label htmlFor="bdesc" className= "bmd-label-floating" >{this.state.bdescription}</label>
-                      <input className="form-control" value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
-                    </div> 
-                    <input value={this.state.rate} placeholder= {this.state.rate}  name = "rate" onChange = {this.handleInputChange}/>
-                    <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
-                    <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
-                    <label>{this.state.students}</label>
-                    <button onClick = {this.updateBatch}>Save Changes</button>
-                </form>  
-              <Addstudent batchdet = {this.props.batchdetails} 
-                          newStudent = {this.handleNewStudent} />
-              <BatchAddClassDetails batchdet = {this.props.batchdetails} />
-                      <div className = "table-responsive">
-                            <table className = "table table-hover">
-                            <tbody>
-                             <tr>
-                                  <th>Firstname</th>
-                                  <th>Lastname</th>
-                                  <th>Email</th>
-                             </tr>
-                             <Allstudents studentrec = {this.state.studentrecs}
-                                           />
-                            </tbody>    
-                            </table>
+                      <form>
+                          <div className ="form-group">
+                            <label htmlFor="bdesc" className= "bmd-label-floating" >{this.state.bdescription}</label>
+                            <input className="form-control" value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
+                          </div> 
+                          <input value={this.state.rate} placeholder= {this.state.rate}  name = "rate" onChange = {this.handleInputChange}/>
+                          <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
+                          <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
+                          <label>{this.state.students}</label>
+                          <button onClick = {this.updateBatch}>Save Changes</button>
+                      </form>  
+                    <Addstudent batchdet = {this.props.batchdetails} 
+                                newStudent = {this.handleNewStudent} />
+                    <BatchAddClassDetails batchdet = {this.props.batchdetails} 
+                                          newClassDetails = {this.handleClassDetails}/>
+                    <div className = "table-responsive">
+                                  <table className = "table table-hover">
+                                  <tbody>
+                                  <tr>
+                                        <th>Firstname</th>
+                                        <th>Lastname</th>
+                                        <th>Email</th>
+                                  </tr>
+                                  <Allstudents studentrec = {this.state.studentrecs}
+                                                />
+                                  </tbody>    
+                                  </table>
                       </div>
                       <div className = "table-responsive">
-                            <table className = "table table-hover">
-                            <tbody>
-                             <tr>
-                                  <th>Lessons Covered</th>
-                                  <th>Homework</th>
-                                  <th>Attendance</th>
-                             </tr>
-                             <Allclasses classrec = {this.state.classrecs}/>
-                            </tbody>    
-                            </table>
-                            </div>        
-              </div>) 
+                                  <table className = "table table-hover">
+                                  <tbody>
+                                  <tr>
+                                        <th>Lessons Covered</th>
+                                        <th>Homework</th>
+                                        <th>Attendance</th>
+                                  </tr>
+                                  <Allclasses classrec = {this.state.classrecs}/>
+                                  </tbody>    
+                                  </table>
+                      </div>        
+                </div>) 
     } // end of render
 } //end component
 

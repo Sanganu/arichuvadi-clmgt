@@ -79,13 +79,10 @@ class BatchRecAddclass extends Component
                             })
                     .then(response =>
                       {
-                         console.log("Class details updated")
-                          this.setState({ classdetentry : false,
-                                          updatestatus :'Class details updated',
-                                          lessoncovered : '',
+                         this.props.newClassDetails(response)
+                         this.setState({ lessoncovered : '',
                                           homework: ''
-                                        } ,
-                                   () => { console.log("Class details updated batch and class table") }  );
+                                        });
                       }) //end then
                       .catch( error => {
                         this.setState({errmsg : "Error in saving class records"+error,updatestatus: 'Error in updating class details'+error},

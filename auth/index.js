@@ -104,6 +104,7 @@ function getStudentDetails(req,res) {
                               if( studentdet.batchid[0].classid !== undefined)
                               {
                                       for(let i = 0; i < studentdet.batchid[0].classid.length; i++)
+
                                       {
                                           let { homework,lesson,classdate } = studentdet.batchid[0].classid[i];
                                           classdetails.push ({
@@ -125,7 +126,7 @@ function getStudentDetails(req,res) {
                                         batch: studentdet.batchid[0].batchdesc || "Student not enrolled in any batch",
                                         subject: studentdet.batchid[0].subject || "N/A",
                                         level: studentdet.batchid[0].level || "N/A",
-                                        rate: studentdet.batchid[0].rateperhour,
+                                        rate: studentdet.batchid[0].rateperhour || "N/A" 
                                     }
                                     console.log("Valid student login",studentrecord);
                                     console.log("Classdetails array",classdetails);

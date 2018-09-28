@@ -4,13 +4,10 @@ import Createbatch from './Createbatch';
 import BatchInfo from './BatchInfo';
 
 class Batchmain extends Component {
-      constructor(props) {
-          super(props);
-          this.state = {
+      state = {
           batchdet : '',
           displaybatch : true
           }
-      };
              
       handleBatchCreated = (batchnew) => {
         //event.preventDefault();
@@ -21,10 +18,10 @@ class Batchmain extends Component {
             batchdet : batchdet,
           },
             () => {
-              this.setState({  displaybatch:false})
+              this.setState({displaybatch:false})
               console.log('Setstate callback-batchmain',this.state.batchdet);
             }); //    end thistate
-      }; // end handlebatchcreated
+      }; // end handlebatchcreated    
 
 
       render() {
