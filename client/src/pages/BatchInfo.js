@@ -83,7 +83,7 @@ class BatchInfo extends Component {
       classrecs.push(nclass);
       this.setState({classrecs},() => {console.log("Class details",classrecs)});
     }
-    
+
     componentDidMount = () => {
       let bid = this.props.batchdetails.bid;
       let strecs = this.state.studentrecs || [];
@@ -93,9 +93,9 @@ class BatchInfo extends Component {
       {
         axios.get('/api/teacher/batch/student/class/details/'+bid)
         .then(response => {
-          console.log("The Existing Students & Class",response.data);
-          console.log("The Student records length",response.data.srecords.length);
-          console.log("The class records length",response.data.crecords.length);
+          // console.log("The Existing Students & Class",response.data);
+          // console.log("The Student records length",response.data.srecords.length);
+           console.log("The class records length",response.data.crecords.length);
           if( response.data.srecords.length > 0)
           {
                for(let i =0; i <response.data.srecords.length;i++)
@@ -108,7 +108,7 @@ class BatchInfo extends Component {
                    } // end rec
                   strecs.push(newstrec);  
                } // end for loop
-              console.log("The student recs",strecs);  
+              // console.log("The student recs",strecs);  
             } ;// end if srecords part
 
            if( response.data.crecords.length > 0)
@@ -122,11 +122,12 @@ class BatchInfo extends Component {
                      }
                   clrecs.push(newclrec);  
                  } // end for loop
-            } ;// end if crecords part         
-            
+            } 
+           // end if crecords part         
+             
             this.setState({studentrecs : strecs,
                      classrecs : clrecs},() => {
-                     console.log("Set State:",this.state.studentrecs)
+                     console.log("Set State:",this.state.studentrecs,this.state.classrecs);
                    }); // End Set state 
         }) // end then part
         .catch(error => {
@@ -174,7 +175,7 @@ class BatchInfo extends Component {
                                         <th>Homework</th>
                                         <th>Attendance</th>
                                   </tr>
-                                  <Allclasses classrec = {this.state.classrecs}/>
+                                  <Allclasses classrecs = {this.state.classrecs}/>
                                   </tbody>    
                                   </table>
                       </div>        

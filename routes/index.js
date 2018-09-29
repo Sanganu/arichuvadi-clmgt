@@ -138,16 +138,17 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
         console.log("Insiderouter to add class details",req.body);
       var newrecord = req.body;
         classdetails
-           .create(new record)
+           .create(newrecord)
            .then(function(dbclassdetails)
            {
               console.log("The class details entered : ",dbclassdetails)
-              return batchdetails.findOneAndUpdate({_id:req.body.batch}, {$push:{classid:dbclassdetails._id}});
+              batchdetails.findOneAndUpdate({_id:req.body.batch}, {$push:{classid:dbclassdetails._id}});
+              return(dbclassdetails);
             })
-           .then(function(data){
-             console.log("Inserted class details and updated batchdetails with classid",data);
-             res.json(data);
-           })
+          //  .then(function(data){
+          //    console.log("Inserted class details and updated batchdetails with classid",data);
+          //     res.json(data);
+          //  })
            .catch(function(err){
              if (err)
              {
@@ -379,12 +380,9 @@ router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
      console.log("Student records fetched for the batch",records);
        classdetails.find({
        batchid: batchid}).then((recs) => {
-        console.log("Class details fetched --",recs.data, records.data);
+        console.log("Class details fetched --",recs);
         res.json({srecords : records, crecords : recs});
          })  ;
-  //  }).then((rec) => {
-      
-      
    }).catch((error) => {
      console.log("Unable to fetch student  and class records for the batch",error);
      res.json(error);

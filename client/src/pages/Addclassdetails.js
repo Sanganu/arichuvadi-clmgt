@@ -18,12 +18,7 @@ import axios from 'axios';
 
 class BatchRecAddclass extends Component
 {
-
-        constructor(props)
-        {
-                super(props);
-                this.state = {
-                       cbid :'',
+                state = {
                        cbdesc : '',
                        cbsubj : '',
                        cblevel : '',
@@ -36,11 +31,9 @@ class BatchRecAddclass extends Component
                        homework: '',
                        updatestatus: ''
                }; // end
-         } ;// end constructor
-
-       closeModal(){
-          this.setState({modalIsOpen:false});
-        }
+         //  closeModal(){
+      //     this.setState({modalIsOpen:false});
+      //   }
 
         handleInputChange = (event) => {
               const target = event.target;
@@ -62,23 +55,24 @@ class BatchRecAddclass extends Component
         }; //End handle Input change
 
         componentDidmount = () => {
-            console.log("Add classdetails - Props",this.props);
-          console.log("Add Classdetails -- props check",this.props.batchdet)
-        }
+            console.log("Add classdetails - Props",this.props.batchdet);
+        };
+       
+
         saveClassDetails = (event) =>
         {
                  event.preventDefault();
-                console.log("Save class details",this.state.lessoncovered,this.state.homework,this.state.cbid,this.state.studentsid);
+                console.log("Save class details",this.state.lessoncovered,this.state.homework);
                 axios.post('/api/teacher/batch/class/add',
                             {
                                lessoncovered : this.state.lessoncovered,
                                homework : this.state.homework,
-                               batch: this.state.cbid,
-                               students: this.state.studentsid,
+                               batch: this.props.batchdet.bid,
                                classdate: this.state.classdate
                             })
-                    .then(response =>
+                    .then((response) =>
                       {
+                         console.log("The Response from saving class details",response);
                          this.props.newClassDetails(response)
                          this.setState({ lessoncovered : '',
                                           homework: ''
