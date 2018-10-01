@@ -49,8 +49,6 @@ class Allstudents extends Component
                        <td><input type="text" value={this.state.stdemail} onChange={this.handleInputChange} name="stdemail" /></td>
                        <td><input type="text" value={this.state.parentname} onChange={this.handleInputChange} name="parentname"/></td>
                        <td><input type="text" value={this.state.phonenumber} onChange={this.handleInputChange} name="phonenumber" /></td>
-                       <td>{this.props.batchdesc}</td>
-                       <td>{this.props.subject}</td>
                        <td><button onClick = {this.deleteStudent}>Delete Student details</button></td>
                        <td><button onClick ={this.updateStudent}>Update Student</button></td>
                    </tr>

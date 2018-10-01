@@ -14,16 +14,16 @@ class BatchInfo extends Component {
       subject: this.props.batchdetails.subject||'',
       students: this.props.batchdetails.students || '',
       bdescription: this.props.batchdetails.batchdesc || '',
-      studentrecs: '',
-      classrecs: ''
+      studentrecs: [],
+      classrecs: []
     }
 
      
-    deleteStudent = (event) => {
-      event.preventDefault(); 
-        axios.delete('/api/teacher/student/delete',
+    deleteStudent = (stdid) => {
+           axios.delete('/api/batch/student/delete',
                     {
-                      batchid:this.props.bid
+                      batchid:this.props.bid,
+                      studentid: stdid // Change this- not mapped
                     })
             .then(response =>
               {
@@ -68,10 +68,17 @@ class BatchInfo extends Component {
               [name]: value
             });
       } //End handle Input change
-
+       
     handleNewStudent = (nstudent) => {
       console.log("The student records",nstudent);  
       let studentrecs = this.state.studentrecs;
+      let newstrec = {
+        stdid: nstudent._id,
+        stdfname  : nstudent.studentfname,
+        stdlname : nstudent.studentlname,
+        stdemail : nstudent.loginemail,
+        phonenumber: nstudent.phonenumber
+        } 
       studentrecs.push(nstudent);
       this.setState({
         studentrecs : studentrecs
@@ -80,6 +87,7 @@ class BatchInfo extends Component {
 
     handleClassDetails = (nclass) => {
       let classrecs = this.state.classrecs;
+      console.log("The class details",nclass); 
       classrecs.push(nclass);
       this.setState({classrecs},() => {console.log("Class details",classrecs)});
     }
@@ -101,6 +109,7 @@ class BatchInfo extends Component {
                for(let i =0; i <response.data.srecords.length;i++)
                { 
                  let newstrec = {
+                   stdid: response.data.srecords[i]._id,
                    stdfname  : response.data.srecords[i].studentfname,
                    stdlname : response.data.srecords[i].studentlname,
                    stdemail : response.data.srecords[i].loginemail,
@@ -124,7 +133,6 @@ class BatchInfo extends Component {
                  } // end for loop
             } 
            // end if crecords part         
-             
             this.setState({studentrecs : strecs,
                      classrecs : clrecs},() => {
                      console.log("Set State:",this.state.studentrecs,this.state.classrecs);
@@ -137,7 +145,7 @@ class BatchInfo extends Component {
    } // End ()
 
     render()
-    {
+    {  const studentrec = this.state.studentrecs;
         return(<div>
                       <form>
                           <div className ="form-group">
@@ -162,8 +170,10 @@ class BatchInfo extends Component {
                                         <th>Lastname</th>
                                         <th>Email</th>
                                   </tr>
-                                  <Allstudents studentrec = {this.state.studentrecs}
-                                                />
+                                  studentrec.map((data,index) => (
+                                  <Allstudents studentrec = {data}
+                                              index = {index}
+                                                />))
                                   </tbody>    
                                   </table>
                       </div>
@@ -173,8 +183,9 @@ class BatchInfo extends Component {
                                   <tr>
                                         <th>Lessons Covered</th>
                                         <th>Homework</th>
-                                        <th>Attendance</th>
+                                        <th>Date</th>
                                   </tr>
+                                  
                                   <Allclasses classrecs = {this.state.classrecs}/>
                                   </tbody>    
                                   </table>

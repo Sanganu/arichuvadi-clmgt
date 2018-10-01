@@ -54,37 +54,47 @@ class BatchRecAddclass extends Component
               }
         }; //End handle Input change
 
-        componentDidmount = () => {
-            console.log("Add classdetails - Props",this.props.batchdet);
-        };
+        // componentDidmount = () => {
+        //     console.log("Add classdetails - Props",this.props.batchdet);
+        // };
        
 
         saveClassDetails = (event) =>
         {
-                 event.preventDefault();
+                event.preventDefault();
                 console.log("Save class details",this.state.lessoncovered,this.state.homework);
-                axios.post('/api/teacher/batch/class/add',
-                            {
-                               lessoncovered : this.state.lessoncovered,
-                               homework : this.state.homework,
-                               batch: this.props.batchdet.bid,
-                               classdate: this.state.classdate
-                            })
-                    .then((response) =>
-                      {
-                         console.log("The Response from saving class details",response);
-                         this.props.newClassDetails(response)
-                         this.setState({ lessoncovered : '',
-                                          homework: ''
-                                        });
-                      }) //end then
-                      .catch( error => {
-                        this.setState({errmsg : "Error in saving class records"+error,updatestatus: 'Error in updating class details'+error},
-                              () =>{
-                                   console.log("Error in saving class records!!!",error);
-                              });
-                      }); // end catch
-          } // end saveClassDetails
+                if ( this.state.lessoncovered === '' || this.state.homework === '' ||this.state.classdate === '')
+                {
+                  this.setState({updatestatus: "Empty Fields not accepted!!!!!!"},
+                               ()=>{console.log("Empty Fields not expected");});
+                }
+                else
+                {
+                  axios.post('/api/teacher/batch/class/add',
+                  {
+                     lessoncovered : this.state.lessoncovered,
+                     homework : this.state.homework,
+                     batch: this.props.batchdet.bid,
+                     classdate: this.state.classdate
+                  })
+                  .then((response) =>
+                    {
+                      console.log("The Response from saving class details",response.data);
+                      this.props.newClassDetails({lessoncov:response.data.lessonvered,
+                            homework: response.data.homework,
+                            cldate: response.data.classdate});
+                      this.setState({ lessoncovered : '',
+                                        homework: ''
+                                      });
+                    }) //end then
+                    .catch( error => {
+                      this.setState({errmsg : "Error in saving class records"+error,updatestatus: 'Error in updating class details'+error},
+                            () =>{
+                                console.log("Error in saving class records!!!",error);
+                            });
+                    }); // end catch
+                }
+        } // end saveClassDetails
 
           addClassInfo = () =>
           {

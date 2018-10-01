@@ -2,21 +2,22 @@ import React,{ Component } from 'react';
 
 class Allstudents extends Component
 {
+    deleteStudent = () =>{
+        console.log("Delete-child");
+        this.setState({display : false});
+         this.props.deleteStudentDetails(this.props.stdid);
+    }
     render()
     {
-           const studentrec = this.props.studentrec || [];
-            return(   
-                studentrec.map((data,index) => (
-                  <tr key={index}><td>{data.stdfname}</td>
-                       <td>{data.stdlname}</td>
-                       <td>{data.stdemail}</td>
-                       <td>{data.phonenumber}</td>
-                       <td><button>Delete Student</button></td>
+           
+            return(<tr key={this.props.index}><td>{this.props.studentrec.stdfname}</td>
+                       <td>{this.props.studentrec.stdlname}</td>
+                       <td>{this.props.studentrec.stdemail}</td>
+                       <td>{this.props.studentrec.phonenumber}</td>
+                       <td><button onClick={this.deleteStudent}>Delete Student</button></td>
                        <td></td>
-                  </tr>))
-                  
-              );
-    }
+                  </tr>)
+     }
 }
 
 export default Allstudents;
