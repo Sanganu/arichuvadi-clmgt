@@ -55,6 +55,7 @@ class Addstudent extends Component {
                     {
                        console.log("The response from adding student",res);
                       let newstrec = {
+                          stdid: res.data._id,
                           stdfname : res.data.studentfname,
                           stdlname : res.data.studentlname,
                           stdemail : res.data.loginemail,

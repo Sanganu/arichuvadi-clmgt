@@ -15,20 +15,23 @@ class BatchInfo extends Component {
       students: this.props.batchdetails.students || '',
       bdescription: this.props.batchdetails.batchdesc || '',
       studentrecs: [],
-      classrecs: []
+      classrecs: [],
+      delstdid: ''
     }
 
      
     deleteStudent = (stdid) => {
+          console.log("BatchInfo",stdid,this.props.batchdetails.bid);
+          this.setState({delstdid: stdid})
            axios.delete('/api/batch/student/delete',
                     {
-                      batchid:this.props.bid,
-                      studentid: stdid // Change this- not mapped
+                      batchid:this.state.bid,
+                      studentid: this.state.delstdid 
                     })
             .then(response =>
               {
                  console.log("Student Details deleted from Batch",response)
-              }) //end then
+              }) //end thencd 
               .catch( error => {
                            console.log("Error in deleting batch student class records!!!",error);
               }); // end catch
@@ -73,13 +76,13 @@ class BatchInfo extends Component {
       console.log("The student records",nstudent);  
       let studentrecs = this.state.studentrecs;
       let newstrec = {
-        stdid: nstudent._id,
-        stdfname  : nstudent.studentfname,
-        stdlname : nstudent.studentlname,
-        stdemail : nstudent.loginemail,
+        stdid: nstudent.stdid,
+        stdfname  : nstudent.stdfname,
+        stdlname : nstudent.stdlname,
+        stdemail : nstudent.stdemail,
         phonenumber: nstudent.phonenumber
         } 
-      studentrecs.push(nstudent);
+      studentrecs.push(newstrec);
       this.setState({
         studentrecs : studentrecs
       },() =>{ console.log("The Student Records - update with add student",studentrecs);});
@@ -103,7 +106,7 @@ class BatchInfo extends Component {
         .then(response => {
           // console.log("The Existing Students & Class",response.data);
           // console.log("The Student records length",response.data.srecords.length);
-           console.log("The class records length",response.data.crecords.length);
+          // console.log("The class records length",response.data.crecords.length);
           if( response.data.srecords.length > 0)
           {
                for(let i =0; i <response.data.srecords.length;i++)
@@ -170,10 +173,11 @@ class BatchInfo extends Component {
                                         <th>Lastname</th>
                                         <th>Email</th>
                                   </tr>
-                                  studentrec.map((data,index) => (
+                                  {studentrec.map((data,index) => (
                                   <Allstudents studentrec = {data}
-                                              index = {index}
-                                                />))
+                                               deleteStudentDetails = {this.deleteStudent}
+                                              key = {index}
+                                                />))}
                                   </tbody>    
                                   </table>
                       </div>

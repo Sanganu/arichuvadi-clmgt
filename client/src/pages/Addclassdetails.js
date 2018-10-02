@@ -19,17 +19,11 @@ import axios from 'axios';
 class BatchRecAddclass extends Component
 {
                 state = {
-                       cbdesc : '',
-                       cbsubj : '',
-                       cblevel : '',
-                       cbrate : '',
-                       studentsid: [],
-                       classdate: '',
+                       date: '',
                        modalIsOpen: false,
-                       strecords: [],
                        lessoncovered:'',
                        homework: '',
-                       updatestatus: ''
+                       updatestatus: '',
                }; // end
          //  closeModal(){
       //     this.setState({modalIsOpen:false});
@@ -63,7 +57,7 @@ class BatchRecAddclass extends Component
         {
                 event.preventDefault();
                 console.log("Save class details",this.state.lessoncovered,this.state.homework);
-                if ( this.state.lessoncovered === '' || this.state.homework === '' ||this.state.classdate === '')
+                if ( this.state.lessoncovered === '' || this.state.homework === '' ||this.state.date === '')
                 {
                   this.setState({updatestatus: "Empty Fields not accepted!!!!!!"},
                                ()=>{console.log("Empty Fields not expected");});
@@ -75,20 +69,22 @@ class BatchRecAddclass extends Component
                      lessoncovered : this.state.lessoncovered,
                      homework : this.state.homework,
                      batch: this.props.batchdet.bid,
-                     classdate: this.state.classdate
+                     classdate: this.state.date
                   })
                   .then((response) =>
                     {
                       console.log("The Response from saving class details",response.data);
-                      this.props.newClassDetails({lessoncov:response.data.lessonvered,
+                      this.props.newClassDetails({lessoncov:response.data.lessoncovered,
                             homework: response.data.homework,
                             cldate: response.data.classdate});
                       this.setState({ lessoncovered : '',
-                                        homework: ''
+                                        homework: '',
+                                        date: '',
+                                        updatestatus: ''
                                       });
                     }) //end then
                     .catch( error => {
-                      this.setState({errmsg : "Error in saving class records"+error,updatestatus: 'Error in updating class details'+error},
+                      this.setState({updatestatus: 'Error in updating class details'+error},
                             () =>{
                                 console.log("Error in saving class records!!!",error);
                             });
@@ -96,33 +92,21 @@ class BatchRecAddclass extends Component
                 }
         } // end saveClassDetails
 
-          addClassInfo = () =>
-          {
-                 this.setState({
-                 cbid: this.props.bid,
-                 cbdesc: this.props.bdesc,
-                 cbsubj: this.props.bsubj,
-                 cblevel: this.props.blevel,
-                 cbrate: this.props.brate,
-                 modalIsOpen:true,
-                 strecords: this.props.studentdet }, () => {  console.log("Entry in class details---",this.props);});
-          } // end addClassInfo
+          // deleteBatch = () => { 
+          //   axios.delete('/api/teacher/batch/delete',
+          //               {
+     
+          //            batchid:this.props.bid
+          //               })
+          //       .then(response =>
+          //         {
+          //            console.log("Batch details / Class details /Student details deleted")
+          //         }) //end then
+          //         .catch( error => {
+          //                      console.log("Error in deleting batch student class records!!!",error);
 
-          deleteBatch = () => {
-            axios.delete('/api/teacher/batch/delete',
-                        {
-                          batchid:this.props.bid
-                        })
-                .then(response =>
-                  {
-                     console.log("Batch details / Class details /Student details deleted")
-                  }) //end then
-                  .catch( error => {
-                               console.log("Error in deleting batch student class records!!!",error);
-
-                  }); // end catch
-          }
-
+          //         }); // end catch
+          // }
       render()
       {
           return( <form>
