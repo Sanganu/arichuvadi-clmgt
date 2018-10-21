@@ -113,15 +113,15 @@ class BatchRecAddclass extends Component
                   <h5 className="errmsg">{this.state.updatestatus}</h5>
                   <div className = "form-group row">
                       <label forhtml = "lessoncovered">Lesson Covered : </label>
-                      <input type = "text"   value={this.state.lessoncovered} onChange = {this.handleInputChange} name = "lessoncovered"  id = "lessoncovered" placeholder="Lesson Covered" />
+                      <input type = "text"   value={this.state.lessoncovered} onChange = {this.handleInputChange} name = "lessoncovered"  id = "lessoncovered" placeholder="Lesson Covered" required />
                   </div>
                   <div className = "form-group row">
                       <label forhtml = "homework">Homework : </label>
-                      <input type = "text"   value={this.state.homework} onChange = {this.handleInputChange} name = "homework" id = "homework" placeholder = "Homework assigned"/>
+                      <input type = "text"   value={this.state.homework} onChange = {this.handleInputChange} name = "homework" id = "homework" placeholder = "Homework assigned" required/>
                   </div>
                   <div className = "form-group row">
                       <label forhtml = "homework">Date: </label>
-                      <input type = "text"   value={this.state.date} onChange = {this.handleInputChange} name = "date" id = "date" placeholder = "Date"/>
+                      <input type = "date"   value={this.state.date} onChange = {this.handleInputChange} name = "date" placeholder = "mm/dd/yyyy" id = "date" required/>
                   </div>
                   <button className = "createbutton"
                           onClick = {this.saveClassDetails}>Add Class Details
