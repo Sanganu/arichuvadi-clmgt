@@ -289,10 +289,10 @@ router.delete('/api/teacher/student/delete/:id',(req,res) => {
 }); // End of router delete student details
 
 //Delete Student from a batch -- working??
-router.delete('/api/batch/student/delete/:str1/:str2',(req,res) => {
-        console.log("Student delete from batch-inputs",req.params.str1,req.params.str2,req.body.batchid,req.body.studentid);
-          batchdetails.findOneAndUpdate({_id: req.params.str2},
-              {$pull:{students:req.params.str1}})
+router.put('/api/batch/student/delete/',(req,res) => {
+        console.log("Student delete from batch-inputs",req.body.batchid,req.body.studentid);
+          batchdetails.findOneAndUpdate({_id: req.body.batchid},
+              {$pull:{students:req.body.studentid}})
             .then((data) => {
               console.log("Student delete from batch",data);
               res.json(data);

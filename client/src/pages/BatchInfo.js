@@ -23,10 +23,10 @@ class BatchInfo extends Component {
     deleteStudent = (stdid) => {
           console.log("BatchInfo",stdid,this.state.bid);//his.props.batchdetails.bid);
           this.setState({delstdid: stdid})
-           axios.delete('/api/batch/student/delete/'+stdid+"/"+this.state.bid, //+this.state.bid+'/'+stdid
+           axios.put('/api/batch/student/delete/',
                     {
                       batchid:this.state.bid,
-          //            studentid: this.state.delstdid 
+                      studentid:stdid
                     }
                   )
             .then(response =>
