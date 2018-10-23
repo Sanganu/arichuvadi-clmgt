@@ -28,6 +28,6 @@ const classdetailsSchema = new Schema({
          }
 });
 
-
+    
 const classdetails = mongoose.model("classdetails", classdetailsSchema);
 module.exports = classdetails;

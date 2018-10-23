@@ -83,7 +83,7 @@ class Addstudent extends Component {
         // const bdetails = this.props.batchdet || false;
             return(
               <div>
-                                <br />
+                    <br />
                     <h3 className = "subhead">Add New  Students to the Batch</h3>
                     <p className="errmsg">{this.state.errmsg}</p>
                               

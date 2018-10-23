@@ -23,7 +23,7 @@ class BatchInfo extends Component {
     deleteStudent = (stdid) => {
           console.log("BatchInfo",stdid,this.state.bid);//his.props.batchdetails.bid);
           this.setState({delstdid: stdid})
-           axios.delete('/api/batch/student/delete/', //+this.state.bid+'/'+stdid
+           axios.delete('/api/batch/student/delete/'+stdid+"/"+this.state.bid, //+this.state.bid+'/'+stdid
                     {
                       batchid:this.state.bid,
           //            studentid: this.state.delstdid 
@@ -169,7 +169,7 @@ class BatchInfo extends Component {
                     <div className = "table-responsive">
                                   <table className = "table table-hover">
                                   <tbody>
-                                  <tr>
+                                  <         tr>
                                         <th>Firstname</th>
                                         <th>Lastname</th>
                                         <th>Email</th>
