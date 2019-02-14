@@ -15,21 +15,16 @@ const teacheraccountSchema = new Schema({
         phone: {
           type:String
         },
-       subjects: [{
+       levels: [{
           type:String
         }],
-        schoolname :{
-          type: String,
-        },
+        batchId :[{
+          type: Schema.Types.ObjectId,
+          ref: batchdetails
+        }],
         createdDate: {
            type:Date,
            default: Date.now
-         },
-         facebook: {
-           type:String
-         },
-         youtubechannel :{
-           type:string
          }
 });
 

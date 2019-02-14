@@ -4,16 +4,13 @@ import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
 
 class Createbatch extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
+    state = {
           batchdesc:"",
           subject: "Music",
           level: "Beginner",
           rateperhour: '30',
           batchdet: '',
           errmsg : '',
-            };
     }
 
     handleInputChange = (event) => {

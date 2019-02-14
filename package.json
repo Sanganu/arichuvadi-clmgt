@@ -4,12 +4,14 @@
   "description": "express react react-dom axios ",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server.js",
-    "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
-    "build": "node scripts/build.js",
-    "installDeps": "yarn && cd client && yarn"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,7 @@
   },
   "homepage": "https://github.com/sanganu/reacteduclass#readme",
   "devDependencies": {
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.18.10"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -40,11 +42,13 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "if-env": "^1.0.4",
     "mongod": "^2.0.0",
     "mongoose": "^5.0.14",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "react-google-login": "^5.0.2",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "youtube-api-search": "0.0.5",

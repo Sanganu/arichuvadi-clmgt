@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
  }
 
 .form-group {
@@ -18,15 +18,14 @@ body {
 }
 
 .navbar {
-  color:hsl(54, 75%, 50%);
-  font-family: 'Lobster', cursive;
+ 
+  /* font-family: 'Lobster', cursive; */
   text-align: center;
-  background-color: rgb(110, 185, 131);
+  background-color: black;
 }
 
 .mainlink {
-  font-family: 'Cormorant Garamond', serif;
-  color: rgb(28, 192, 165);
+  /* font-family: 'Cormorant Garamond', serif; */
   font-size: 30px;
   width:25%;
   padding:3%;
@@ -62,9 +61,8 @@ tr {
 
 .card-body {
   opacity: 0.9;
-  background-color: hsl(120, 72%, 38%);
   font-weight: bolder;
-  color:hsl(120, 72%, 8%); 
+ 
 }
 
 button{
@@ -95,26 +93,29 @@ button{
 .tablehead {
   text-align: center;
 }
+input {
+  background-color: black;
+  opacity:0.8;
+  color: white;
+}
 
 .subhead {
   width: 90%;
   text-align: center;
-  font-family: 'Abril Fatface', cursive;
+  /* font-family: 'Abril Fatface', cursive; */
   font-weight: bold;
   font-size: 20px;
 }
 .footer {
   position:fixed;
-  background-color: rgb(17, 228, 175);
-  color:rgb(160, 202, 82);
   width: 100%;
   height: 10%;
   text-align: left;
-  
-  font-family: 'Itim', cursive;
+  bottom:0;
+  /* font-family: 'Itim', cursive; */
 }
 .flinks{
-  color: rgb(20, 23, 192);
+  /* color: rgb(20, 23, 192); */
   margin-right:20px;
   float:left;
   padding-top: 1%;
@@ -134,8 +135,8 @@ padding-top: 2%;
 
 .modaltitle {
   width: 100%;
-  background-color: hsla(202, 59%, 77%, 0.97);
-  color:rgb(20, 20, 20);
+  /* background-color: hsla(202, 59%, 77%, 0.97);
+  color:rgb(20, 20, 20); */
 }
 
 #tlogin {
@@ -153,9 +154,12 @@ padding-top: 2%;
 .leftside {
   align-content: left;
 }
+
 .rightside {
   align-content: right;
 }
+
+
 @media only screen and (max-width: 768px)
 {
 

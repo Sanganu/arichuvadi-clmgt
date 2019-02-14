@@ -3,14 +3,11 @@ import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
 import axios from 'axios';
 import Video from "./Video";
-import API from "./keyvalues" ;
+
 
 class Visitors extends Component 
 {
-  state = {
-    APIkey : API.APIkey,
-    videos: []
-  }
+ 
   componentDidMount = () =>{
     axios.get('/api/visitors')
     .then((videos) =>{

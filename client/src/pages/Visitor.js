@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import axios from 'axios';
-import 
+
 class Visitor extends Component {
     componentDidMount=()=>{
         axios.get('/api/visitors')

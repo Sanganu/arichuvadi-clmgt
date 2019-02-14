@@ -43,7 +43,7 @@ class Teachermain extends Component
                           canenter: true,
                           invalid:false,
                           logindisp: false
-                     })
+                     });
                    }
                 else {
 
@@ -84,9 +84,10 @@ class Teachermain extends Component
                                   </div>
                           : <div></div>}
                               {this.state.canenter ? <Allbatches /> : <div></div>}
-                              {this.state.invalid ? <div>
-                                                         <h6 className ="errmsg">Invalid Credentials - Please use right credentials</h6>
-                                                      </div>: <div></div>}
+                              {this.state.invalid ?
+                                 <div>
+                                 <h6 className ="errmsg">Invalid Credentials - Please use right credentials</h6>
+                                 </div>: <div></div>}
 
                           <Footer />
                          </div>

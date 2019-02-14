@@ -19,7 +19,7 @@ class Homepage extends Component {
                               
                             </div>
                         </div>
-                        <div className="card mb-4">
+                        <div className="card mb-4 dark-card-title">
                             <div className="card-body">
                                 <h4 className="card-title">Students</h4>
                                 <p className="card-text">Check your Attendance , Home work</p>

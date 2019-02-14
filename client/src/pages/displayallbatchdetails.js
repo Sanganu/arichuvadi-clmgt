@@ -33,23 +33,29 @@ class Allbatches extends Component
           axios.get('/api/teacher/batch/all')
               .then(response =>
                 {
-                  // console.log("The Batch Details of  - axios call");
-                  for (let i =0; i<response.data.length;i++)
-                  {
-                    //  console.log("Records",response.data[i]._id,response.data[i].batchdesc,response.data[i].batchid,response.data[i].subject,response.data[i].level,response.data[i].rateperhour);
-                      let currentrec = {
-                              recid: response.data[i]._id,
-                              recdesc: response.data[i].batchdesc,
-                              recsubj: response.data[i].subject,
-                              reclevel: response.data[i].level,
-                              recrate: response.data[i].rateperhour
-                              //recstudents: response.data[i].students
-                      }
-                    batchrecords.push(currentrec);
-                  } // end for
-                  if (response.data.length > 0) allbatches = true;
-                  this.setState({batchrecords : batchrecords, allbatches:allbatches}, () => { console.log("State of records")});
-
+                  console.log("The Batch Details of  - axios call");
+                  if (response.data.length > 0){
+                      for (let i =0; i<response.data.length;i++)
+                      {
+                        console.log("Records",response.data[i]._id,response.data[i].batchdesc,response.data[i].batchid,response.data[i].subject,response.data[i].level,response.data[i].rateperhour);
+                          let currentrec = {
+                                  recid: response.data[i]._id,
+                                  recdesc: response.data[i].batchdesc,
+                                  recsubj: response.data[i].subject,
+                                  reclevel: response.data[i].level,
+                                  recrate: response.data[i].rateperhour
+                                  //recstudents: response.data[i].students
+                          }
+                        batchrecords.push(currentrec);
+                      } // end for
+                  
+                        console.log("Axios No records exist");
+                        allbatches = true;
+                        this.setState({
+                          batchrecords : batchrecords,
+                          allbatches:allbatches},
+                            () => { console.log("State of records")});
+                   }    
                 }) // end then
                  .catch( error => {     
                   this.setState({allbatches : false})
