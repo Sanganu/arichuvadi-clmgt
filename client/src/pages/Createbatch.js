@@ -24,9 +24,9 @@ class Createbatch extends Component {
            });
     };
 
-    handleClassCreation = (event) => {
+    handleBatchCreation = (event) => {
             event.preventDefault();
-             console.log("In Class Creation state values",this.state);
+             console.log("Create Batch -- Creation state values",this.state);
              //var myDate = new Date(this.state.startdate);
              if(  this.state.batchdesc === "" ||
                  this.state.subject === "" ||
@@ -37,6 +37,7 @@ class Createbatch extends Component {
                   this.setState({errmsg : "No Empty Fields Enter valid data"});
                 }
             else {
+             console.log("Before axios call - create batch");
              axios.post('/api/teacher/batch/new',
                       {
                             batchdesc : this.state.batchdesc,
@@ -56,12 +57,14 @@ class Createbatch extends Component {
                           level: response.data.level,
                           rateperhour: response.data.rateperhour,
                          }
+                         console.log("BAtch creation");
                         this.props.onInsert(newbatch)
                         //window.location = '/teacher/batch/addstudent/'+response._id;
                         //return <Addstudent />
                     })
                     .catch(error => {
-                        this.setState({errmsg: error.errstring +" Please check console for further details"},() =>
+                        this.setState({errmsg: error.errstring +" Please check console for further details"},
+                        () =>
                          {
                              console.log("Error in Adding Batch",error.err);
                          });
@@ -72,7 +75,7 @@ class Createbatch extends Component {
 
       render() {
         return(<div>
-                        <Teacherheader />
+                  
                         <form  className="inputsection">
                             <h5 className = "subcr">Create New Batch</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
@@ -100,7 +103,7 @@ class Createbatch extends Component {
                                  </select>
                             </div>
                             <br />
-                             <button className = "createbutton"  name = "clcreation"  onClick = {this.handleClassCreation}>Create Batch</button>
+                             <button className = "createbutton"  name = "clcreation"  onClick = {this.handleBatchCreation}>Create Batch</button>
                         </form>
                         <Footer />
                   </div>

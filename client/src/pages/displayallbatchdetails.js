@@ -27,7 +27,7 @@ class Allbatches extends Component
    }        
 
     componentDidMount = () => {
-          // console.log("Inside component displayallbatchdetails before placing the axios call");
+          console.log("displayallbatchdetails -- component before axios call");
           let batchrecords = this.state.batchrecords;
           let allbatches = false
           axios.get('/api/teacher/batch/all')

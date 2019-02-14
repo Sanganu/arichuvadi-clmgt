@@ -21,10 +21,8 @@ const customStyle = {
 class BatchRecAddclass extends Component
 {
 
-        constructor(props)
-        {
-                super(props);
-                this.state = {
+       
+                state = {
                        cbid :'',
                        cbdesc : '',
                        cbsubj : '',
@@ -39,7 +37,7 @@ class BatchRecAddclass extends Component
                        updatestatus: '',
                        detailbatch:false
                }; // end
-         } ;// end constructor
+ 
 
        closeModal(){
           this.setState({modalIsOpen:false});

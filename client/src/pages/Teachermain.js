@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import Allbatches from './displayallbatchdetails';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Batchmain from './Batchmain';
 
 class Teachermain extends Component
 {
-         constructor(props)
-         {
-           super(props);
-           this.state = {
+        state = {
             canenter : '',
             invalid:'',
             vemail:'',
             vpword:'',
             logindisp : true
              };
-         }
+        
 
          handleInputChange = (event) => {
                const target = event.target;
@@ -82,8 +80,13 @@ class Teachermain extends Component
                                                </div>
                                           </div>
                                   </div>
-                          : <div></div>}
-                              {this.state.canenter ? <Allbatches /> : <div></div>}
+                          : <div>
+                              <Allbatches /> 
+                              <div>
+                                  <Batchmain />
+                               </div>
+                          </div>}
+                              {/* {this.state.canenter ? : <div></div>} */}
                               {this.state.invalid ?
                                  <div>
                                  <h6 className ="errmsg">Invalid Credentials - Please use right credentials</h6>
