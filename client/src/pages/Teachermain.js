@@ -7,7 +7,6 @@ import Batchmain from './Batchmain';
 class Teachermain extends Component
 {
         state = {
-            canenter : '',
             invalid:'',
             vemail:'',
             vpword:'',
@@ -38,7 +37,6 @@ class Teachermain extends Component
                       console.log('if valid');
                     // window.location = '/teacher/batchmain/';
                      this.setState ({
-                          canenter: true,
                           invalid:false,
                           logindisp: false
                      });
@@ -61,13 +59,30 @@ class Teachermain extends Component
                                              <h3 id="tlogin">Teacher Login</h3>
                                                   {/*<div className = "col-sm-6">*/}
                                                       <form className="inputsection">
-                                                                     <div className = "form-group row">
-                                                                          <label  id ="lemail">Email Addess  </label><br />
-                                                                          <input className="textarea rightside" onChange  = {this.handleInputChange} type="text" name="vemail" id="vemail" value={this.state.vemai} /><br />
+                                                                     <div className = "form-group">
+                                                                          
+                                                                          <input className="form-control" 
+                                                                                 onChange  = {this.handleInputChange} 
+                                                                                 type="text"
+                                                                                 name="vemail"
+                                                                                 id="vemail" 
+                                                                                 value={this.state.vemail}
+                                                                                 required/>
+                                                                           <label  className="form-control-placeholder" 
+                                                                                 for="vemail">Email Address </label>
                                                                       </div>
-                                                                      <div className = "form-group row">
-                                                                          <label  id = "lpsword">Password  </label><br />
-                                                                          <input className="textarea rightside" onChange = {this.handleInputChange} type="password" name="vpword" id ="vpword" value ={this.state.vpword} /><br />
+                                                                      <div className = "form-group">
+                                                                      
+                                                                          <input className="form-control"
+                                                                            onChange = {this.handleInputChange}
+                                                                            type="password" 
+                                                                            name="vpword"
+                                                                            id ="vpword"
+                                                                            value ={this.state.vpword} 
+                                                                            required/>
+                                                                          <label
+                                                                            className="form-control-placeholder" 
+                                                                            for="vpword">Password </label>
                                                                       </div>
                                                                      <br />
                                                                        <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
@@ -82,11 +97,9 @@ class Teachermain extends Component
                                   </div>
                           : <div>
                               <Allbatches /> 
-                              <div>
-                                  <Batchmain />
-                               </div>
+                           
                           </div>}
-                              {/* {this.state.canenter ? : <div></div>} */}
+                       
                               {this.state.invalid ?
                                  <div>
                                  <h6 className ="errmsg">Invalid Credentials - Please use right credentials</h6>

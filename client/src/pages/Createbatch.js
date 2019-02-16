@@ -79,9 +79,11 @@ class Createbatch extends Component {
                         <form  className="inputsection">
                             <h5 className = "subcr">Create New Batch</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
-                              <div className = "form-group row">
-                                 <label forhtml ="batchdesc">Batch Description  </label>
-                                 <input type = "text"  id = "batchdesc" className="form-control" value={this.state.batchdesc} onChange = {this.handleInputChange} name = "batchdesc" />
+                              <div className = "form-group input-group">
+                                <label className="has-float-label">
+                                 <input type = "text" placeholder="Batch Description" className = "form-control" id = "batchdesc" className="form-control" value={this.state.batchdesc} onChange = {this.handleInputChange} name = "batchdesc" />
+                                 <span>Batch Description</span>
+                                </label>
                              </div>
                              <div className = "form-group row">
                                      <label forhtml ="subject">Subject  </label>

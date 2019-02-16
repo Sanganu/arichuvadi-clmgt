@@ -7,12 +7,15 @@ import Video from "./Video";
 
 class Visitors extends Component 
 {
- 
+  state = {
+    videos : ""
+  }
   componentDidMount = () =>{
     axios.get('/api/visitors')
     .then((videos) =>{
       console.log("Videos Received",videos.data);
-      this.setState({videos:videos.data},() => {console.log("The Response from Axios",this.state.videos)})
+      this.setState({videos:videos.data}
+        ,() => {console.log("The Response from Axios",this.state.videos)})
     }).catch((error) => {
         console.log("Error....",error);
     });
