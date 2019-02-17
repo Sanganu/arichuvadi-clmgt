@@ -95,8 +95,9 @@ tr {
   height: 10%;
   text-align: left;
   bottom:0;
-  background-color: rgb(106, 112, 19);
-  /* font-family: 'Itim', cursive; */
+  background: linear-gradient(270deg, rgba(223, 178, 16, 0.8), rgba(241, 198, 4, 0.8), rgba(222, 238, 6, 0.726), rgba(223, 178, 16, 0.8));
+  /* background:  linear-gradient(270deg, rgba(236, 188, 12, 0.911), rgba(29, 240, 187, 0.87), rgba(236, 188, 12, 0.911), rgba(16, 230, 51, 0.726)); */
+  color:  rgb(244, 247, 246);
 }
 
 
@@ -164,11 +165,23 @@ tr {
 }
 
 .navbar {
- 
-  /* font-family: 'Lobster', cursive; */
+ /* font-family: 'Lobster', cursive; */
   text-align: center;
   background-color: rgb(106, 112, 19);
+  transition: all 0.7s  ease-out;
+  background: linear-gradient(270deg, rgba(223, 178, 16, 0.8), rgba(241, 198, 4, 0.8), rgba(222, 238, 6, 0.726), rgba(223, 178, 16, 0.8));
+  background-position: 1% 50%;
+  color:  rgb(244, 247, 246);
 }
+
+.navbar:hover {
+  color: rgba(193, 224, 13, 0.747);
+  border: 1px solid hsla(20, 67%, 4%, 0.925);
+  background-position: 99% 50%;
+  font-weight: bold;
+}
+
+
 .otherlinks {
     width: 100%;
     display: flex;
