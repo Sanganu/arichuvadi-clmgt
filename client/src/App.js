@@ -12,7 +12,7 @@ import Studentlogin from "./pages/Studentlogin";
 import Addclass from "./pages/Addclassdetails";
 import Search from "./pages/Search";
 import StudentManagement from './pages/StudentManagement';
-import InstructorLogin from "./pages/InstructorLogin";
+// import InstructorLogin from "./pages/InstructorLogin";
 
 const App = () =>
  <Router>
@@ -32,7 +32,7 @@ const App = () =>
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
                    <Route exact path ="/teacher/searchrecords" component={Search} />
                    <Route exact path = "/teacher/studentmanagement" component = {StudentManagement} />
-                   <Route exact path="/teacher/login" component = {InstructorLogin} />
+                   {/* <Route exact path="/teacher/login" component = {InstructorLogin} /> */}
                    <Switch>
                       <Route path ="/*" component={Homepage} />
                    </Switch> 
