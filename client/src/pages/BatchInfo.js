@@ -162,10 +162,16 @@ class BatchInfo extends Component {
                           <label>{this.state.students}</label>
                           <button onClick = {this.updateBatch}>Save Changes</button>
                       </form>  
-                    <Addstudent batchdet = {this.props.batchdetails} 
-                                newStudent = {this.handleNewStudent} />
-                    <BatchAddClassDetails batchdet = {this.props.batchdetails} 
-                                          newClassDetails = {this.handleClassDetails}/>
+                    <div className ="row">
+                        <div className ="col-md-6 col-sm-12">
+                            <Addstudent batchdet = {this.props.batchdetails} 
+                                        newStudent = {this.handleNewStudent} />
+                        </div>
+                        <div className ="col-md-6 col-sm-12">
+                              <BatchAddClassDetails batchdet = {this.props.batchdetails} 
+                                                    newClassDetails = {this.handleClassDetails}/>
+                        </div>
+                     </div>   
                     <div className = "table-responsive">
                                   <table className = "table table-hover">
                                   <tbody>

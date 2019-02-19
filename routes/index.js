@@ -28,7 +28,7 @@ router.post('/api/teacher/batch/new',function(req,res) {
                                  errid: vrmsg,
                                  errstring: "Batch details already exist -- Please delete old batch and register again if this is a new batch",
                                  err : err
-                                });
+                                }); 
                            }
                         else
                         {
@@ -344,6 +344,7 @@ router.get('/api/teacher/search/:str',(req,res) => {
 
 //Visitors Login - API to get Channel Videos and serve front end
 router.get("/api/visitors",(req,res) => {
+  console.log("Youtube API - Search")
     youtubechannel.channelVideos(process.env.API_YOUTUBE,process.env.API_Youtube_Channel,function(channellist){
         console.log("The Channellist",channellist.length);
         let videoid =[];

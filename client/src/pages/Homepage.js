@@ -16,7 +16,7 @@ class Homepage extends Component {
                                 <h4 className="card-title">Teachers</h4>
                                 <p className="card-text">Easy class management solution for independant teacher.</p>
                                 <Link to ="/teacher/tmain" className="mainlink">Teachers login</Link><br />
-                              
+                                <Link to = "/teacher/login" >Google Page</Link>
                             </div>
                         </div>
                         <div className="card mb-4 dark-card-title">

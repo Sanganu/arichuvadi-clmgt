@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import Modal from 'react-modal';
-// import {Link} from 'react-router-dom';
-//import Classentry from './Classentry';
-//import Teacherheader from '../components/Teacherheader';
-// const customStyle = {
-//       content: {
-//         top:'50%',
-//         left:'50%',
-//         right:'auto',
-//         bottom:'auto',
-//         marginRight:'-50%',
-//         transform: 'translate(-50%,-50%)',
-//         color:  'hsla(360, 100%, 8%, 1)'
-//       }
-// };
+
 
 class BatchRecAddclass extends Component
 {
@@ -25,9 +11,7 @@ class BatchRecAddclass extends Component
                        homework: '',
                        updatestatus: '',
                }; // end
-         //  closeModal(){
-      //     this.setState({modalIsOpen:false});
-      //   }
+       
 
         handleInputChange = (event) => {
               const target = event.target;

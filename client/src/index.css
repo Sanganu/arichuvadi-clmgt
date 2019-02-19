@@ -33,10 +33,7 @@ body {
 input {
   background-color: hsl(213,10,17);
   opacity:0.8;
-  color: white;
-  height: 20px;
-  width: 30px;
-  /* margin-top: 10px; */
+
 }
 
 
@@ -127,6 +124,7 @@ tr {
    margin-right: 5%;
    padding-left:5%;
    padding-right:5%;
+   opacity: 1%;
 }
 
 

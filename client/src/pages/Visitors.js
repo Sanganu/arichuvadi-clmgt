@@ -25,13 +25,13 @@ class Visitors extends Component
            return(<div>
                      <Teacherheader />
                    <div className = "vcontent">
-                     {videos.map((video,key) => 
+                     {/* {videos.map((video,key) => 
                      <Video key={key}
-                            content = {video} />)}
+                            content = {video} />)} */}
                     </div>
                     {/* <Visitor /> */}
                  <Footer />
-           </div>)
+           </div>) 
       }
 }
 
