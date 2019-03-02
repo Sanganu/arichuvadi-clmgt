@@ -1,6 +1,6 @@
- const passport = require('passport')
+const passport = require('passport')
 const LocalStrategy = require('./localstrategy.js')
-// const GoogleStratgey = require('./googleStrategy')
+//const GoogleStratgey = require('./googleStrategy')
 const Students = require('../models/Students')
 
 passport.serializeUser((user, done) => {
@@ -26,7 +26,6 @@ passport.deserializeUser((id, done) => {
 
 
 passport.use(LocalStrategy)
-
-// passport.use(GoogleStratgey)
+//passport.use(GoogleStratgey)
 
 module.exports = passport   

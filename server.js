@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 const routes = require("./routes");
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 require('dotenv').config()
 
 
