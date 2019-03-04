@@ -259,6 +259,7 @@ router.put("/api/teacher/studentbatch/update",(req,res) => {
 
 // Update Student details
 router.put("/api/teacher/student/update/:id",(req,res) => {
+  console.log("Student record",req.body);
   studentdetails.updateOne(
     {_id: req.params.id},
     {$set: {studentfname : req.body.stdfname,

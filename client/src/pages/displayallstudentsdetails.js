@@ -10,11 +10,13 @@ class Allstudents extends Component
         phonenumber :  this.props.phonenumber || '',
         display: true
     }
+
     deleteStudent = () =>{
-        console.log("Delete-child");
-        this.setState({display : false});
+         console.log("Delete-child");
+         this.setState({display : false});
          this.props.deleteStudentDetails(this.props.stdid);
     }
+
     updateStudent = () =>{
         console.log("Update Student");
         let stdrecord = {
@@ -28,6 +30,7 @@ class Allstudents extends Component
         }
         this.props.updateStudentDetails(stdrecord);
     }
+
     handleInputChange = (event) => {
         const target = event.target;
         const value =  target.value;
