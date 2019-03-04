@@ -6,7 +6,7 @@ class Header extends Component {
   {
     return(
         <div className = "navbar navbar-default">
-                 <h1>Edu Track</h1>
+                 <h1>EduTrack</h1>
                  <h6>Class management solution for Independant Teachers</h6>
         </div>
     );

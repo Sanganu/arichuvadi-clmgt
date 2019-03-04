@@ -1,8 +1,21 @@
+
 body {
   margin: 0;
   padding: 0;
   /* font-family: sans-serif; */
- }
+}
+
+.box1{
+  background: linear-gradient(210deg, rgba(218, 32, 224, 0.8), rgba(160, 73, 73, 0.8), rgba(192, 18, 134, 0), rgba(185, 15, 15, 0));
+}
+
+.box2{
+  background: linear-gradient(210deg, rgba(52, 14, 221, 0.8), rgba(125, 73, 160, 0.8), rgba(15, 152, 231, 0), rgba(29, 6, 114, 0));
+}
+
+.box3{
+  background: linear-gradient(210deg, rgba(243, 191, 2, 0.8), rgba(141, 131, 38, 0.8),rgb(44, 41, 10), rgba(34,34,34,0));
+}
 
  button{
   display: inline-block;
@@ -16,11 +29,11 @@ body {
   padding: 18px 80px 20px;
   transition: all 0.7s  ease-out;
   background: linear-gradient(270deg, rgba(161, 159, 152, 0.8), rgba(73, 160, 131, 0.8), rgba(168, 48, 78, 0), rgba(34,34,34,0));
-  background-position: 1% 50%;
-  background-size: 300% 300%;
+  /* background-position: 1% 50%; */
+  background-size: 200% 200%;
   text-decoration: none;
   margin: 0.625rem;
-  border: 1px solid hsl(75, 40%, 2%);
+  border: 1px solid hsl(75, 27%, 49%);
  }
  
  button:hover {
@@ -30,7 +43,11 @@ body {
   font-weight: bold; 
 }
 
+.rowbtn {
+  border-radius: 50%;
+  padding: 5px;
 
+}
 #content {
   margin-top: 10%;
   opacity:0.5;
@@ -54,10 +71,11 @@ body {
 }
 
 .flinks{
-  /* color: rgb(20, 23, 192); */
+  
   margin-right:20px;
   float:left;
   padding-top: 1%;
+  margin-top:1%;
 }
 
 .footer {
@@ -67,7 +85,6 @@ body {
   text-align: left;
   bottom:0;
   background: linear-gradient(270deg, rgba(223, 178, 16, 0.8), rgba(241, 198, 4, 0.8), rgba(222, 238, 6, 0.726), rgba(223, 178, 16, 0.8));
-  /* background:  linear-gradient(270deg, rgba(236, 188, 12, 0.911), rgba(29, 240, 187, 0.87), rgba(236, 188, 12, 0.911), rgba(16, 230, 51, 0.726)); */
   color:  rgb(244, 247, 246);
 }
 
@@ -101,18 +118,22 @@ body {
    opacity: 1%;
 }
 
-input {
-  background-color: hsl(213,10,17);;
+.form-control {
+  /* background-color: hsl(213,10,17);;
   color: white;
-  border-bottom: 1px solid white;
-
-}
-
-input {
-  background-color: hsl(213,10,17);
+  border-bottom: 1px solid white; */
   opacity:0.8;
-
+  background-color:rgba(0, 0, 0, 0);
+  color:white;
+  border: none;
+  border-bottom: 1px aqua;
+  outline:none;
+  height:30px;
+  transition:height 1s;
+  -webkit-transition:height 1s;
 }
+
+
 .leftside {
   align-content: left;
 }
@@ -195,6 +216,7 @@ tr {
    font-style: normal;
    font-size: 0.825rem;
    letter-spacing: 0.3em;
+   align-content: center;
 }
 
 

@@ -179,6 +179,8 @@ class Addstudent extends Component {
                                   <th>Email</th>
                                   <th>Parent </th>
                                   <th>Phonenumber</th>
+                                  <th>Update</th>
+                                  <th>Delete</th>
                              </tr>
                               {studentrecords.map((data,index) =>
                                  <Allstudents  key={index}

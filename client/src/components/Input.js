@@ -6,4 +6,4 @@ return(
 )
 }
 
-export default Inut;
+export default Input;
