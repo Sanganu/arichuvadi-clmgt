@@ -34,7 +34,7 @@ class Homepage extends Component {
                                 <div className="card-body box3">
                                     {/* <h4 className="card-title">Visitors</h4>
                                     <p className="card-text">Achievements and Performances</p> */}
-                                    <Link to="/other/users" className="mainlink">Visitors</Link>
+                                    <Link to="/other/users" className="mainlink">Reference Videos</Link>
                                 </div>
                             </div>
                         </div>

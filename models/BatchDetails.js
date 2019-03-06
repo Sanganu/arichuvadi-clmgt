@@ -14,8 +14,8 @@ const batchdetailsSchema = new Schema({
           type: String,
 
         },
-        rateperhour: {
-          type: Number,
+        teacher :{
+          type: String,
         },
         students: [{
           type: Schema.Types.ObjectId,

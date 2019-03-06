@@ -4,7 +4,8 @@ const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
 const classdetails = require('../models/Classdetails.js')
 const passport = require("passport");
-const youtubechannel = require('youtube-channel-videos');
+var YouTube = require('youtube-node');
+var youTube = new YouTube();
 
 //Create new batch -- implemented
 router.post('/api/teacher/batch/new',function(req,res) {
@@ -343,20 +344,26 @@ router.get('/api/teacher/search/:str',(req,res) => {
 }); // End of Router -- search 
 
 
-//Visitors Login - API to get Channel Videos and serve front end
+//Reference Videos Login - API to get Channel Videos and serve front end
 router.get("/api/visitors",(req,res) => {
-  console.log("Youtube API - Search")
-    youtubechannel.channelVideos(process.env.API_YOUTUBE,process.env.API_Youtube_Channel,function(channellist){
-        console.log("The Channellist",channellist.length);
+  console.log("Youtube API - Search");
+  youTube.setKey(process.env.API_YOUTUBE);
+    youTube.search('uyir ezhuthukal',10,function(error,channellist){
+      if(error){
+        console.log("error in fetching youtube by channelid",error);
+        res.json(error);
+      }
+        console.log("The Channellist",channellist);
         let videoid =[];
-        for(let i =0; i < channellist.length;i++)
+        for(let i =0; i < channellist.items.length;i++)
         {
-            if(channellist[i].id.videoId)
+            if(channellist.items[i])
             { 
               videoid.push({
-                id:channellist[i].id.videoId,
-                title:channellist[i].snippet.title,
-                description:channellist[i].snippet.description,
+                id:channellist.items[i].id.videoId,
+                title:channellist.items[i].snippet.title,
+                description:channellist.items[i].snippet.description,
+                url: channellist.items[i].snippet.thumbnails.default.url
                 // thumbnail:channellist[i].snippet.thumbnails.default
               });
             } // end if

@@ -6,9 +6,9 @@ import Footer from '../components/Footer';
 class Createbatch extends Component {
     state = {
           batchdesc:"",
-          subject: "Music",
+          subject: "Beginner",
           level: "Beginner",
-          rateperhour: '30',
+          instructor: 'Chitra',
           batchdet: '',
           errmsg : '',
     }
@@ -29,9 +29,9 @@ class Createbatch extends Component {
              console.log("Create Batch -- Creation state values",this.state);
              //var myDate = new Date(this.state.startdate);
              if(  this.state.batchdesc === "" ||
-                 this.state.subject === "" ||
+                 this.state.course === "" ||
                  this.state.level === "" ||
-                this.state.rateperhour === "")
+                this.state.instructor === "")
                 {
                   console.log("No Empty Fields Enter valid data");
                   this.setState({errmsg : "No Empty Fields Enter valid data"});
@@ -41,9 +41,9 @@ class Createbatch extends Component {
              axios.post('/api/teacher/batch/new',
                       {
                             batchdesc : this.state.batchdesc,
-                            subject: this.state.subject,
+                            course: this.state.course,
                             level : this.state.level,
-                            rateperhour : this.state.rateperhour
+                            instructor : this.state.instructor
                       })
                   .then(response =>
                     {
@@ -53,9 +53,9 @@ class Createbatch extends Component {
                         let newbatch = {
                           bid : response.data._id,
                           batchdesc:response.data.batchdesc,
-                          subject: response.data.subject,
-                          level: response.data.level,
-                          rateperhour: response.data.rateperhour,
+                          course: response.data.course,
+                          level: respnse.data.level,
+                          instructor: response.data.instructor,
                          }
                          console.log("BAtch creation");
                         this.props.onInsert(newbatch)
@@ -79,31 +79,34 @@ class Createbatch extends Component {
                         <form  className="inputsection">
                             <h5 className = "subcr">Create New Batch</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
-                              <div className = "form-group input-group">
-                                <label className="has-float-label">
-                                 <input type = "text" placeholder="Batch Description" className = "form-control" id = "batchdesc" className="form-control" value={this.state.batchdesc} onChange = {this.handleInputChange} name = "batchdesc" />
-                                 <span>Batch Description</span>
-                                </label>
+                         
+                             <div className = "form-group row">
+                                <label className="has-float-label">Batch Name    </label>
+                                <input type = "text"  className = "form-control" id = "batchdesc" className="form-control" value={this.state.batchdesc} onChange = {this.handleInputChange} name = "batchdesc" />
                              </div>
                              <div className = "form-group row">
-                                     <label forhtml ="subject">Subject  </label>
-                                     <select className ="form-control" value={this.state.subject} onChange = {this.handleInputChange} name ="subject" id="subject">
-                                         <option value ='Music'>Music</option>
-                                          <option value ='Dance'>Dance</option>
-                                     </select>
-                             </div>
-                             <div className = "form-group row">
-                                 <label forhtml = "rateperhour">Rate per class per student($) </label>
-                                 <input type = "text"   id = "rateperhour" className="form-control" value={this.state.rateperhour} onChange = {this.handleInputChange} name = "rateperhour" />
-                            </div>
-                            <div className = "form-group row">
-                                 <label forhtml = "level">Level : </label>
-                                 <select className ="form-control" onChange = {this.handleInputChange} name ="level" id="level">
+                                 <label forhtml = "course">Course : </label>
+                                 <select className ="form-control" onChange = {this.handleInputChange} name ="course" id="course">
                                      <option value ='Beginner'>Beginner</option>
                                      <option value ='Intermediate'>Intermediate</option>
                                      <option value ='Advance'>Advance</option>
                                  </select>
                             </div>
+                             <div className = "form-group row">
+                                     <label forhtml ="level">Level </label>
+                                     <select className ="form-control" value={this.state.level} onChange = {this.handleInputChange} name ="level" id="level">
+                                         <option value ='1'>Level -1</option>
+                                          <option value ='2'>Level -2</option>
+                                          <option value ='3'>Level -3</option>
+                                          <option value ='4'>Level -4</option>
+                                          <option value ='5'>Level -5</option>
+                                     </select>
+                             </div>
+                             <div className = "form-group row">
+                                 <label forhtml = "instructor">Instructor </label>
+                                 <input type = "text"   id = "instructor" className="form-control" value={this.state.instructor} onChange = {this.handleInputChange} name = "instructor" />
+                            </div>
+                       
                             <br />
                              <button className = "createbutton"  name = "clcreation"  onClick = {this.handleBatchCreation}>Create Batch</button>
                         </form>

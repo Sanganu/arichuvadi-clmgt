@@ -131,30 +131,28 @@ class Addstudent extends Component {
   }
 
   updateStudentDetails = (studentrecord) => {
-    console.log("Student Record",studentrecord);
+    console.log("Student Record", studentrecord);
     axios.put("/api/teacher/student/update/" + studentrecord.recid, studentrecord)
       .then(response => {
         if (response.statatus === 200) {
-              // var newarray = this.state.studentrecords.filter(function (student) {
-              //   return (student.recid !== studentrecord.id)
-              // });
-              // newarray.push(studentrecord);
-              // console.log("The newarray-student update", newarray)
-              // this.setState(
-              //   { studentrecords: newarray },
-              //   () => console.log("The studentrecords", this.state.studentrecords));
-              let updatedStudentrecord = [];
-              for(let i =0;i < this.state.studentrecords ; i++)
-              {
-                if(this.state.studentrecords.recid !== studentrecord.recid )
-                {
-                  updatedStudentrecord.push(this.state.studentrecords[i])
-                }
-                else{
-                  updatedStudentrecord.push(studentrecord);
-                }
-              }
-              console.log("Student Details updated", this.state.studentrecords);
+          // var newarray = this.state.studentrecords.filter(function (student) {
+          //   return (student.recid !== studentrecord.id)
+          // });
+          // newarray.push(studentrecord);
+          // console.log("The newarray-student update", newarray)
+          // this.setState(
+          //   { studentrecords: newarray },
+          //   () => console.log("The studentrecords", this.state.studentrecords));
+          let updatedStudentrecord = [];
+          for (let i = 0; i < this.state.studentrecords; i++) {
+            if (this.state.studentrecords.recid !== studentrecord.recid) {
+              updatedStudentrecord.push(this.state.studentrecords[i])
+            }
+            else {
+              updatedStudentrecord.push(studentrecord);
+            }
+          }
+          console.log("Student Details updated", this.state.studentrecords);
         }
 
       })
@@ -169,92 +167,94 @@ class Addstudent extends Component {
     return (
       <div>
         <Teacherheader />
-        <h3 className="subhead">Students Record Management</h3>
-        <p className="errmsg">{this.state.errmsg}</p>
-        <form className="inputsection">
+        <div className="studentcontent">
+            <h3 className="subhead">Students Record Management</h3>
+            <p className="errmsg">{this.state.errmsg}</p>
+            <form className="inputsection">
 
-          <input type="text"
-            value={this.state.studentfname}
-            onChange={this.handleInputChange}
-            id="studentfname"
-            name="studentfname"
-            required
-            placeholder="Firstname" />
+              <input type="text"
+                value={this.state.studentfname}
+                onChange={this.handleInputChange}
+                id="studentfname"
+                name="studentfname"
+                required
+                placeholder="Firstname" />
 
-          <input type="text"
-            placeholder="Lastname"
-            value={this.state.studentlname}
-            onChange={this.handleInputChange}
-            name="studentlname"
-            id="studentlname"
-            required />
+              <input type="text"
+                placeholder="Lastname"
+                value={this.state.studentlname}
+                onChange={this.handleInputChange}
+                name="studentlname"
+                id="studentlname"
+                required />
 
-          <input type="text"
-            placeholder="Parent name"
-            value={this.state.parentname}
-            onChange={this.handleInputChange}
-            name="parentname"
-            id="parentname"
-            required />
+              <input type="text"
+                placeholder="Parent name"
+                value={this.state.parentname}
+                onChange={this.handleInputChange}
+                name="parentname"
+                id="parentname"
+                required />
 
-          <input type="email"
-            placeholder="Login Email"
-            value={this.state.loginemail}
-            onChange={this.handleInputChange}
-            name="loginemail"
-            id="loginemail"
-            required />
+              <input type="email"
+                placeholder="Login Email"
+                value={this.state.loginemail}
+                onChange={this.handleInputChange}
+                name="loginemail"
+                id="loginemail"
+                required />
 
-          <input type="password"
-            placeholder="password"
-            value={this.state.password}
-            onChange={this.handleInputChange}
-            name="password"
-            id="password"
-            required />
+              <input type="password"
+                placeholder="password"
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                name="password"
+                id="password"
+                required />
 
-          <input type="text"
-            placeholder="Phone number"
-            value={this.state.parentphonenumber}
-            onChange={this.handleInputChange}
-            name="parentphonenumber"
-            id="parentphonenumber"
-            required />
+              <input type="text"
+                placeholder="Phone number"
+                value={this.state.parentphonenumber}
+                onChange={this.handleInputChange}
+                name="parentphonenumber"
+                id="parentphonenumber"
+                required />
 
-          <button
-            className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
-        </form>
-        <br />
-        <h6 className="tablehead">Student Details </h6>
-        <div className="table-responsive">
-          <table className="table table-hover">
-            <tbody>
-              <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Parent </th>
-                <th>Phonenumber</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-              {studentrecords.map((data, index) =>
-                <Allstudents key={index}
-                  stdlname={data.stdlname}
-                  stdid={data.recid}
-                  stdfname={data.stdfname}
-                  parentname={data.parentname}
-                  phonenumber={data.phonenumber}
-                  stdemail={data.stdemail}
-                  subject={data.subject}
-                  deleteStudentDetails={this.deleteStudentDetails}
-                  updateStudentDetails={this.updateStudentDetails}
-                />
-              )}
-            </tbody>
-          </table>
-        </div>
-        <Footer />
+              <button
+                className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
+            </form>
+            <br />
+            <h6 className="tablehead">Student Details </h6>
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <tbody>
+                  <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Parent </th>
+                    <th>Phonenumber</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                  </tr>
+                  {studentrecords.map((data, index) =>
+                    <Allstudents key={index}
+                      stdlname={data.stdlname}
+                      stdid={data.recid}
+                      stdfname={data.stdfname}
+                      parentname={data.parentname}
+                      phonenumber={data.phonenumber}
+                      stdemail={data.stdemail}
+                      subject={data.subject}
+                      deleteStudentDetails={this.deleteStudentDetails}
+                      updateStudentDetails={this.updateStudentDetails}
+                    />
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+         <Footer />
       </div>
     ) //end return
   } // end render

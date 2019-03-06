@@ -88,7 +88,7 @@ body {
   color:  rgb(244, 247, 246);
 }
 
-
+/* 
 .form-group {
   position: relative;
   margin-bottom: 1.5rem;
@@ -107,7 +107,7 @@ body {
   font-size: 75%;
   transform: translate3d(0, -100%, 0);
   opacity: 1;
-}
+} */
 
 .inputsection {
    margin-top:2%;
@@ -115,7 +115,7 @@ body {
    margin-right: 5%;
    padding-left:5%;
    padding-right:5%;
-   opacity: 1%;
+   /* opacity: 1%; */
 }
 
 .form-control {
@@ -123,8 +123,8 @@ body {
   color: white;
   border-bottom: 1px solid white; */
   opacity:0.8;
-  background-color:rgba(0, 0, 0, 0);
-  color:white;
+  /* background-color:rgba(0, 0, 0, 0);
+  color:white; */
   border: none;
   border-bottom: 1px aqua;
   outline:none;
@@ -139,7 +139,7 @@ body {
 }
 
 label {
-  color: hsl(213,10,17);
+  color: rgb(245, 245, 245);
 }
 
 .modaltitle {
@@ -204,6 +204,9 @@ label {
   font-size: 20px;
 }
 
+.studentcontent{
+  overflow: scroll;
+}
 #tlogin {
   margin-bottom: 1%;
   padding-bottom: 2%;

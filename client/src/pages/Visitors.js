@@ -20,11 +20,22 @@ class Visitors extends Component
         console.log("Error....",error);
     });
   }
+  handleInput = (event) => {
+     var {name, value} = event;
+     this.setState({searchvideo:value}) 
+  }
+
+  searchFor = () => {
+    //Youtube search videos api call
+    
+  }
   render() 
         { const videos =  this.state.videos;
            return(<div>
                      <Teacherheader />
                    <div className = "vcontent">
+                     <input name = "searchvieo" id ="searchvideo" value = {this.state.searchvideo} onChange = {this.handleInput} />
+                     <button id="searchFor" onClick = {this.searchfor}>Search</button>
                      {/* {videos.map((video,key) => 
                      <Video key={key}
                             content = {video} />)} */}
