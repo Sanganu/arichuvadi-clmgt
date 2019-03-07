@@ -159,7 +159,7 @@ router.post('/api/teacher/batch/class/add',function(req,res) {
            });
 }); // Add Class details and update batch
 
-//To add class details(Attendance) -Get All Student details for the batch for class entry - implemented
+//To add class details(Attendance) -Get All Student details for the batch for class entry - implemented/and removed
 router.get("/api/teacher/batch/:batchid", (req,res) => {
   console.log("In router - to fetch students for class",req.params.batchid);
     batchdetails.findOne({_id:req.params.batchid})
@@ -309,23 +309,25 @@ router.put('/api/batch/student/delete/',(req,res) => {
 router.get('/api/teacher/search/:str',(req,res) => {
     let student_details
     let batch_details 
+    let searchString = req.params.str.toLowerCase();
+
     // Search for Student details
     studentdetails
       .find({ $or :
         [
-          {studentfname : req.params.str},
-          {studentlname : req.params.str},
-          {loginemail : req.params.str},
-          {parentname : req.params.str},
-          {parentphonenumber : req.params.str}
+          {studentfname : searchString},
+          {studentlname : searchString},
+          {loginemail : searchString},
+          {parentname :searchString},
+          {parentphonenumber : searchString}
         ] })
       .then((studentdet) =>
         {
               student_details = studentdet;
               batchdetails.find({$or:[
-                {batchdesc : req.params.str},
-                {level: req.params.str},
-                {subject: req.params.str}
+                {batchdesc : searchString},
+                {level: searchString},
+                {subject: searchString}
               ]})
               .then((batchdet) => {
                 console.log(studentdet,batchdet)

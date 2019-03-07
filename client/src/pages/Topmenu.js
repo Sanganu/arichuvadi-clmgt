@@ -6,13 +6,15 @@ import { Link } from 'react-router-dom';
 class Topmenu extends Component {
         render()
         {
-            return(<div className = 'otherlinks'>
+            return(<nav className = 'otherlinks'>
                    
-                           <Link to = '/teacher/batchmain' className = 'mainlink'>Create New Batch</Link>
-                           <Link to = '/teacher/searchrecords' className = 'mainlink'>Search</Link>
-                            <Link to = '/teacher/studentmanagement' className  = 'mainlink'>Student Details</Link> 
-                   
-            </div>); //end return
+                           <Link to = '/teacher/batchmain' className = 'tlink'>New Batch</Link>
+                           <Link to = '/teacher/searchrecords' className = 'tlink'>Search</Link>
+                            <Link to = '/teacher/studentmanagement' className  = 'tlink'>Student Details</Link> 
+                           <Link to  = '/' className  = 'tlink'>Home</Link>
+                            <Link to = '/teacher/studentmanagement' className  = 'tlink'>Student Details</Link> 
+                           <Link to = '/teacher/allbatch' className  = 'tlink' >All Batches</Link>
+            </nav>); //end return
         } //end render
 }// end topmenu
 

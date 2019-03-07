@@ -149,7 +149,7 @@ label {
 }
 
 .mainlink {
-  /* font-family: 'Cormorant Garamond', serif; */
+ 
   font-size: 30px;
   width:25%;
   padding:3%;
@@ -233,7 +233,10 @@ tr {
   padding-top:1%;
 }
 
-
+.tlink {
+  padding:3%;
+  margin:2%;
+}
 .vcontent {
   align-self: center;
   padding-left: 40px;

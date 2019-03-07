@@ -84,14 +84,15 @@ class Searchstudents extends Component{
     render(){
         let resultset = this.state.results
        
-        return(<div><Teacherheader />
-            <h4>Search Student Details </h4>
+        return(<div>
+            <Teacherheader />
+            <h4>Searc </h4>
             <form className="inputsection">
-                  <div className = "form-group row">
-                         <label forhtml = "searchstring" id ="lsearchstr">Search By Subject / Batch Description/ Student Name / Email / Parentname  </label><br />
+                  <div className = "form-group">
+                         <label forhtml = "searchstring" id ="lsearchstr">Search :<i class="fa fa-search"></i></label><br />
                          <input className="textarea" onChange  = {this.handleInputChange} type="text" name="searchstring"  value={this.state.searchstring} /><br />.
-                         <button name = "searchbtn" onClick = {this.searchrecords}>Search</button>
                   </div>
+                  <button name = "searchbtn" onClick = {this.searchrecords}>Search</button>
              </form> 
              {this.state.foundrecords  ?
               <div>{resultset.map((data,index) =>
