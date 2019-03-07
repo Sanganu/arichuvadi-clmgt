@@ -9,7 +9,7 @@ class BatchInfo extends Component {
     state = {
       bid: this.props.batchdetails.bid || '',
       bdesc: this.props.batchdetails.batchdesc || '',
-      rate: this.props.batchdetails.rateperhour || '',
+      instructor: this.props.batchdetails.instructor|| '',
       level: this.props.batchdetails.level || '',
       subject: this.props.batchdetails.subject||'',
       students: this.props.batchdetails.students || '',
@@ -152,13 +152,16 @@ class BatchInfo extends Component {
     {  const studentrec = this.state.studentrecs;
         return(<div>
                       <form>
-                          <div className ="form-group">
-                            <label htmlFor="bdesc" className= "bmd-label-floating" >{this.state.bdescription}</label>
-                            <input className="form-control" value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
-                          </div> 
-                          <input value={this.state.rate} placeholder= {this.state.rate}  name = "rate" onChange = {this.handleInputChange}/>
+                          {/* <div className ="form-group"> */}
+                            <label htmlFor="bdesc">Batch: </label>
+                            <input  value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
+                          {/* </div>  */}
+                          <label htmlFor="instructor">Instructor: </label>
+                          <input value={this.state.instructor} placeholder= {this.state.rate}  name = "instructor" onChange = {this.handleInputChange}/>
+                          <label htmlFor="level">Level </label>
                           <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
-                          <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
+                          <label htmlFor="course">Course </label>
+                          <input value = {this.state.subject} placeholder = {this.state.subject} name = "course" onChange = {this.handleInputChange} />
                           <label>{this.state.students}</label>
                           <button onClick = {this.updateBatch}>Save Changes</button>
                       </form>  
@@ -175,7 +178,7 @@ class BatchInfo extends Component {
                     <div className = "table-responsive">
                                   <table className = "table table-hover">
                                   <tbody>
-                                  <         tr>
+                                  <tr>
                                         <th>Firstname</th>
                                         <th>Lastname</th>
                                         <th>Email</th>

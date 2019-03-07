@@ -54,7 +54,7 @@ class Createbatch extends Component {
                           bid : response.data._id,
                           batchdesc:response.data.batchdesc,
                           course: response.data.course,
-                          level: respnse.data.level,
+                          level: response.data.level,
                           instructor: response.data.instructor,
                          }
                          console.log("BAtch creation");

@@ -8,8 +8,9 @@ class BatchRecAddclass extends Component
           batchdesc:this.props.bdesc,
           subject: this.props.bsubj,
           level: this.props.blevel,
-          rateperhour : this.props.brate
+          teacher : this.props.teacher
         }
+        console.log("get batch details")
         this.props.getBatchDetails(newbatch)
       }           
 
@@ -17,10 +18,11 @@ class BatchRecAddclass extends Component
       {
          return(<tr className = "addclass" onClick = {this.getBatchDet}>
                                       <td>{this.props.bdesc}</td>
-                                      <td>{ this.props.bsubj}</td>
-                                      <td>{this.props.brate}</td>
-                                      <td>{this.props.blevel}</td> 
-                                      <td>{this.props.bid}</td> 
+                                      <td>{this.props.bsubj}</td>
+                                      <td>{this.props.blevel}</td>
+                                      <td>{this.props.teacher}</td>
+                                     <td>{this.props.students}</td>
+                                     <td>{this.props.classes}</td>
                 </tr>) //end return
       } // end render
 } // end component

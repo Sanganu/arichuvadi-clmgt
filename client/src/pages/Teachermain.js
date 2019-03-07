@@ -69,7 +69,7 @@ class Teachermain extends Component {
                         <div className="row">
                             <h3 id="tlogin">Teacher Login</h3>
                             {/*<div className = "col-sm-6">*/}
-                            <form className="inputsection">
+                            {/* <form className="inputsection">
                                 <div className="form-group">
 
                                     <input className="form-control"
@@ -80,7 +80,7 @@ class Teachermain extends Component {
                                         value={this.state.vemail}
                                         required />
                                     <label className="form-control-placeholder"
-                                        for="vemail">Email Address </label>
+                                        htmlFor="vemail">Email Address </label>
                                 </div>
                                 <div className="form-group">
 
@@ -93,12 +93,12 @@ class Teachermain extends Component {
                                         required />
                                     <label
                                         className="form-control-placeholder"
-                                        for="vpword">Password </label>
+                                        htmlFor="vpword">Password </label>
                                 </div>
                                 <br />
                                 <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
                                 <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
-                            </form>
+                            </form> */}
 
                             <div className="card mb-4 dark-card-title ">
                                <div className="card-body">

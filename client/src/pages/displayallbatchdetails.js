@@ -33,17 +33,19 @@ class Allbatches extends Component
           axios.get('/api/teacher/batch/all')
               .then(response =>
                 {
-                  console.log("The Batch Details of  - axios call");
+                  console.log("The Batch Details of  - axios call",response.data);
                   if (response.data.length > 0){
                       for (let i =0; i<response.data.length;i++)
                       {
-                        console.log("Records",response.data[i]._id,response.data[i].batchdesc,response.data[i].batchid,response.data[i].subject,response.data[i].level,response.data[i].rateperhour);
+                        console.log("Records",response.data[i]._id,response.data[i].batchdesc,response.data[i].batchid,response.data[i].subject,response.data[i].level,response.data[i].teacher);
                           let currentrec = {
                                   recid: response.data[i]._id,
                                   recdesc: response.data[i].batchdesc,
                                   recsubj: response.data[i].subject,
                                   reclevel: response.data[i].level,
-                                  recrate: response.data[i].rateperhour
+                                  teacher: response.data[i].teacher,
+                                  noofstu: response.data[i].students.length,
+                                  noofclasses: response.data[i].classid.length
                                   //recstudents: response.data[i].students
                           }
                         batchrecords.push(currentrec);
@@ -83,6 +85,12 @@ class Allbatches extends Component
                                   <Topmenu />
                                   <table className = "table table-hover table-responsive">
                                       <thead>
+                                          <th>Batch</th>
+                                          <th>Course</th>
+                                          <th>Level</th>
+                                          <th>Instructor</th>
+                                          <th>Number of Students</th>
+                                          <th>Number of classes</th>
                                       </thead>
                                       <tbody>{stbatchrec.map((data,index) =>
                                               <BatchRecord
@@ -90,8 +98,9 @@ class Allbatches extends Component
                                                           bdesc = {data.recdesc}
                                                           bsubj = {data.recsubj}
                                                           blevel = {data.reclevel}
-                                                          brate = {data.recrate}
-                                                          studentdet =  {data.recstudents}
+                                                          teacher = {data.teacher}
+                                                          students =  {data.noofstu}
+                                                          classes={data.noofclasses}
                                                           getBatchDetails = {this.getBatchDetails }
                                                           key={index}
                                                               />
