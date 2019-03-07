@@ -26,7 +26,8 @@ class Searchstudents extends Component{
                 if ((response.data.studentdetails.length > 0) ||
                     (response.data.batchdetails.length > 0))
                 {   found = true;
-                    displaymessage = false
+                    displaymessage = false;
+                    console.log("if statement");
                     for (let i =0; i < response.data.studentdetails.length; i++)
                     {
                         
@@ -86,10 +87,10 @@ class Searchstudents extends Component{
        
         return(<div>
             <Teacherheader />
-            <h4>Searc </h4>
-            <form className="inputsection">
+       
+            <form className="searchsection">
                   <div className = "form-group">
-                         <label forhtml = "searchstring" id ="lsearchstr">Search :<i class="fa fa-search"></i></label><br />
+                         <label forhtml = "searchstring" id ="lsearchstr">Search </label><br />
                          <input className="textarea" onChange  = {this.handleInputChange} type="text" name="searchstring"  value={this.state.searchstring} /><br />.
                   </div>
                   <button name = "searchbtn" onClick = {this.searchrecords}>Search</button>

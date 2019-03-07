@@ -7,11 +7,11 @@ class Video extends Component {
   }
   render()
   {
-    
+    let videolink = "http://www.youtube.com/embed/"+ this.props.content.id
     return(<div className="card-body">
          <img className="card-img-top" src= {this.props.content.thumbnail} /> 
          <iframe controls>
-          src= {this.props.content.url} type="video/mp4" 
+          src= 'https://youtu.be/Us6NO6aJiWY'
         </iframe>
          <h4 className = "card-title">{this.props.content.title}</h4>
          <p className = "card-text">{this.props.content.description}</p>

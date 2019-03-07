@@ -309,37 +309,40 @@ router.put('/api/batch/student/delete/',(req,res) => {
 router.get('/api/teacher/search/:str',(req,res) => {
     let student_details
     let batch_details 
-    let searchString = req.params.str.toLowerCase();
-
+    let searchString = req.params.str;
+    console.log("Inside route search",searchString);
     // Search for Student details
     studentdetails
       .find({ $or :
         [
-          {studentfname : searchString},
-          {studentlname : searchString},
-          {loginemail : searchString},
-          {parentname :searchString},
-          {parentphonenumber : searchString}
+          {studentfname : {"$regex" :searchString,"$options":"i"}},
+          {studentlname :{"$regex" :searchString,"$options":"i"}},
+          {loginemail : {"$regex" :searchString,"$options":"i"}},
+          {parentname :{"$regex" :searchString,"$options":"i"}},
+          {parentphonenumber : {"$regex" :searchString,"$options":"i"}}
         ] })
       .then((studentdet) =>
         {
+              console.log("Search - Student done",studentdet,"Str",searchString);
               student_details = studentdet;
               batchdetails.find({$or:[
-                {batchdesc : searchString},
-                {level: searchString},
-                {subject: searchString}
+                {batchdesc : {"$regex" :searchString,"$options":"i"}},
+                {level: {"$regex" :searchString,"$options":"i"}},
+                {subject:{"$regex" :searchString,"$options":"i"}},
+                {teacher: {"$regex" :searchString,"$options":"i"}}
               ]})
               .then((batchdet) => {
-                console.log(studentdet,batchdet)
-                  res.json ({studentdetails:studentdet,batchdetails:batchdet})
+                console.log("REcords fetched",batchdet)
+                  res.json ({studentdetails:studentdet || "",batchdetails:batchdet || ""})
               })
               .catch((err) => {
-                res.json(err)
+                console.log("No records found-1",err);
+                res.json({err})
               });
                 // res.json(studentdet)
         })
       .catch((err) => {
-        console.log("No records found",err);
+        console.log("No records found-2",err);
         // res.json(err);
         res.json({err})
       }); // end fetch studentdetails records
@@ -365,7 +368,7 @@ router.get("/api/visitors",(req,res) => {
                 id:channellist.items[i].id.videoId,
                 title:channellist.items[i].snippet.title,
                 description:channellist.items[i].snippet.description,
-                url: channellist.items[i].snippet.thumbnails.default.url
+                url: "https://youtu.be/"+ channellist.items[i].id.videoId
                 // thumbnail:channellist[i].snippet.thumbnails.default
               });
             } // end if
