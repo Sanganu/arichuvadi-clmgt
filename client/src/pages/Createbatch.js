@@ -6,9 +6,9 @@ import Footer from '../components/Footer';
 class Createbatch extends Component {
     state = {
           batchdesc:"",
-          subject: "Beginner",
+          course: "Beginner",
           level: "Beginner",
-          instructor: 'Chitra',
+          instructor: '',
           batchdet: '',
           errmsg : '',
     }
@@ -41,9 +41,9 @@ class Createbatch extends Component {
              axios.post('/api/teacher/batch/new',
                       {
                             batchdesc : this.state.batchdesc,
-                            course: this.state.course,
+                            subject: this.state.course,
                             level : this.state.level,
-                            instructor : this.state.instructor
+                            teacher : this.state.instructor
                       })
                   .then(response =>
                     {
@@ -95,11 +95,11 @@ class Createbatch extends Component {
                              <div className = "form-group row">
                                      <label forhtml ="level">Level </label>
                                      <select className ="form-control" value={this.state.level} onChange = {this.handleInputChange} name ="level" id="level">
-                                         <option value ='1'>Level -1</option>
-                                          <option value ='2'>Level -2</option>
-                                          <option value ='3'>Level -3</option>
-                                          <option value ='4'>Level -4</option>
-                                          <option value ='5'>Level -5</option>
+                                         <option value ='Level 1'>Level -1</option>
+                                          <option value ='Level 2'>Level -2</option>
+                                          <option value ='Level 3'>Level -3</option>
+                                          <option value ='Level 4'>Level -4</option>
+                                          <option value ='Level 5'>Level -5</option>
                                      </select>
                              </div>
                              <div className = "form-group row">

@@ -6,7 +6,7 @@ import Createbatch from "./pages/Createbatch";
 import Addstudent from "./pages/Addstudent";
 import Homepage from "./pages/Homepage";
 import Visitors from "./pages/Visitors";
-import Completebatchdetails from "./pages/Completebatchdetails";
+
 import Allbatches from "./pages/displayallbatchdetails"
 import Studentlogin from "./pages/Studentlogin";
 import Addclass from "./pages/Addclassdetails";
@@ -28,7 +28,7 @@ const App = () =>
                    <Route exact path ="/teacher/batch/addstudent/:batchid" component={Addstudent} />
                    <Route exact path ="/teacher/batch/aclass" component={Addclass} />
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
-                   <Route exact path ="/teacher/batch/alldetails" component={Completebatchdetails} />
+                   
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
                    <Route exact path ="/teacher/searchrecords" component={Search} />
                    <Route exact path = "/teacher/studentmanagement" component = {StudentManagement} />

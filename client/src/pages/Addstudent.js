@@ -87,8 +87,11 @@ class Addstudent extends Component {
                     <h3 className = "subhead">Add New  Students to the Batch</h3>
                     <p className="errmsg">{this.state.errmsg}</p>
                               
-                    <form className="form-inline">
+                    <form className="form-control">
+                                  <div className ="form-group">
+                                      <label>First Name</label>
                                       <input type = "text"  value={this.state.studentfname} onChange = {this.handleInputChange} placeholder = "Student Firstname" id = "studentfname" name =  "studentfname" />
+                                   </div>   
                                        <input type = "text"  placeholder = "Student Last name" value={this.state.studentlname} onChange = {this.handleInputChange} name = "studentlname" id = "studentlname" />
                                        <input type = "text" placeholder = "Parent name"  value={this.state.parentname} onChange = {this.handleInputChange} name = "parentname" id = "parentname" />
                                        <input type = "text"  placeholder = "Login Email" value={this.state.loginemail} onChange = {this.handleInputChange} name = "loginemail" id = "loginemail" />

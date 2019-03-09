@@ -9,7 +9,7 @@ class BatchInfo extends Component {
     state = {
       bid: this.props.batchdetails.bid || '',
       bdesc: this.props.batchdetails.batchdesc || '',
-      instructor: this.props.batchdetails.instructor|| '',
+      instructor: this.props.batchdetails.teacher|| '',
       level: this.props.batchdetails.level || '',
       subject: this.props.batchdetails.subject||'',
       students: this.props.batchdetails.students || '',
@@ -47,7 +47,7 @@ class BatchInfo extends Component {
                     batchdesc : this.state.bdesc,
                     subject : this.state.subject,
                     level : this.state.level,
-                    rate : this.state.rate
+                    teacher : this.state.instructor
                   })
                   .then((response) => 
                   { 
@@ -152,16 +152,14 @@ class BatchInfo extends Component {
     {  const studentrec = this.state.studentrecs;
         return(<div>
                       <form>
-                          {/* <div className ="form-group"> */}
-                            <label htmlFor="bdesc">Batch: </label>
-                            <input  value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
-                          {/* </div>  */}
+                          <label htmlFor="bdesc">Batch: </label>
+                          <input  value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
                           <label htmlFor="instructor">Instructor: </label>
-                          <input value={this.state.instructor} placeholder= {this.state.rate}  name = "instructor" onChange = {this.handleInputChange}/>
+                          <input value={this.state.instructor} placeholder= {this.state.instructor}  name = "instructor" onChange = {this.handleInputChange}/>
                           <label htmlFor="level">Level </label>
                           <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
                           <label htmlFor="course">Course </label>
-                          <input value = {this.state.subject} placeholder = {this.state.subject} name = "course" onChange = {this.handleInputChange} />
+                          <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
                           <label>{this.state.students}</label>
                           <button onClick = {this.updateBatch}>Save Changes</button>
                       </form>  

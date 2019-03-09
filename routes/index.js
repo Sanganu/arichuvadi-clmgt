@@ -195,7 +195,7 @@ router.put("/api/teacher/batch/update",(req,res) => {
         {$set: {batchdesc : req.body.batchdesc,
                 subject: req.body.subject,
                 level: req.body.level,
-                rateperhour: req.body.rate}}
+                teacher: req.body.teacher}}
       ).then((data) => {
         console.log("Updated Batch detils",data)
         res.json(data)
