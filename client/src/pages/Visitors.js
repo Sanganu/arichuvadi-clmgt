@@ -41,13 +41,14 @@ class Visitors extends Component
                      <input name = "searchvieo" id ="searchvideo" value = {this.state.searchvideo} onChange = {this.handleInput} />
                      <button id="searchFor" onClick = {this.searchfor}>Search</button>
                    </div>
-                   <div className ="card">  
+                   {/* <div className = "card-columns"> */}
+                   <div className ="card-columns">  
                      {videos.map((data,index) => 
                         <Video key={index}
                                content = {data} />
                       )}
                     </div>
-                 
+                   {/* </div> */}
                  <Footer />
            </div>) 
       }
