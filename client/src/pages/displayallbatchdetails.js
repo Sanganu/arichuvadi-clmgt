@@ -78,11 +78,13 @@ class Allbatches extends Component
     {
       const stbatchrec = this.state.batchrecords;   
       return(<div>
-                    <Teacherheader />
+                    {/* <Teacherheader /> */}
+
                     <div>
+                         <Topmenu />
                               {this.state.allbatches ?
                                   <div>
-                                  <Topmenu />
+                               
                                   <table className = "table table-hover table-responsive">
                                       <thead>
                                           <th>Batch</th>
@@ -110,7 +112,7 @@ class Allbatches extends Component
                                   </div> :
                                   <div>{this.state.details ?
                                          <BatchInfo 
-                                            batchdetails = {this.state.batchdet}
+                                           batchdetails = {this.state.batchdet}
                                             newbatch = {false}
                                             />
                                       :<p></p>

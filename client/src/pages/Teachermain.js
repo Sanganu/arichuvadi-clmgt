@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Allbatches from './displayallbatchdetails';
-import Header from '../components/Header';
+import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
 import Batchmain from './Batchmain';
 import GoogleLogin from 'react-google-login';
@@ -15,7 +15,7 @@ class Teachermain extends Component {
     };
 
     responseGoogleValid = (response) => {
-        console.log("Google OAuth Credentials Valid",response);
+        console.log("Google OAuth Credentials Valid", response);
         this.setState({
             invalid: false,
             logindisp: false
@@ -23,7 +23,7 @@ class Teachermain extends Component {
     }
 
     responseGoogleInvalid = (response) => {
-        console.log("Google Oauth Credentials Invalid",response);
+        console.log("Google Oauth Credentials Invalid", response);
         this.setState({ invalid: true });
     }
 
@@ -61,75 +61,70 @@ class Teachermain extends Component {
 
 
     render() {
-        return (<div >
+        return (<div>
+            <Teacherheader />
             {this.state.logindisp ?
-                <div>
-                    <Header />
-                    <div className="tloginsection container">
-                        <div className="row">
-                            <h3 id="tlogin">Teacher Login</h3>
-                            {/*<div className = "col-sm-6">*/}
-                            {/* <form className="inputsection">
-                                <div className="form-group">
+                <div className="tloginsection row">
+                    <div className="col-lg-5 col-md-12">
+                        <form className="inputsection">
+                            <div className="form-group">
 
-                                    <input className="form-control"
-                                        onChange={this.handleInputChange}
-                                        type="text"
-                                        name="vemail"
-                                        id="vemail"
-                                        value={this.state.vemail}
-                                        required />
-                                    <label className="form-control-placeholder"
-                                        htmlFor="vemail">Email Address </label>
-                                </div>
-                                <div className="form-group">
-
-                                    <input className="form-control"
-                                        onChange={this.handleInputChange}
-                                        type="password"
-                                        name="vpword"
-                                        id="vpword"
-                                        value={this.state.vpword}
-                                        required />
-                                    <label
-                                        className="form-control-placeholder"
-                                        htmlFor="vpword">Password </label>
-                                </div>
-                                <br />
-                                <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
-                                <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
-                            </form> */}
-
-                            <div className="card mb-4 dark-card-title ">
-                               <div className="card-body">
-                                <GoogleLogin
-                                    clientId={keys.GOOGLE_CLIENT_ID}
-                                    buttonText="Login"
-                                    onSuccess={this.responseGoogleValid}
-                                    onFailure={this.responseGoogleInvalid}
-                                />
-                                </div>
+                                <input className="form-control"
+                                    onChange={this.handleInputChange}
+                                    type="text"
+                                    name="vemail"
+                                    id="vemail"
+                                    value={this.state.vemail}
+                                    required />
+                                <label className="form-control-placeholder"
+                                    htmlFor="vemail">Email Address </label>
                             </div>
-                            <div className="card-mb-4 dark-card-title ">
+                            <div className="form-group">
+
+                                <input className="form-control"
+                                    onChange={this.handleInputChange}
+                                    type="password"
+                                    name="vpword"
+                                    id="vpword"
+                                    value={this.state.vpword}
+                                    required />
+                                <label
+                                    className="form-control-placeholder"
+                                    htmlFor="vpword">Password </label>
+                            </div>
+                            <br />
+                            <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
+                            <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
+                        </form>
+                    </div>    
+                        <div className="col-lg-5 col-md-12">
+                            <div className="card sm-5 dark-card-title ">
+                                <div className="card-body">
+                                    <GoogleLogin
+                                        clientId={keys.GOOGLE_CLIENT_ID}
+                                        buttonText="Login"
+                                        onSuccess={this.responseGoogleValid}
+                                        onFailure={this.responseGoogleInvalid}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                : <div>
-                    <Allbatches />
+                    : <div>
+                        <Allbatches />
 
-                </div>}
-
+                    </div>}
+    
             {this.state.invalid ?
-                <div>
-                    <h6 className="errmsg">Invalid Credentials - Please use right credentials</h6>
-                </div> : <div></div>}
+                        <div>
+                            <h6 className="errmsg">Invalid Credentials - Please use right credentials</h6>
+                        </div> : <div></div>}
 
-            <Footer />
+             <Footer />
         </div>
         ); //end return
-    } //end render
-
-} //end class Teacher Main
-
-export default Teachermain;
+        } //end render
+    
+    } //end class Teacher Main
+    
+    export default Teachermain;

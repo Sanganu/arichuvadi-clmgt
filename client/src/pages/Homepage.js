@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Teachermain from "./Teachermain";
 
 class Homepage extends Component {
-
+ 
     render() {
         return (
             <div className="frontpage">
@@ -19,15 +20,15 @@ class Homepage extends Component {
                                 <div className="card-body box1">
                                     {/* <h4 className="card-title">Teachers</h4>
                                     <p className="card-text">Easy class management solution for independant teacher.</p> */}
-                                    <Link to="/teacher/tmain" className="mainlink">Teachers login</Link><br />
-
+                                    <Link to="/teacher/tmain" className="mainlink">Instructor</Link><br />
+                                    
                                 </div>
                                 {/* </div>
                         <div className="card mb-4 dark-card-title"> */}
                                 <div className="card-body box2">
                                     {/* <h4 className="card-title">Students</h4>
                                     <p className="card-text">Check your Attendance , Home work</p> */}
-                                    <Link to="/other/students/loginpg" className="mainlink">Student Login</Link><br />
+                                    <Link to="/other/students/loginpg" className="mainlink">Student</Link><br />
                                 </div>
                                 {/* </div>
                         <div className="card mb-4"> */}

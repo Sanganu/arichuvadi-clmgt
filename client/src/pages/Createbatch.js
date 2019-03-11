@@ -82,7 +82,12 @@ class Createbatch extends Component {
                          
                              <div className = "form-group row">
                                 <label className="has-float-label">Batch Name    </label>
-                                <input type = "text"  className = "form-control" id = "batchdesc" className="form-control" value={this.state.batchdesc} onChange = {this.handleInputChange} name = "batchdesc" />
+                                <input type = "text" 
+                                 className = "form-control"
+                                  id = "batchdesc" 
+                                  value={this.state.batchdesc}
+                                  onChange = {this.handleInputChange} 
+                                  name = "batchdesc" />
                              </div>
                              <div className = "form-group row">
                                  <label forhtml = "course">Course : </label>
