@@ -151,35 +151,42 @@ class BatchInfo extends Component {
     render()
     {  const studentrec = this.state.studentrecs;
         return(<div>
-                      <form>
-                      <div className = "form-group row">
+                      <form className = "inputsection">
+                      <div className = "form-group">
+                                <input  value={this.state.bdesc} 
+                                placeholder={this.state.bdesc}
+                                 name = "bdesc"
+                                  id="bdesc"
+                                  onChange = {this.handleInputChange}/>
                                 <label className="has-float-label">
                                 Batch: </label>
-                                <input  value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
                       </div>          
-                      <div className = "form-group row">
-                                <label className="has-float-label">
-                                Instructor: </label>
+                      <div className = "form-group">
+        
                                 <input value={this.state.instructor}
                                  placeholder= {this.state.instructor}  
                                  name = "instructor"
                                  onChange = {this.handleInputChange}/>
+                                 <label className="has-float-label">
+                                Instructor: </label>
                       </div>          
-                      <div className = "form-group row">
-                          <label className="has-float-label">
-                              Level</label>
+                      <div className = "form-group">
+                      
                           <input value = {this.state.level} 
                           placeholder ={this.state.level} 
                           name = "level"
                           onChange = {this.handleInputChange}/>
-                      </div>
-                      <div className = "form-group row">
                           <label className="has-float-label">
-                          Course </label>
+                          Level</label>
+                      </div>
+                      <div className = "form-group">
+                       
                           <input value = {this.state.subject}
                            placeholder = {this.state.subject} 
                            name = "subject" 
                            onChange = {this.handleInputChange} />
+                              <label className="has-float-label">
+                          Course </label>
                       </div>
                 
                            

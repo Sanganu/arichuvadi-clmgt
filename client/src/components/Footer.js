@@ -8,9 +8,9 @@ class Footer extends Component {
     return(
         <div className = "footer">
 
-         <Link to = '/' className = "flinks">Return to Edutrack</Link>
-         <Link to = '/other/students/loginpg' className = "flinks">Student Login</Link>
-         <Link to = '/teacher/tmain' className = "flinks">Teacher Login</Link>
+         <Link to = '/' className = "flinks"><i class="fa fa-facebook-square"></i></Link>
+         <Link to = '/other/students/loginpg' className = "flinks"><i class="fa fa-instagram"></i></Link>
+         <Link to = '/teacher/tmain' className = "flinks"><i class="fab fa-twitter-square"></i></Link>
           <p className = "myname">&#169; Edu Track by Sangeetha</p>
         </div>
     );

@@ -77,10 +77,11 @@ class Allbatches extends Component
     render()
     {
       const stbatchrec = this.state.batchrecords;   
-      return(<div>
+      return(<div className = "container">
                     {/* <Teacherheader /> */}
 
-                    <div>
+                <div className="center container">
+               
                          <Topmenu />
                               {this.state.allbatches ?
                                   <div>

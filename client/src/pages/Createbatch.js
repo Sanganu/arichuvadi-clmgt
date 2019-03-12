@@ -75,6 +75,8 @@ class Createbatch extends Component {
 
       render() {
         return(<div>
+               <Teacherheader />
+               <div className = "center container">
                   
                         <form  className="inputsection">
                             <h5 className = "subcr">Create New Batch</h5>
@@ -91,7 +93,7 @@ class Createbatch extends Component {
                              </div>
                              <div className = "form-group row">
                                  <label forhtml = "course">Course : </label>
-                                 <select className ="form-control" onChange = {this.handleInputChange} name ="course" id="course">
+                                 <select className ="form-control" onChange = {this.handleInputChange} value = {this.state.course} name ="course" id="course">
                                      <option value ='Beginner'>Beginner</option>
                                      <option value ='Intermediate'>Intermediate</option>
                                      <option value ='Advance'>Advance</option>
@@ -101,7 +103,7 @@ class Createbatch extends Component {
                                      <label forhtml ="level">Level </label>
                                      <select className ="form-control" value={this.state.level} onChange = {this.handleInputChange} name ="level" id="level">
                                          <option value ='Level 1'>Level -1</option>
-                                          <option value ='Level 2'>Level -2</option>
+                                          <option value ='Level 2' defaukt>Level -2</option>
                                           <option value ='Level 3'>Level -3</option>
                                           <option value ='Level 4'>Level -4</option>
                                           <option value ='Level 5'>Level -5</option>
@@ -112,9 +114,9 @@ class Createbatch extends Component {
                                  <input type = "text"   id = "instructor" className="form-control" value={this.state.instructor} onChange = {this.handleInputChange} name = "instructor" />
                             </div>
                        
-                            <br />
                              <button className = "createbutton"  name = "clcreation"  onClick = {this.handleBatchCreation}>Create Batch</button>
                         </form>
+                        </div>
                         <Footer />
                   </div>
               ) // end of return
