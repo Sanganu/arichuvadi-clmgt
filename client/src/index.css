@@ -5,7 +5,7 @@ body {
 }
 
 .box1{
-  background: linear-gradient(210deg, rgba(218, 32, 224, 0.8), rgba(160, 73, 73, 0.8), rgba(192, 18, 134, 0), rgba(185, 15, 15, 0));
+  background: linear-gradient(210deg, rgba(218, 32, 224, 0.8), rgba(160, 73, 73, 0.8), rgba(192, 18, 134, 0), rgba(196, 8, 196, 0.918));
 }
 
 .box2{
@@ -13,13 +13,19 @@ body {
 }
 
 .box3{
-  background: linear-gradient(210deg, rgba(243, 191, 2, 0.8), rgba(141, 131, 38, 0.8),rgb(44, 41, 10), rgba(34,34,34,0));
+  background: linear-gradient(210deg, rgba(243, 191, 2, 0.8), rgba(141, 131, 38, 0.8),rgb(44, 41, 10), rgba(223, 156, 11, 0.925));
+}
+.box4{
+  background: linear-gradient(210deg, rgba(204, 19, 19, 0.8), rgba(214, 136, 18, 0.8),rgb(114, 6, 47), rgba(34,34,34,0));
+}
+.box5{
+  background: linear-gradient(210deg, rgba(17, 216, 60, 0.8), rgba(1, 26, 27, 0.8),rgb(44, 41, 10), rgba(8, 219, 26, 0.904));
 }
 
  button{
   display: inline-block;
   text-transform: uppercase;
-  font-weight: 500;
+  /* font-weight: 500; */
   font-style: normal;
   font-size: 0.625rem;
   letter-spacing: 0.3em;

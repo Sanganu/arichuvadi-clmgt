@@ -3,7 +3,7 @@ import Allbatches from './displayallbatchdetails';
 import Teacherheader from '../components/Teacherheader';
 import Footer from '../components/Footer';
 import Batchmain from './Batchmain';
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 import keys from '../keys/keys.js'
 
 class Teachermain extends Component {
@@ -63,10 +63,15 @@ class Teachermain extends Component {
     render() {
         return (<div>
             <Teacherheader />
-            {this.state.logindisp ?
-                <div className="tloginsection row">
-                    <div className="col-lg-5 col-md-12">
+            <div className="center container">
+
+                {this.state.logindisp ?
+                
+
+
                         <form className="inputsection">
+                            <h3> Instructor Login</h3>
+                            <p>Temporary Login page</p>
                             <div className="form-group">
 
                                 <input className="form-control"
@@ -92,12 +97,35 @@ class Teachermain extends Component {
                                     className="form-control-placeholder"
                                     htmlFor="vpword">Password </label>
                             </div>
-                            <br />
+                     
                             <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
                             <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
                         </form>
-                    </div>    
-                        <div className="col-lg-5 col-md-12">
+
+                
+                    : <div>
+                        <Allbatches />
+
+                    </div>}
+
+                {this.state.invalid ?
+                    <div>
+                        <h6 className="errmsg">Invalid Credentials - Please use right credentials</h6>
+                    </div> : <div></div>}
+            </div>
+            <Footer />
+
+        </div>
+        ); //end return
+    } //end render
+
+} //end class Teacher Main
+
+export default Teachermain;
+
+
+
+                        {/* <div className="col-lg-5 col-md-12">
                             <div className="card sm-5 dark-card-title ">
                                 <div className="card-body">
                                     <GoogleLogin
@@ -108,23 +136,4 @@ class Teachermain extends Component {
                                     />
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    : <div>
-                        <Allbatches />
-
-                    </div>}
-    
-            {this.state.invalid ?
-                        <div>
-                            <h6 className="errmsg">Invalid Credentials - Please use right credentials</h6>
-                        </div> : <div></div>}
-
-             <Footer />
-        </div>
-        ); //end return
-        } //end render
-    
-    } //end class Teacher Main
-    
-    export default Teachermain;
+                        </div> */}

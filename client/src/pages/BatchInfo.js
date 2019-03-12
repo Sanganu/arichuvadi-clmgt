@@ -152,14 +152,37 @@ class BatchInfo extends Component {
     {  const studentrec = this.state.studentrecs;
         return(<div>
                       <form>
-                          <label htmlFor="bdesc">Batch: </label>
-                          <input  value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
-                          <label htmlFor="instructor">Instructor: </label>
-                          <input value={this.state.instructor} placeholder= {this.state.instructor}  name = "instructor" onChange = {this.handleInputChange}/>
-                          <label htmlFor="level">Level </label>
-                          <input value = {this.state.level} placeholder ={this.state.level} name = "level" onChange = {this.handleInputChange}/>
-                          <label htmlFor="course">Course </label>
-                          <input value = {this.state.subject} placeholder = {this.state.subject} name = "subject" onChange = {this.handleInputChange} />
+                      <div className = "form-group row">
+                                <label className="has-float-label">
+                                Batch: </label>
+                                <input  value={this.state.bdesc} placeholder={this.state.bdesc} name = "bdesc" id="bdesc" onChange = {this.handleInputChange}/>
+                      </div>          
+                      <div className = "form-group row">
+                                <label className="has-float-label">
+                                Instructor: </label>
+                                <input value={this.state.instructor}
+                                 placeholder= {this.state.instructor}  
+                                 name = "instructor"
+                                 onChange = {this.handleInputChange}/>
+                      </div>          
+                      <div className = "form-group row">
+                          <label className="has-float-label">
+                              Level</label>
+                          <input value = {this.state.level} 
+                          placeholder ={this.state.level} 
+                          name = "level"
+                          onChange = {this.handleInputChange}/>
+                      </div>
+                      <div className = "form-group row">
+                          <label className="has-float-label">
+                          Course </label>
+                          <input value = {this.state.subject}
+                           placeholder = {this.state.subject} 
+                           name = "subject" 
+                           onChange = {this.handleInputChange} />
+                      </div>
+                
+                           
                           <label>{this.state.students}</label>
                           <button onClick = {this.updateBatch}>Save Changes</button>
                       </form>  

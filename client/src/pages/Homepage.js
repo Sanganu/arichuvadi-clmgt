@@ -10,11 +10,11 @@ class Homepage extends Component {
         return (
             <div className="frontpage">
                 <Header />
-                <div className="container">
+                <div className="center container">
                     <div className="row" >
-                        <div className="col-lg-8">
+                        <div className="col-lg-7">
                         </div>
-                        <div className="col-lg-4">
+                        <div className="col-lg-5">
                             <div className="card-deck" id="content">
                                 {/* <div className="card mb-4"> */}
                                 <div className="card-body box1">
@@ -35,7 +35,17 @@ class Homepage extends Component {
                                 <div className="card-body box3">
                                     {/* <h4 className="card-title">Visitors</h4>
                                     <p className="card-text">Achievements and Performances</p> */}
-                                    <Link to="/other/users" className="mainlink">Reference</Link>
+                                    <Link to="/other/users" className="mainlink">Reference Videos</Link>
+                                </div>
+                                <div className="card-body box4">
+                                    {/* <h4 className="card-title">Visitors</h4>
+                                    <p className="card-text">Achievements and Performances</p> */}
+                                    <a href="http://www.tamilvu.org/" target ="_blank" className="mainlink">Tamil Virtual Academy</a>
+                                </div>
+                                <div className="card-body box5">
+                                    {/* <h4 className="card-title">Visitors</h4>
+                                    <p className="card-text">Achievements and Performances</p> */}
+                                    <a href="#" target ="_blank" className="mainlink">Books</a>
                                 </div>
                             </div>
                         </div>
