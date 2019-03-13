@@ -83,25 +83,22 @@ class Addstudent extends Component {
         // const bdetails = this.props.batchdet || false;
             return(
               <div>
-                    <br />
-                    <h3 className = "subhead">Add New  Students to the Batch</h3>
-                    <p className="errmsg">{this.state.errmsg}</p>
+                
+                   <p className="errmsg">{this.state.errmsg}</p>
                               
-                    <form className="form-control">
-                                  <div className ="form-group">
-                                      <label>First Name</label>
+                    <form>
+                                 
+                                     
                                       <input type = "text"  value={this.state.studentfname} onChange = {this.handleInputChange} placeholder = "Student Firstname" id = "studentfname" name =  "studentfname" />
-                                   </div>   
+                            
                                        <input type = "text"  placeholder = "Student Last name" value={this.state.studentlname} onChange = {this.handleInputChange} name = "studentlname" id = "studentlname" />
                                        <input type = "text" placeholder = "Parent name"  value={this.state.parentname} onChange = {this.handleInputChange} name = "parentname" id = "parentname" />
                                        <input type = "text"  placeholder = "Login Email" value={this.state.loginemail} onChange = {this.handleInputChange} name = "loginemail" id = "loginemail" />
                                        <input type = "password" placeholder = "password"  value={this.state.password} onChange = {this.handleInputChange} name = "password" id = "password" />
                                        <input type = "text"   placeholder = "Phone number" value={this.state.parentphonenumber} onChange = {this.handleInputChange} name = "parentphonenumber" id = "parentphonenumber" />
-                                       <button className = "createbutton"  name = "creation" onClick = {this.handleStudentCreation}>Create Student account</button>
+                                       <button className = "createbutton"  name = "creation" onClick = {this.handleStudentCreation}><i class="fa fa-address-card"></i>Add Student</button>
                     </form>
-                     <br />
-{/*                       
-                      <Footer /> */}
+                
               </div>
             ) //end return
       } // end render
