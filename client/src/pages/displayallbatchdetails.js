@@ -41,7 +41,7 @@ class Allbatches extends Component
                           let currentrec = {
                                   recid: response.data[i]._id,
                                   recdesc: response.data[i].batchdesc,
-                                  recsubj: response.data[i].subject,
+                                  recsubj: response.data[i].course,
                                   reclevel: response.data[i].level,
                                   teacher: response.data[i].teacher,
                                   noofstu: response.data[i].students.length,

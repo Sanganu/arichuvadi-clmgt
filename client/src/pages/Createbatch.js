@@ -7,7 +7,7 @@ class Createbatch extends Component {
     state = {
           batchdesc:"",
           course: "Beginner",
-          level: "Beginner",
+          level: "Level-3",
           instructor: '',
           batchdet: '',
           errmsg : '',
@@ -43,7 +43,8 @@ class Createbatch extends Component {
                             batchdesc : this.state.batchdesc,
                             subject: this.state.course,
                             level : this.state.level,
-                            teacher : this.state.instructor
+                            teacher : this.state.instructor,
+                            course: this.state.course
                       })
                   .then(response =>
                     {
@@ -55,9 +56,9 @@ class Createbatch extends Component {
                           batchdesc:response.data.batchdesc,
                           course: response.data.course,
                           level: response.data.level,
-                          instructor: response.data.instructor,
+                          instructor: response.data.teacher,
                          }
-                         console.log("BAtch creation");
+                         console.log("Batch creation",newbatch);
                         this.props.onInsert(newbatch)
                         //window.location = '/teacher/batch/addstudent/'+response._id;
                         //return <Addstudent />
@@ -93,7 +94,9 @@ class Createbatch extends Component {
                              </div>
                              <div className = "form-group row">
                                  <label forhtml = "course">Course : </label>
-                                 <select className ="form-control" onChange = {this.handleInputChange} value = {this.state.course} name ="course" id="course">
+                                 <select className ="form-control" 
+                                 onChange = {this.handleInputChange}
+                                  value = {this.state.course} name ="course" id="course">
                                      <option value ='Beginner'>Beginner</option>
                                      <option value ='Intermediate'>Intermediate</option>
                                      <option value ='Advance'>Advance</option>

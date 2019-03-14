@@ -6,7 +6,7 @@ const batchdetailsSchema = new Schema({
         batchdesc: {
            type: String,
          },
-         subject: {
+         course: {
            type: String,
 
          },

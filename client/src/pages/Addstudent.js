@@ -86,16 +86,61 @@ class Addstudent extends Component {
                 
                    <p className="errmsg">{this.state.errmsg}</p>
                               
-                    <form>
+                    <form className ="inputsection">
                                  
-                                     
-                                      <input type = "text"  value={this.state.studentfname} onChange = {this.handleInputChange} placeholder = "Student Firstname" id = "studentfname" name =  "studentfname" />
-                            
-                                       <input type = "text"  placeholder = "Student Last name" value={this.state.studentlname} onChange = {this.handleInputChange} name = "studentlname" id = "studentlname" />
-                                       <input type = "text" placeholder = "Parent name"  value={this.state.parentname} onChange = {this.handleInputChange} name = "parentname" id = "parentname" />
-                                       <input type = "text"  placeholder = "Login Email" value={this.state.loginemail} onChange = {this.handleInputChange} name = "loginemail" id = "loginemail" />
-                                       <input type = "password" placeholder = "password"  value={this.state.password} onChange = {this.handleInputChange} name = "password" id = "password" />
-                                       <input type = "text"   placeholder = "Phone number" value={this.state.parentphonenumber} onChange = {this.handleInputChange} name = "parentphonenumber" id = "parentphonenumber" />
+                                  <div className = "form-group">
+                                      <label htmlFor = "studentfname">Firstname</label>
+                                      <input type = "text" 
+                                       value={this.state.studentfname} 
+                                       onChange = {this.handleInputChange} 
+                                       placeholder = "Student Firstname"
+                                       id = "studentfname"
+                                       name =  "studentfname" />
+                                  </div>
+                                  <div className = "form-group">
+                                       <label htmlFor = "studentlname">Lastname</label>
+                                       <input type = "text"  
+                                       placeholder = "Student Lastname" 
+                                       value={this.state.studentlname}
+                                       onChange = {this.handleInputChange} 
+                                       name = "studentlname"
+                                       id = "studentlname" />
+                                  </div>     
+                                  <div className = "form-group">
+                                       <label htmlFor="parentname">Parent</label>
+                                       <input type = "text" 
+                                       placeholder = "Parent name" 
+                                       value={this.state.parentname}
+                                       onChange = {this.handleInputChange}
+                                       name = "parentname" 
+                                       id = "parentname" />
+                                  </div>    
+                                  <div className = "form-group">
+                                      <label htmlFor="loginemail">Email</label> 
+                                       <input type = "text"  
+                                       placeholder = "Login Email"
+                                       value={this.state.loginemail} 
+                                       onChange = {this.handleInputChange} 
+                                       name = "loginemail" 
+                                       id = "loginemail" />
+                                  </div>
+                                  <div className = "form-group">
+                                       <label htmlFor = "password">Password</label>
+                                       <input type = "password" 
+                                       placeholder = "password"  
+                                       value={this.state.password} 
+                                       onChange = {this.handleInputChange} 
+                                       name = "password" id = "password" />
+                                  </div>
+                                  <div className = "form-group">
+                                       <label htmlFor = "phonenumber">Phone</label>    
+                                       <input type = "text"   
+                                       placeholder = "Phone number" 
+                                       value={this.state.parentphonenumber} 
+                                       onChange = {this.handleInputChange} 
+                                       name = "parentphonenumber" 
+                                       id = "parentphonenumber" />
+                                  </div>     
                                        <button className = "createbutton"  name = "creation" onClick = {this.handleStudentCreation}><i class="fa fa-address-card"></i>Add Student</button>
                     </form>
                 

@@ -151,7 +151,7 @@ input {
 
 
 .leftside {
-  align-content: left;
+  justify-content: left;
 }
 
 label {
@@ -212,7 +212,7 @@ label {
 }
 
 .rightside {
-  align-content: right;
+  justify-content: right;
 }
 
 #searchvideo{
@@ -225,7 +225,9 @@ label {
 #searchFor{
   width: 90%;
 }
-
+select{
+  color:black;
+}
 option {
   color: black;
 }

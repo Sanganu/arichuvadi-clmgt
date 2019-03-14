@@ -9,8 +9,9 @@ class BatchInfo extends Component {
   state = {
     bid: this.props.batchdetails.bid || '',
     bdesc: this.props.batchdetails.batchdesc || '',
-    instructor: this.props.batchdetails.teacher || '',
+    instructor: this.props.batchdetails.instructor || '',
     level: this.props.batchdetails.level || '',
+    course: this.props.batchdetails.course || '',
     subject: this.props.batchdetails.subject || '',
     students: this.props.batchdetails.students || '',
     bdescription: this.props.batchdetails.batchdesc || '',
@@ -44,7 +45,7 @@ class BatchInfo extends Component {
       {
         batchid: this.state.bid,
         batchdesc: this.state.bdesc,
-        subject: this.state.subject,
+        course:this.state.course,
         level: this.state.level,
         teacher: this.state.instructor
       })
@@ -183,10 +184,10 @@ class BatchInfo extends Component {
                       <div className="form-group">
                         <label className="has-float-label">
                           Course </label>
-                        <input value={this.state.subject}
-                          placeholder={this.state.subject}
-                          name="subject"
-                          id="subject"
+                        <input value={this.state.course}
+                          placeholder={this.state.course}
+                          name="course"
+                          id="course"
                           onChange={this.handleInputChange} />
 
                       </div>
