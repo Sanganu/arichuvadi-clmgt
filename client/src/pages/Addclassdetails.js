@@ -6,7 +6,7 @@ class BatchRecAddclass extends Component
 {
                 state = {
                        date: '',
-                       modalIsOpen: false,
+                 
                        lessoncovered:'',
                        homework: '',
                        updatestatus: '',
@@ -32,9 +32,7 @@ class BatchRecAddclass extends Component
               }
         }; //End handle Input change
 
-        // componentDidmount = () => {
-        //     console.log("Add classdetails - Props",this.props.batchdet);
-        // };
+   
        
 
         saveClassDetails = (event) =>
@@ -76,39 +74,33 @@ class BatchRecAddclass extends Component
                 }
         } // end saveClassDetails
 
-          // deleteBatch = () => { 
-          //   axios.delete('/api/teacher/batch/delete',
-          //               {
-     
-          //            batchid:this.props.bid
-          //               })
-          //       .then(response =>
-          //         {
-          //            console.log("Batch details / Class details /Student details deleted")
-          //         }) //end then
-          //         .catch( error => {
-          //                      console.log("Error in deleting batch student class records!!!",error);
-
-          //         }); // end catch
-          // }
+         
       render()
       {
           return( <form>
                   <h5 className="errmsg">{this.state.updatestatus}</h5>
-                  <div className = "form-group row">
-                      <label forhtml = "lessoncovered">Lesson Covered : </label>
+                  <div className = "input-group">
+                      <div className="input-group-prepend">
+                        <span className= "input-group-text">Lesson Covered </span>
+                      </div>
                       <input type = "text"   value={this.state.lessoncovered} onChange = {this.handleInputChange} name = "lessoncovered"  id = "lessoncovered" placeholder="Lesson Covered" required />
                   </div>
-                  <div className = "form-group row">
-                      <label forhtml = "homework">Homework : </label>
+                  <div className = "input-group">
+                    <div className = "input-group-prepend">
+                      <span className = "input-group-text">Homework </span>
+                    </div>  
                       <input type = "text"   value={this.state.homework} onChange = {this.handleInputChange} name = "homework" id = "homework" placeholder = "Homework assigned" required/>
                   </div>
-                  <div className = "form-group row">
-                      <label forhtml = "homework">Date: </label>
+                  <div className = "input-group">
+                    <div className = "input-group-prepend">
+                      <span className="input-group-text">Date: </span>
+                    </div>  
                       <input type = "date"   value={this.state.date} onChange = {this.handleInputChange} name = "date" placeholder = "mm/dd/yyyy" id = "date" required/>
                   </div>
-                  <button className = "createbutton"
-                          onClick = {this.saveClassDetails}>Add Class Details
+                  <button className = "rowbtn"
+                          onClick = {this.saveClassDetails}>
+                          <i className="fa fa-plus-circle"></i>
+                          Add Class Info
                   </button>
                   </form>
                    ) //end return

@@ -88,8 +88,10 @@ class Addstudent extends Component {
                               
                     <form className ="inputsection">
                                  
-                                  <div className = "form-group">
-                                      <label htmlFor = "studentfname">Firstname</label>
+                                  <div className = "input-group">
+                                    <div className="input-group-prepend">
+                                      <span className="input-group-text">Firstname</span>
+                                    </div>  
                                       <input type = "text" 
                                        value={this.state.studentfname} 
                                        onChange = {this.handleInputChange} 
@@ -97,8 +99,10 @@ class Addstudent extends Component {
                                        id = "studentfname"
                                        name =  "studentfname" />
                                   </div>
-                                  <div className = "form-group">
-                                       <label htmlFor = "studentlname">Lastname</label>
+                                  <div className = "input-group">
+                                    <div className ="input-group-prepend">
+                                       <span className="input-group-text">Lastname</span>
+                                    </div>   
                                        <input type = "text"  
                                        placeholder = "Student Lastname" 
                                        value={this.state.studentlname}
@@ -106,8 +110,10 @@ class Addstudent extends Component {
                                        name = "studentlname"
                                        id = "studentlname" />
                                   </div>     
-                                  <div className = "form-group">
-                                       <label htmlFor="parentname">Parent</label>
+                                  <div className = "input-group">
+                                    <div className= "input-group-prepend">
+                                       <span className="input-group-text">Parent</span>
+                                    </div>   
                                        <input type = "text" 
                                        placeholder = "Parent name" 
                                        value={this.state.parentname}
@@ -115,8 +121,10 @@ class Addstudent extends Component {
                                        name = "parentname" 
                                        id = "parentname" />
                                   </div>    
-                                  <div className = "form-group">
-                                      <label htmlFor="loginemail">Email</label> 
+                                  <div className = "input-group">
+                                    <div className ="input-group-prepend">
+                                      <span className="input-group-text">Email</span> 
+                                    </div>  
                                        <input type = "text"  
                                        placeholder = "Login Email"
                                        value={this.state.loginemail} 
@@ -124,16 +132,20 @@ class Addstudent extends Component {
                                        name = "loginemail" 
                                        id = "loginemail" />
                                   </div>
-                                  <div className = "form-group">
-                                       <label htmlFor = "password">Password</label>
+                                  <div className = "input-group">
+                                     <div className="input-group-prepend">
+                                       <span className="input-group-text">Password</span>
+                                     </div>  
                                        <input type = "password" 
                                        placeholder = "password"  
                                        value={this.state.password} 
                                        onChange = {this.handleInputChange} 
                                        name = "password" id = "password" />
                                   </div>
-                                  <div className = "form-group">
-                                       <label htmlFor = "phonenumber">Phone</label>    
+                                  <div className = "input-group">
+                                    <div className ="input-group-prepend">
+                                       <span className ="input-group-text">Phone</span>    
+                                    </div>   
                                        <input type = "text"   
                                        placeholder = "Phone number" 
                                        value={this.state.parentphonenumber} 
@@ -141,7 +153,7 @@ class Addstudent extends Component {
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />
                                   </div>     
-                                       <button className = "createbutton"  name = "creation" onClick = {this.handleStudentCreation}><i class="fa fa-address-card"></i>Add Student</button>
+                                       <button className = "rowbtn"  name = "creation" onClick = {this.handleStudentCreation}><i class="fa fa-address-card"></i>Add Student</button>
                     </form>
                 
               </div>

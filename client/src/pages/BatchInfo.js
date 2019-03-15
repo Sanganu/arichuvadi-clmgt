@@ -149,47 +149,51 @@ class BatchInfo extends Component {
     return (<div>
       <div className="row">
         <div className="col-md-4 col-sm-12">
-                    <form className="inputsection">
-                      <div className="form-group">
-                        <label htmlFor="bdesc" className="leftside">
-                          Batch: </label>
-                        <input value={this.state.bdesc}
-                          placeholder={this.state.bdesc}
-                          name="bdesc"
-                          id="bdesc"
-                          onChange={this.handleInputChange} 
-                          className = "rightside"/>
-
+            <form className="inputsection">
+                      <div className="input-group">
+                           <div class = "input-group-prepend">
+                              <span className="input-group-text">
+                              Batch </span>
+                              <input value={this.state.bdesc}
+                                placeholder={this.state.bdesc}
+                                name="bdesc"
+                                id="bdesc"
+                                onChange={this.handleInputChange} 
+                              />
+                            </div>
                       </div>
-                      <div className="form-group">
-                        <label htmlFor="instructor" className="has-float-label">
-                          Instructor: </label>
-                        <input value={this.state.instructor}
-                          placeholder={this.state.instructor}
-                          name="instructor"
-                          id="instructor"
-                          onChange={this.handleInputChange} />
-
+                      <div className="input-group">
+                         <div  className = "input-group-prepend">
+                            <span className="input-group-text">
+                              Instructor </span>
+                            <input value={this.state.instructor}
+                              placeholder={this.state.instructor}
+                              name="instructor"
+                              id="instructor"
+                              onChange={this.handleInputChange} />
+                          </div>
                       </div>
-                      <div className="form-group">
-                        <label htmlFor="level" className="has-float-label">
-                          Level</label>
-                        <input value={this.state.level}
-                          placeholder={this.state.level}
-                          name="level"
-                          id="level"
-                          onChange={this.handleInputChange} />
-
+                      <div className="input-group">
+                          <div className = "input-group-prepend">
+                            <span className="input-group-text">
+                              Level</span>
+                          </div>    
+                            <input value={this.state.level}
+                              placeholder={this.state.level}
+                              name="level"
+                              id="level"
+                              onChange={this.handleInputChange} />
                       </div>
-                      <div className="form-group">
-                        <label className="has-float-label">
-                          Course </label>
-                        <input value={this.state.course}
-                          placeholder={this.state.course}
-                          name="course"
-                          id="course"
-                          onChange={this.handleInputChange} />
-
+                      <div className="input-group">
+                          <div className = "input-group-prepend">
+                            <span className="input-group-text">
+                              Course </span>
+                          </div>    
+                              <input value={this.state.course}
+                                placeholder={this.state.course}
+                                name="course"
+                                id="course"
+                                onChange={this.handleInputChange} />
                       </div>
                       <button onClick={this.updateBatch} className = "rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
                       <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
