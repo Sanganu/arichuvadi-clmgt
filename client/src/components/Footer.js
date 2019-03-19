@@ -11,6 +11,7 @@ class Footer extends Component {
          <Link to = '/' className = "flinks"><i class="fa fa-facebook-square"></i></Link>
          <Link to = '/other/students/loginpg' className = "flinks"><i class="fa fa-instagram"></i></Link>
          <Link to = '/teacher/tmain' className = "flinks"><i class="fab fa-twitter-square"></i></Link>
+         {/* <p>A Class management solution for Arichuvadi teachers</p> */}
           <p className = "myname">&#169; Edu Track by Sangeetha</p>
         </div>
     );

@@ -7,7 +7,7 @@ class Teacherheader extends Component {
     return(
         <div className = "navbar navbar-default">
          <Link to="/"><h1>Arichuvadi</h1></Link>
-         <h6>A class management solution for Arichuvadi teachers</h6>
+         <h6>A volunteer organization focused to spread Tamil language to future generations</h6>
         </div>
     );
   }
