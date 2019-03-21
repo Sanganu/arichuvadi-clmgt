@@ -124,3 +124,4 @@ class BatchRecAddclass extends Component
 } // end component
 
 export default BatchRecAddclass;
+ 
