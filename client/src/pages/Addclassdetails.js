@@ -77,25 +77,41 @@ class BatchRecAddclass extends Component
          
       render()
       {
-          return( <form>
+          return( <form className = "inputsection">
                   <h5 className="errmsg">{this.state.updatestatus}</h5>
-                  <div className = "input-group">
-                      <div className="input-group-prepend">
-                        <span className= "input-group-text">Lesson Covered </span>
-                      </div>
-                      <input type = "text"   value={this.state.lessoncovered} onChange = {this.handleInputChange} name = "lessoncovered"  id = "lessoncovered" placeholder="Lesson Covered" required />
+                  <div className = "form-group">
+                        <label className= "form-control-placeholder">
+                        Lesson Covered </label>
+                      <input type = "text"  
+                       value={this.state.lessoncovered}
+                       onChange = {this.handleInputChange} 
+                       name = "lessoncovered"  
+                       id = "lessoncovered" 
+                       placeholder="Lesson Covered" 
+                       className = "form-control"
+                       required />
                   </div>
-                  <div className = "input-group">
-                    <div className = "input-group-prepend">
-                      <span className = "input-group-text">Homework </span>
-                    </div>  
-                      <input type = "text"   value={this.state.homework} onChange = {this.handleInputChange} name = "homework" id = "homework" placeholder = "Homework assigned" required/>
+                  <div className = "form-group">
+                     <label className = "form-control-placeholder">
+                     Homework </label>
+                     <input type = "text" 
+                       value={this.state.homework} 
+                       onChange = {this.handleInputChange} 
+                       name = "homework" id = "homework" 
+                       placeholder = "Homework assigned" 
+                       className = "form-control"
+                       required/>
                   </div>
-                  <div className = "input-group">
-                    <div className = "input-group-prepend">
-                      <span className="input-group-text">Date: </span>
-                    </div>  
-                      <input type = "date"   value={this.state.date} onChange = {this.handleInputChange} name = "date" placeholder = "mm/dd/yyyy" id = "date" required/>
+                  <div className = "form-group">
+                      <label className="form-control-placeholder">
+                      Date: </label>
+                      <input type = "date"  
+                       value={this.state.date} 
+                       onChange = {this.handleInputChange} 
+                       name = "date" 
+                       placeholder = "mm/dd/yyyy" 
+                       className = "form-control"
+                       id = "date" required/>
                   </div>
                   <button className = "rowbtn"
                           onClick = {this.saveClassDetails}>

@@ -63,13 +63,9 @@ class Teachermain extends Component {
     render() {
         return (<div>
             <Teacherheader />
-            <div className="center container">
-
+            <div className="container middlecontent">
                 {this.state.logindisp ?
-                
-
-
-                        <form className="inputsection">
+                       <form className="inputsection">
                             <h3> Instructor Login</h3>
                             <p>Temporary Login page</p>
                             <div className="form-group">
@@ -101,24 +97,17 @@ class Teachermain extends Component {
                             <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
                             <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
                         </form>
-
-                
-                    : <div>
-                        <Allbatches />
-
-                    </div>}
-
+                    : <Allbatches />
+                }
                 {this.state.invalid ?
                     <div>
                         <h6 className="errmsg">Invalid Credentials - Please use right credentials</h6>
                     </div> : <div></div>}
             </div>
-            <Footer />
-
+            {/* <Footer /> */}
         </div>
         ); //end return
     } //end render
-
 } //end class Teacher Main
 
 export default Teachermain;

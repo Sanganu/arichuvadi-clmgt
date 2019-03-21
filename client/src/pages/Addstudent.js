@@ -88,67 +88,78 @@ class Addstudent extends Component {
                               
                     <form className ="inputsection">
                                  
-                                  <div className = "input-group">
-                                    <div className="input-group-prepend">
-                                      <span className="input-group-text">Firstname</span>
-                                    </div>  
+                                  <div className = "form-group">
+                                   
+                                      <label className="form-control-placeholder">
+                                      Firstname</label>
+                                   
                                       <input type = "text" 
                                        value={this.state.studentfname} 
                                        onChange = {this.handleInputChange} 
                                        placeholder = "Student Firstname"
+                                       className = "form-control"
                                        id = "studentfname"
                                        name =  "studentfname" />
                                   </div>
-                                  <div className = "input-group">
-                                    <div className ="input-group-prepend">
-                                       <span className="input-group-text">Lastname</span>
-                                    </div>   
+                                  <div className = "form-group">
+                                  
+                                       <label className="form-control-placeholder">
+                                       Lastname</label>
+                                    
                                        <input type = "text"  
                                        placeholder = "Student Lastname" 
                                        value={this.state.studentlname}
                                        onChange = {this.handleInputChange} 
+                                       className = "form-control"
                                        name = "studentlname"
                                        id = "studentlname" />
                                   </div>     
-                                  <div className = "input-group">
-                                    <div className= "input-group-prepend">
-                                       <span className="input-group-text">Parent</span>
-                                    </div>   
+                                  <div className = "form-group">
+                                       <label className="form-control-laceholder">
+                                       Parent</label>
+                                    
                                        <input type = "text" 
                                        placeholder = "Parent name" 
+                                       className = "form-control"
                                        value={this.state.parentname}
                                        onChange = {this.handleInputChange}
                                        name = "parentname" 
                                        id = "parentname" />
                                   </div>    
-                                  <div className = "input-group">
-                                    <div className ="input-group-prepend">
-                                      <span className="input-group-text">Email</span> 
-                                    </div>  
+                                  <div className = "form-group">
+                                   
+                                      <label className="form-control-placeholder">
+                                      Email</label> 
+                                   
                                        <input type = "text"  
                                        placeholder = "Login Email"
                                        value={this.state.loginemail} 
+                                       className ="form-control"
                                        onChange = {this.handleInputChange} 
                                        name = "loginemail" 
                                        id = "loginemail" />
                                   </div>
-                                  <div className = "input-group">
-                                     <div className="input-group-prepend">
-                                       <span className="input-group-text">Password</span>
-                                     </div>  
+                                  <div className = "form-group">
+                                     
+                                       <label className="form-control-placeholder">
+                                       Password</label>
+                                      
                                        <input type = "password" 
                                        placeholder = "password"  
+                                       className = "form-control"
                                        value={this.state.password} 
                                        onChange = {this.handleInputChange} 
                                        name = "password" id = "password" />
                                   </div>
-                                  <div className = "input-group">
-                                    <div className ="input-group-prepend">
-                                       <span className ="input-group-text">Phone</span>    
-                                    </div>   
+                                  <div className = "form-group">
+                                    
+                                       <label className ="form-control-placeholder">
+                                       Phone</label>    
+                                    
                                        <input type = "text"   
                                        placeholder = "Phone number" 
                                        value={this.state.parentphonenumber} 
+                                       className = "form-control"
                                        onChange = {this.handleInputChange} 
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />

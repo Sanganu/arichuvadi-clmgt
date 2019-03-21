@@ -17,7 +17,7 @@ class Studentmain extends Component
       {
            return(<div>
                      <h4 className = "subhead">Welcome {this.props.studentdet.fname}    {this.props.studentdet.lname} </h4>
-                     <br />
+                   
                            <div>
                                  <p>Parent: {this.props.studentdet.parent}</p>
                                  <p>Phone number:{this.props.studentdet.phone}</p>

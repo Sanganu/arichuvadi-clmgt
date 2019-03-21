@@ -77,49 +77,51 @@ class Allbatches extends Component {
     return (<div className="container middlecontent">
       {/* <Teacherheader /> */}
       <div className="row">
-        <div className="col-md-1">
-          <Topmenu />
+        <div className="col-sm-2 col-lg-1">
+           {/* <div className = "container"> */}
+                <Topmenu />
+            {/* </div>     */}
         </div>
-        <div className="col-md-11">
-          <div className="center container">
+        <div className="col-sm-10 col-lg-11">
+          {/* <div className="center container"> */}
             {this.state.allbatches ?
-              <div>
-
-                <table className="table table-hover table-responsive">
-                  <thead>
-                    <th>Batch</th>
-                    <th>Course</th> 
-                    <th>Level</th>
-                    <th>Instructor</th>
-                    <th>Number of Students</th>
-                    <th>Number of classes</th>
-                  </thead>
-                  <tbody>{stbatchrec.map((data, index) =>
-                    <BatchRecord
-                      bid={data.recid}
-                      bdesc={data.recdesc}
-                      bsubj={data.recsubj}
-                      blevel={data.reclevel}
-                      teacher={data.teacher}
-                      students={data.noofstu}
-                      classes={data.noofclasses}
-                      getBatchDetails={this.getBatchDetails}
-                      key={index}
-                    />
-                  )}
-                  </tbody>
-                </table>
-              </div> :
+                // <div>
+                  <table className="table table-hover table-responsive">
+                    <thead>
+                      <th>Batch</th>
+                      <th>Course</th> 
+                      <th>Level</th>
+                      <th>Instructor</th>
+                      <th>Number of Students</th>
+                      <th>Number of classes</th>
+                    </thead>
+                    <tbody>{stbatchrec.map((data, index) =>
+                      <BatchRecord
+                        bid={data.recid}
+                        bdesc={data.recdesc}
+                        bsubj={data.recsubj}
+                        blevel={data.reclevel}
+                        teacher={data.teacher}
+                        students={data.noofstu}
+                        classes={data.noofclasses}
+                        getBatchDetails={this.getBatchDetails}
+                        key={index}
+                      />
+                    )}
+                    </tbody>
+                  </table>
+                // </div> 
+              :
               <div>{this.state.details ?
-                <BatchInfo
-                  batchdetails={this.state.batchdet}
-                  newbatch={false}
-                />
-                : <p></p>
-              }
+                    <BatchInfo
+                      batchdetails={this.state.batchdet}
+                      newbatch={false}
+                    />
+                    : <p></p>
+                  } 
               </div>
             }
-          </div>
+          {/* </div> */}
         </div>
       </div>
     </div>); // end return

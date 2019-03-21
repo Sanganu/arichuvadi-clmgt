@@ -161,10 +161,9 @@ label {
   color: rgb(245, 245, 245);
 }
 
-/* .middlecontent{
-   height:80%;
-   overflow: scroll;
-} */
+.middlecontent{
+ width: 100%;
+} 
 
 .modaltitle {
   width: 100%;
@@ -255,8 +254,11 @@ select{
 } */
 
 .icon-bar{
-  height:100%;
-  background-color: rgb(238, 185, 106)
+  
+  background-color: rgb(238, 185, 106);
+  padding-top: 20px;
+  padding-right: none;
+  margin-right: none;
 }
 
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import {Menubar} from '../components/Menubar';
+// import Footer from '../components/Footer';
 import Teachermain from "./Teachermain";
 
 class Homepage extends Component {
@@ -10,9 +11,14 @@ class Homepage extends Component {
         return (
             <div className="frontpage">
                 <Header />
-                <div className="center container">
+                <div className="container middlecontent">
                     <div className="row" >
-                        <div className="col-lg-7">
+                       <div className = "col-lg-1">
+                        
+                              <Menubar />
+                        
+                       </div>
+                        <div className="col-lg-6">
                         </div>
                         <div className="col-lg-5">
                             <div className="card-deck" id="content">
@@ -51,7 +57,7 @@ class Homepage extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         );
     }
