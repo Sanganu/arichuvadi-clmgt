@@ -267,12 +267,13 @@ select{
   display:block;
   transition:all 0.3s ease;
   padding: 10%;
+  align-items: center;
   /* max-width: 200%; */
 }
 
-.sidemenulink + i{
-  width:200px;
-  height: 200px;
+.sidemenulink.fa{
+  width:400px;
+  height: 400px;
 }
 
 .sidemenulink:hover {
