@@ -163,6 +163,12 @@ label {
 
 .middlecontent{
  width: 100%;
+ left:0; 
+ padding-left:0;
+ margin-left:0;
+ margin-top:10;
+ padding-top: 10;
+ /* background-color: aqua; */
 } 
 
 .modaltitle {
@@ -248,11 +254,6 @@ select{
   overflow: scroll;
 }
 
-/* .sidenav{
-  height:100%;
-  background-color: rgb(238, 185, 106)
-} */
-
 .icon-bar{
   
   background-color: rgb(238, 185, 106);
@@ -265,8 +266,13 @@ select{
 .sidemenulink{
   display:block;
   transition:all 0.3s ease;
-  padding: 16px;
-  width:100;
+  padding: 10%;
+  /* max-width: 200%; */
+}
+
+.sidemenulink + i{
+  width:200px;
+  height: 200px;
 }
 
 .sidemenulink:hover {

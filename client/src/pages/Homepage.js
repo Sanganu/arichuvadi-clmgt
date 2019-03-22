@@ -14,9 +14,7 @@ class Homepage extends Component {
                 <div className="container middlecontent">
                     <div className="row" >
                        <div className = "col-lg-1">
-                        
                               <Menubar />
-                        
                        </div>
                         <div className="col-lg-6">
                         </div>

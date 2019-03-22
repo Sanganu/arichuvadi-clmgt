@@ -60,7 +60,6 @@ class Visitors extends Component
                       )}
                     </div>
                    </div>
-                 <Footer />
            </div>) 
       }
 }

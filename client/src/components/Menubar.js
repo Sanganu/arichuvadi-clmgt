@@ -7,12 +7,7 @@ export const Menubar = () => {
          <Link to = '/' className = "sidemenulink"><i class="fa fa-facebook-square"></i></Link>
          <Link to = '/other/students/loginpg' className = "sidemenulink"><i class="fa fa-instagram"></i></Link>
          <Link to = '/teacher/tmain' className = "sidemenulink"><i class="fa fa-twitter-square"></i></Link>
+         <Link to="/other/users" className="sidemenulink"><i class="fa fa-youtube-square"></i></Link>
          <a href='http://www.tamilvu.org/' target ="_blank" className = "sidemenulink"><i class="fa fa-university"></i></a>
-{/*          
-                   <Link to = '/teacher/batchmain' className = 'sidemenulink'><i class="fa fa-plus-square"></i></Link>
-                   <Link to = '/teacher/searchrecords' className = 'sidemenulink'><i class="fa fa-search"></i></Link>
-                    <Link to = '/teacher/studentmanagement' className  = 'sidemenulink'><i class="fa fa-users"></i></Link> 
-            */}
-
   </nav>)   
 }
