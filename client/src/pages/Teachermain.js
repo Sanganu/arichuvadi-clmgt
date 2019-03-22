@@ -65,8 +65,6 @@ class Teachermain extends Component {
         return (<div>
             <Teacherheader />
             <div className="container middlecontent">
-
-
                 {this.state.logindisp ?
                     <div className="row" >
                         <div className="col-lg-1">
