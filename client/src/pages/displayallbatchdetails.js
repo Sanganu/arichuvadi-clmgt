@@ -3,7 +3,6 @@ import axios from 'axios';
 // import BatchRecAddclass from './Addclassdetails';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
-import Teacherheader from '../components/Teacherheader';
 import Topmenu from '../components/Topmenu';
 
 class Allbatches extends Component {

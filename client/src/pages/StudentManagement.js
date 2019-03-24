@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import Allstudents from './displayallstudets';
 import Allstudents from './displayallstudentsdetails';
-import Footer from '../components/Footer';
+import Topmenu from "../components/Topmenu";
 import Teacherheader from '../components/Teacherheader';
 
 class Addstudent extends Component {
@@ -167,25 +166,30 @@ class Addstudent extends Component {
     return (
       <div>
         <Teacherheader />
-        <div className="studentcontent">
-            <h3 className="subhead">Students Record Management</h3>
-            <p className="errmsg">{this.state.errmsg}</p>
-            <form className="inputsection">
-              <div className = "form-group row">
-                 <label className="has-float-label"
-                     forhtml="studentfname">Firstname</label>
+        <div className="middlecontent">
+          <div className="row">
+            <h3 className="subhead">Add new student</h3>
+            <div className="col-lg-1 col-sm-1"> 
+                <Topmenu />
+            </div>
+            <div className="col-sm-11 col-lg-11">
+              <p className="errmsg">{this.state.errmsg}</p>
+              <form className="inputsection">
+                <div className="form-group row">
+                  <label className="has-float-label"
+                    forhtml="studentfname">Firstname</label>
                   <input type="text"
                     value={this.state.studentfname}
                     onChange={this.handleInputChange}
-                    className = "form-control"
-                    id="studentfname" 
+                    className="form-control"
+                    id="studentfname"
                     name="studentfname"
                     required
                     placeholder="Firstname" />
-              </div>
-              <div className = "form-group row">
-                 <label className = "has-float-label">
-                 Lastname</label>
+                </div>
+                <div className="form-group row">
+                  <label className="has-float-label">
+                    Lastname</label>
                   <input type="text"
                     placeholder="Lastname"
                     className="form-control"
@@ -194,90 +198,92 @@ class Addstudent extends Component {
                     name="studentlname"
                     id="studentlname"
                     required />
-              </div>
-              <div className = "form=group row">
-                  <label className = "has-float-label">
-                  Parent</label>
+                </div>
+                <div className="form=group row">
+                  <label className="has-float-label">
+                    Parent</label>
                   <input type="text"
                     placeholder="Parent name"
                     value={this.state.parentname}
                     onChange={this.handleInputChange}
                     name="parentname"
-                    className = "form-control"
+                    className="form-control"
                     id="parentname"
                     required />
-              </div>
-              <div className = "form-group row">
-                  <label className = "has-float-label">
-                  Email</label>
+                </div>
+                <div className="form-group row">
+                  <label className="has-float-label">
+                    Email</label>
                   <input type="email"
                     placeholder="Login Email"
                     value={this.state.loginemail}
                     onChange={this.handleInputChange}
                     name="loginemail"
                     id="loginemail"
-                    className = "form-control"
+                    className="form-control"
                     required />
-              </div>
-              <div className = "form-group row">
-                  <label className = "has-float-label">
-                  Password</label>
+                </div>
+                <div className="form-group row">
+                  <label className="has-float-label">
+                    Password</label>
                   <input type="password"
                     placeholder="password"
                     value={this.state.password}
                     onChange={this.handleInputChange}
                     name="password"
                     id="password"
-                    className = "form-control"
+                    className="form-control"
                     required />
-              </div>
-              <div className = "form-group row">
-                  <label className = "has-float-label">
-                  Phonenumber</label>
+                </div>
+                <div className="form-group row">
+                  <label className="has-float-label">
+                    Phonenumber</label>
                   <input type="text"
                     placeholder="Phone number"
-                    className = "form-control"
+                    className="form-control"
                     value={this.state.parentphonenumber}
                     onChange={this.handleInputChange}
                     name="parentphonenumber"
                     id="parentphonenumber"
                     required />
-              </div>
-              <button
-                className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
-            </form>
-            <br />
-            <h6 className="tablehead">Student Details </h6>
-            <div className="table-responsive">
-              <table className="table table-hover">
-                <tbody>
-                  <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>Parent </th>
-                    <th>Phonenumber</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                  </tr>
-                  {studentrecords.map((data, index) =>
-                    <Allstudents key={index}
-                      stdlname={data.stdlname}
-                      stdid={data.recid}
-                      stdfname={data.stdfname}
-                      parentname={data.parentname}
-                      phonenumber={data.phonenumber}
-                      stdemail={data.stdemail}
-                      subject={data.subject}
-                      deleteStudentDetails={this.deleteStudentDetails}
-                      updateStudentDetails={this.updateStudentDetails}
-                    />
-                  )}
-                </tbody>
-              </table>
+                </div>
+                <button
+                  className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
+              </form>
             </div>
           </div>
-         <Footer />
+          <br />
+          <h6 className="tablehead">Student Records </h6>
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <tbody>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>Parent </th>
+                  <th>Phonenumber</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+                {studentrecords.map((data, index) =>
+                  <Allstudents key={index}
+                    stdlname={data.stdlname}
+                    stdid={data.recid}
+                    stdfname={data.stdfname}
+                    parentname={data.parentname}
+                    phonenumber={data.phonenumber}
+                    stdemail={data.stdemail}
+                    subject={data.subject}
+                    deleteStudentDetails={this.deleteStudentDetails}
+                    updateStudentDetails={this.updateStudentDetails}
+                  />
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+    
       </div>
     ) //end return
   } // end render

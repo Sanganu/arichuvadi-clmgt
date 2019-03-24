@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Teacherheader from '../components/Teacherheader';
-import Footer from '../components/Footer';
 import Topmenu from '../components/Topmenu';
 
 class Createbatch extends Component {
@@ -82,7 +81,7 @@ class Createbatch extends Component {
                         <Topmenu />
                        </div> 
                     </div>
-                    <div className="col-lg-11 col-sm-10">
+                    <div className="col-lg-9 col-sm-9">
                         <form className="inputsection">
                             <h5 className="subcr">Create New Batch</h5>
                             <p className="errmsg">{this.state.errmsg}</p>

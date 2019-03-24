@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Studentmain from './Studentmain';
 import Teacherheader from '../components/Teacherheader';
-import Footer from '../components/Footer';
 import { Menubar } from '../components/Menubar';
 
 class Studentlogin extends Component {

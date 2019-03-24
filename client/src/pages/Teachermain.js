@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Allbatches from './displayallbatchdetails';
 import Teacherheader from '../components/Teacherheader';
-import Footer from '../components/Footer';
+
 import { Menubar } from '../components/Menubar';
-import Batchmain from './Batchmain';
 // import GoogleLogin from 'react-google-login';
-import keys from '../keys/keys.js'
+//import keys from '../keys/keys.js'
 
 class Teachermain extends Component {
     state = {

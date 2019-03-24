@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import {Menubar} from '../components/Menubar';
-// import Footer from '../components/Footer';
-import Teachermain from "./Teachermain";
 
 class Homepage extends Component {
  
@@ -44,12 +42,12 @@ class Homepage extends Component {
                                 <div className="card-body box4">
                                     {/* <h4 className="card-title">Visitors</h4>
                                     <p className="card-text">Achievements and Performances</p> */}
-                                    <a href="http://www.tamilvu.org/" target ="_blank" className="mainlink">Tamil Virtual Academy</a>
+                                    <a href="http://www.tamilvu.org/" target ="_blank"  rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>
                                 </div>
                                 <div className="card-body box5">
                                     {/* <h4 className="card-title">Visitors</h4>
                                     <p className="card-text">Achievements and Performances</p> */}
-                                    <a href="#" target ="_blank" className="mainlink">Books</a>
+                                    <a href="#" target ="_blank" rel="noopener noreferrer" className="mainlink">Books</a>
                                 </div>
                             </div>
                         </div>

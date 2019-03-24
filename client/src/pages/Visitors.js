@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
-import Footer from '../components/Footer';
 import axios from 'axios';
 import Video from "./Video";
-import { constants } from 'os';
+// import { constants } from 'os';
 
 
 class Visitors extends Component 

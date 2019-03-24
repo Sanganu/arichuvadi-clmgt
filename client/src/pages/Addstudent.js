@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Allstudents from './displayallstudents';
-// import Teacherheader from '../components/Teacherheader';
-import Footer from '../components/Footer';
+
 
 class Addstudent extends Component {
   state = {
@@ -29,7 +27,7 @@ class Addstudent extends Component {
  
     handleStudentCreation = (event) => {
        event.preventDefault();
-       let strecs = this.state.studentrecs;
+       
        if( this.state.studentfname === "" ||
            this.state.studentlname === "" ||
            this.state.loginemail === "" ||
