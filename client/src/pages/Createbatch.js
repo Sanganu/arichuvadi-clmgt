@@ -8,7 +8,7 @@ class Createbatch extends Component {
     state = {
         batchdesc: "",
         course: "Beginner",
-        level: "Level-3",
+        level: "Level-2",
         instructor: '',
         batchdet: '',
         errmsg: '',
@@ -75,12 +75,14 @@ class Createbatch extends Component {
     render() {
         return (<div>
             <Teacherheader />
-            <div className="center container">
+            <div className="middlecontent">
                 <div className="row" >
-                    <div className="col-lg-1">
+                    <div className="col-lg-1 col-sm-1">
+                       <div>
                         <Topmenu />
+                       </div> 
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-11 col-sm-10">
                         <form className="inputsection">
                             <h5 className="subcr">Create New Batch</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
@@ -108,7 +110,7 @@ class Createbatch extends Component {
                                 <label forhtml="level">Level </label>
                                 <select className="form-control" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
                                     <option value='Level 1'>Level -1</option>
-                                    <option value='Level 2' defaukt>Level -2</option>
+                                    <option value='Level 2' default>Level -2</option>
                                     <option value='Level 3'>Level -3</option>
                                     <option value='Level 4'>Level -4</option>
                                     <option value='Level 5'>Level -5</option>

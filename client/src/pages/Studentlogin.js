@@ -115,7 +115,7 @@ class Studentlogin extends Component {
                                 <div className="form-group">
                                   <label htmlFor="vpword"
                                   className="form-control-place">Password</label>
-                                  <input className="form=control"
+                                  <input className="form-control"
                                    onChange={this.handleInputChange}
                                    type="password"
                                    name="vpword" value={this.state.vpword} />

@@ -11,6 +11,7 @@ class Video extends Component {
     return(<div className="card">
           <div className = "embed-responsive embed-responsive-16by9">
           <iframe className ="embed-responsive-item"
+          title={this.props.content.id}
           src = {videolink}>
           </iframe>
           </div>
