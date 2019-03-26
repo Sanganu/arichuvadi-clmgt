@@ -167,8 +167,9 @@ class Addstudent extends Component {
       <div>
         <Teacherheader />
         <div className="middlecontent">
+        <h3 className="subhead">New Student</h3>
           <div className="row">
-            <h3 className="subhead">Add new student</h3>
+           
             <div className="col-lg-1 col-sm-1"> 
                 <Topmenu />
             </div>

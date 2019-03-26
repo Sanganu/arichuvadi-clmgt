@@ -255,28 +255,28 @@ select{
 }
 
 .icon-bar{
+  /* background-color: rgb(238, 185, 106); */
+  padding-top: 5%;
+  /* padding-right: none;
+  margin-right: none; */
   
-  background-color: rgb(238, 185, 106);
-  padding-top: 20px;
-  padding-right: none;
-  margin-right: none;
 }
 
-
+/* nav  ul {
+  list-style-type:  none;
+  
+} */
 .sidemenulink{
   display:block;
   transition:all 0.3s ease;
-  /* padding: 10%; */
-  align-items: center;
-  /* max-width: 200%; */
-  justify-content: space-between;
+ }
+
+.list-group-item{
+  border:none;
+  background-color: rgb(39,43,48);
 }
 
 
-
-.sidemenulink:hover {
-  background-color: rgb(231, 235, 2)
-}
 
 #tlogin {
   margin-bottom: 1%;
@@ -344,5 +344,8 @@ th{
 {
   .sidemenulink{
     display: inline;
+  }
+  .icon-bar{
+    align-items: center;
   }
 }

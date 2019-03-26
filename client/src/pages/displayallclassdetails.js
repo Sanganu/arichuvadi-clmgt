@@ -10,7 +10,7 @@ class Allclasses extends Component{
                                     <tr key={index}>
                                           <td>{data.lessoncov}</td>
                                           <td>{data.homework}</td>
-                                          <td>{data.cldate}</td>
+                                          <td>{data.cldate.toLocaleDateString}</td>
                                     </tr>
                                     )
             ); // end return

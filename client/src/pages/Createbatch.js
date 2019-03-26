@@ -83,11 +83,11 @@ class Createbatch extends Component {
                     </div>
                     <div className="col-lg-9 col-sm-9">
                         <form className="inputsection">
-                            <h5 className="subcr">Create New Batch</h5>
+                            <h5 className="subcr">New Cohort</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
 
                             <div className="form-group row">
-                                <label className="has-float-label">Batch Name    </label>
+                                <label className="has-float-label">Name    </label>
                                 <input type="text"
                                     className="form-control"
                                     id="batchdesc"
