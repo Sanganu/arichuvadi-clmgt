@@ -11,6 +11,7 @@ class Allclasses extends Component{
                                           <td>{data.lessoncov}</td>
                                           <td>{data.homework}</td>
                                           <td>{data.cldate}</td>
+                                          <td><i class="fa fa-trash"></i></td>
                                     </tr>
                                     )
             ); // end return

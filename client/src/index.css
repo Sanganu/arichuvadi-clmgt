@@ -68,6 +68,10 @@ body {
   font-weight: bolder;
  }
 
+.droplist{
+  color: rgba(20, 5, 5, 0.966);
+  font-weight: bolder;
+}
 
 .errmsg {
     padding-left: 3%;

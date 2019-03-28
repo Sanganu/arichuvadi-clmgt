@@ -4,7 +4,7 @@ class Allstudents extends Component
 {
     deleteStudent = () =>{
         console.log("Delete-child",this.props.studentrec.stdid);
-        this.setState({display : false});
+      
         this.props.deleteStudentDetails(this.props.studentrec.stdid);
     }
     render()
