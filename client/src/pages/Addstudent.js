@@ -63,13 +63,23 @@ class Addstudent extends Component {
                                   studentfname: '',
                                   studentlname: '',
                                   parentname: '',
+                                  password:'',
                                   loginemail: '',
                                   parentphonenumber: '',
                       });
                       this.props.newStudent(newstrec);
                     })
                   .catch(error =>{
-                     this.setState({errmsg:"Student Email already exist"});
+                    
+                     this.setState({
+                      studentfname: '',
+                      studentlname: '',
+                      parentname: '',
+                      password:'',
+                      loginemail: '',
+                      parentphonenumber: '',
+                      errmsg:"Student Email already exist"
+                      }); // Set state
                      console.log("Error - student email already exist !!!!",error)}
                 ); // End of axios
               } //end if  

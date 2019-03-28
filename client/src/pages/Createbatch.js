@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Teacherheader from '../components/Teacherheader';
-import Topmenu from '../components/Topmenu';
 
 class Createbatch extends Component {
     state = {
@@ -73,14 +72,9 @@ class Createbatch extends Component {
 
     render() {
         return (<div>
-            <Teacherheader />
+        
             <div className="middlecontent">
-                <div className="row" >
-                    <div className="col-lg-1 col-sm-1">
-                       <div>
-                        <Topmenu />
-                       </div> 
-                    </div>
+             
                     <div className="col-lg-9 col-sm-9">
                         <form className="inputsection">
                             <h5 className="subcr">New Cohort</h5>
@@ -124,7 +118,7 @@ class Createbatch extends Component {
                         </form>
                     </div>
                   </div>
-                </div>
+               
              </div>) // end of return
         } // end of render
   
