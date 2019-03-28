@@ -45,7 +45,7 @@ class BatchInfo extends Component {
       {
         batchid: this.state.bid,
         batchdesc: this.state.bdesc,
-        course:this.state.course,
+        course: this.state.course,
         level: this.state.level,
         teacher: this.state.instructor
       })
@@ -82,10 +82,13 @@ class BatchInfo extends Component {
       stdemail: nstudent.stdemail,
       phonenumber: nstudent.phonenumber
     }
-    studentrecs.push(newstrec);
-    this.setState({
-      studentrecs: studentrecs
-    }, () => { console.log("The Student Records - update with add student", studentrecs); });
+    if (newstrec) {
+      studentrecs.push(newstrec);
+      this.setState({
+        studentrecs: studentrecs
+      }, () => { console.log("The Student Records - update with add student", studentrecs); });
+    }
+
   }
 
   handleClassDetails = (nclass) => {
@@ -149,109 +152,109 @@ class BatchInfo extends Component {
     return (<div>
       <div className="row">
         <div className="col-md-3 col-sm-12">
-            <form className="inputsection">
-                      <div className="form-group">
+          <form className="inputsection">
+            <div className="form-group">
 
-                              <label className="form-control-placeholder"
-                              htmlFor="bdesc">
-                              Batch </label>
-                              <input value={this.state.bdesc}
-                                placeholder={this.state.bdesc}
-                                name="bdesc"
-                                id="bdesc"
-                                onChange={this.handleInputChange} 
-                                className = "form-control"
-                              />
-                         
-                      </div>
-                      <div className="form-group">
-                            <label className="form-control-placeholder">
-                              Instructor </label>
-                            <input value={this.state.instructor}
-                              placeholder={this.state.instructor}
-                              name="instructor"
-                              id="instructor"
-                              className = "form-control"
-                              onChange={this.handleInputChange} />
-                      </div>
-                      <div className="form-group">
-                            <label className="form-control-plceholder">
-                              Level</label>
-                         
-                            <input value={this.state.level}
-                              placeholder={this.state.level}
-                              name="level"
-                              id="level"
-                              className ="form-control"
-                              onChange={this.handleInputChange} />
-                      </div>
-                      <div className="form-group">
-                         
-                            <label className="form-control-placeholder">
-                              Course </label>
-                            
-                              <input value={this.state.course}
-                                placeholder={this.state.course}
-                                name="course"
-                                id="course"
-                                className = "form-control"
-                                onChange={this.handleInputChange} />
-                      </div>
-                      <button onClick={this.updateBatch} className = "rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-                      <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
-                    </form>
-         </div>
-          <div className="col-md-5 col-sm-12">
-            <Addstudent batchdet={this.props.batchdetails}
-              newStudent={this.handleNewStudent} />
-          </div>
-          <div className="col-md-4 col-sm-12">
-            <BatchAddClassDetails batchdet={this.props.batchdetails}
-              newClassDetails={this.handleClassDetails} />
+              <label className="form-control-placeholder"
+                htmlFor="bdesc">
+                Batch </label>
+              <input value={this.state.bdesc}
+                placeholder={this.state.bdesc}
+                name="bdesc"
+                id="bdesc"
+                onChange={this.handleInputChange}
+                className="form-control"
+              />
+
+            </div>
+            <div className="form-group">
+              <label className="form-control-placeholder">
+                Instructor </label>
+              <input value={this.state.instructor}
+                placeholder={this.state.instructor}
+                name="instructor"
+                id="instructor"
+                className="form-control"
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="form-group">
+              <label className="form-control-plceholder">
+                Level</label>
+
+              <input value={this.state.level}
+                placeholder={this.state.level}
+                name="level"
+                id="level"
+                className="form-control"
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="form-group">
+
+              <label className="form-control-placeholder">
+                Course </label>
+
+              <input value={this.state.course}
+                placeholder={this.state.course}
+                name="course"
+                id="course"
+                className="form-control"
+                onChange={this.handleInputChange} />
+            </div>
+            <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
+            <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
+          </form>
+        </div>
+        <div className="col-md-5 col-sm-12">
+          <Addstudent batchdet={this.props.batchdetails}
+            newStudent={this.handleNewStudent} />
+        </div>
+        <div className="col-md-4 col-sm-12">
+          <BatchAddClassDetails batchdet={this.props.batchdetails}
+            newClassDetails={this.handleClassDetails} />
+        </div>
+      </div>
+      <div className="row" >
+        <div className="col-md-6">
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <tbody>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                </tr>
+                {studentrec.map((data, index) => (
+                  <Allstudents studentrec={data}
+                    deleteStudentDetails={this.deleteStudent}
+                    key={index}
+                  />))}
+              </tbody>
+            </table>
           </div>
         </div>
-        <div className = "row" >
-              <div className = "col-md-6">
-                  <div className="table-responsive">
-                        <table className="table table-hover">
-                          <tbody>
-                            <tr>
-                              <th>Firstname</th>
-                              <th>Lastname</th>
-                              <th>Email</th>
-                            </tr>
-                            {studentrec.map((data, index) => (
-                              <Allstudents studentrec={data}
-                                deleteStudentDetails={this.deleteStudent}
-                                key={index}
-                              />))}
-                          </tbody>
-                        </table>
-                   </div>
-               </div>   
-              <div className = "col-md-6">
-                <div className="table-responsive">
-                    <table className="table table-hover">
-                      <tbody>
-                        <tr>
-                          <th>Lessons Covered</th>
-                          <th>Homework</th>
-                          <th>Date</th>
-                        </tr>
+        <div className="col-md-6">
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <tbody>
+                <tr>
+                  <th>Lessons Covered</th>
+                  <th>Homework</th>
+                  <th>Date</th>
+                </tr>
 
-                        <Allclasses classrecs={this.state.classrecs} />
-                      </tbody>
-                    </table>
-                 </div>
-              </div>      
+                <Allclasses classrecs={this.state.classrecs} />
+              </tbody>
+            </table>
+          </div>
         </div>
-   </div>) 
-} // end of render
+      </div>
+    </div>)
+  } // end of render
 } //end component
 
 export default BatchInfo;
 
-  
+
 {/* <div className="row">
 <div className="col-md-3 col-sm-12">
     <form className="inputsection">
