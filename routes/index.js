@@ -291,19 +291,36 @@ router.delete('/api/teacher/student/delete/:id',(req,res) => {
 }); // End of router delete student details
 
 //Delete Student from a batch -- working??
-router.put('/api/batch/student/delete/',(req,res) => {
+router.delete('/api/batch/student/delete/',(req,res) => {
+       var stdid = req.body.studentid
         console.log("Student delete from batch-inputs",req.body.batchid,req.body.studentid);
           batchdetails.updateOne({_id: req.body.batchid},
               {$pull:{students:req.body.studentid}})
             .then((data) => {
               console.log("Student delete from batch",data);
-              res.json(req.body.studentid);
+              res.json(stdid);
             })
             .catch((err) => {
               console.log("Error in deleting student details",err);
               res.json(err);
             });
-}); // end of router delete from batch
+}); // end of router delete student from batch
+
+//Delete Class details from a batch -- working??
+router.delete('/api/batch/student/delete/',(req,res) => {
+  console.log("Student delete from batch-inputs",req.body.batchid,req.body.studentid);
+    batchdetails.updateOne({_id: req.body.batchid},
+        {$pull:{classid:req.body.classid}})
+      .then((data) => {
+        console.log("Classdetails delete from batch",data);
+        res.json(req.body.studentid);
+      })
+      .catch((err) => {
+        console.log("Error in deleting class details",err);
+        res.json(err);
+      });
+}); // end of router to delete class from batch
+
 
 // Search Student & Batch Records
 router.get('/api/teacher/search/:str',(req,res) => {

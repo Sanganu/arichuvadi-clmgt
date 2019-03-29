@@ -8,7 +8,7 @@ import Teacherheader from '../components/Teacherheader';
 class Batchmain extends Component {
       state = {
           batchdet : '',
-          displaybatch : true
+          displaybatch : this.props.dbatch
           }
              
       handleBatchCreated = (batchnew) => {

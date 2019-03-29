@@ -172,7 +172,12 @@ class Addstudent extends Component {
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />
                                   </div>     
-                                       <button className = "rowbtn"  name = "creation" onClick = {this.handleStudentCreation}><i class="fa fa-address-card"></i>Add Student</button>
+                                       <button
+                                        className = "rowbtn" 
+                                        name = "creation"
+                                        onClick = {this.handleStudentCreation}>
+                                        <i className="fa fa-address-card"></i>
+                                        Add Student</button>
                     </form>
                 
               </div>

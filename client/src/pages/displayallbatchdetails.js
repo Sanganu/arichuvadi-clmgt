@@ -14,18 +14,18 @@ class Allbatches extends Component {
     recsubj: '',
     reclevel: '',
     recrate: '',
-    allbatches: true,
+    allbatches: this.props.displayall,
     sbatchid: '',
     sbdesc: '',
     srate: '',
     slevel: '',
     sbsubj: '',
     student: '',
-    details: false
+    details: this.props.details || false
   }
 
   componentDidMount = () => {
-    console.log("displayallbatchdetails -- component before axios call");
+    console.log("displayallbatchdetails -- component before axios call",this.props);
     let batchrecords = this.state.batchrecords;
     let allbatches = false
     axios.get('/api/teacher/batch/all')
@@ -33,7 +33,7 @@ class Allbatches extends Component {
         console.log("The Batch Details of  - axios call", response.data);
         if (response.data.length > 0) {
           for (let i = 0; i < response.data.length; i++) {
-            console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].batchid, response.data[i].subject, response.data[i].level, response.data[i].teacher);
+            console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
             let currentrec = {
               recid: response.data[i]._id,
               recdesc: response.data[i].batchdesc,
@@ -108,14 +108,13 @@ class Allbatches extends Component {
                     </tbody>
                   </table>
               :
-              <div>{this.state.details ?
+              
                     <BatchInfo
                       batchdetails={this.state.batchdet}
                       newbatch={false}
                     />
-                    : <p></p>
-                  } 
-              </div>
+                   
+                 
             }
         </div>
       </div>

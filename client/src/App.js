@@ -21,7 +21,7 @@ const App = () =>
           <div>
           <Switch>
                    <Route exact path = "/" component = {Homepage}/>
-                   <Route exact path = "/teacher/allbatch" component = {Allbatches}/>
+                   <Route exact path = "/teacher/allbatch" render={() => <Allbatches displayall={true}/>} />
                    <Route exact path = "/teacher/tmain" component = {Teachermain}/>
                    <Route exact path = "/other/students/loginpg" component = {Studentlogin}/>
                    <Route exact path = "/other/users" component = {Visitors}/>
