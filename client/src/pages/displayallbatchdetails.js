@@ -85,12 +85,14 @@ class Allbatches extends Component {
             {this.state.allbatches ?
                   <table className="table table-hover table-responsive">
                     <thead>
+                      <tr>
                       <th>Batch</th>
                       <th>Course</th> 
                       <th>Level</th>
                       <th>Instructor</th>
                       <th>Number of Students</th>
                       <th>Number of classes</th>
+                      </tr>
                     </thead>
                     <tbody>{stbatchrec.map((data, index) =>
                       <BatchRecord
@@ -107,8 +109,7 @@ class Allbatches extends Component {
                     )}
                     </tbody>
                   </table>
-              :
-              
+              :              
                     <BatchInfo
                       batchdetails={this.state.batchdet}
                       newbatch={false}

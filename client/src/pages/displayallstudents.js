@@ -15,7 +15,7 @@ class Allstudents extends Component
                        {/* <td>{this.props.studentrec.stdid}</td> */}
                        <td><button onClick={this.deleteStudent}
                        className = "rowbtn">
-                       <i class="fa fa-trash"></i>
+                       <i className="fa fa-trash"></i>
                        </button></td>
                        {/* <td></td> */}
                   </tr>)

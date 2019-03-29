@@ -104,7 +104,7 @@ class Teachermain extends Component {
                             </form>
                         </div>
                     </div>
-                    : <Allbatches />
+                    : <Allbatches displayall={true}/>
                 }
                 {this.state.invalid ?
                     <div>
