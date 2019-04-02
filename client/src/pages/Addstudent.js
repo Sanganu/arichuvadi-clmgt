@@ -51,7 +51,7 @@ class Addstudent extends Component {
                   })
                   .then(res =>
                     {
-                       console.log("The response from adding student",res);
+                       
                       let newstrec = {
                           stdid: res.data._id,
                           stdfname : res.data.studentfname,
@@ -59,6 +59,7 @@ class Addstudent extends Component {
                           stdemail : res.data.loginemail,
                           phonenumber: res.data.phonenumber
                       };
+                      console.log("The response from adding student",newstrec);
                       this.setState({
                                   studentfname: '',
                                   studentlname: '',

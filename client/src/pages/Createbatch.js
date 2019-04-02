@@ -75,9 +75,9 @@ class Createbatch extends Component {
         
             <div className="middlecontent">
              
-                    <div className="col-lg-9 col-sm-9">
+                    <div className="col-lg-8 col-sm-8">
                         <form className="inputsection">
-                            <h5 className="subcr">New Cohort</h5>
+                            <h5>New Cohort</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
 
                             <div className="form-group row">
@@ -90,7 +90,7 @@ class Createbatch extends Component {
                                     name="batchdesc" />
                             </div>
                             <div className="form-group row">
-                                <label forhtml="course">Course : </label>
+                                <label className="has-float-label">Course : </label>
                                 <select className="form-control droplist"
                                     onChange={this.handleInputChange}
                                     value={this.state.course} name="course" id="course">
@@ -100,7 +100,7 @@ class Createbatch extends Component {
                                 </select>
                             </div>
                             <div className="form-group row">
-                                <label forhtml="level">Level </label>
+                                <label className="has-float-label">Level </label>
                                 <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
                                     <option value='Level 1'>Level -1</option>
                                     <option value='Level 2' default>Level -2</option>

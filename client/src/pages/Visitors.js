@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
 import axios from 'axios';
 import Video from "./Video";
+import Topmenu from "../components/Topmenu";
 // import { constants } from 'os';
 
 
@@ -37,18 +38,23 @@ class Visitors extends Component
         { const videos =  this.state.videos;
            return(<div>
                    <Teacherheader />
-                   <div className="container middlecontent">
-                   <div className = "vcontent row">
-                     <div className ="col-md-6">
+                   <div className="middlecontent">
+                   <div className = "row">
+                     <div className = "col-md-1 col-lg-1">
+                     </div>
+                     <div className ="col-md-8">
+                       <form classNme = "inputsection">
                          <input type="text"
                           className="form-control"
                           name = "searchvideo" 
                           value = {this.state.searchvideo}
                           id ="searchvideo"
                           onChange = {this.handleInputChange} />
-                     </div>
+                        </form>   
+                    
                      <div className ="col-md-6">
                          <button id="searchFor" onClick = {this.searchfor}>Search</button>
+                     </div>
                      </div>
                    </div>
                    {/* <div className = "card-columns"> */}

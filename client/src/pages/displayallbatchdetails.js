@@ -25,15 +25,15 @@ class Allbatches extends Component {
   }
 
   componentDidMount = () => {
-    console.log("displayallbatchdetails -- component before axios call",this.props);
+  //  console.log("displayallbatchdetails -- component before axios call",this.props);
     let batchrecords = this.state.batchrecords;
     let allbatches = false
     axios.get('/api/teacher/batch/all')
       .then(response => {
-        console.log("The Batch Details of  - axios call", response.data);
+        //console.log("The Batch Details of  - axios call", response.data);
         if (response.data.length > 0) {
           for (let i = 0; i < response.data.length; i++) {
-            console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
+           // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
             let currentrec = {
               recid: response.data[i]._id,
               recdesc: response.data[i].batchdesc,
@@ -68,13 +68,14 @@ class Allbatches extends Component {
       batchdet: batchselected,
       details: true,
       allbatches: false
-    }, () => console.log("selected bxz cvc nbmatch", this.state.batchdet));
+    }, () => console.log("selected bxz cvc nbmatch",
+     this.state.batchdet));
   }
 
   render() {
     const stbatchrec = this.state.batchrecords;
     return (<div className="middlecontent">
-      {/* <Teacherheader /> */}
+ 
       <div className="row">
         <div className="col-sm-1 col-lg-1">
            <div>
@@ -113,6 +114,7 @@ class Allbatches extends Component {
                     <BatchInfo
                       batchdetails={this.state.batchdet}
                       newbatch={false}
+
                     />
                    
                  

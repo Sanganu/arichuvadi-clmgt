@@ -4,6 +4,7 @@ import Addstudent from './Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
 import Allstudents from './displayallstudents.js';
 import Allclasses from './displayallclassdetails.js';
+import Allbatches from './displayallbatchdetails.js';
 
 class BatchInfo extends Component {
   state = {
@@ -22,16 +23,25 @@ class BatchInfo extends Component {
 
 
   deleteStudent = (stdid) => {
-    console.log("Student to be deleted", stdid, this.state.bid);//his.props.batchdetails.bid);
-    this.setState({ delstdid: stdid })
-    axios.delete('/api/batch/student/delete/',
+  //  console.log("Student to be deleted", stdid, this.state.bid);//his.props.batchdetails.bid);
+    let studentrecs = 0;
+    axios.put('/api/batch/student/delete/',
       {
         batchid: this.state.bid,
         studentid: stdid
-      }
-    )
+      })
       .then(response => {
-        console.log("Student Details deleted from Batch", response)
+//        console.log("Student Details deleted from Batch", response);
+        for(let i =0;i < this.state.studentrecs.length;i++)
+        {
+          if(stdid !== this.state.studentrecs[i].stdid)
+          {
+            studentrecs.push(this.state.studentrecs[i]);
+          }
+        }
+        this.setState({studentrecs},() => {
+           console.log("The Updated State of studentrecs",this.state.studentrecs);
+        });
       }) //end thencd 
       .catch(error => {
         console.log("Error in deleting batch student class records!!!", error);
@@ -50,7 +60,7 @@ class BatchInfo extends Component {
         teacher: this.state.instructor
       })
       .then((response) => {
-        console.log("The response from update" + response);
+  //      console.log("The response from update" + response);
         this.setState({ bdescription: this.state.bdesc }, () => {
           console.log("The set state", this.state.bdescription);
         });
@@ -62,6 +72,21 @@ class BatchInfo extends Component {
           });
       }); // end catch
   } // end of update batch
+
+  //Batch delete
+  deleteBatch = (event) =>{
+    event.preventDefault();
+    axios.delete("/api/teacher/batch/delete",{
+      batchid : this.state.bid
+    }).then((response) => {
+       console.log("Batch deleted", response);
+       return <Allbatches displayall={true}/>
+    })
+    .catch(error =>{
+      console.log("Error in deleting Batch records: ",error);
+      
+    })
+  } //End of delete batch
 
   handleInputChange = (event) => {
     const target = event.target;
@@ -111,12 +136,13 @@ class BatchInfo extends Component {
           // console.log("The class records length",response.data.crecords.length);
           if (response.data.srecords.length > 0) {
             for (let i = 0; i < response.data.srecords.length; i++) {
+              //console.log(response.data.srecords[i]);
               let newstrec = {
                 stdid: response.data.srecords[i]._id,
                 stdfname: response.data.srecords[i].studentfname,
                 stdlname: response.data.srecords[i].studentlname,
                 stdemail: response.data.srecords[i].loginemail,
-                phonenumber: response.data.srecords[i].phonenumber
+                phonenumber: response.data.srecords[i].parentphonenumber
               } // end rec
               strecs.push(newstrec);
             } // end for loop
@@ -128,7 +154,8 @@ class BatchInfo extends Component {
               let newclrec = {
                 lessoncov: response.data.crecords[i].lessoncovered,
                 homework: response.data.crecords[i].homework,
-                cldate: response.data.crecords[i].classdate
+                cldate: response.data.crecords[i].classdate,
+                clid: response.data.crecords[i]._id
               }
               clrecs.push(newclrec);
             } // end for loop

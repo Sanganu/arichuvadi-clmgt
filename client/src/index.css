@@ -15,7 +15,7 @@ body {
   background: linear-gradient(210deg, rgba(243, 191, 2, 0.8), rgba(141, 131, 38, 0.8),rgb(44, 41, 10), rgba(223, 156, 11, 0.925));
 }
 .box4{
-  background: linear-gradient(210deg, rgba(204, 19, 19, 0.8), rgba(214, 136, 18, 0.8),rgb(114, 6, 47), rgba(34,34,34,0));
+   background: linear-gradient(210deg, rgba(204, 19, 19, 0.8), rgba(214, 136, 18, 0.8),rgb(114, 6, 47), rgba(34,34,34,0));
 }
 .box5{
   background: linear-gradient(210deg, rgba(17, 216, 60, 0.8), rgba(1, 26, 27, 0.8),rgb(44, 41, 10), rgba(8, 219, 26, 0.904));
@@ -136,33 +136,34 @@ body {
    padding-bottom: 5%;
 }
 
-input {
-  color: black;
-  border-radius: 5px; 
-}
+
 
 .form-control {
-  /* background-color: hsl(213,10,17);;
-  color: white;
-  border-bottom: 1px solid white; */
   opacity:0.8;
   /* background-color:rgba(0, 0, 0, 0);
   color:white; */
-  border: none;
-  border-bottom: 1px aqua;
-  outline:none;
-  height:30px;
+ 
+  outline:none; 
   transition:height 1s;
-  -webkit-transition:height 1s;
+  -webkit-transition:height 1s; 
+  color: rgb(48, 46, 46)
 }
 
+.droplist{
+  height: 50px;
+  color: rgb(48, 46, 46);
+}
+input {
+  border-radius: 5px; 
+  height: 30px;
+}
 
-.leftside {
+/* .leftside {
   justify-content: left;
-}
+} */
 
-label {
-  color: rgb(22, 185, 190);
+.has-float-label {
+  color: rgb(210, 216, 216);
 }
 
 .middlecontent{
@@ -224,17 +225,11 @@ label {
     display: flex;
 }
 
-option {
-  color: rgb(3, 2, 2);
-}
-select {
-  
-    color: rgba(20, 5, 5, 0.966);
-  
-}
-.rightside {
+
+
+/* .rightside {
   justify-content: right;
-}
+} */
 
 #searchvideo{
    width: 90%;
@@ -251,11 +246,11 @@ select{
 }
 
 .subhead {
-  width: 90%;
-  text-align: center;
-  /* font-family: 'Abril Fatface', cursive; */
+ 
+  text-align: left;
+  
   font-weight: bold;
-  font-size: 20px;
+  
 }
 
 .studentcontent{

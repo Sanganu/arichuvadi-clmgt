@@ -34,7 +34,7 @@ const App = () =>
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
                    <Route exact path ="/teacher/searchrecords" component={Search} />
                    <Route exact path = "/teacher/studentmanagement" component = {StudentManagement} />
-                   <Route exact path = "/teacher/addteacher" component = {Addteacher} />
+                   {/* <Route exact path = "/teacher/addteacher" component = {Addteacher} /> */}
                    {/* <Route exact path="/teacher/login" component = {InstructorLogin} /> */}
                    <Switch>
                       <Route path ="/*" component={Homepage} />
