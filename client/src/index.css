@@ -142,7 +142,8 @@ body {
   opacity:0.8;
   /* background-color:rgba(0, 0, 0, 0);
   color:white; */
- 
+  border-radius: 5px; 
+  height: 30px;
   outline:none; 
   transition:height 1s;
   -webkit-transition:height 1s; 
@@ -152,6 +153,7 @@ body {
 .droplist{
   height: 50px;
   color: rgb(48, 46, 46);
+  font-weight: 600;
 }
 input {
   border-radius: 5px; 
@@ -248,8 +250,9 @@ select{
 .subhead {
  
   text-align: left;
-  
-  font-weight: bold;
+  margin-left:5;
+  font-weight: bolder;
+  font-size: 30px;
   
 }
 

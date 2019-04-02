@@ -178,7 +178,7 @@ class BatchInfo extends Component {
     const studentrec = this.state.studentrecs;
     return (<div>
       <div className="row">
-        <div className="col-md-3 col-sm-12">
+        <div className="col-md-11 col-sm-11">
           <form className="inputsection">
             <div className="form-group">
 

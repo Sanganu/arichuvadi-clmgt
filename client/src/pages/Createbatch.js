@@ -77,7 +77,7 @@ class Createbatch extends Component {
              
                     <div className="col-lg-8 col-sm-8">
                         <form className="inputsection">
-                            <h5>New Cohort</h5>
+                            <h5 className="subhead">New Cohort</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
 
                             <div className="form-group row">
@@ -110,7 +110,7 @@ class Createbatch extends Component {
                                 </select>
                             </div>
                             <div className="form-group row">
-                                <label forhtml="instructor">Instructor </label>
+                                <label className="has-float-label">Instructor </label>
                                 <input type="text" id="instructor" className="form-control" value={this.state.instructor} onChange={this.handleInputChange} name="instructor" />
                             </div>
 

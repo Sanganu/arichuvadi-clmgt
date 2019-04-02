@@ -167,89 +167,101 @@ class Addstudent extends Component {
       <div>
         <Teacherheader />
         <div className="middlecontent">
-        <h3 className="subhead">New Student</h3>
+       
           <div className="row">
            
             <div className="col-lg-1 col-sm-1"> 
                 <Topmenu />
             </div>
-            <div className="col-sm-11 col-lg-11">
+            <div className="col-sm-8 col-lg-8">
+            
+            <h3 className="subhead">New Student</h3>
               <p className="errmsg">{this.state.errmsg}</p>
               <form className="inputsection">
-                <div className="form-group row">
-                  <label className="has-float-label"
-                    forhtml="studentfname">Firstname</label>
-                  <input type="text"
-                    value={this.state.studentfname}
-                    onChange={this.handleInputChange}
-                    className="form-control"
-                    id="studentfname"
-                    name="studentfname"
-                    required
-                    placeholder="Firstname" />
-                </div>
-                <div className="form-group row">
-                  <label className="has-float-label">
-                    Lastname</label>
-                  <input type="text"
-                    placeholder="Lastname"
-                    className="form-control"
-                    value={this.state.studentlname}
-                    onChange={this.handleInputChange}
-                    name="studentlname"
-                    id="studentlname"
-                    required />
-                </div>
-                <div className="form=group row">
-                  <label className="has-float-label">
-                    Parent</label>
-                  <input type="text"
-                    placeholder="Parent name"
-                    value={this.state.parentname}
-                    onChange={this.handleInputChange}
-                    name="parentname"
-                    className="form-control"
-                    id="parentname"
-                    required />
-                </div>
-                <div className="form-group row">
-                  <label className="has-float-label">
-                    Email</label>
-                  <input type="email"
-                    placeholder="Login Email"
-                    value={this.state.loginemail}
-                    onChange={this.handleInputChange}
-                    name="loginemail"
-                    id="loginemail"
-                    className="form-control"
-                    required />
-                </div>
-                <div className="form-group row">
-                  <label className="has-float-label">
-                    Password</label>
-                  <input type="password"
-                    placeholder="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                    name="password"
-                    id="password"
-                    className="form-control"
-                    required />
-                </div>
-                <div className="form-group row">
-                  <label className="has-float-label">
-                    Phonenumber</label>
-                  <input type="text"
-                    placeholder="Phone number"
-                    className="form-control"
-                    value={this.state.parentphonenumber}
-                    onChange={this.handleInputChange}
-                    name="parentphonenumber"
-                    id="parentphonenumber"
-                    required />
-                </div>
-                <button
-                  className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
+                <div className =  "row">
+                  <div className = "col-md-5">
+                          <div className="form-group row">
+                            <label className="has-float-label"
+                              forhtml="studentfname">Firstname</label>
+                            <input type="text"
+                              value={this.state.studentfname}
+                              onChange={this.handleInputChange}
+                              className="form-control"
+                              id="studentfname"
+                              name="studentfname"
+                              required
+                              placeholder="Firstname" />
+                          </div>
+                          <div className="form-group row">
+                            <label className="has-float-label">
+                              Lastname</label>
+                            <input type="text"
+                              placeholder="Lastname"
+                              className="form-control"
+                              value={this.state.studentlname}
+                              onChange={this.handleInputChange}
+                              name="studentlname"
+                              id="studentlname"
+                              required />
+                          </div>
+                          <div className="form=group row">
+                            <label className="has-float-label">
+                              Parent</label>
+                            <input type="text"
+                              placeholder="Parent name"
+                              value={this.state.parentname}
+                              onChange={this.handleInputChange}
+                              name="parentname"
+                              className="form-control"
+                              id="parentname"
+                              required />
+                          </div>
+                 </div>
+                 <div className = "col-md-5">         
+                          <div className="form-group row">
+                            <label className="has-float-label">
+                              Email</label>
+                            <input type="email"
+                              placeholder="Login Email"
+                              value={this.state.loginemail}
+                              onChange={this.handleInputChange}
+                              name="loginemail"
+                              id="loginemail"
+                              className="form-control"
+                              required />
+                          </div>
+                          <div className="form-group row">
+                            <label className="has-float-label">
+                              Password</label>
+                            <input type="password"
+                              placeholder="password"
+                              value={this.state.password}
+                              onChange={this.handleInputChange}
+                              name="password"
+                              id="password"
+                              className="form-control"
+                              required />
+                          </div>
+                          <div className="form-group row">
+                            <label className="has-float-label">
+                              Phonenumber</label>
+                            <input type="text"
+                              placeholder="Phone number"
+                              className="form-control"
+                              value={this.state.parentphonenumber}
+                              onChange={this.handleInputChange}
+                              name="parentphonenumber"
+                              id="parentphonenumber"
+                              required />
+                          </div>
+                     </div>
+                  </div>
+                <div className = "row">
+                   <div className = "col-md-9">
+                      <button
+                        className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
+                    </div>
+                </div>        
               </form>
             </div>
           </div>
