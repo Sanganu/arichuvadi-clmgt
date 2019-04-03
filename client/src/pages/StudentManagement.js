@@ -170,7 +170,7 @@ class Addstudent extends Component {
        
           <div className="row">
            
-            <div className="col-lg-1 col-sm-1"> 
+            <div className="col-lg-1 col-sm-12"> 
                 <Topmenu />
             </div>
             <div className="col-sm-8 col-lg-8">

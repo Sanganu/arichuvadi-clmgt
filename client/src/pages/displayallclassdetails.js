@@ -14,10 +14,10 @@ class Allclasses extends Component {
                         <td>{data.lessoncov}</td>
                         <td>{data.homework}</td>
                         <td>{data.cldate.substr(0,10)}</td>
-                        <td><button onClick={() => this.deleteClass(data.clid)}
+                        {/* <td><button onClick={() => this.deleteClass(data.clid)}
                               className="rowbtn">
                               <i className="fa fa-trash"></i>
-                        </button></td>
+                        </button></td> */}
                   </tr>
             )
             ); // end return

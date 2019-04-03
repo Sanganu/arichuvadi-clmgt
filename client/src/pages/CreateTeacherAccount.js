@@ -21,23 +21,19 @@ class CreateTeacherAccount extends Component{
      {
         return(<div>
                       <form className = "form-horizontal">
-                          <h5 className = "subcr">Create New Batch</h5>
+                          <h5 className = "subcr">Create Teacher Account</h5>
                           <p className="errmsg">{this.state.errmsg}</p>
                             <div className = "form-group">
-                               <label className ="inline">Batch Description  </label>
-                               <input type = "text"   value={this.state.batchdesc} onChange = {this.handleInputChange} name = "batchdesc" /><br />
+                               <label className ="inline">Firstname  </label>
+                               <input type = "text"   value={this.state.fname} onChange = {this.handleInputChange} name = "fname" /><br />
                            </div>
                            <div className = "form-group">
-                                   <label className ="inline">Subject :   </label>
-                                   <select  value={this.state.subject} onChange = {this.handleInputChange} name ="subject" id="subject">
-                                       <option value ='Music'>Music</option>
-
-                                        <option value ='Dance'>Dance</option>
-                                   </select><br />
+                                   <label className ="inline">Lastname   </label>
+                                   <input type = "text"   value={this.state.lname} onChange = {this.handleInputChange} name = "lname" /><br />
                            </div>
                            <div className = "form-group">
-                               <label className ="inline">Rate per class per student($) </label>
-                               <input type = "text"   value={this.state.rateperhour} onChange = {this.handleInputChange} name = "rateperhour" />
+                               <label className ="inline">Email</label>
+                               <input type = "text"   value={this.state.email} onChange = {this.handleInputChange} name = "email" />
                           </div>
                           <div className = "form-group">
                                <label className ="inline">Level : </label>
@@ -47,7 +43,7 @@ class CreateTeacherAccount extends Component{
                                    <option value ='Advance'>Advance</option>
                                </select>
                           </div>
-                           <button className = "btn btn-info"  name = "clcreation" onClick = {this.handleClassCreation}>Create Batch</button>
+                           <button className = "btn btn-info"  name = "teachercreation" onClick = {this.handleClassCreation}>Create Teacher Account</button>
                       </form>
              </div>) // end  of return
      }// end of render

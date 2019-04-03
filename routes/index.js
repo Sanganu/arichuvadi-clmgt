@@ -343,7 +343,7 @@ router.get('/api/teacher/search/:str',(req,res) => {
     console.log("Inside route search",searchString);
     // Search for Student details
     studentdetails
-      .find({ $or :ide
+      .find({ $or :
         [
           {studentfname : {"$regex" :searchString,"$options":"i"}},
           {studentlname :{"$regex" :searchString,"$options":"i"}},

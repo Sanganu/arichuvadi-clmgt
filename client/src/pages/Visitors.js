@@ -29,10 +29,6 @@ class Visitors extends Component
      this.setState({[name]:value}) 
   }
 
-  searchFor = () => {
-    //Youtube search videos api call
-
-  }
   
   render() 
         { const videos =  this.state.videos;
@@ -41,20 +37,18 @@ class Visitors extends Component
                    <div className="middlecontent">
                    <div className = "row">
                      <div className = "col-md-1 col-lg-1">
+                      <Topmenu />
                      </div>
                      <div className ="col-md-8">
-                       <form classNme = "inputsection">
+                       <form className = "inputsection">
                          <input type="text"
                           className="form-control"
                           name = "searchvideo" 
                           value = {this.state.searchvideo}
                           id ="searchvideo"
                           onChange = {this.handleInputChange} />
-                        </form>   
-                    
-                     <div className ="col-md-6">
                          <button id="searchFor" onClick = {this.searchfor}>Search</button>
-                     </div>
+                        </form>   
                      </div>
                    </div>
                    {/* <div className = "card-columns"> */}

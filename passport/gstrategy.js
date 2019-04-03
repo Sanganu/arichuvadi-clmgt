@@ -15,7 +15,7 @@ const strategy = new GoogleStrategy(
 		const { id, name, photos } = profile
 		User.findOne({ 'google.googleId': id }, (err, userMatch) => {
 			// handle errors here:
-			if (err) { 
+			if (err) {
 				console.log('Error!! trying to find user with googleId')
 				console.log(err)
 				return done(null, false)

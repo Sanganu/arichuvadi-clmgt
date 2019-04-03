@@ -53,7 +53,7 @@ class Allstudents extends Component
                        <td><input type="text" value={this.state.parentname} onChange={this.handleInputChange} name="parentname"/></td>
                        <td><input type="text" value={this.state.phonenumber} onChange={this.handleInputChange} name="phonenumber" /></td>
                        <td><button className = "rowbtn" onClick ={this.updateStudent}><i className="fa fa-edit fa-lg"></i></button></td>
-                       <td><button  className = "rowbtn" onClick = {this.deleteStudent}><i className="fa fa-trash fa-lg"></i></button></td>
+                       {/* <td><button  className = "rowbtn" onClick = {this.deleteStudent}><i className="fa fa-trash fa-lg"></i></button></td> */}
                     </tr>
                );
     }   

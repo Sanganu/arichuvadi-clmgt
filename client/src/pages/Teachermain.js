@@ -66,7 +66,7 @@ class Teachermain extends Component {
             <div className="container middlecontent">
                 {this.state.logindisp ?
                     <div className="row" >
-                        <div className="col-lg-1">
+                        <div className="col-lg-1 col-sm-12">
                             <Menubar />
                         </div>
                         <div className="col-lg-6">
