@@ -328,6 +328,11 @@ th{
 tr:hover{
   color: rgb(219, 216, 18);
 }
+
+.searchcontent{
+  background-image: url();
+  background-size:cover;
+}
 @media only screen and (max-width: 768px)
 {
 
@@ -343,10 +348,7 @@ tr:hover{
       .myvideo {
         width: 80%;
       }
-       
-    
      
-      
 }
 
 @media only screen and (max-width: 878px)

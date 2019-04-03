@@ -173,7 +173,7 @@ class Addstudent extends Component {
             <div className="col-lg-1 col-sm-12"> 
                 <Topmenu />
             </div>
-            <div className="col-sm-8 col-lg-8">
+            <div className="col-sm-12 col-lg-11 col-md-12">
             
             <h3 className="subhead">New Student</h3>
               <p className="errmsg">{this.state.errmsg}</p>
@@ -216,6 +216,8 @@ class Addstudent extends Component {
                               id="parentname"
                               required />
                           </div>
+                 </div>
+                 <div className = "col-md-2">
                  </div>
                  <div className = "col-md-5">         
                           <div className="form-group row">

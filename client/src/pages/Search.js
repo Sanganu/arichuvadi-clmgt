@@ -87,7 +87,7 @@ class Searchstudents extends Component {
 
         return (<div>
             <Teacherheader />
-            <div className="middlecontent">
+            <div className="middlecontent searchcontent">
                 <div className="row">
                     <div className="col-sm-12 col-lg-1">
                         <Topmenu />
