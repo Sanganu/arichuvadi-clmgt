@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
 import axios from 'axios';
 import Resultrecords from './Resultrecords';
-import Topmenu from "../components/Topmenu";
+import Topmenu from '../components/Topmenu';
 
 class Searchstudents extends Component {
 
@@ -94,13 +94,19 @@ class Searchstudents extends Component {
                     </div>
                     <div className="col-md-8">
                         <form className="inputsection">
-                            <div className="form-group">
-                                <label forhtml="searchstring" id="lsearchstr">Search </label><br />
-                                <input className="textarea" onChange={this.handleInputChange} type="text" name="searchstring" value={this.state.searchstring} /><br />.
+                        <h5 className="subhead">Search Student / Cohort</h5>
+                            <div className="form-group row">
+                                <label className="has-float-label"id="lsearchstr">Search </label><br />
+                                <input className="form-control" onChange={this.handleInputChange} type="text" name="searchstring" value={this.state.searchstring} /><br />.
                             </div>
-                            <button name="searchbtn" onClick={this.searchrecords}>Search</button>
+                            <button className="createbutton" name="searchbtn" onClick={this.searchrecords}>Search</button>
                         </form>
+                    </div>
+                </div>
+                <div className = "row">
+                        <div className = "col-lg-11 searchrecords">
                         {this.state.foundrecords ?
+                        
                             <div>{resultset.map((data, index) =>
                                 <Resultrecords field1={data.field1}
                                     key={index}
@@ -110,10 +116,16 @@ class Searchstudents extends Component {
                                     field5={data.field5}
                                     field6={data.field6}
                                 />)}
-                            </div> : <div></div>}
-                        {this.state.displaymessage ? <div>No Student / Cohort details found</div> : <div></div>}
-                    </div>
-                </div>    
+                            </div> :
+                            <div className="col-md-12 col-lg-11gifcontainer">
+                                <iframe className = "customgif" src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j" 
+                                allowFullScreen></iframe>
+                            </div>
+                         }
+                         </div>
+                        {this.state.displaymessage ? <div><h3>No Student / Cohort details found</h3></div> : <div></div>}
+                </div>
+               
             </div>
          </div>);
          }

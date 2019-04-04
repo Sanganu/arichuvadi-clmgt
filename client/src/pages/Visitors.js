@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
 import axios from 'axios';
 import Video from "./Video";
-import Topmenu from "../components/Topmenu";
+import {Menubar} from "../components/Menubar";
 // import { constants } from 'os';
 
 
@@ -37,7 +37,7 @@ class Visitors extends Component
                    <div className="middlecontent">
                    <div className = "row">
                      <div className = "col-md-1 col-lg-1">
-                      <Topmenu />
+                      <Menubar />
                      </div>
                      <div className ="col-md-8">
                        <form className = "inputsection">

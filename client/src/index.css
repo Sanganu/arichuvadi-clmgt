@@ -328,10 +328,20 @@ th{
 tr:hover{
   color: rgb(219, 216, 18);
 }
-
-.searchcontent{
-  background-image: url();
-  background-size:cover;
+.gifcontainer{
+  width:100%;
+ 
+}
+.searchrecords{
+  padding:1%;
+  margin:1%;
+}
+.customgif{
+  width:"100%" ;
+  height:"100%";
+  position:absolute ;
+  /* frameBorder:0; */
+ 
 }
 @media only screen and (max-width: 768px)
 {
@@ -364,8 +374,15 @@ tr:hover{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width:100%;
+    margin-bottom:2%;
+    padding:2%;
   }
   .icon-bar {
     margin-bottom: 1%;
+    justify-content: space-around;
+  }
+  .middlecontent{
+    margin-top: 1.5%;
   }
 }

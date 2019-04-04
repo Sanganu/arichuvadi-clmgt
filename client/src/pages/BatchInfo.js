@@ -178,7 +178,7 @@ class BatchInfo extends Component {
     const studentrec = this.state.studentrecs;
     return (<div className="middlecontent"> 
       <div className="row">
-        <div className="col-md-11 col-sm-11">
+        <div className="col-lg-4 col-md-11 col-sm-12">
           <form className="inputsection">
             <div className="form-group">
 
@@ -219,7 +219,7 @@ class BatchInfo extends Component {
 
               <label className="form-control-placeholder">
                 Course </label>
-
+ 
               <input value={this.state.course}
                 placeholder={this.state.course}
                 name="course"
@@ -231,11 +231,11 @@ class BatchInfo extends Component {
             {/* <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button> */}
           </form>
         </div>
-        <div className="col-md-5 col-sm-12">
+        <div className="col-lg-4 col-md-11 col-sm-12">
           <Addstudent batchdet={this.props.batchdetails}
             newStudent={this.handleNewStudent} />
         </div>
-        <div className="col-md-4 col-sm-12">
+        <div className="col-lg-4 col-md-11 col-sm-12">
           <BatchAddClassDetails batchdet={this.props.batchdetails}
             newClassDetails={this.handleClassDetails} />
         </div>

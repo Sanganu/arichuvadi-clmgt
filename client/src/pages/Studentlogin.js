@@ -95,8 +95,9 @@ class Studentlogin extends Component {
               <div className="col-lg-1 col-sm-12">
                 <Menubar />
               </div>
-              <div className="col-lg-6">
+              
                       {this.state.showstlogin ?
+                      <div className="col-lg-6">
                       <div className="tloginsection container">
                               <form className="inputsection">
                               <h3>Student Login </h3>
@@ -123,10 +124,11 @@ class Studentlogin extends Component {
                                 <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
                               </form>
                             </div>
-                      : <div><Studentmain studentdet={this.state.studentrecord}
+                            </div>     
+                      : <div className = "col-lg-12"><Studentmain studentdet={this.state.studentrecord}
                           classrecords={this.state.classdet} /></div>}
                      </div>
-               </div>
+              
         </div>  
   </div>) //end return
 } //end render
