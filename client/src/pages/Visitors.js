@@ -29,7 +29,7 @@ class Visitors extends Component
 
         
         render() 
-              { const videos =  this.state.videos;
+              { const videos =  this.state.videos || "";
                 return(<div>
                         <Teacherheader />
                         <div className="middlecontent">
