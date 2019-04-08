@@ -103,7 +103,7 @@ class Searchstudents extends Component {
                         </form>
                     </div>
                     <div className="col-lg-5 col-md-11 gifcontainer">
-                                <iframe className = "customgif" src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j" widht={500} 
+                                <iframe className = "customgif" title = "giphy" src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j" widht={500} 
                                 height = {500}allowFullScreen></iframe>
                     </div>
                 </div>

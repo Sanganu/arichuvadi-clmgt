@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Teacherheader from '../components/Teacherheader';
 
 class Createbatch extends Component {
     state = {

@@ -119,18 +119,3 @@ class Teachermain extends Component {
 } //end class Teacher Main
 
 export default Teachermain;
-
-
-
-{/* <div className="col-lg-5 col-md-12">
-                            <div className="card sm-5 dark-card-title ">
-                                <div className="card-body">
-                                    <GoogleLogin
-                                        clientId={keys.GOOGLE_CLIENT_ID}
-                                        buttonText="Login"
-                                        onSuccess={this.responseGoogleValid}
-                                        onFailure={this.responseGoogleInvalid}
-                                    />
-                                </div>
-                            </div>
-                        </div> */}

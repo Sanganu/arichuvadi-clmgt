@@ -4,9 +4,13 @@ const Schema = mongoose.Schema;
 
 const teacheraccountSchema = new Schema({
 
-        name: {
+        fname: {
            type: String,
          },
+         lname: {
+          type: String,
+          
+        },
          email: {
            type: String,
            unique: true,
@@ -29,5 +33,5 @@ const teacheraccountSchema = new Schema({
 });
 
 
-const teacheraccount = mongoose.model("teacheraccount", teacheraccountSchema);
-module.exports = teacheraccount;
+const Teachers = mongoose.model("teacheraccount", teacheraccountSchema);
+module.exports = Teachers;
