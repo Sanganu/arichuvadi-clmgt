@@ -94,7 +94,7 @@ class Createbatch extends Component {
                                 <select className="form-control droplist"
                                     onChange={this.handleInputChange}
                                     value={this.state.course} name="course" id="course">
-                                    <option value='Beginner'>Beginner</option>
+                                    <option value='Beginner' default>Beginner</option>
                                     <option value='Intermediate'>Intermediate</option>
                                     <option value='Advance'>Advance</option>
                                 </select>
@@ -102,11 +102,11 @@ class Createbatch extends Component {
                             <div className="form-group row">
                                 <label className="has-float-label">Level </label>
                                 <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
-                                    <option value='Level 1'>Level -1</option>
-                                    <option value='Level 2' default>Level -2</option>
-                                    <option value='Level 3'>Level -3</option>
-                                    <option value='Level 4'>Level -4</option>
-                                    <option value='Level 5'>Level -5</option>
+                                    <option value='Oral' default>Oral Examination</option>
+                                    <option value='Visual'>Visual Examination</option>
+                                    <option value='Written'>Written Examination</option>
+                                    <option value='Online'>Online Examination</option>
+                                    <option value='Offline'>Offline Examination</option>
                                 </select>
                             </div>
                             <div className="form-group row">

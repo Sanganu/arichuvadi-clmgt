@@ -65,12 +65,7 @@ class Teachermain extends Component {
         return (
                                <div className="card mb-4 dark-card-title ">
                                <div className="card-body">
-                                <GoogleLogin
-                                    clientId={keys.GOOGLE_CLIENT_ID}
-                                    buttonText="Login"
-                                    onSuccess={this.responseGoogleValid}
-                                    onFailure={this.responseGoogleInvalid}
-                                />
+                                  <button onClick={this.logincheck} name="glogin">Google login</button>
                                 </div>
                             </div>
                 ); //end return

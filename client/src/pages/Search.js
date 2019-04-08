@@ -89,10 +89,10 @@ class Searchstudents extends Component {
             <Teacherheader />
             <div className="middlecontent searchcontent">
                 <div className="row">
-                    <div className="col-sm-12 col-lg-1">
+                    <div className="col-sm-1 col-lg-1">
                         <Topmenu />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-5 col-md-11 searchrecstbt">
                         <form className="inputsection">
                         <h5 className="subhead">Search Student / Cohort</h5>
                             <div className="form-group row">
@@ -102,11 +102,14 @@ class Searchstudents extends Component {
                             <button className="createbutton" name="searchbtn" onClick={this.searchrecords}>Search</button>
                         </form>
                     </div>
+                    <div className="col-lg-5 col-md-11 gifcontainer">
+                                <iframe className = "customgif" src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j" widht={500} 
+                                height = {500}allowFullScreen></iframe>
+                    </div>
                 </div>
                 <div className = "row">
                         <div className = "col-lg-11 searchrecords">
-                        {this.state.foundrecords ?
-                        
+                      
                             <div>{resultset.map((data, index) =>
                                 <Resultrecords field1={data.field1}
                                     key={index}
@@ -116,11 +119,8 @@ class Searchstudents extends Component {
                                     field5={data.field5}
                                     field6={data.field6}
                                 />)}
-                            </div> :
-                            <div className="col-md-12 col-lg-11gifcontainer">
-                                <iframe className = "customgif" src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j" 
-                                allowFullScreen></iframe>
-                            </div>
+                            </div> 
+                          
                          }
                          </div>
                         {this.state.displaymessage ? <div><h3>No Student / Cohort details found</h3></div> : <div></div>}

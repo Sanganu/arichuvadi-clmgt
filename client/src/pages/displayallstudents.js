@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-
+//This is Display students component used under BatchInfo
 class Allstudents extends Component
 {
     deleteStudent = () =>{
@@ -13,10 +13,10 @@ class Allstudents extends Component
                        <td>{this.props.studentrec.stdemail}</td>
                        <td>{this.props.studentrec.phonenumber}</td>
                        {/* <td>{this.props.studentrec.stdid}</td> */}
-                       <td><button onClick={this.deleteStudent}
+                       {/* <td><button onClick={this.deleteStudent}
                        className = "rowbtn">
                        <i className="fa fa-trash"></i>
-                       </button></td>
+                       </button></td> */}
                        {/* <td></td> */}
                   </tr>)
      }

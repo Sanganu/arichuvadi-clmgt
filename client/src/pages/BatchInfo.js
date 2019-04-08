@@ -249,6 +249,7 @@ class BatchInfo extends Component {
                   <th>Firstname</th>
                   <th>Lastname</th>
                   <th>Email</th>
+                  <th>Phone</th>
                 </tr>
                 {studentrec.map((data, index) => (
                   <Allstudents studentrec={data}

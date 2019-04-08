@@ -68,6 +68,15 @@ body {
   font-weight: bolder;
  }
 
+ .customgif{
+  width:"100%" ;
+  height:"100%";
+ /* position:absolute ; */
+ margin-top: 2%;
+
+  /* frameBorder:0; */
+ }
+
 .droplist{
   color: rgba(20, 5, 5, 0.966);
   font-weight: bolder;
@@ -283,7 +292,6 @@ select{
 }
 
 
-
 #tlogin {
   margin-bottom: 1%;
   padding-bottom: 2%;
@@ -293,6 +301,19 @@ select{
 .errmsg {
   color: white;
 }
+
+.searchrecords{
+  padding:1%;
+  margin:1%;
+}
+
+
+.searchrecstbt{
+   background-image: url("https://giphy.com/embed/XB3V7fwrzbLxuJSc2j");
+   opacity: 0.8;
+   
+}
+
 tr {
    font-weight: 500;
    font-style: normal;
@@ -330,19 +351,9 @@ tr:hover{
 }
 .gifcontainer{
   width:100%;
- 
+  background: aqua;
 }
-.searchrecords{
-  padding:1%;
-  margin:1%;
-}
-.customgif{
-  width:"100%" ;
-  height:"100%";
-  position:absolute ;
-  /* frameBorder:0; */
- 
-}
+
 @media only screen and (max-width: 768px)
 {
 
