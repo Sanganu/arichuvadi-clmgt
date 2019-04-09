@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 
 
 class Allclasses extends Component {
-      deleteClass = (classid) =>{
-            console.log("Delete-child",classid);
-      }
+      // deleteClass = (classid) =>{
+      //       console.log("Delete-child",classid);
+      // }
 
       render() {
             const classrec = this.props.classrecs || ["No class Details Exist"];
@@ -13,7 +13,7 @@ class Allclasses extends Component {
                   <tr key={index}>
                         <td>{data.lessoncov}</td>
                         <td>{data.homework}</td>
-                        <td>{data.cldate.substr(0,10)}</td>
+                        <td>{data.cldate ? data.cldate.substr(0,10): " "}</td>
                         {/* <td><button onClick={() => this.deleteClass(data.clid)}
                               className="rowbtn">
                               <i className="fa fa-trash"></i>
