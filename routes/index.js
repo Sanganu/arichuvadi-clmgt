@@ -3,7 +3,7 @@ const router = require("express").Router();
 const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
 const classdetails = require('../models/Classdetails.js')
-const passport = require("passport");
+//const passport = require("passport");
 var YouTube = require('youtube-node');
 var youTube = new YouTube();
 

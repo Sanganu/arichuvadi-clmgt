@@ -120,10 +120,10 @@ function getStudentDetails(req,res) {
                                       for(let i = 0; i < studentdet.batchid[0].classid.length; i++)
 
                                       {
-                                          let { homework,lesson,classdate } = studentdet.batchid[0].classid[i];
+                                          let { homework,lessoncovered,classdate } = studentdet.batchid[0].classid[i];
                                           classdetails.push ({
                                                   homework : homework,
-                                                  lesson: lesson,
+                                                  lesson: lessoncovered,
                                                   classdate: classdate      
                                                 });
                                       } // end of for loop
@@ -138,9 +138,9 @@ function getStudentDetails(req,res) {
                                         phone: studentdet.parentphonenumber,
                                         email: studentdet.loginemail,
                                         batch: studentdet.batchid[0].batchdesc || "Student not enrolled in any batch",
-                                        subject: studentdet.batchid[0].subject || "N/A",
+                                        course: studentdet.batchid[0].subject || "N/A",
                                         level: studentdet.batchid[0].level || "N/A",
-                                        rate: studentdet.batchid[0].rateperhour || "N/A" 
+                                     
                                     }
                                     console.log("Valid student login",studentrecord);
                                     console.log("Classdetails array",classdetails);

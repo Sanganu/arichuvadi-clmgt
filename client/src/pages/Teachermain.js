@@ -102,6 +102,7 @@ class Teachermain extends Component {
                                 <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
                                 <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
                             </form>
+                            <button><a href="/teacher/google">Google Login</a></button>
                         </div>
                     </div>
                     : <Allbatches displayall={true}/>

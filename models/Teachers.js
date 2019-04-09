@@ -16,6 +16,12 @@ const teacheraccountSchema = new Schema({
            unique: true,
            required : true
          },
+         googleId:{
+           type: String
+         },
+         username:{
+           type:String
+         },
         phone: {
           type:String
         },

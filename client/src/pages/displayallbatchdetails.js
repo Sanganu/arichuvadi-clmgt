@@ -110,14 +110,13 @@ class Allbatches extends Component {
                     )}
                     </tbody>
                   </table>
-              :              
+              : <div>  {this.state.batchdet ?          
                     <BatchInfo
                       batchdetails={this.state.batchdet}
                       newbatch={false}
-
                     />
-                   
-                 
+                    :<div></div>}
+                </div> 
             }
         </div>
       </div>

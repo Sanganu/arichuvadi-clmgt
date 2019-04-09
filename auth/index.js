@@ -24,8 +24,9 @@ router.post(
 	passport.authenticate('local'),
 	(req, res) => {
 		console.log('POST to /login - passport.authenticate callback')
-		const user = JSON.parse(JSON.stringify(req.user)) // hack
-		const cleanUser = Object.assign({}, user)
+    const user = JSON.parse(JSON.stringify(req.user)) // hack
+    console.log("User",user)
+		const cleanUser = Object.assign({}, user.userdata);
 		if (cleanUser) {
 			console.log(`Deleting ${cleanUser.password}`)
 			delete cleanUser.password
@@ -78,14 +79,14 @@ router.post('/student/create', (req, res) => {
 module.exports = router
 
 function getStudentDetails(req,res) {
-	console.log("Get Student Details", req.session.passport.user._id)
-	if (req.session.passport.user._id === undefined){
+	console.log("Get Student Details", req.session.passport.user,req.session.passport.user.userdata)
+	if (req.session.passport.user.userdata._id === undefined){
      res.json({err:"Invalid credentials"});
    }
    else
    {   
              Students
-                  .findOne({_id : req.session.passport.user._id})
+                  .findOne({_id : req.session.passport.user.userdata._id})
                   .populate({
                     path: 'batchid',
                     select: 'batchdesc subject level rateperhour',

@@ -349,9 +349,14 @@ th{
 tr:hover{
   color: rgb(219, 216, 18);
 }
-.gifcontainer{
+/* .gifcontainer{
   width:100%;
-  background: aqua;
+ 
+} */
+iframe {
+  border: none;
+  padding: 5%;
+  margin: 5%;
 }
 
 @media only screen and (max-width: 768px)
@@ -372,7 +377,11 @@ tr:hover{
      
 }
 
-@media only screen and (max-width: 878px)
+@media only screen and(max-width:900px){
+ 
+}
+
+@media only screen and (max-width: 903px)
 {
   /* .sidemenulink{
     display: inline;
@@ -380,6 +389,12 @@ tr:hover{
   list-group-item{
     padding: 0%;
     margin: 0%;
+  }
+
+  .icon-bar {
+    margin-bottom: 1.5%;
+    padding: 1%;
+    justify-content: space-around;
   }
   .list-unstyled{
     display: flex;
@@ -389,10 +404,7 @@ tr:hover{
     margin-bottom:2%;
     padding:2%;
   }
-  .icon-bar {
-    margin-bottom: 1%;
-    justify-content: space-around;
-  }
+  
   .middlecontent{
     margin-top: 1.5%;
   }
