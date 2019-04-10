@@ -73,13 +73,6 @@ router.post('/student/create', (req, res) => {
 module.exports = router
 
 function getStudentDetails(req,res) {
-  // const user = JSON.parse(JSON.stringify(req.user)) // hack
-  // console.log("User",user)
-  // const cleanUser = Object.assign({}, user.userdata);
-  // if (cleanUser) {
-  //   console.log(`Deleting ${cleanUser.password}`)
-  //   delete cleanUser.password
-  // }
   console.log("Get Student Details - Student Login Route");
   console.log("The session data",req.session.passport.user)
 	
@@ -92,17 +85,17 @@ function getStudentDetails(req,res) {
                   .findOne({_id : req.session.passport.user.user.userdata._id})
                   .populate({
                     path: 'batchid',
-                    select: 'batchdesc subject level rateperhour',
+                    select: 'batchdesc course teacher level',
                     populate: {
-                      path: 'classid', select: 'homework lessoncovered students'
+                      path: 'classid', select: 'homework lessoncovered classdate'
                     }                    
                   })
                   .then((studentdet) =>
                     {
                        var classdetails = [];
-                       console.log("Studet",studentdet);
-                       console.log("batch",studentdet.batchid);
-                       console.log("class",studentdet.batchid[0].classid);
+                      //  console.log("Studet",studentdet);
+                      //  console.log("batch",studentdet.batchid);
+                      //  console.log("class",studentdet.batchid[0].classid);
                        if( studentdet.batchid.length > 0)
                        {
                               if( studentdet.batchid[0].classid !== undefined)
@@ -110,28 +103,29 @@ function getStudentDetails(req,res) {
                                       for(let i = 0; i < studentdet.batchid[0].classid.length; i++)
 
                                       {
-                                          let { homework,lesson,classdate } = studentdet.batchid[0].classid[i];
+                                          let { homework,lessoncovered,classdate } = studentdet.batchid[0].classid[i];
                                           classdetails.push ({
                                                   homework : homework,
-                                                  lesson: lesson,
+                                                  lesson: lessoncovered, 
                                                   classdate: classdate      
                                                 });
                                       } // end of for loop
                                 } // end if part check for class
-                                else {
+                              else {
                                   classdetails = [{homework: "No Class details Available"}];
-                                }  // end check for class details     
-                                    var studentrecord = {
+                              }  // end check for class details     
+                              var studentrecord = {
+                                        stdid: studentdet._id,
                                         fname: studentdet.studentfname,
                                         lname: studentdet.studentlname,
                                         parent: studentdet.parentname,
                                         phone: studentdet.parentphonenumber,
                                         email: studentdet.loginemail,
-                                        batch: studentdet.batchid[0].batchdesc || "Student not enrolled in any batch",
-                                        subject: studentdet.batchid[0].subject || "N/A",
+                                        batch: studentdet.batchid[0].batchdesc || "Not available",
+                                        subject: studentdet.batchid[0].course || "N/A",
                                         level: studentdet.batchid[0].level || "N/A",
-                                        rate: studentdet.batchid[0].rateperhour || "N/A" 
-                                    }
+                                        teacher: studentdet.batchid[0].teacher || "N/A"
+                              }
                                     console.log("Valid student login",studentrecord);
                                     console.log("Classdetails array",classdetails);
                                     res.json({studentrecord:studentrecord,classes:classdetails});
@@ -139,12 +133,16 @@ function getStudentDetails(req,res) {
                           else
                           {
                             var studentrecord = {
+                              stdid: studentdet._id,
                               fname: studentdet.studentfname,
                               lname: studentdet.studentlname,
                               parent: studentdet.parentname,
                               phone: studentdet.parentphonenumber,
                               email: studentdet.loginemail,
-                              batch : "Student not enrolled in any batch contact Teacher"
+                              batch : "Student not enrolled in any batch contact Teacher",
+                              subject: "N/A",
+                              level: "N/A",
+                              teacher: "N/A"
                             }
                             res.json({studentrecord:studentrecord}) ;
                             console.log("Valid Student Login",studentrecord);

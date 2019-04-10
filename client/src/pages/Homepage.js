@@ -11,12 +11,10 @@ class Homepage extends Component {
                 <Header />
                 <div className="container middlecontent">
                     <div className="row" >
-                       <div className = "col-lg-1">
+                       <div className = "col-lg-1 col-md-1 col-sm-1">
                               <Menubar />
                        </div>
-                        <div className="col-lg-6">
-                        </div>
-                        <div className="col-lg-5">
+                        <div className="col-lg-11 col-md-11 col-sm-11">
                             <div className="card-deck" id="content">
                                 {/* <div className="card mb-4"> */}
                                 <div className="card-body box1">

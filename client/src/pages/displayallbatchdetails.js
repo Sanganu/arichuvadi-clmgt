@@ -25,7 +25,7 @@ class Allbatches extends Component {
   }
 
   componentDidMount = () => {
-  //  console.log("displayallbatchdetails -- component before axios call",this.props);
+    //  console.log("displayallbatchdetails -- component before axios call",this.props);
     let batchrecords = this.state.batchrecords;
     let allbatches = false
     axios.get('/api/teacher/batch/all')
@@ -33,7 +33,7 @@ class Allbatches extends Component {
         //console.log("The Batch Details of  - axios call", response.data);
         if (response.data.length > 0) {
           for (let i = 0; i < response.data.length; i++) {
-           // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
+            // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
             let currentrec = {
               recid: response.data[i]._id,
               recdesc: response.data[i].batchdesc,
@@ -69,60 +69,57 @@ class Allbatches extends Component {
       details: true,
       allbatches: false
     }, () => console.log("selected bxz cvc nbmatch",
-     this.state.batchdet));
+      this.state.batchdet));
   }
 
   render() {
     const stbatchrec = this.state.batchrecords;
-    return (<div className="middlecontent">
- 
-      <div className="row">
-        <div className="col-sm-1 col-lg-1">
-           <div>
-                <Topmenu />
-           </div>     
+    return (<div className="container middlecontent">
+      <div className="row" >
+        <div className="col-lg-1 col-md-1 col-sm-12">
+          <Topmenu />
         </div>
-        <div className="col-sm-10 col-lg-11">
-            {this.state.allbatches ?
-                  <table className="table table-hover table-responsive">
-                    <thead>
-                      <tr>
-                      <th>Batch</th>
-                      <th>Course</th> 
-                      <th>Level</th>
-                      <th>Instructor</th>
-                      <th>Number of Students</th>
-                      <th>Number of classes</th>
-                      </tr>
-                    </thead>
-                    <tbody>{stbatchrec.map((data, index) =>
-                      <BatchRecord
-                        bid={data.recid}
-                        bdesc={data.recdesc}
-                        bsubj={data.recsubj}
-                        blevel={data.reclevel}
-                        teacher={data.teacher}
-                        students={data.noofstu}
-                        classes={data.noofclasses}
-                        getBatchDetails={this.getBatchDetails}
-                        key={index}
-                      />
-                    )}
-                    </tbody>
-                  </table>
-              : <div>  {this.state.batchdet ?          
+        <div className="col-lg-11 col-md-11 col-sm-11">
+          {this.state.allbatches ?
+            <table className="table table-hover table-responsive">
+              <thead>
+                <tr>
+                  <th>Batch</th>
+                  <th>Course</th>
+                  <th>Level</th>
+                  <th>Instructor</th>
+                  <th>Number of Students</th>
+                  <th>Number of classes</th>
+                </tr>
+              </thead>
+              <tbody>{stbatchrec.map((data, index) =>
+                <BatchRecord
+                  bid={data.recid}
+                  bdesc={data.recdesc}
+                  bsubj={data.recsubj}
+                  blevel={data.reclevel}
+                  teacher={data.teacher}
+                  students={data.noofstu}
+                  classes={data.noofclasses}
+                  getBatchDetails={this.getBatchDetails}
+                  key={index}
+                />
+              )}
+              </tbody>
+            </table>
+            : <div>  {this.state.batchdet ?
                     <BatchInfo
                       batchdetails={this.state.batchdet}
                       newbatch={false}
                     />
-                    :<div></div>}
-                </div> 
-            }
-        </div>
-      </div>
-    </div>); // end return
-  } // end render
-} //end allbatches
-export default Allbatches;
-
-
+                    : <div></div>}
+             </div>  
+          }               
+         </div>
+         </div>
+      </div>); // end return
+      } //end render
+  } //end allbatches
+  export default Allbatches;
+  
+  

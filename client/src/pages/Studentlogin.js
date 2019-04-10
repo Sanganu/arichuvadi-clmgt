@@ -59,10 +59,10 @@ class Studentlogin extends Component {
             this.setState({
               showstlogin: false,
               studentrecord: (response.data.studentrecord),
-              classdet: (response.data.classes)
+              classdet: (response.data.classes) || ""
             },
               () => {
-                console.log("State updates", this.state.studentrecord);
+                console.log("State Record", this.state.studentrecord);
               });
           }
           else {
@@ -92,46 +92,44 @@ class Studentlogin extends Component {
       <div className="container middlecontent">
 
         <div className="row" >
-              <div className="col-lg-1 col-sm-12">
-                <Menubar />
-              </div>
-              
-                      {this.state.showstlogin ?
-                      <div className="col-lg-6">
-                      <div className="tloginsection container">
-                              <form className="inputsection">
-                              <h3>Student Login </h3>
-                              <h5 className="errmsg">{this.state.errmsg}</h5>
-                               <div className="form-group">
-                                  <label htmlFor="vemail"
-                                   className="form-control-place">
-                                   Email Addess</label>
-                                  <input className="form-control" 
-                                  onChange={this.handleInputChange}
-                                  type="text" name="vemail" 
-                                  value={this.state.vemail} />
-                               </div>
+          <div className="col-lg-1 col-sm-1">
+            <Menubar />
+          </div>
+          <div className="col-lg-9 col-sm-11">
+            {this.state.showstlogin ?
+              <form className="inputsection">
+                <h3>Student Login </h3>
+                <h5 className="errmsg">{this.state.errmsg}</h5>
+                <div className="form-group">
+                  <label htmlFor="vemail"
+                    className="form-control-place">
+                    Email Addess</label>
+                  <input className="form-control"
+                    onChange={this.handleInputChange}
+                    type="text" name="vemail"
+                    value={this.state.vemail} />
+                </div>
 
-                                <div className="form-group">
-                                  <label htmlFor="vpword"
-                                  className="form-control-place">Password</label>
-                                  <input className="form-control"
-                                   onChange={this.handleInputChange}
-                                   type="password"
-                                   name="vpword" value={this.state.vpword} />
-                                </div>
-                                
-                                <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
-                              </form>
-                            </div>
-                            </div>     
-                      : <div className = "col-lg-12"><Studentmain studentdet={this.state.studentrecord}
-                          classrecords={this.state.classdet} /></div>}
-                     </div>
-              
-        </div>  
-  </div>) //end return
-} //end render
+                <div className="form-group">
+                  <label htmlFor="vpword"
+                    className="form-control-place">Password</label>
+                  <input className="form-control"
+                    onChange={this.handleInputChange}
+                    type="password"
+                    name="vpword" value={this.state.vpword} />
+                </div>
+
+                <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
+              </form>
+
+              : <div><Studentmain
+                studentdet={this.state.studentrecord}
+                classrecords={this.state.classdet} /></div>}
+          </div> 
+      </div>
+    </div>  
+  </div >) //end return
+  } //end render
 
 } //end class Student Main
 
