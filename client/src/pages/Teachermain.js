@@ -67,10 +67,10 @@ class Teachermain extends Component {
                 <div className="container middlecontent">
 
                     <div className="row" >
-                        <div className="col-lg-1 col-sm-12">
+                        <div className="col-lg-1 col-md-1 col-sm-12">
                             <Menubar />
                         </div>
-                        <div className="col-lg-11 col-sm-11">
+                        <div className="col-lg-11 col-md-11 col-sm-11">
 
                             <div>
                                 <form className="inputsection">

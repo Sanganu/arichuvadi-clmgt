@@ -62,7 +62,8 @@ class Studentlogin extends Component {
               classdet: (response.data.classes) || ""
             },
               () => {
-                console.log("State Record", this.state.studentrecord);
+                console.log("State Student Record", this.state.studentrecord);
+                console.log("Class details",this.state.classdet);
               });
           }
           else {
@@ -92,10 +93,10 @@ class Studentlogin extends Component {
       <div className="container middlecontent">
 
         <div className="row" >
-          <div className="col-lg-1 col-sm-1">
+          <div className="col-lg-1 col-sm-12 col-md-12">
             <Menubar />
           </div>
-          <div className="col-lg-9 col-sm-11">
+          <div className="col-lg-9 col-sm-11 col-md-10">
             {this.state.showstlogin ?
               <form className="inputsection">
                 <h3>Student Login </h3>

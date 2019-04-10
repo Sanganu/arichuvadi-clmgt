@@ -11,48 +11,31 @@ class Homepage extends Component {
                 <Header />
                 <div className="container middlecontent">
                     <div className="row" >
-                       <div className = "col-lg-1 col-md-1 col-sm-1">
+                       <div className = "col-lg-1 col-md-12 col-sm-12">
                               <Menubar />
                        </div>
-                        <div className="col-lg-11 col-md-11 col-sm-11">
+                        <div className="col-lg-11 col-md-12 col-sm-12">
                             <div className="card-deck" id="content">
-                                {/* <div className="card mb-4"> */}
                                 <div className="card-body box1">
-                                    {/* <h4 className="card-title">Teachers</h4>
-                                    <p className="card-text">Easy class management solution for independant teacher.</p> */}
                                     <Link to="/teacher/tmain" className="mainlink">Instructor</Link><br />
-                                    
                                 </div>
-                                {/* </div>
-                        <div className="card mb-4 dark-card-title"> */}
                                 <div className="card-body box2">
-                                    {/* <h4 className="card-title">Students</h4>
-                                    <p className="card-text">Check your Attendance , Home work</p> */}
                                     <Link to="/other/students/loginpg" className="mainlink">Student</Link><br />
                                 </div>
-                                {/* </div>
-                        <div className="card mb-4"> */}
                                 <div className="card-body box3">
-                                    {/* <h4 className="card-title">Visitors</h4>
-                                    <p className="card-text">Achievements and Performances</p> */}
                                     <Link to="/other/users" className="mainlink">Reference Videos</Link>
                                 </div>
                                 <div className="card-body box4">
-                                    {/* <h4 className="card-title">Visitors</h4>
-                                    <p className="card-text">Achievements and Performances</p> */}
                                     <a href="http://www.tamilvu.org/" target ="_blank"  rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>
                                 </div>
                                 <div className="card-body box5">
-                                    {/* <h4 className="card-title">Visitors</h4>
-                                    <p className="card-text">Achievements and Performances</p> */}
                                     <a href="#" target ="_blank" rel="noopener noreferrer" className="mainlink">Books</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* <Footer /> */}
-            </div>
+          </div>
         );
     }
 }

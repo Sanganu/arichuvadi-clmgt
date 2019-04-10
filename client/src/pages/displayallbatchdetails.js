@@ -74,12 +74,12 @@ class Allbatches extends Component {
 
   render() {
     const stbatchrec = this.state.batchrecords;
-    return (<div className="container middlecontent">
+    return (<div className="container">
       <div className="row" >
         <div className="col-lg-1 col-md-1 col-sm-12">
           <Topmenu />
         </div>
-        <div className="col-lg-11 col-md-11 col-sm-11">
+        <div className="col-lg-11 col-md-11 col-sm-11 middlecontent">
           {this.state.allbatches ?
             <table className="table table-hover table-responsive">
               <thead>

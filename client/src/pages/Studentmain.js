@@ -28,29 +28,51 @@ class Studentmain extends Component
       });
   };
     componentDidMount = () => {
-          console.log("props received",this.props);
+          console.log("props received",this.props.classrecords);
      }
 
       render()
       {
-           return(<div>
+           return(<div className = "container middlecontent">
                      <div>
                         <h3>Welcome {this.props.studentdet.fname}    {this.props.studentdet.lname} </h3>
                       </div>
                       <div className = "row">
                          <div className = "col-lg-6">
+                                    <div className ="form-group">
+                                          <input className = "form-control"
+                                                 type="text"
+                                                 readOnly
+                                                 value={this.props.studentdet.batch} />
+                                          <label className="form-control-placeholder">
+                                              Batch  </label> 
+                                    </div>
+                                    <div className ="form-group">
+                                          <input className = "form-control"
+                                                 type="text"
+                                                 readOnly
+                                                 value={this.props.studentdet.level} />
+                                          <label className="form-control-placeholder">
+                                             Course  </label> 
+                                    </div>
+                                    <div className ="form-group">
+                                          <input className = "form-control"
+                                                 type="text"
+                                                 readOnly
+                                                 value={this.props.studentdet.teacher} />
+                                          <label className="form-control-placeholder">
+                                             Course  </label> 
+                                    </div>
                          </div>
                          <div className = "col-lg-6">
                                           <form>
                                                 <div className ="form-group">
                                                       <input className = "form-control"
-                                                            onChange={this.handleInputChange}
                                                             type="text"
-                                                            name="stfname"
-                                                            id="stfname"
+                                                            readOnly
                                                             value={this.state.stfname} />
                                                       <label className="form-control-placeholder">
-                                                            </label> 
+                                                        Firstname    </label> 
                                                 </div>
                                                 <div className ="form-group">
                                                       <input className = "form-control"
