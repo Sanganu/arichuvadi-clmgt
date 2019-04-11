@@ -111,20 +111,16 @@ class Studentmain extends Component
                                                             name="email"
                                                             id="email"
                                                             readOnly
-                                                            value={this.state.email} />
+                                                             value={this.state.email} />
                                                       <label className="form-control-placeholder">
                                                             </label> 
                                                 </div>
                                           </form>
                                        </div>
                                     </div>
-                              <div className = "row">            
-                             <table>
-                             <tbody>
+                             
                               <Allclasses classrecords = {this.props.classrecords}/> 
-                             </tbody> 
-                            </table>
-                            </div>
+                            
                  </div>)
       }
 }

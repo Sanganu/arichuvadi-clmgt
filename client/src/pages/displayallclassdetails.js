@@ -8,18 +8,31 @@ class Allclasses extends Component {
       // }
 
       render() {
-            const classrec = this.props.classrecs || ["No class Details Exist"];
-            return (classrec.map((data, index) =>
-                  <tr key={index}>
-                        <td>{data.lessoncov}</td>
-                        <td>{data.homework}</td>
-                        <td>{data.cldate ? data.cldate.substr(0,10): " "}</td>
-                        {/* <td><button onClick={() => this.deleteClass(data.clid)}
+            const classrec = this.props.classrecords || [{"lesson":"No class Details Exist","Homework":"N/A"}];
+            return (<div className="row">
+                  <table>
+                        <thead>
+                              <tr>
+                                    <th>Lesson</th>
+                                    <th>Homework</th>
+                                    <th>Date</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                              {classrec.map((data, index) =>
+                              <tr key={index}>
+                                    <td>{data.lesson}</td>
+                                    <td>{data.homework}</td>
+                                    <td>{data.classdate ? data.classdate.substr(0, 10) : " "}</td>
+                                    {/* <td><button onClick={() => this.deleteClass(data.clid)}
                               className="rowbtn">
                               <i className="fa fa-trash"></i>
                         </button></td> */}
-                  </tr>
-            )
+                              </tr>
+                              )}
+                  </tbody>
+                  </table>
+            </div>
             ); // end return
 
       }
