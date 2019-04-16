@@ -244,13 +244,16 @@ class BatchInfo extends Component {
         <div className="col-md-6">
           <div className="table-responsive">
             <table className="table table-hover">
-              <tbody>
-                <tr>
+            <thead>
+            <tr>
                   <th>Firstname</th>
                   <th>Lastname</th>
                   <th>Email</th>
                   <th>Phone</th>
                 </tr>
+              </thead>
+              <tbody>
+               
                 {studentrec.map((data, index) => (
                   <Allstudents studentrec={data}
                     deleteStudentDetails={this.deleteStudent}
@@ -263,13 +266,16 @@ class BatchInfo extends Component {
         <div className="col-md-6">
           <div className="table-responsive">
             <table className="table table-hover">
-              <tbody>
-                <tr>
+              <thead>
+              <tr>
                   <th>Lessons Covered</th>
                   <th>Homework</th>
                   <th>Date</th>
                 </tr>
 
+              </thead>
+              <tbody>
+               
                 <Allclasses classrecs={this.state.classrecs} />
               </tbody>
             </table>

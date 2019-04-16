@@ -380,10 +380,10 @@ router.get('/api/teacher/search/:str',(req,res) => {
 
 
 //Reference Videos Login - API to get Channel Videos and serve front end
-router.get("/api/visitors",(req,res) => {
+router.get("/api/visitors/:str",(req,res) => {
   console.log("Youtube API - Search");
   youTube.setKey(process.env.API_YOUTUBE);
-    youTube.search('uyir ezhuthukal',10,function(error,channellist){
+    youTube.search(req.params.str,10,function(error,channellist){
       if(error){
         console.log("error in fetching youtube by channelid",error);
         res.json(error);

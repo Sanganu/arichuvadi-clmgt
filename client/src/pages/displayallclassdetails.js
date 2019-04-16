@@ -10,7 +10,7 @@ class Allclasses extends Component {
       render() {
             const classrec = this.props.classrecords || [{"lesson":"No class Details Exist","Homework":"N/A"}];
             return (<div className="row">
-                  <table>
+                  {/* <table> 
                         <thead>
                               <tr>
                                     <th>Lesson</th>
@@ -18,7 +18,7 @@ class Allclasses extends Component {
                                     <th>Date</th>
                               </tr>
                         </thead>
-                        <tbody>
+                        <tbody> */}
                               {classrec.map((data, index) =>
                               <tr key={index}>
                                     <td>{data.lesson}</td>
@@ -30,8 +30,8 @@ class Allclasses extends Component {
                         </button></td> */}
                               </tr>
                               )}
-                  </tbody>
-                  </table>
+                  {/* </tbody>
+                  </table> */}
             </div>
             ); // end return
 

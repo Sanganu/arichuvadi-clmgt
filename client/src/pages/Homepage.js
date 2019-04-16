@@ -11,10 +11,10 @@ class Homepage extends Component {
                 <Header />
                 <div className="container middlecontent">
                     <div className="row" >
-                       <div className = "col-lg-1 col-md-12 col-sm-12">
+                       <div className = "col-lg-1 col-md-1 col-sm-12">
                               <Menubar />
                        </div>
-                        <div className="col-lg-11 col-md-12 col-sm-12">
+                        <div className="col-lg-11 col-md-11 col-sm-12">
                             <div className="card-deck" id="content">
                                 <div className="card-body box1">
                                     <Link to="/teacher/tmain" className="mainlink">Instructor</Link><br />
@@ -29,7 +29,7 @@ class Homepage extends Component {
                                     <a href="http://www.tamilvu.org/" target ="_blank"  rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>
                                 </div>
                                 <div className="card-body box5">
-                                    <a href="#" target ="_blank" rel="noopener noreferrer" className="mainlink">Books</a>
+                                    <Link to="/resources"  className="mainlink">Books</Link>
                                 </div>
                             </div>
                         </div>

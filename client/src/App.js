@@ -6,7 +6,7 @@ import Createbatch from "./pages/Createbatch";
 import Addstudent from "./pages/Addstudent";
 import Homepage from "./pages/Homepage";
 import Visitors from "./pages/Visitors";
-import Books from "./components/Books";
+import Booklist from "./components/Books";
 import Allbatches from "./pages/displayallbatchdetails"
 import Studentlogin from "./pages/Studentlogin";
 import Addclass from "./pages/Addclassdetails";
@@ -21,7 +21,8 @@ const App = () =>
           <div>
           <Switch>
                    <Route exact path = "/" component = {Homepage}/>
-                   <Route exact path = "/teacher/allbatch" render={() => <Allbatches displayall={true}/>} />
+                   {/* <Route exact path = "/teacher/allbatch" render={() => <Allbatches displayall={true}/>} /> */}
+                   <Route exact path = "/teacher/allbatch"component= {Allbatches} />
                    <Route exact path = "/teacher/tmain" component = {Teachermain}/>
                    <Route exact path = "/other/students/loginpg" component = {Studentlogin}/>
                    <Route exact path = "/other/users" component = {Visitors}/>
@@ -30,15 +31,16 @@ const App = () =>
                    <Route exact path ="/teacher/batch/addstudent/:batchid" component={Addstudent} />
                    <Route exact path ="/teacher/batch/aclass" component={Addclass} />
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
-                   <Route exact path = "/resources" component = {Books}/>
+                   <Route exact path = "/resources" component = {Booklist}/>
                    <Route exact path ="/teacher/batch/addclass" component={Addclass} />
                    <Route exact path ="/teacher/searchrecords" component={Search} />
                    <Route exact path = "/teacher/studentmanagement" component = {StudentManagement} />
-                   {/* <Route exact path = "/teacher/addteacher" component = {Addteacher} /> */}
-                   {/* <Route exact path="/teacher/login" component = {InstructorLogin} /> */}
+                  
                    <Switch>
                       <Route path ="/*" component={Homepage} />
                    </Switch> 
+                    {/* <Route exact path = "/teacher/addteacher" component = {Addteacher} /> */}
+                   {/* <Route exact path="/teacher/login" component = {InstructorLogin} /> */}
             </Switch>
           </div>
   </Router>;

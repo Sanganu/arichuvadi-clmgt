@@ -113,26 +113,6 @@ body {
 .form-control{
   color : black;
 }
-/* 
-.form-group {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.form-control-placeholder {
-  position: absolute;
-  top: 0;
-  padding: 7px 0 0 13px;
-  transition: all 200ms;
-  opacity: 0.5;
-}
-
-.form-control:focus + .form-control-placeholder,
-.form-control:valid + .form-control-placeholder {
-  font-size: 75%;
-  transform: translate3d(0, -100%, 0);
-  opacity: 1;
-}  */
  
 .inputsection {
    margin-top:2%;
@@ -149,8 +129,6 @@ body {
 
 .form-control {
   opacity:0.8;
-  /* background-color:rgba(0, 0, 0, 0);
-  color:white; */
   border-radius: 5px; 
   height: 30px;
   outline:none; 
@@ -168,10 +146,6 @@ input {
   border-radius: 5px; 
   height: 30px;
 }
-
-/* .leftside {
-  justify-content: left;
-} */
 
 .has-float-label {
   color: rgb(210, 216, 216);
@@ -236,12 +210,6 @@ input {
     display: flex;
 }
 
-
-
-/* .rightside {
-  justify-content: right;
-} */
-
 #searchvideo{
    width: 90%;
    margin-top:3%;
@@ -257,12 +225,15 @@ select{
 }
 
 .subhead {
- 
   text-align: left;
-  margin-left:5;
+  margin-left:1%;
   font-weight: bolder;
   font-size: 30px;  
-  
+ 
+}
+
+.searcherrmsg{
+  margin-left: 5%;
 }
 
 .studentcontent{
@@ -349,10 +320,7 @@ th{
 tr:hover{
   color: rgb(219, 216, 18);
 }
-/* .gifcontainer{
-  width:100%;
- 
-} */
+
 iframe {
   border: none;
   padding: 5%;
@@ -374,15 +342,25 @@ iframe {
       .myvideo {
         width: 80%;
       }
-     
+     .subhead {
+       margin-top:3%;
+       padding-top:2%;
+     }
 }
 
-@media only screen and(max-width:900px){
+@media only screen and(max-width:907px){
  .middlecontent{
    padding-top:1%;
  }
  .list-unstyled{
    justify-content: space-between;
+ }
+ .subhead {
+   margin-top: 3%;
+   padding-top: 3%;
+ }
+ .gifcontainer{
+   display: none;
  }
 }
 

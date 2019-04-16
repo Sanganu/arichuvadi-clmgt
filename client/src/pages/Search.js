@@ -27,7 +27,7 @@ class Searchstudents extends Component {
                     (response.data.batchdetails.length > 0)) {
                     found = true;
                     displaymessage = false;
-                    console.log("if statement");
+                   // console.log("if statement");
                     for (let i = 0; i < response.data.studentdetails.length; i++) {
 
                         let currentrec = {
@@ -103,12 +103,14 @@ class Searchstudents extends Component {
                         </form>
                     </div>
                     <div className="col-lg-5 col-md-11 gifcontainer">
-                    <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j" width="480" height="372" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/tamil-XB3V7fwrzbLxuJSc2j">via GIPHY</a></p>
+                    <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j"
+                     width="480" height="372" frameBorder="0"
+                      className="giphy-embed" title="searchframe" allowFullScreen></iframe>
+                      {/* <p><a href="https://giphy.com/gifs/tamil-XB3V7fwrzbLxuJSc2j">via GIPHY</a></p> */}
                     </div>
                 </div>
                 <div className = "row">
                         <div className = "col-lg-11 searchrecords">
-                      
                             <div>{resultset.map((data, index) =>
                                 <Resultrecords field1={data.field1}
                                     key={index}
@@ -119,10 +121,10 @@ class Searchstudents extends Component {
                                     field6={data.field6}
                                 />)}
                             </div> 
-                          
-                         }
                          </div>
-                        {this.state.displaymessage ? <div><h3>No Student / Cohort details found</h3></div> : <div></div>}
+                        {this.state.displaymessage ?
+                             <div><h3 className = "searcherrmsg">   No Student / Cohort details found</h3></div>
+                         : <div></div>}
                 </div>
                
             </div>

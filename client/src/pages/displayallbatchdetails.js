@@ -79,7 +79,8 @@ class Allbatches extends Component {
         <div className="col-lg-1 col-md-1 col-sm-12">
           <Topmenu />
         </div>
-        <div className="col-lg-11 col-md-11 col-sm-11 middlecontent">
+        <div className="col-lg-11 col-md-11 col-sm-11">
+          <div className = "middlecontent">
           {this.state.allbatches ?
             <table className="table table-hover table-responsive">
               <thead>
@@ -114,7 +115,8 @@ class Allbatches extends Component {
                     />
                     : <div></div>}
              </div>  
-          }               
+          }    
+          </div>           
          </div>
          </div>
       </div>); // end return
