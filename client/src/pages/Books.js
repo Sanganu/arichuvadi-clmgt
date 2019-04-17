@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Teacherheader from "../compoenents/Teacherheader";
+import Teacherheader from "../components/Teacherheader";
 import { Menubar } from "../components/Menubar";
 
 class Booklist extends Component {
@@ -11,14 +11,19 @@ class Booklist extends Component {
                     <div className="col-lg-1 col-md-1 col-sm-12">
                         <Menubar />
                     </div>
-                    <div className="col-lg-11 col-md-11 col-sm-11">
+                    <div className="col-lg-11 col-md-11 col-sm-12">
                        <h4>Suggested Books</h4>
                        
-                        {/* <embed src="https://drive.google.com/open?id=1JLehbP72__zZwZfMuyPeOnhzbiC8lpgOs" 
+                        <embed src="https://drive.google.com/file/d/1JLehbP72__zZwZfMuyPeOnhzbiC8lpgO/view?usp=sharing" 
                         type="application/pdf"
-                         width="100%" height="600px" /> */}
-                         {/* <iframe src="https://drive.google.com/open?id=1JLehbP72__zZwZfMuyPeOnhzbiC8lpgOs" 
-                         style="width:600px; height:500px;" frameborder="0"></iframe> */}
+                         width="100%" height="600px" />
+                         {/* <iframe src="https://drive.google.com/file/d/1JLehbP72__zZwZfMuyPeOnhzbiC8lpgO/view?usp=sharing" 
+                        >UKG    </iframe> */}
+
+                        <iframe src="http://docs.google.com/gview?
+                                url="https:/localhost:9000/others&embedded=true"
+                                style="width:600px; height:500px;" frameborder="0">
+                        </iframe>
                     </div>
                 </div>        
             </div>

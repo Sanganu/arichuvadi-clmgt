@@ -23,7 +23,7 @@ class Homepage extends Component {
                                     <Link to="/other/students/loginpg" className="mainlink">Student</Link><br />
                                 </div>
                                 <div className="card-body box3">
-                                    <Link to="/other/users" className="mainlink">Reference Videos</Link>
+                                    <Link to="/users/videos" className="mainlink">Reference Videos</Link>
                                 </div>
                                 <div className="card-body box4">
                                     <a href="http://www.tamilvu.org/" target ="_blank"  rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>

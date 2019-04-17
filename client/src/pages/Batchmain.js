@@ -33,10 +33,10 @@ class Batchmain extends Component {
       <Teacherheader />
       <div className="middlecontent">
         <div className="row">
-          <div className="col-sm-1 col-lg-1">
+          <div className="col-sm-1 col-md-1 col-lg-1">
             <Topmenu />
           </div>
-          <div className="col-sm-11 col-lg-11">
+          <div className="col-sm-11 col-md-11 col-lg-11">
             {this.state.displaybatch ? <Createbatch
               onInsert={this.handleBatchCreated} />
               : <BatchInfo batchdetails={this.state.batchdet}

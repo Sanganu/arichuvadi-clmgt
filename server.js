@@ -61,6 +61,7 @@ app.use(routes);
 // Serve up static assets
 app.use(express.static(path.join(__dirname,"client/build")));
 
+ app.use(express.static('Files'));
  
 // ====== Error handler ====
 app.use(function(err, req, res, next) {
