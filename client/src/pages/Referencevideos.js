@@ -5,9 +5,12 @@ import Video from "./Video";
 import { Menubar } from "../components/Menubar";
 import keys from "../keys/keys.js";
 import myyoutube from "youtube-api-search";
-import dotenv from 'dotenv';
-dotenv.config();
-const API_KEY = "AIzaSyB_rlMPcncr-2L7euu9ydyJuskh9nkLP1w";
+import myYoutube from "./myYoutube";
+// import axios from 'axios';
+
+// import dotenv from 'dotenv';
+// dotenv.config();
+const API_KEY = process.env.API_YOUTUBE || keys.API_YOUTUBE;
 
 class Referencevideos extends Component {
   state = {
@@ -15,20 +18,18 @@ class Referencevideos extends Component {
     searchvideo: ""
   }
 
-  searchfor = () => {
-    // axios.get('/api/visitors/'+this.searchvideo)
-    //   .then((videos) => {
-    //     //console.log("Videos Received",videos.data);
-    //     this.setState({ videos: videos.data }
-    //       , () => { console.log("The Response from Axios", this.state.videos) })
-    //   }).catch((error) => {
-    //     console.log("Error....", error);
-    //   });
+  searchfor2 = () =>{
+    const searchterm = this.statesearchvideo || "Uyir Ezhuthukal";
+   
+  }
+  searchfor1 = () => {
+  
     const searchterm = this.statesearchvideo || "Uyir Ezhuthukal";
     console.log("API_",API_KEY)
-     myyoutube({key : API_KEY,searchterm},(error,data) =>{
-      if (error) console.log("Error in fetching youtube Videos",error);
-      console.log("Youtube Data",data);
+     myyoutube({
+       key : API_KEY,searchterm},(data) =>{
+      if (data) console.log("Error in fetching youtube Videos",data);
+      this.setState({videos:data},() => {console.log("Youtube Data",this.state.videos)});
      });
   }
 
@@ -39,6 +40,17 @@ class Referencevideos extends Component {
     });
   }
 
+  searchfor = async( ) => {
+    await axios.get('/api/visitors/'+ this.state.searchvideo)
+          .then((videos) => {
+            this.setState({videos:videos.data},() =>{
+              console.log("Axios call to back end to fetch youtube videos")
+            })
+            .catch((error) => {
+              console.log("Error in fetching youtube videos",error);
+            })
+          })
+  }
 
   render() {
     const videos = this.state.videos || "";

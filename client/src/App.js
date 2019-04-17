@@ -13,7 +13,7 @@ import Addclass from "./pages/Addclassdetails";
 import Search from "./pages/Search";
 import StudentManagement from './pages/StudentManagement';
 // import InstructorLogin from "./pages/InstructorLogin";
-import Addteacher from "./pages/Addteacher";
+// import Addteacher from "./pages/Addteacher";
 
 
 const App = () =>

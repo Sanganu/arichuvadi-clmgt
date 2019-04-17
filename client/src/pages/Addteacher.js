@@ -37,13 +37,9 @@ class Addteacher extends Component{
                                 {
                                     console.log("The response createe Teacher Account",response);
                                     console.log("The  inserted record ID",response.data._id);
-
-                                    let newteacher = {
-                                        
-                                    }
                                     //window.location = '/teacher/batch/addstudent/'+response._id;
                                     //return <Addstudent />
-                           })
+                             })
                             .catch(error => {
                                     this.setState({errmsg: error.errstring +" Please check console for further details"},() =>
                                     {

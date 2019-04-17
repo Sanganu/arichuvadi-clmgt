@@ -20,10 +20,7 @@ class Booklist extends Component {
                          {/* <iframe src="https://drive.google.com/file/d/1JLehbP72__zZwZfMuyPeOnhzbiC8lpgO/view?usp=sharing" 
                         >UKG    </iframe> */}
 
-                        <iframe src="http://docs.google.com/gview?
-                                url="https:/localhost:9000/others&embedded=true"
-                                style="width:600px; height:500px;" frameborder="0">
-                        </iframe>
+                       
                     </div>
                 </div>        
             </div>

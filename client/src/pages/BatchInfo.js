@@ -272,12 +272,8 @@ class BatchInfo extends Component {
                   <th>Homework</th>
                   <th>Date</th>
                 </tr>
-
               </thead>
-              <tbody>
-               
                 <Allclasses classrecs={this.state.classrecs} />
-              </tbody>
             </table>
           </div>
         </div>
