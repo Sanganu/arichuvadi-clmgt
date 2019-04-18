@@ -89,10 +89,10 @@ class Searchstudents extends Component {
             <Teacherheader />
             <div className="middlecontent searchcontent">
                 <div className="row">
-                    <div className="col-sm-1 col-lg-1">
+                    <div className="col-sm-12 col-md-12 col-lg-1">
                         <Topmenu />
                     </div>
-                    <div className="col-lg-5 col-md-11 searchrecstbt">
+                    <div className="col-sm-12 col-md-12 col-lg-5">
                         <form className="inputsection">
                         <h5 className="subhead">Search Student / Cohort</h5>
                             <div className="form-group row">
@@ -102,15 +102,15 @@ class Searchstudents extends Component {
                             <button className="createbutton" name="searchbtn" onClick={this.searchrecords}>Search</button>
                         </form>
                     </div>
-                    <div className="col-lg-5 col-md-11 gifcontainer">
+                    <div className="col-sm-0 col-md-11 col-lg-5 gifcontainer">
                     <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j"
                      width="480" height="372" frameBorder="0"
                       className="giphy-embed" title="searchframe" allowFullScreen></iframe>
                       {/* <p><a href="https://giphy.com/gifs/tamil-XB3V7fwrzbLxuJSc2j">via GIPHY</a></p> */}
                     </div>
                 </div>
-                <div className = "row">
-                        <div className = "col-lg-11 searchrecords">
+                <div className="panel-group">
+                        <div className = "panel panel-info">
                             <div>{resultset.map((data, index) =>
                                 <Resultrecords field1={data.field1}
                                     key={index}

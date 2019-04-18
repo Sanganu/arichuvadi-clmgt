@@ -17,12 +17,12 @@ class Booklist extends Component {
         const {pageNumber,numPages } = this.state;
         return (<div>
             <Teacherheader />
-            <div className="container middlecontent">
+            <div className="middlecontent">
                 <div className="row" >
-                    <div className="col-lg-1 col-md-1 col-sm-12">
+                    <div className="col-lg-1 col-md-12 col-sm-12">
                         <Menubar />
                     </div>
-                    <div className="col-lg-11 col-md-11 col-sm-12">
+                    <div className="col-lg-11 col-md-12 col-sm-12">
                        <h4 className = "subhead">Suggested Books</h4>
                         
                     <embed src="ukgbook.pdf" 

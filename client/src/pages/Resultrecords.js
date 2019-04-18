@@ -3,7 +3,7 @@ import React,{ Component } from 'react';
 class Resultrecords extends Component
 {  
     render(){
-            return(<div>
+            return(<div className="panel-body">
                         {/* <h4>{this.props.field1}</h4> */}
                          <h4>{this.props.field2}</h4>
                          <p>{this.props.field3}</p>
