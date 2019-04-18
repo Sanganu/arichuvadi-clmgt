@@ -138,7 +138,7 @@ class Addstudent extends Component {
                                   <div className = "form-group">
                                    
                                       <label className="form-control-placeholder">
-                                      Email</label> 
+                                      Username</label> 
                                    
                                        <input type = "text"  
                                        placeholder = "Login Email"

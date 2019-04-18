@@ -110,7 +110,7 @@ class Searchstudents extends Component {
                     </div>
                 </div>
                 <div className="panel-group">
-                        <div className = "panel panel-info">
+                        <div className = "panel panel-primary">
                             <div>{resultset.map((data, index) =>
                                 <Resultrecords field1={data.field1}
                                     key={index}

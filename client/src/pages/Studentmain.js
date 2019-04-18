@@ -33,7 +33,7 @@ class Studentmain extends Component
 
       render()
       {
-           return(<div className = "container middlecontent">
+           return(<div className = "middlecontent">
                      <div>
                         <h3>Welcome {this.props.studentdet.fname}    {this.props.studentdet.lname} </h3>
                       </div>
@@ -61,7 +61,7 @@ class Studentmain extends Component
                                                  readOnly
                                                  value={this.props.studentdet.teacher} />
                                           <label className="form-control-placeholder">
-                                             Course  </label> 
+                                            Teacher  </label> 
                                     </div>
                          </div>
                          <div className = "col-lg-6">
@@ -82,7 +82,7 @@ class Studentmain extends Component
                                                             id="stlname"
                                                             value={this.state.stlname} />
                                                       <label className="form-control-placeholder">
-                                                            </label> 
+                                                        Lastname    </label> 
                                                 </div>
                                                 <div className ="form-group">
                                                       <input className = "form-control"
@@ -92,7 +92,7 @@ class Studentmain extends Component
                                                             id="parent"
                                                             value={this.state.parent} />
                                                       <label className="form-control-placeholder">
-                                                            </label> 
+                                                       Parent     </label> 
                                                 </div>
                                                 <div className ="form-group">
                                                       <input className = "form-control"
@@ -102,7 +102,7 @@ class Studentmain extends Component
                                                             id="parentphonenumber"
                                                             value={this.state.parentphonenumber} />
                                                       <label  className="form-control-placeholder">
-                                                            </label> 
+                                                      Telephone      </label> 
                                                 </div>
                                                 <div className ="form-group">
                                                       <input className = "form-control"
@@ -113,14 +113,25 @@ class Studentmain extends Component
                                                             readOnly
                                                              value={this.state.email} />
                                                       <label className="form-control-placeholder">
-                                                            </label> 
+                                                       Username     </label> 
                                                 </div>
                                           </form>
-                                       </div>
-                                    </div>
+                                     </div>
+                              </div>
+                              
                               <table>
-                              <Allclasses classrecords = {this.props.classrecords}/> 
+                                    <thead>
+                                    <tr>
+                                          <th>Lessons Covered</th>
+                                          <th>Homework Assigned</th>
+                                          <th>Class date</th>
+                                     </tr>
+                                     </thead>
+                                        
+                                    <Allclasses classrecs = {this.props.classrecords}/> 
+                               
                               </table>
+                    
                  </div>)
       }
 }

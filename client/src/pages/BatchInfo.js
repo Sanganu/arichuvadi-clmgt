@@ -248,7 +248,7 @@ class BatchInfo extends Component {
             <tr>
                   <th>Firstname</th>
                   <th>Lastname</th>
-                  <th>Email</th>
+                  <th>Username</th>
                   <th>Phone</th>
                 </tr>
               </thead>

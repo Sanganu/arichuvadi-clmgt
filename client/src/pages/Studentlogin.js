@@ -104,7 +104,7 @@ class Studentlogin extends Component {
                 <div className="form-group">
                   <label htmlFor="vemail"
                     className="form-control-place">
-                    Email Addess</label>
+                   Username</label>
                   <input className="form-control"
                     onChange={this.handleInputChange}
                     type="text" name="vemail"

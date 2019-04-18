@@ -1,20 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Teacherheader from "../components/Teacherheader";
 import { Menubar } from "../components/Menubar";
-import { Document, Page } from 'react-pdf';
 import "../resources/ukgbook.pdf";
 
-class Booklist extends Component {
-    state = {
-        numPages: null,
-        pageNumber: 1
-    }
-    onDocumentLoadSuccess = ({ numPages }) => {
-        this.setState({ numPages });
-      }
+const Books= () => {
 
-    render() {
-        const {pageNumber,numPages } = this.state;
         return (<div>
             <Teacherheader />
             <div className="middlecontent">
@@ -26,34 +16,12 @@ class Booklist extends Component {
                        <h4 className = "subhead">Suggested Books</h4>
                         
                     <embed src="ukgbook.pdf" 
-                  type="application/pdf" width="100%" height="600px" /> 
-                         {/* <iframe src="../resources/ukgbook.pdf" 
-                        >UKG    </iframe> */}
+                  type="application/pdf" width="95%" height="600px" /> 
                     </div>
                 </div> 
-                {/* <object
-                        data="https://example.com/test.pdf#page=2"
-                        type="application/pdf"
-                        width="100%"
-                        height="100%">
-                        <iframe
-                            src="https://example.com/test.pdf#page=2"
-                            width="100%"
-                            height="100%"
-                            style="border: none;">
-                            <p>Your browser does not support PDFs.
-                            <a href="https://example.com/test.pdf">Download the PDF</a>.</p>
-                        </iframe>
-                        </object>        */}
-                        <Document  
-                            file ="../resources/ukgbook.pdf"
-                            onLoadSuccess = {this.onDocumentLoadSuccess}>
-                            <Page pageNumber={pageNumber} />
-                        </Document>
-                        <p>Page {pageNumber}  of {numPages}</p>
             </div>
         </div>); //end return function
-    } // End Render function
+   
 } // End class Booklist
          
-export default Booklist;
+export default Books;
