@@ -381,20 +381,22 @@ router.get('/api/teacher/search/:str',(req,res) => {
 
 //Reference Videos Login - API to get Channel Videos and serve front end
 router.get("/api/visitors/:str",(req,res) => {
-  console.log("Youtube API - Search");
+  //console.log("Youtubheroku e API - Search");
+  let videos =[];
   youTube.setKey(process.env.API_YOUTUBE);
-    youTube.search(req.params.str,10,function(error,channellist){
+  youTube.search(req.params.str,10,function(error,result){
       if(error){
-        console.log("error in fetching youtube by channelid",error);
+        console.log("error in fetching youtube search data",error);
         res.json(error);
       }
-        console.log("The Channellist",channellist);
-        let videoid =[];
+        //console.log("The Channellist",channellist);
+        //let channellist = JSON.stringify(result,null);
+        var channellist=result;
         for(let i =0; i < channellist.items.length;i++)
         {
-            if(channellist.items[i])
+            if(channellist.items[i] && channellist.items[i].id.videoId !== undefined)
             { 
-              videoid.push({
+              videos.push({
                 id:channellist.items[i].id.videoId,
                 title:channellist.items[i].snippet.title,
                 description:channellist.items[i].snippet.description,
@@ -402,10 +404,17 @@ router.get("/api/visitors/:str",(req,res) => {
                 // thumbnail:channellist[i].snippet.thumbnails.default
               });
             } // end if
-            console.log(videoid[i]);
-          } // end for
-        res.json(videoid);
+        } // end for
+   
+       // res.json(videos);
+       console.log("===================LIST =======================");
+       console.log("Videos",videos);
+      
+       console.log("===============&&&&====END=========================")
+      // res.send("What is happening");
+       res.json(videosn);
     }); // End of youtube api
+ 
 }); // end of visitors
 
 // Fetch student records  and class details for the specific batch

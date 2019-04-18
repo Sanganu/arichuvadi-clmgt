@@ -118,9 +118,9 @@ class Studentmain extends Component
                                           </form>
                                        </div>
                                     </div>
-                             
+                              <table>
                               <Allclasses classrecords = {this.props.classrecords}/> 
-                            
+                              </table>
                  </div>)
       }
 }
