@@ -40,75 +40,77 @@ class Referencevideos extends Component {
     });
   }
 
-  axiosrun =(searchstr) =>{
+  axiosrun = (searchstr) => {
     return axios.get(`/api/visitors/${searchstr}`)
-           .then(videos => {
-             console.log("++++++",videos,"===========");
-             return videos.data})
-           .catch(error => {console.log("Error",error)});
-   }
+      .then(videos => {
+        console.log("++++++", videos, "===========");
+        return videos.data
+      })
+      .catch(error => { console.log("Error", error) });
+  }
 
   searchfor = () => {
-        console.log("Before axios", this.state.searchvideo);
-        let searchstr = this.state.searchvideo || "uyir ezhuthukal"
-        this.axiosrun(searchstr).then(data =>{
-            console.log("+++then+++");
-            console.log("Response",data);
-              this.setState({
-                 videos: data },
-                 () => {
-                console.log("Axios call to back end to fetch youtube videos")
-                 }); // End of state
-            }).catch((error) => {
-              console.log("Error in fetching youtube videos", error);
-            }); // End axiosrun
-            console.log("....");
- }
+    console.log("Before axios", this.state.searchvideo);
+    let searchstr = this.state.searchvideo || "uyir ezhuthukal"
+    this.axiosrun(searchstr).then(data => {
+      console.log("+++then+++");
+      console.log("Response", data);
+      this.setState({
+        videos: data
+      },
+        () => {
+          console.log("Axios call to back end to fetch youtube videos")
+        }); // End of state
+    }).catch((error) => {
+      console.log("Error in fetching youtube videos", error);
+    }); // End axiosrun
+    console.log("....");
+  }
 
- 
 
-render() {
-          const videos = this.state.videos || "";
-          return(<div>
-        <Teacherheader />
-       
-          <div className="row">
+
+  render() {
+    const videos = this.state.videos || "";
+    return (<div>
+      <Teacherheader />
+
+      <div className="row">
             <div className="col-md-1 col-sm-1 col-lg-1">
               <Menubar />
             </div>
-            <div className="middlecontent">
-            <div className="col-md-5 col-sm-5 col-lg-5">
-              <h4 className = "subhead">Youtube Search...In Progress...</h4>
-              <form className="inputsection">
-                <input type="text"
-                  className="form-control"
-                  name="searchvideo"
-                  value={this.state.searchvideo}
-                  id="searchvideo"
-                  onChange={this.handleInputChange} />
-                <button onClick={this.searchfor}>
-                  Search for Reference Youtube Videos</button>
-              </form>
-            </div>
-            <div className="col-md-5 col-lg-5 col-sm-5">
-              <div className="gifcontainer">
-                <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j"
-                width="250" height="250" frameBorder="0" title="gifframe" className="giphy-embed"
-                allowFullScreen></iframe>
+             <div className="middlecontent">
+                      <div className="col-md-5 col-sm-5 col-lg-5">
+                        <h4 className="subhead">Youtube Search...In Progress...</h4>
+                        <form className="inputsection">
+                          <input type="text"
+                            className="form-control"
+                            name="searchvideo"
+                            value={this.state.searchvideo}
+                            id="searchvideo"
+                            onChange={this.handleInputChange} />
+                          <button onClick={this.searchfor}>
+                            Search for Reference Youtube Videos</button>
+                        </form>
+                      </div>
+                      <div className="col-md-5 col-lg-5 col-sm-5">
+                        <div className="gifcontainer">
+                          <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j"
+                            width="250" height="250" frameBorder="0" title="gifframe" className="giphy-embed"
+                            allowFullScreen></iframe>
+                        </div>
+                      </div>
               </div>
-            </div>
-            </div>
-          </div>
-          {videos && videos.length ?
-            <div className="card-columns">
-              {videos.map((data, index) =>
-                <Video key={index}
-                  content={data} />
-              )}
-            </div>
-            : <div></div>}
+      </div>
+      {videos && videos.length ?
+        <div className="card-columns">
+          {videos.map((data, index) =>
+            <Video key={index}
+              content={data} />
+          )}
         </div>
-  </div >)
+        : <div></div>}
+    </div>
+ )
   }
 }
 

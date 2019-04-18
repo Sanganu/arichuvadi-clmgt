@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Teacherheader from "../components/Teacherheader";
 import { Menubar } from "../components/Menubar";
 import { Document, Page } from 'react-pdf';
+import "../resources/ukgbook.pdf";
 
 class Booklist extends Component {
     state = {
@@ -23,11 +24,10 @@ class Booklist extends Component {
                     </div>
                     <div className="col-lg-11 col-md-11 col-sm-12">
                        <h4 className = "subhead">Suggested Books</h4>
-{/*                        
-                        <embed src="https://drive.google.com/file/d/1JLehbP72__zZwZfMuyPeOnhzbiC8lpgO/view?usp=sharing" 
-                        type="application/pdf"
-                         width="100%" height="600px" /> */}
-                         {/* <iframe src="https://drive.google.com/file/d/1JLehbP72__zZwZfMuyPeOnhzbiC8lpgO/view?usp=sharing" 
+                        
+                    <embed src="ukgbook.pdf" 
+                  type="application/pdf" width="100%" height="600px" /> 
+                         {/* <iframe src="../resources/ukgbook.pdf" 
                         >UKG    </iframe> */}
                     </div>
                 </div> 
