@@ -1,8 +1,15 @@
-Sprint1 / Sprint 2 / Sprint 3 - https://github.com/scodingjs/Edutrack
+Sprint1 / Sprint 2 / Sprint 3 - https://github.com/scodingjs/Edutrack 
 https://github.com/scodingjs/gkedutrack
+https://github.com/Sanganu/Edutrack
+(later moved to Sanganu - Private repo)
+https://github.com/Sanganu/gkedutrack
+(Bitbucket - Repo)
+https://bitbucket.org/Sangkal/clmgnt/src/master/
 
 Deployment URL:
-https://glacial-hamlet-77539.herokuapp.com/ (Current)
+https://coarichuvadi.herokuapp.com/ (Current)
+https://glacial-journey-48111.herokuapp.com/(version-3g)
+https://glacial-hamlet-77539.herokuapp.com/ (Version- 2)
 https://secret-garden-26062.herokuapp.com/ (Version -1)
 
 

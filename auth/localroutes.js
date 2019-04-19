@@ -1,11 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const Students = require('../models/Students');
-const Teachers = require("../models/Teachers");
+const Students = require('../models/Students')
 const passport = require('../passport')
 
 // this route is just used to get the user basic info
-router.get('/student', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	console.log('===== /student ===user!!======')
 	console.log(req.student)
 	if (req.student) {
@@ -16,7 +15,7 @@ router.get('/student', (req, res, next) => {
 })
   
 router.post(
-	'/student/login',
+	'/login',
 	function(req, res, next) {
 		console.log(req.body)
 		console.log('=======++++=========')
@@ -25,32 +24,14 @@ router.post(
 	passport.authenticate('local'),
 	(req, res) => {
 		console.log('POST to /login - passport.authenticate callback')
-		const user = JSON.parse(JSON.stringify(req.user)) // hack
-		const cleanUser = Object.assign({}, user)
-		if (cleanUser) {
-			console.log(`Deleting ${cleanUser.password}`)
-			delete cleanUser.password
-		}
+ 
 		getStudentDetails(req,res)
 	}
 )
 
 
-router.get("/teacher/login",(req,res) =>{
-    res.json({"msg":"send to google"});
-});
 
-//Make the google account screen display
-router.get("/teacher/google",passport.authenticate('google',{
-    scope:['profile']
-}));
-
-//The callback 
-router.get("/auth/google/teacher",passport.authenticate("google"),(req,res) => {
-    console.log("The router callback");
-});
-
-router.post( '/logout', (req, res) => {
+router.post('/logout', (req, res) => {
 	if (req.user) {
 		req.session.destroy()
 		res.clearCookie('connect.sid') // clean up!
@@ -60,7 +41,7 @@ router.post( '/logout', (req, res) => {
 	}
 })
 
-router.post('/student/create', (req, res) => {
+router.post('/create', (req, res) => {
 	// ADD VALIDATION
 	console.log("The Request - to create account",req.body)
       Students.findOne({ 'email': email }, (err, studentMatch) => {
@@ -89,30 +70,30 @@ router.post('/student/create', (req, res) => {
       }); // end student findone
 }); // end route
 
-module.exports = router
-
 function getStudentDetails(req,res) {
-	console.log("Get Student Details", req.session.passport.user._id)
-	if (req.session.passport.user._id === undefined){
+  console.log("Get Student Details - Student Login Route");
+  console.log("The session data",req.session.passport.user)
+	
+	if (req.session.passport.user.user.userdata._id === undefined){
      res.json({err:"Invalid credentials"});
    }
    else
    {   
              Students
-                  .findOne({_id : req.session.passport.user._id})
+                  .findOne({_id : req.session.passport.user.user.userdata._id})
                   .populate({
                     path: 'batchid',
-                    select: 'batchdesc subject level rateperhour',
+                    select: 'batchdesc course teacher level',
                     populate: {
-                      path: 'classid', select: 'homework lessoncovered students'
+                      path: 'classid', select: 'homework lessoncovered classdate'
                     }                    
                   })
                   .then((studentdet) =>
                     {
                        var classdetails = [];
-                       console.log("Studet",studentdet);
-                       console.log("batch",studentdet.batchid);
-                       console.log("class",studentdet.batchid[0].classid);
+                      //  console.log("Studet",studentdet);
+                      //  console.log("batch",studentdet.batchid);
+                      //  console.log("class",studentdet.batchid[0].classid);
                        if( studentdet.batchid.length > 0)
                        {
                               if( studentdet.batchid[0].classid !== undefined)
@@ -123,25 +104,26 @@ function getStudentDetails(req,res) {
                                           let { homework,lessoncovered,classdate } = studentdet.batchid[0].classid[i];
                                           classdetails.push ({
                                                   homework : homework,
-                                                  lesson: lessoncovered,
+                                                  lesson: lessoncovered, 
                                                   classdate: classdate      
                                                 });
                                       } // end of for loop
                                 } // end if part check for class
-                                else {
+                              else {
                                   classdetails = [{homework: "No Class details Available"}];
-                                }  // end check for class details     
-                                    var studentrecord = {
+                              }  // end check for class details     
+                              var studentrecord = {
+                                        stdid: studentdet._id,
                                         fname: studentdet.studentfname,
                                         lname: studentdet.studentlname,
                                         parent: studentdet.parentname,
                                         phone: studentdet.parentphonenumber,
                                         email: studentdet.loginemail,
-                                        batch: studentdet.batchid[0].batchdesc || "Student not enrolled in any batch",
-                                        course: studentdet.batchid[0].subject || "N/A",
+                                        batch: studentdet.batchid[0].batchdesc || "Not available",
+                                        subject: studentdet.batchid[0].course || "N/A",
                                         level: studentdet.batchid[0].level || "N/A",
-                                     
-                                    }
+                                        teacher: studentdet.batchid[0].teacher || "N/A"
+                              }
                                     console.log("Valid student login",studentrecord);
                                     console.log("Classdetails array",classdetails);
                                     res.json({studentrecord:studentrecord,classes:classdetails});
@@ -149,12 +131,16 @@ function getStudentDetails(req,res) {
                           else
                           {
                             var studentrecord = {
+                              stdid: studentdet._id,
                               fname: studentdet.studentfname,
                               lname: studentdet.studentlname,
                               parent: studentdet.parentname,
                               phone: studentdet.parentphonenumber,
                               email: studentdet.loginemail,
-                              batch : "Student not enrolled in any batch contact Teacher"
+                              batch : "Student not enrolled in any batch contact Teacher",
+                              subject: "N/A",
+                              level: "N/A",
+                              teacher: "N/A"
                             }
                             res.json({studentrecord:studentrecord}) ;
                             console.log("Valid Student Login",studentrecord);
@@ -168,3 +154,4 @@ function getStudentDetails(req,res) {
       }  // End else part
 }
 
+//export default router;
