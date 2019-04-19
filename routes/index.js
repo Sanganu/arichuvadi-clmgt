@@ -358,7 +358,7 @@ router.get('/api/teacher/search/:str',(req,res) => {
               batchdetails.find({$or:[
                 {batchdesc : {"$regex" :searchString,"$options":"i"}},
                 {level: {"$regex" :searchString,"$options":"i"}},
-                {subject:{"$regex" :searchString,"$options":"i"}},
+                {course:{"$regex" :searchString,"$options":"i"}},
                 {teacher: {"$regex" :searchString,"$options":"i"}}
               ]})
               .then((batchdet) => {

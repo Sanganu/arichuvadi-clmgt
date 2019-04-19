@@ -33,10 +33,11 @@ class Searchstudents extends Component {
                         let currentrec = {
                             field1: response.data.studentdetails[i]._id,
                             field2: "Student: " + response.data.studentdetails[i].studentfname + " " + response.data.studentdetails[i].studentlname,
-                            field3: response.data.studentdetails[i].loginemail,
-                            field4: response.data.studentdetails[i].parentname,
-                            field5: response.data.studentdetails[i].parentphonenumber,
-                            field6: response.data.studentdetails[i].batchdesc
+                            field3: "Username: "+ response.data.studentdetails[i].loginemail,
+                            field4: "Parent: " + response.data.studentdetails[i].parentname,
+                            field5: "Telephone: " + response.data.studentdetails[i].parentphonenumber,
+                            field6: "Batch: " + response.data.studentdetails[i].batchdesc,
+                            field7:""
                         }
                         matchrecords.push(currentrec)
                     }
@@ -45,10 +46,11 @@ class Searchstudents extends Component {
                         let currentrec = {
                             field1: response.data.batchdetails[i]._id,
                             field2: "Batch: " + response.data.batchdetails[i].batchdesc,
-                            field3: response.data.batchdetails[i].subject,
-                            field4: response.data.batchdetails[i].level,
-                            field5: response.data.batchdetails[i].rateperhour,
-                            field6: "Number of Students: " + response.data.batchdetails[i].students.length
+                            field3: "Course: "+response.data.batchdetails[i].course,
+                            field4: "Level: " + response.data.batchdetails[i].level,
+                            field5: "Teacher: "+ response.data.batchdetails[i].teacher,
+                            field6: "Number of Students: " + response.data.batchdetails[i].students.length,
+                            field7: "Classes: "+response.data.batchdetails[i].classid.length
                         }
                         matchrecords.push(currentrec)
                     }
@@ -109,8 +111,9 @@ class Searchstudents extends Component {
                       {/* <p><a href="https://giphy.com/gifs/tamil-XB3V7fwrzbLxuJSc2j">via GIPHY</a></p> */}
                     </div>
                 </div>
-                <div className="panel-group">
-                        <div className = "panel panel-primary">
+                {resultset.length > 0 ?
+                    <div className="panel-group">
+                          <div className = "panel panel-primary">
                             <div>{resultset.map((data, index) =>
                                 <Resultrecords field1={data.field1}
                                     key={index}
@@ -119,13 +122,16 @@ class Searchstudents extends Component {
                                     field4={data.field4}
                                     field5={data.field5}
                                     field6={data.field6}
+                                    field7={data.field7}
                                 />)}
                             </div> 
                          </div>
+                   </div>  
+                : <div></div>}        
                         {this.state.displaymessage ?
                              <div><h3 className = "searcherrmsg">   No Student / Cohort details found</h3></div>
                          : <div></div>}
-                </div>
+               
                
             </div>
          </div>);
