@@ -71,16 +71,17 @@ class Referencevideos extends Component {
 
   render() {
     const videos = this.state.videos || "";
-    return (<div>
+    return (<div className="middlecontent">
       <Teacherheader />
 
       <div className="row">
-            <div className="col-md-1 col-sm-1 col-lg-1">
+            <div className="col-md-12 col-sm-12 col-lg-1">
               <Menubar />
             </div>
-             <div className="middlecontent">
-                      <div className="col-md-5 col-sm-5 col-lg-5">
-                        <h4 className="subhead">Youtube Search...In Progress...</h4>
+       
+                      <div className="col-md-11 col-sm-12 col-lg-11">
+                        <h3>In Progress...</h3>
+                        <h4 className="subhead">Youtube Search ... for teachers</h4>
                         <form className="inputsection">
                           <input type="text"
                             className="form-control"
@@ -88,19 +89,15 @@ class Referencevideos extends Component {
                             value={this.state.searchvideo}
                             id="searchvideo"
                             onChange={this.handleInputChange} />
-                          <button onClick={this.searchfor}>
+                          <button className = "createbutton" onClick={this.searchfor}>
                             Search for Reference Youtube Videos</button>
                         </form>
                       </div>
-                      <div className="col-md-5 col-lg-5 col-sm-5">
-                        <div className="gifcontainer">
-                          <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j"
-                            width="250" height="250" frameBorder="0" title="gifframe" className="giphy-embed"
-                            allowFullScreen></iframe>
-                        </div>
-                      </div>
-              </div>
+                     
+             
       </div>
+      <div className ="row">
+
       {videos && videos.length ?
         <div className="card-columns">
           {videos.map((data, index) =>
@@ -108,7 +105,16 @@ class Referencevideos extends Component {
               content={data} />
           )}
         </div>
-        : <div></div>}
+        : 
+           <div className="col-md-5 col-lg-5 col-sm-5">
+                        <div className="gifcontainer">
+                          <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j"
+                            width="250" height="250" frameBorder="0" title="gifframe" className="giphy-embed"
+                            allowFullScreen></iframe>
+                        </div>
+                      </div>
+        }
+      </div>
     </div>
  )
   }
