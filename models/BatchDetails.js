@@ -15,7 +15,8 @@ const batchdetailsSchema = new Schema({
 
         },
         teacher :{
-          type: String,
+          type:Schema.Types.ObjectId,
+          ref: 'teacherdetials'
         },
         students: [{
           type: Schema.Types.ObjectId,

@@ -50,7 +50,8 @@ class Studentlogin extends Component {
       axios.post('/auth/student/login',
         {
           loginemail: this.state.vemail,
-          password: this.state.vpword
+          password: this.state.vpword,
+          usertype:"student"
         })
         .then((response) => {
           console.log("The response from axios", response.data);
@@ -96,7 +97,7 @@ class Studentlogin extends Component {
           <div className="col-lg-1 col-sm-12 col-md-12">
             <Menubar />
           </div>
-          <div className="col-lg-9 col-sm-11 col-md-10">
+          <div className="col-lg-11 col-sm-12 col-md-12">
             {this.state.showstlogin ?
               <form className="inputsection">
                 <h3>Student Login </h3>

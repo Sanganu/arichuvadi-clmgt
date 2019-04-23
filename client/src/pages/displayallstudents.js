@@ -12,12 +12,7 @@ class Allstudents extends Component
                        <td>{this.props.studentrec.stdlname}</td>
                        <td>{this.props.studentrec.stdemail}</td>
                        <td>{this.props.studentrec.phonenumber}</td>
-                       {/* <td>{this.props.studentrec.stdid}</td> */}
-                       {/* <td><button onClick={this.deleteStudent}
-                       className = "rowbtn">
-                       <i className="fa fa-trash"></i>
-                       </button></td> */}
-                       {/* <td></td> */}
+            
                   </tr>)
      }
 }

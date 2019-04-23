@@ -134,13 +134,6 @@ class Addstudent extends Component {
     axios.put("/api/teacher/student/update/" + studentrecord.recid, studentrecord)
       .then(response => {
         if (response.statatus === 200) {
-          // var newarray = this.state.studentrecords.filter(function (student) {
-          //   return (student.recid !== studentrecord.id)
-          // });
-          // newarray.push(studentrecord);
-          // console.log("The newarray-student update", newarray)
-          // this.setState(
-          //   { studentrecords: newarray },
           //   () => console.log("The studentrecords", this.state.studentrecords));
           let updatedStudentrecord = [];
           for (let i = 0; i < this.state.studentrecords; i++) {

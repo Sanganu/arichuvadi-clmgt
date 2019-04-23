@@ -21,7 +21,7 @@ router.post(
 		console.log('=======++++=========')
 		next()
 	},
-	passport.authenticate('local'),
+	passport.authenticate('local'), 
 	(req, res) => {
 		console.log('POST to /login - passport.authenticate callback')
  
@@ -154,4 +154,5 @@ function getStudentDetails(req,res) {
       }  // End else part
 }
 
-//export default router;
+module.exports = router;
+

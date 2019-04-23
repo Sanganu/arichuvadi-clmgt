@@ -29,7 +29,7 @@ class Homepage extends Component {
                                     <a href="http://www.tamilvu.org/" target ="_blank"  rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>
                                 </div>
                                 <div className="card-body box5">
-                                    <Link to="/resources"  className="mainlink">Books</Link>
+                                    <Link to="/resources"  className="mainlink">Resources</Link>
                                 </div>
                             </div>
                         </div>

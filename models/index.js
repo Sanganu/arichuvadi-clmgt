@@ -1,9 +1,3 @@
-// module.exports = {
-//   studentdetails: require("./Students"),
-//   batchdetails: require("./BatchDetails"),
-//   classdetails: require("./Classdetails")
-// };
-
 
  /* Mongo Database
 * - this is where we set up our connection to the mongo database

@@ -1,7 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('./localstrategy.js')
-//const GoogleStrategy = require('./googleStrategy')
 const Students = require('../models/Students')
+const Teachers = require("../models/Teachers")
 
 passport.serializeUser((user, done) => {
 	console.log('======== serialize ... called ============')
@@ -26,11 +26,22 @@ passport.deserializeUser((user, done) => {
 			}
 		);
 	}
+	else if(user.usertype = "teacher"){
+		Teachers.findOne(
+			{_id:id},
+			(error,user) => {
+				console.log("=================DeSerialize Teacher User called==========");
+				console.log(user);
+				console.log("===========================-");
+				done(null,user);
+			}
+		);
+	}
 
 });
 
 
 passport.use(LocalStrategy)
-//passport.use(GoogleStrategy)
+
 
 module.exports = passport   

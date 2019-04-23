@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Allbatches from './displayallbatchdetails';
 import Teacherheader from '../components/Teacherheader';
-
+import axios  from "axios";
 import { Menubar } from '../components/Menubar';
 // import GoogleLogin from 'react-google-login';
 //import keys from '../keys/keys.js'
@@ -58,7 +58,18 @@ class Teachermain extends Component {
             this.setState({ invalid: true });
         }
     }
-
+    googleLogin = (event) => {
+        event.preventDefault();
+        console.log("Axios call - google");
+        axios.get("/teacher/google")
+        .then((response) => {
+            console.log("The Response Google OAUTH",response);
+            
+        })
+        .catch((err) => {
+            console.log("Teacher OAuth Failed",err);
+        });
+    }
 
     render() {
         return (<div>
@@ -104,8 +115,9 @@ class Teachermain extends Component {
 
                                     <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
                                     <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
+
                                 </form>
-                                <button><a href="/teacher/google">Google Login</a></button>
+                                <button  className="createbutton" id="googlelg" onClick ={this.googlelogin} >Google Login</button>
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,6 @@ const teacheraccountSchema = new Schema({
          },
          lname: {
           type: String,
-          
         },
          email: {
            type: String,
@@ -22,15 +21,18 @@ const teacheraccountSchema = new Schema({
          username:{
            type:String
          },
+         imglink:{
+           type:String
+         },
         phone: {
           type:String
         },
-       levels: [{
-          type:String
-        }],
+        title:{
+          type: String
+        },
         batchId :[{
           type: Schema.Types.ObjectId,
-          ref: batchdetails
+          ref: 'batchdetails'
         }],
         createdDate: {
            type:Date,
@@ -39,5 +41,5 @@ const teacheraccountSchema = new Schema({
 });
 
 
-const Teachers = mongoose.model("teacheraccount", teacheraccountSchema);
-module.exports = Teachers;
+const teacherdetails = mongoose.model("teacherdetails", teacheraccountSchema);
+module.exports = teacherdetails;

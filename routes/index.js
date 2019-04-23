@@ -43,10 +43,10 @@ router.post('/api/teacher/batch/new',function(req,res) {
 
                     }
              }); //end catch section
-}); // end batchdetails
+}); // end batchdetails -- create batch implemented
 
 
-////Add New student And Update Batches table -- implemented (The Route)
+//Add New student And Update Batches table -- implemented 
 router.post('/api/teacher/batch/student/new',function(req,res) {
         console.log("Insiderouter to add new student",req.body);
         var newrecord = {
@@ -103,7 +103,7 @@ router.post('/api/teacher/batch/student/new',function(req,res) {
                            res.json(err);
                          }
            }); // End db studentdetails batchdetails
-}); // End router
+}); // End router Student add to batch -- implemented
 
 
 
@@ -120,9 +120,9 @@ router.get("/api/teacher/batch/all",(req,res) => {
              console.log("Error in fetching all batch details",err);
              res.json(err);
             });
-}); // Get all batch details
+}); // Get all batch details -- implemented
 
-// Get All Student Details
+// Get All Student Details -- implemented
 router.get("/api/teacher/students/all",(req,res) => {
    studentdetails.find({})
        .populate ({
@@ -136,39 +136,32 @@ router.get("/api/teacher/students/all",(req,res) => {
         console.log("Error in fetching all Student details",err);
         res.json(err);
       }); 
-}); // Get all student details
+}); // Get all student details --implemented
+
+// Fetch student records  and class details for the specific batch -- implemented
+router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
+  let batchid = req.params.bid;
+  let studentrecords = [];
+  console.log("The request - ",req.params)
+  studentdetails.find({
+    batchid : batchid
+  }).then((records) => {
+    console.log("Student records fetched for the batch",records);
+      classdetails.find({
+      batch: batchid}).then((recs) => {
+       console.log("Class details fetched --",recs);
+       res.json({srecords : records, crecords : recs});
+        })  ;
+  }).catch((error) => {
+    console.log("Unable to fetch student  and class records for the batch",error);
+    res.json(error);
+  }); // end Studentdetails find
+});// end router to get batch students and classes -implemented
 
 
 
-//To add class details(Attendance) -Get All Student details for the batch for class entry - implemented/and removed
-router.get("/api/teacher/batch/:batchid", (req,res) => {
-  console.log("In router - to fetch students for class",req.params.batchid);
-    batchdetails.findOne({_id:req.params.batchid})
-     .populate('students')
-      .then((data) => {
-           console.log("Result from batch - student",data);
-           res.json(data);
-      })
-      .catch((err) => {
-        console.log("Error is fetching records",err);
-        res.json(err);
-      });
-});
 
-//Delete Batch (cascading) - pending ()
-router.delete("/api/teacher/batch/delete",(req,res) => {
-     console.log("Inside delete route for batch to student to class");
-     batchdetails.deleteOne({_id:req.body.batchid})
-       .populate('class')
-       .then((data) => {
-         console.log("data",data);
-       })
-       .catch((error) => {
-         console.log("Error",error);
-       });
-});
-
-// Update Batch 
+// Update Batch --implemented
 router.put("/api/teacher/batch/update",(req,res) => {
   console.log("The batch id: ",req.body.batchid);
       batchdetails.update(
@@ -184,9 +177,9 @@ router.put("/api/teacher/batch/update",(req,res) => {
         console.log("Error",error);
         res.json("Error in updating batch details",error)
       });
-}); // Batch update end
+}); // Batch update --implemented
 
-// Add Student Record  without batch linking
+// Add Student Record  without batch linking -- implemented
 router.post("/api/teacher/student/new",(req,res) => {
         let insertedstudent={};
           studentdetails 
@@ -221,24 +214,54 @@ router.post("/api/teacher/student/new",(req,res) => {
                           res.json(err);
                         }
           }); // end db studentdetails
-}); // End router
+}); // End router to Student in StudentManagement -- implemented
 
-// Update Student - to add batch enrolled (Not yet implemented)
-router.put("/api/teacher/studentbatch/update",(req,res) => {
-    console.log("Student details",req.body);
-      studentdetails.updateOne(
-        {_id: req.body.studentid},
-       
-      ).then((data) => {
-        console.log("Updated ",data)
-        res.json(data)
-      }).catch((error) => {
-        console.log("Error",error);
-        res.json("Error in updating",error)
-      }); // End studentdetails
-}); // End router u
 
-// Update Student details from -Student Management
+// Search Student & Batch Records -- implemented
+router.get('/api/teacher/search/:str',(req,res) => {
+  let student_details
+  let batch_details 
+  let searchString = req.params.str;
+  console.log("Inside route search",searchString);
+  // Search for Student details
+  studentdetails
+    .find({ $or :
+      [
+        {studentfname : {"$regex" :searchString,"$options":"i"}},
+        {studentlname :{"$regex" :searchString,"$options":"i"}},
+        {loginemail : {"$regex" :searchString,"$options":"i"}},
+        {parentname :{"$regex" :searchString,"$options":"i"}},
+        {parentphonenumber : {"$regex" :searchString,"$options":"i"}}
+      ] })
+    .then((studentdet) =>
+      {
+            console.log("Search - Student done",studentdet,"Str",searchString);
+            student_details = studentdet;
+            batchdetails.find({$or:[
+              {batchdesc : {"$regex" :searchString,"$options":"i"}},
+              {level: {"$regex" :searchString,"$options":"i"}},
+              {course:{"$regex" :searchString,"$options":"i"}},
+              {teacher: {"$regex" :searchString,"$options":"i"}}
+            ]})
+            .then((batchdet) => {
+              console.log("REcords fetched",batchdet)
+                res.json ({studentdetails:studentdet || "",batchdetails:batchdet || ""})
+            })
+            .catch((err) => {
+              console.log("No records found-1",err);
+              res.json({err})
+            });
+              // res.json(studentdet)
+      })
+    .catch((err) => {
+      console.log("No records found-2",err);
+      // res.json(err);
+      res.json({err})
+    }); // end fetch studentdetails records
+}); // End of Router -- search implemented
+
+
+// Update Student details from -Student Management --implemented
 router.put("/api/teacher/student/update/:id",(req,res) => {
   console.log("Student record",req.body);
   studentdetails.updateOne(
@@ -255,9 +278,81 @@ router.put("/api/teacher/student/update/:id",(req,res) => {
     console.log("Error - student personal details update",error);
     res.json("Error in updating student personal details",error)
   }); // End studentdetails db operation
-}); // End of router update for student details
+}); // End of router update for student details --implemented
 
-// Delete Student Details completely - Student Management
+////Add Class details And Update Batches table - implemented
+router.post('/api/teacher/batch/class/add',function(req,res) {
+  // console.log("Insiderouter to add class details",req.body);
+var newrecord = req.body;
+  classdetails
+     .create(newrecord)
+     .then(function(dbclassdetails)
+     {
+        console.log("The class details entered : ",dbclassdetails)
+        batchdetails.findOneAndUpdate({_id:req.body.batch}, {$push:{classid:dbclassdetails._id}})
+        .then(function(data){
+          console.log("Inserted class details and updated batchdetails with classid",data);
+           res.json(dbclassdetails);
+        })
+        // return(dbclassdetails);
+      })
+     .catch(function(err){
+       if (err)
+       {
+           console.log("The Error",err)
+           res.json(err);
+         }
+     });
+}); // Add Class details and update batch --implemented
+
+
+
+
+//======================================================================
+//Add New teacher 
+router.put("/api/teacher/new",(req,res)=>{
+   teacherdetails.create(req.body)
+   .then((insertedrecord) =>{
+     console.log("New Teacher Added to the System",insertedrecord);
+     res.json(insertedrecord);
+   })
+   .catch((error) =>{
+     console.log("Error in creating Teacher Account",error);
+     res.json(error);
+   })
+});
+
+//Delete Batch (cascading) - pending ()
+router.delete("/api/teacher/batch/delete",(req,res) => {
+  console.log("Inside delete route for batch to student to class");
+  batchdetails.deleteOne({_id:req.body.batchid})
+    .then((data) => {
+      console.log("data",data);
+      classdetails.deleteMany({batch:req.body.batchid});
+      
+    })
+    .catch((error) => {
+      console.log("Error",error);
+    });
+});
+
+// Update Student - to add batch enrolled (Not yet implemented)
+router.put("/api/teacher/studentbatch/update",(req,res) => {
+    console.log("Student details",req.body);
+      studentdetails.updateOne(
+        {_id: req.body.studentid},
+       
+      ).then((data) => {
+        console.log("Updated ",data)
+        res.json(data)
+      }).catch((error) => {
+        console.log("Error",error);
+        res.json("Error in updating",error)
+      }); // End studentdetails
+}); // End router u
+
+
+// Delete Student Details completely - Student Management --???
 router.delete('/api/teacher/student/delete/:id',(req,res) => {
        studentdetails.deleteOne({_id: req.params.id})
        .then((data) => {
@@ -335,51 +430,7 @@ router.put('/api/batch/class/delete/',(req,res) => {
 }); // end of router to delete class from batch
 
 
-// Search Student & Batch Records
-router.get('/api/teacher/search/:str',(req,res) => {
-    let student_details
-    let batch_details 
-    let searchString = req.params.str;
-    console.log("Inside route search",searchString);
-    // Search for Student details
-    studentdetails
-      .find({ $or :
-        [
-          {studentfname : {"$regex" :searchString,"$options":"i"}},
-          {studentlname :{"$regex" :searchString,"$options":"i"}},
-          {loginemail : {"$regex" :searchString,"$options":"i"}},
-          {parentname :{"$regex" :searchString,"$options":"i"}},
-          {parentphonenumber : {"$regex" :searchString,"$options":"i"}}
-        ] })
-      .then((studentdet) =>
-        {
-              console.log("Search - Student done",studentdet,"Str",searchString);
-              student_details = studentdet;
-              batchdetails.find({$or:[
-                {batchdesc : {"$regex" :searchString,"$options":"i"}},
-                {level: {"$regex" :searchString,"$options":"i"}},
-                {course:{"$regex" :searchString,"$options":"i"}},
-                {teacher: {"$regex" :searchString,"$options":"i"}}
-              ]})
-              .then((batchdet) => {
-                console.log("REcords fetched",batchdet)
-                  res.json ({studentdetails:studentdet || "",batchdetails:batchdet || ""})
-              })
-              .catch((err) => {
-                console.log("No records found-1",err);
-                res.json({err})
-              });
-                // res.json(studentdet)
-        })
-      .catch((err) => {
-        console.log("No records found-2",err);
-        // res.json(err);
-        res.json({err})
-      }); // end fetch studentdetails records
-}); // End of Router -- search 
-
-
-//Reference Videos Login - API to get Channel Videos and serve front end
+//Reference Videos Login - API to get Channel Videos and serve front end????????
 router.get("/api/visitors/:str",(req,res) => {
   //console.log("Youtubheroku e API - Search");
   let videos =[];
@@ -412,55 +463,14 @@ router.get("/api/visitors/:str",(req,res) => {
       
        console.log("===================END=========================")
       // res.send("What is happening");
-       res.json(videosn);
+       res.json(videos);
     }); // End of youtube api
  
 }); // end of visitors
 
-// Fetch student records  and class details for the specific batch
-router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
-   let batchid = req.params.bid;
-   let studentrecords = [];
-   console.log("The request - ",req.params)
-   studentdetails.find({
-     batchid : batchid
-   }).then((records) => {
-     console.log("Student records fetched for the batch",records);
-       classdetails.find({
-       batch: batchid}).then((recs) => {
-        console.log("Class details fetched --",recs);
-        res.json({srecords : records, crecords : recs});
-         })  ;
-   }).catch((error) => {
-     console.log("Unable to fetch student  and class records for the batch",error);
-     res.json(error);
-   }); // end Studentdetails find
-});// end router
 
-////Add Class details And Update Batches table - implemented
-router.post('/api/teacher/batch/class/add',function(req,res) {
-  // console.log("Insiderouter to add class details",req.body);
-var newrecord = req.body;
-  classdetails
-     .create(newrecord)
-     .then(function(dbclassdetails)
-     {
-        console.log("The class details entered : ",dbclassdetails)
-        batchdetails.findOneAndUpdate({_id:req.body.batch}, {$push:{classid:dbclassdetails._id}})
-        .then(function(data){
-          console.log("Inserted class details and updated batchdetails with classid",data);
-           res.json(dbclassdetails);
-        })
-        // return(dbclassdetails);
-      })
-     .catch(function(err){
-       if (err)
-       {
-           console.log("The Error",err)
-           res.json(err);
-         }
-     });
-}); // Add Class details and update batch
+
+
 
 
 module.exports = router;

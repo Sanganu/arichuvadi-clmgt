@@ -3,11 +3,18 @@ const LocalStrategy = require('passport-local').Strategy
 
 const strategy = new LocalStrategy(
 	{
-		usernameField: 'loginemail' // not necessary, DEFAULT
+		usernameField: 'loginemail',// not necessary, DEFAULT
+		usertype:'usertype',
+		passReqToCallback:true 
 	},
-		function(loginemail, password, done) {
+		function(req,loginemail, password, done) {
+				  // console.log("=+++++Local Strategy Setup+++++++++");
+				   
+				   //console.log("Passport addition field",loginemail,password,req.body.usertype);
+				   //console.log("User Type",req.user);
+				   if(req.body.usertype = "student"){
 					Students.findOne({ 'loginemail': loginemail } , (err, studentMatch) => {
-						console.log("The Local strategy - to find the user",studentMatch);
+						console.log("The Local strategy - to find the Student",studentMatch);
 						if (err) {
 							return done(err)
 						}
@@ -19,6 +26,23 @@ const strategy = new LocalStrategy(
 						}
 						return done(null, {usertype:"student",userdata:studentMatch})
 					})
+					}	
+					else if(req.body.usertype = "teacher"){
+						Teachers.findOne({},(err, teacherMatch) => {
+							console.log("The local strategy to find the Teacher");
+							console.log("-----------------------------------------");
+							if(err){
+								return done(err)
+							}
+							if(!teacherMatch){
+								return done(null,false,{message: 'Incorrect Email'})
+							}
+							if(!teacherMatch.checkPassword(password)){
+								return done(null,false,{message:"Incorrect Password"})
+							}
+							return done(null,{usertype:"teacher",userdata:teacherMatch})
+						});
+					}
 		}
 )
 
