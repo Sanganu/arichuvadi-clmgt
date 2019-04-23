@@ -236,8 +236,19 @@ select{
   margin-left: 5%;
 }
 
+.reshead{
+  border: 1px solid rgb(221, 211, 211);
+  color:rgb(221, 211, 211);
+  margin-right:1%;
+  margin-top:2%;
+  background: linear-gradient(270deg, rgba(87, 226, 22, 0.8), rgba(7, 129, 138, 0.8), rgba(17, 182, 86, 0.726), rgba(223, 178, 16, 0.8));
+}
 .studentcontent{
   overflow: scroll;
+}
+.subheading{
+  border: 1px solid rgb(221, 211, 211);
+  margin: 1% 1% 1% 0;
 }
 
 .icon-bar{
