@@ -1,6 +1,7 @@
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
 
 const teacheraccountSchema = new Schema({
 
@@ -15,15 +16,13 @@ const teacheraccountSchema = new Schema({
            unique: true,
            required : true
          },
-         googleId:{
+         password:{
            type: String
          },
          username:{
            type:String
          },
-         imglink:{
-           type:String
-         },
+        
         phone: {
           type:String
         },
@@ -40,6 +39,36 @@ const teacheraccountSchema = new Schema({
          }
 });
 
+teacheraccountSchema.methods = {
+	checkPassword: function(inputPassword) {
+		return bcrypt.compareSync(inputPassword, this.password)
+	},
+	hashPassword: plainTextPassword => {
+		return bcrypt.hashSync(plainTextPassword, 10)
+	}
+}
+
+// Define hooks for pre-saving
+teacheraccountSchema.pre('save', function(next) {
+	if (!this.password) {
+		console.log('=======NO PASSWORD PROVIDED=======')
+		next()
+	} else {
+		this.password = this.hashPassword(this.password)
+		next()
+	}
+});
+
+// Define hooks for pre-saving
+teacheraccountSchema.pre('create', function(next) {
+	if (!this.password) {
+		console.log('=======NO PASSWORD PROVIDED=======')
+		next()
+	} else {
+		this.password = this.hashPassword(this.password)
+		next()
+	}
+});
 
 const teacherdetails = mongoose.model("teacherdetails", teacheraccountSchema);
 module.exports = teacherdetails;

@@ -3,7 +3,7 @@ const router = express.Router()
 const Students = require('../models/Students')
 const passport = require('../passport')
 
-// this route is just used to get the user basic info
+// this route is just used to get the student user basic info
 router.get('/student', (req, res, next) => {
 	console.log('===== /student ===user!!======')
 	console.log(req.student)
@@ -13,7 +13,18 @@ router.get('/student', (req, res, next) => {
 		return res.json({ student: null })
 	}
 });
+
+router.get('/teacher', (req, res, next) => {
+	console.log('===== teacher ===user!!======')
+	console.log(req.teacher)
+	if (req.teacher) {
+		return res.json({ teacher: req.teacher })
+	} else {
+		return res.json({ teacher: null })
+	}
+});
   
+//Step:1
 router.post(
 	'/student/login',
 	function(req, res, next) {
@@ -23,15 +34,30 @@ router.post(
 	},
 	passport.authenticate('local'),
 	(req, res) => {
-		console.log('POST to /login - passport.authenticate callback',req.user)
+		console.log('POST to student /login - passport.authenticate callback',req.user)
      console.log("THe Req-user display in route ",req.user);
 		getStudentDetails(req,res)
 	}
-)
+);
 
 
+router.post(
+	'/teacher/login',
+	function(req, res, next) {
+		console.log(req.body)
+		console.log('=======++++=========')
+		next()
+	},
+	passport.authenticate('local'),
+	(req, res) => {
+		console.log('POST to  Teacher /login - passport.authenticate callback',req.user)
+     console.log("THe Req-user display in route ",req.user);
+		getTeachertDetails(req,res)
+	}
+);
 
 router.post('/logout', (req, res) => {
+  console.log("Logout.......User",req.user);
 	if (req.user) {
 		req.session.destroy()
 		res.clearCookie('connect.sid') // clean up!
@@ -39,7 +65,20 @@ router.post('/logout', (req, res) => {
 	} else {
 		return res.json({ msg: 'no user to log out!' })
 	}
-})
+});
+
+//Add New teacher 
+router.post("/teacher/new",(req,res)=>{
+  teacherdetails.create(req.body)
+  .then((insertedrecord) =>{
+    console.log("New Teacher Added to the System",insertedrecord);
+    res.json(insertedrecord);
+  })
+  .catch((error) =>{
+    console.log("Error in creating Teacher Account",error);
+    res.json(error);
+  })
+});
 
 router.post('/student/create', (req, res) => {
 	// ADD VALIDATION
@@ -154,5 +193,37 @@ function getStudentDetails(req,res) {
                     //return done(null,false,req.flash('message','Invalid Student login credentials'));
                   }); //end catch
       }  // End else part
-}
+} // Student Details
+
+//Teacher Details fetch
+function getTeacherDetails(req,res) {
+  console.log("Get Teacher Details -TeacherLogin Route");
+  console.log("The session data",req.session.passport.user)
+	
+	if (req.session.passport.user.user.userdata._id === undefined){
+     res.json({err:"Invalid credentials"});
+   }
+   else
+   {   
+             Teachers.
+                  findOne({_id : req.session.passport.user.user.userdata._id})
+                  .populate({
+                    path: 'batchid',
+                    select: 'batchdesc course  level',
+                    populate: {
+                      path: 'classid', select: 'homework lessoncovered classdate'
+                    }                    
+                  })
+                  .then((teacherdets) =>
+                  {
+                     console.log("Teacher Details and batch details",teacherdets);
+                     res.json(teacherdets);
+                  }) // end of then -studentdetails check
+                  .catch((err) => { 
+                    console.log("Error - Invalid Student Credentials",err);
+                    res.json(err);
+                    
+                  }); //end catch
+      }  // End else part
+} //End Teacher details
 

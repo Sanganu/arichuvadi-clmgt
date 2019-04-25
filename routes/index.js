@@ -49,6 +49,7 @@ router.post('/api/teacher/batch/new',function(req,res) {
 //Add New student And Update Batches table -- implemented 
 router.post('/api/teacher/batch/student/new',function(req,res) {
         console.log("Insiderouter to add new student",req.body);
+        console.log("User from req",req.user);
         var newrecord = {
           studentfname :req.body.studentfname,
           studentlname: req.body.studentlname,
@@ -309,18 +310,7 @@ var newrecord = req.body;
 
 
 //======================================================================
-//Add New teacher 
-router.put("/api/teacher/new",(req,res)=>{
-   teacherdetails.create(req.body)
-   .then((insertedrecord) =>{
-     console.log("New Teacher Added to the System",insertedrecord);
-     res.json(insertedrecord);
-   })
-   .catch((error) =>{
-     console.log("Error in creating Teacher Account",error);
-     res.json(error);
-   })
-});
+
 
 //Delete Batch (cascading) - pending ()
 router.delete("/api/teacher/batch/delete",(req,res) => {
