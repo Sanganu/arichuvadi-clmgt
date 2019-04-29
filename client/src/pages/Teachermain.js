@@ -3,6 +3,7 @@ import Allbatches from './displayallbatchdetails';
 import Teacherheader from '../components/Teacherheader';
 import axios  from "axios";
 import { Menubar } from '../components/Menubar';
+//import Header from '../components/Header';
 // import GoogleLogin from 'react-google-login';
 //import keys from '../keys/keys.js'
 
@@ -14,18 +15,6 @@ class Teachermain extends Component {
         logindisp: true
     };
 
-    responseGoogleValid = (response) => {
-        console.log("Google OAuth Credentials Valid", response);
-        this.setState({
-            invalid: false,
-            logindisp: false
-        });
-    }
-
-    responseGoogleInvalid = (response) => {
-        console.log("Google Oauth Credentials Invalid", response);
-        this.setState({ invalid: true });
-    }
 
     handleInputChange = (event) => {
         const target = event.target;
@@ -39,15 +28,14 @@ class Teachermain extends Component {
     };
 
 
-    logincheck = (event) => {
+    templogin = (event) => {
         event.preventDefault();
         console.log("Use myemail@yahoo.com and welcome to enter site ");
         console.log(this.state.vemail, this.state.vpword);
 
         if (this.state.vemail === "myemail@yahoo.com" &&
             this.state.vpword === "welcome") {
-            console.log('if valid');
-            // window.location = '/teacher/batchmain/';
+           
             this.setState({
                 invalid: false,
                 logindisp: false
@@ -58,18 +46,29 @@ class Teachermain extends Component {
             this.setState({ invalid: true });
         }
     }
-    googleLogin = (event) => {
+
+
+    logincheck = (event) => {
         event.preventDefault();
-        console.log("Axios call - google");
-        axios.get("/teacher/google")
-        .then((response) => {
-            console.log("The Response Google OAUTH",response);
-            
+        console.log("Use myemail@yahoo.com and welcome to enter site ");
+        console.log(this.state.vemail, this.state.vpword);
+        axios.post('/auth/login',{
+            loginemail: this.state.vemail,
+            password: this.state.vpword,
+            usertype: 'teacher'
         })
-        .catch((err) => {
-            console.log("Teacher OAuth Failed",err);
-        });
-    }
+        .then((response) => {
+            console.log("Axios call with this login",this.state.vemail,this.state.password);
+            if(response.data.teacherrecord){
+                console.log("Teacher Login".response.data);
+            }
+        })
+        .catch((error) => {
+            console.log("Error in ---",error);//end axios call
+        });   
+    } // end login check
+
+  
 
     render() {
         return (<div>
@@ -81,7 +80,7 @@ class Teachermain extends Component {
                         <div className="col-lg-1 col-md-1 col-sm-12">
                             <Menubar />
                         </div>
-                        <div className="col-lg-11 col-md-11 col-sm-11">
+                        <div className="col-lg-11 col-md-11 col-sm-12">
 
                             <div>
                                 <form className="inputsection">
@@ -113,11 +112,14 @@ class Teachermain extends Component {
                                             htmlFor="vpword">Password </label>
                                     </div>
 
-                                    <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
+                                    
                                     <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
-
+                                    <div>
+                                    <button className="createbutton" id="tlogin" onClick={this.templogin}>Temp Login</button>
+                                    <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
+                                    </div>
                                 </form>
-                                <button  className="createbutton" id="googlelg" onClick ={this.googlelogin} >Google Login</button>
+                                
                             </div>
                         </div>
                     </div>

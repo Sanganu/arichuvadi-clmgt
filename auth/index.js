@@ -4,57 +4,32 @@ const Students = require('../models/Students')
 const passport = require('../passport')
 
 // this route is just used to get the student user basic info
-router.get('/student', (req, res, next) => {
-	console.log('===== /student ===user!!======')
-	console.log(req.student)
-	if (req.student) {
-		return res.json({ student: req.student })
-	} else {
-		return res.json({ student: null })
-	}
-});
 
-router.get('/teacher', (req, res, next) => {
-	console.log('===== teacher ===user!!======')
-	console.log(req.teacher)
-	if (req.teacher) {
-		return res.json({ teacher: req.teacher })
+router.get('/', (req, res, next) => {
+	console.log('===== /student /Teacher ===user!!======')
+	console.log(req.session.passport.user.user)
+	if (req.session.passport.user.user) {
+		return res.json({ user: req.session.passport.user.user})
 	} else {
-		return res.json({ teacher: null })
+		return res.json({ user: null })
 	}
-});
-  
+})
 //Step:1
+  
 router.post(
-	'/student/login',
+	'/login',
 	function(req, res, next) {
 		console.log(req.body)
-		console.log('=======++++=========')
+		console.log('=======++Login Route++=========')
 		next()
 	},
-	passport.authenticate('local'),
+	passport.authenticate('local'), 
 	(req, res) => {
-		console.log('POST to student /login - passport.authenticate callback',req.user)
-     console.log("THe Req-user display in route ",req.user);
-		getStudentDetails(req,res)
+		console.log('POST to /login - passport.authenticate callback')
+ 
+		getDetails(req,res)
 	}
-);
-
-
-router.post(
-	'/teacher/login',
-	function(req, res, next) {
-		console.log(req.body)
-		console.log('=======++++=========')
-		next()
-	},
-	passport.authenticate('local'),
-	(req, res) => {
-		console.log('POST to  Teacher /login - passport.authenticate callback',req.user)
-     console.log("THe Req-user display in route ",req.user);
-		getTeachertDetails(req,res)
-	}
-);
+)
 
 router.post('/logout', (req, res) => {
   console.log("Logout.......User",req.user);
@@ -109,17 +84,17 @@ router.post('/student/create', (req, res) => {
       }); // end student findone
 }); // end route
 
-module.exports = router
 
-function getStudentDetails(req,res) {
+function getDetails(req,res) {
   console.log("Get Student Details - Student Login Route");
   console.log("The session data",req.session.passport.user)
 	
 	if (req.session.passport.user.user.userdata._id === undefined){
-     res.json({err:"Invalid credentials"});
+     res.json({err:"Invalid credentials - Please Login"});
    }
    else
    {   
+         if(req.session.passport.user.user.usertype === "student")
              Students
                   .findOne({_id : req.session.passport.user.user.userdata._id})
                   .populate({
@@ -192,38 +167,22 @@ function getStudentDetails(req,res) {
                     res.json(err);
                     //return done(null,false,req.flash('message','Invalid Student login credentials'));
                   }); //end catch
+           else if(req.session.passport.user.user.usertype === "teacher"){
+                 Teachers.findOne({_id:req.session.passport.user.user.userdate._id})
+                    .populate({
+                      path:batchId,
+                      select: batchdesc, course,level,students,classid
+                    })
+                    .then((result) =>{
+                      console.log("Teacher details fetched:",result);
+                      res.json(result);
+                    })
+                    .catch((error) =>{
+                      console.log("Error in fetching Teacher account details",error);
+                      res.json(error);
+                    });
+           }    
       }  // End else part
-} // Student Details
+}
 
-//Teacher Details fetch
-function getTeacherDetails(req,res) {
-  console.log("Get Teacher Details -TeacherLogin Route");
-  console.log("The session data",req.session.passport.user)
-	
-	if (req.session.passport.user.user.userdata._id === undefined){
-     res.json({err:"Invalid credentials"});
-   }
-   else
-   {   
-             Teachers.
-                  findOne({_id : req.session.passport.user.user.userdata._id})
-                  .populate({
-                    path: 'batchid',
-                    select: 'batchdesc course  level',
-                    populate: {
-                      path: 'classid', select: 'homework lessoncovered classdate'
-                    }                    
-                  })
-                  .then((teacherdets) =>
-                  {
-                     console.log("Teacher Details and batch details",teacherdets);
-                     res.json(teacherdets);
-                  }) // end of then -studentdetails check
-                  .catch((err) => { 
-                    console.log("Error - Invalid Student Credentials",err);
-                    res.json(err);
-                    
-                  }); //end catch
-      }  // End else part
-} //End Teacher details
-
+module.exports = router

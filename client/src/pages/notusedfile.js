@@ -10,7 +10,7 @@ class CreateTeacherAccount extends Component{
         this.setState({
             [name] : vale
         },() => {
-           console.log('The Value in input change',value,name);
+          // console.log('The Value in input change',value,name);
         });
         
     }

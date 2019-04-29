@@ -91,10 +91,10 @@ class Searchstudents extends Component {
             <Teacherheader />
             <div className="middlecontent searchcontent">
                 <div className="row">
-                    <div className="col-sm-12 col-md-12 col-lg-1">
+                    <div className="col-sm-12 col-md-1 col-lg-1">
                         <Topmenu />
                     </div>
-                    <div className="col-sm-12 col-md-12 col-lg-5">
+                    <div className="col-sm-12 col-md-11 col-lg-5">
                         <form className="inputsection">
                         <h5 className="subhead">Search Student / Cohort</h5>
                             <div className="form-group row">

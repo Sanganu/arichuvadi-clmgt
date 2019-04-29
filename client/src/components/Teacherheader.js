@@ -10,7 +10,6 @@ class Teacherheader extends Component {
     return(
         <div className = "navbar navbar-default">
          <Link to="/"><h1>Arichuvadi</h1></Link>
-         <button onClick = {this.logoutapp}>Logout</button>
          <h6>A volunteer organization focused to spread Tamil language to future generations</h6>
         </div>
     );

@@ -9,10 +9,10 @@ const Resources = () => {
             <Teacherheader />
             <div className="middlecontent">
                 <div className="row" >
-                    <div className="col-lg-1 col-md-12 col-sm-12">
+                    <div className="col-lg-1 col-md-1 col-sm-12">
                         <Menubar />
                     </div>
-                    <div className="col-lg-11 col-md-12 col-sm-12">
+                    <div className="col-lg-11 col-md-11 col-sm-12">
                        <h3 className = "reshead">Resources</h3>
                        <ul className="list-unstyled list-group">
                            <li className="list-group-item">

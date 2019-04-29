@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const Students = require('../models/Students')
+const Students = require('../models/Students');
+const Teachers = require("../models/Teachers");
 const passport = require('../passport')
 
 // this route is just used to get the user basic info
-router.get('/', (req, res, next) => {
+
+
+router.get('/student', (req, res, next) => {
 	console.log('===== /student ===user!!======')
 	console.log(req.student)
 	if (req.student) {
@@ -12,22 +15,48 @@ router.get('/', (req, res, next) => {
 	} else {
 		return res.json({ student: null })
 	}
-})
-  
+});
+
+router.get('/teacher', (req, res, next) => {
+	console.log('===== teacher ===user!!======')
+	console.log(req.teacher)
+	if (req.teacher) {
+  		return res.json({ teacher: req.teacher })
+	} else {
+		return res.json({ teacher: null })
+	}
+});
 router.post(
-	'/login',
+	'/student/login',
 	function(req, res, next) {
 		console.log(req.body)
 		console.log('=======++++=========')
 		next()
 	},
-	passport.authenticate('local'), 
+	passport.authenticate('local'),
 	(req, res) => {
-		console.log('POST to /login - passport.authenticate callback')
- 
+		console.log('POST to student /login - passport.authenticate callback',req.user)
+     console.log("THe Req-user display in route ",req.user);
 		getStudentDetails(req,res)
 	}
-)
+);
+
+
+router.post(
+	'/teacher/login',
+	function(req, res, next) {
+		console.log(req.body)
+		console.log('=======++++=========')
+		next()
+	},
+	passport.authenticate('local'),
+	(req, res) => {
+		console.log('POST to  Teacher /login - passport.authenticate callback',req.user)
+     console.log("THe Req-user display in route ",req.user);
+		getDetails(req,res)
+	}
+);
+
 
 
 
@@ -69,6 +98,11 @@ router.post('/create', (req, res) => {
         } // end else part
       }); // end student findone
 }); // end route
+
+
+
+module.exports = router;
+
 
 function getStudentDetails(req,res) {
   console.log("Get Student Details - Student Login Route");
@@ -152,7 +186,37 @@ function getStudentDetails(req,res) {
                     //return done(null,false,req.flash('message','Invalid Student login credentials'));
                   }); //end catch
       }  // End else part
-}
+} // Student Details
 
-module.exports = router;
+//Teacher Details fetch
+function getTeacherDetails(req,res) {
+  console.log("Get Teacher Details -TeacherLogin Route");
+  console.log("The session data",req.session.passport.user)
+	
+	if (req.session.passport.user.user.userdata._id === undefined){
+     res.json({err:"Invalid credentials"});
+   }
+   else
+   {   
+             Teachers.
+                  findOne({_id : req.session.passport.user.user.userdata._id})
+                  .populate({
+                    path: 'batchid',
+                    select: 'batchdesc course  level',
+                    populate: {
+                      path: 'classid', select: 'homework lessoncovered classdate'
+                    }                    
+                  })
+                  .then((teacherdets) =>
+                  {
+                     console.log("Teacher Details and batch details",teacherdets);
+                     res.json(teacherdets);
+                  }) // end of then -studentdetails check
+                  .catch((err) => { 
+                    console.log("Error - Invalid Student Credentials",err);
+                    res.json(err);
+                    
+                  }); //end catch
+      }  // End else part
+} //End Teacher details
 

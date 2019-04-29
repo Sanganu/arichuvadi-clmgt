@@ -27,6 +27,7 @@ app.use(morgan('dev'))
 app.use(
       session({
 		secret: process.env.APP_SECRET || 'this is the default passphrase',
+		maxAge:2*60*60*100,
 		store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false,
 		saveUninitialized: false

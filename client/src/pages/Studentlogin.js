@@ -47,7 +47,7 @@ class Studentlogin extends Component {
     }
     else {
       this.setState({ errmsg: "" });
-      axios.post('/auth/student/login',
+      axios.post('/auth/login',
         {
           loginemail: this.state.vemail,
           password: this.state.vpword,
@@ -94,10 +94,10 @@ class Studentlogin extends Component {
       <div className="container middlecontent">
 
         <div className="row" >
-          <div className="col-lg-1 col-sm-12 col-md-12">
+          <div className="col-lg-1 col-sm-12 col-md-1">
             <Menubar />
           </div>
-          <div className="col-lg-11 col-sm-12 col-md-12">
+          <div className="col-lg-11 col-sm-12 col-md-11">
             {this.state.showstlogin ?
               <form className="inputsection">
                 <h3>Student Login </h3>

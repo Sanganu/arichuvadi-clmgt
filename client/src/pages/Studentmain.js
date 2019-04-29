@@ -1,5 +1,6 @@
  import React, { Component } from 'react';
  import Allclasses from './displayallclassdetails';
+ import axios from 'axios';
 
 class Studentmain extends Component
 {
@@ -26,7 +27,17 @@ class Studentmain extends Component
       this.setState({
           [name]: value
       });
-  };
+     };
+     logoutapp = () => {
+      axios.post("/auth/logout")
+      .then((response)=> {
+        console.log("Response from logout",response);
+        window.location = "/";
+      }).catch((error) =>{
+         console.log("Error in logging out",error);
+         alert("Error in loggin out");
+      });
+    }
     componentDidMount = () => {
           console.log("props received",this.props.classrecords);
      }
@@ -63,6 +74,7 @@ class Studentmain extends Component
                                           <label className="form-control-placeholder">
                                             Teacher  </label> 
                                     </div>
+                                    <button onClick = {this.logoutapp}>Logout</button>
                          </div>
                          <div className = "col-lg-6">
                                           <form>

@@ -2,7 +2,8 @@ const path = require("path");
 const router = require("express").Router();
 const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
-const classdetails = require('../models/Classdetails.js')
+const classdetails = require('../models/Classdetails.js');
+const teacherdetails = require('../models/Teachers.js');
 //const passport = require("passport");
 var YouTube = require('youtube-node');
 var youTube = new YouTube();
@@ -384,6 +385,27 @@ router.put('/api/batch/student/del/',(req,res) => {
            
 }); // end of router delete student from batch
 
+//add teacher
+router.post('/api/teacher/new',(req,res) => {
+   console.log("Teacher account creation -",req.body);
+   teacherdetails.create(req.body)
+   .then((response) => {
+     console.log("Teacher details created",response);
+     res.json(response); 
+   })
+   .catch((error) =>{
+     if((error) === 'E11000')
+     {
+       console.log("Teacher Detials already exist",error);
+       res.send({"err":"Teacher Account already exist for this Email ID","errcode":(error.errmsg)});
+     }
+     else{
+      console.log("Unable to create teacher account",error)
+      res.send({"err":"Unable to create Teacher Account ","errcode":(error.errmsg).substr(0,6)});
+     }
+   })
+});
+
 //Delete student details from a batch-- v1 v2 -- working??
 router.put('/api/batch/student/delete/',(req,res) => {
   console.log("Student delete from batch-inputs",req.body.batchid,req.body.studentid);
@@ -425,7 +447,7 @@ router.get("/api/visitors/:str",(req,res) => {
   //console.log("Youtubheroku e API - Search");
   let videos =[];
   youTube.setKey(process.env.API_YOUTUBE);
-  youTube.search(req.params.str,10,function(error,result){
+  youTube.search(req.params.str,5,function(error,result){
       if(error){
         console.log("error in fetching youtube search data",error);
         res.json(error);
@@ -447,10 +469,8 @@ router.get("/api/visitors/:str",(req,res) => {
             } // end if
         } // end for
    
-       // res.json(videos);
        console.log("===================LIST =======================");
        console.log("Videos",videos);
-      
        console.log("===================END=========================")
       // res.send("What is happening");
        res.json(videos);

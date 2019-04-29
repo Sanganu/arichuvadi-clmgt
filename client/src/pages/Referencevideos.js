@@ -3,35 +3,20 @@ import Teacherheader from '../components/Teacherheader';
 import axios from 'axios';
 import Video from "./Video";
 import { Menubar } from "../components/Menubar";
-import keys from "../keys/keys.js";
+//import keys from "../keys/keys.js";
 // import myyoutube from "youtube-api-search";
 // import myYoutube from "./myYoutube";
 // import axios from 'axios';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
-const API_KEY = process.env.API_YOUTUBE || keys.API_YOUTUBE;
+// const API_KEY = process.env.API_YOUTUBE || keys.API_YOUTUBE;
 
 class Referencevideos extends Component {
   state = {
     videos: [],
     searchvideo: ""
   }
-
-  // searchfor2 = () =>{
-  //   const searchterm = this.statesearchvideo || "Uyir Ezhuthukal";
-
-  // }
-  // searchfor1 = () => {
-
-  //   const searchterm = this.statesearchvideo || "Uyir Ezhuthukal";
-  //   console.log("API_",API_KEY)
-  //    myyoutube({
-  //      key : API_KEY,searchterm},(data) =>{
-  //     if (data) console.log("Error in fetching youtube Videos",data);
-  //     this.setState({videos:data},() => {console.log("Youtube Data",this.state.videos)});
-  //    });
-  // }
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -53,15 +38,14 @@ class Referencevideos extends Component {
     console.log("Before axios", this.state.searchvideo);
     let searchstr = this.state.searchvideo || "uyir ezhuthukal"
      axios.get(`/api/visitors/${searchstr}`)
-    .then(data => {
+    .then((response) => {
       console.log("+++then+++");
-      console.log("Response////", data);
-      this.setState({
-        videos: data
-      },
-        () => {
-          console.log("Axios call to back end to fetch youtube videos")
-        }); // End of state
+      console.log("Response////", response);
+          this.setState({
+            videos: response
+          },() => {
+              console.log("Axios call to back end to fetch youtube videos")
+          }); // End of state
     }).catch((error) => {
       console.log("Error in fetching youtube videos", error);
     }); // End axiosrun
@@ -76,7 +60,7 @@ class Referencevideos extends Component {
       <Teacherheader />
 
       <div className="row">
-            <div className="col-md-12 col-sm-12 col-lg-1">
+            <div className="col-md-1 col-sm-12 col-lg-1">
               <Menubar />
             </div>
        

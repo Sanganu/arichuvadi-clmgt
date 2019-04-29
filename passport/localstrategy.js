@@ -29,7 +29,7 @@ const strategy = new LocalStrategy(
 					})
 					}	
 					else if(req.body.usertype = "teacher"){
-						Teachers.findOne({},(err, teacherMatch) => {
+						Teachers.findOne({'loginemail': loginemail},(err, teacherMatch) => {
 							console.log("The local strategy to find the Teacher");
 							console.log("-----------------------------------------");
 							if(err){

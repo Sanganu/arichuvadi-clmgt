@@ -71,9 +71,7 @@ class Createbatch extends Component {
 
     render() {
         return (<div>
-        
             <div className="middlecontent">
-             
                     <div className="col-lg-8 col-sm-8">
                         <form className="inputsection">
                             <h5 className="subhead">New Cohort</h5>
@@ -117,7 +115,6 @@ class Createbatch extends Component {
                         </form>
                     </div>
                   </div>
-               
              </div>) // end of return
         } // end of render
   
