@@ -381,8 +381,6 @@ router.put('/api/batch/student/del/',(req,res) => {
                 } // end if of index
               }// end if of find record
             }); // end of callback for find record
-          
-           
 }); // end of router delete student from batch
 
 //add teacher
@@ -394,7 +392,7 @@ router.post('/api/teacher/new',(req,res) => {
      res.json(response); 
    })
    .catch((error) =>{
-     if((error) === 'E11000')
+     if(error == 'E11000')
      {
        console.log("Teacher Detials already exist",error);
        res.send({"err":"Teacher Account already exist for this Email ID","errcode":(error.errmsg)});

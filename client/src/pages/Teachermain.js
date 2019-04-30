@@ -12,7 +12,8 @@ class Teachermain extends Component {
         invalid: '',
         vemail: '',
         vpword: '',
-        logindisp: true
+        logindisp: true,
+        errmsg:''
     };
 
 
@@ -50,21 +51,28 @@ class Teachermain extends Component {
 
     logincheck = (event) => {
         event.preventDefault();
-        console.log("Use myemail@yahoo.com and welcome to enter site ");
-        console.log(this.state.vemail, this.state.vpword);
+      //  console.log(this.state.vemail, this.state.vpword);
         axios.post('/auth/login',{
             loginemail: this.state.vemail,
             password: this.state.vpword,
             usertype: 'teacher'
         })
         .then((response) => {
-            console.log("Axios call with this login",this.state.vemail,this.state.password);
+           // console.log("Axios call with this login",this.state.vemail,this.state.password);
             if(response.data.teacherrecord){
                 console.log("Teacher Login".response.data);
             }
+            this.setState({
+                invalid: false,
+                logindisp: false,
+                errmsg:''
+            });
         })
         .catch((error) => {
             console.log("Error in ---",error);//end axios call
+            this.setState({ 
+                invalid: true
+               });
         });   
     } // end login check
 
@@ -86,6 +94,7 @@ class Teachermain extends Component {
                                 <form className="inputsection">
                                     <h3> Instructor Login</h3>
                                     <p>Temporary Login page</p>
+                                 
                                     <div className="form-group">
 
                                         <input className="form-control"

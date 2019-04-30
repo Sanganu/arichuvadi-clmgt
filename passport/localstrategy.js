@@ -12,8 +12,8 @@ const strategy = new LocalStrategy(
 				  // console.log("=+++++Local Strategy Setup+++++++++");
 				   
 				   //console.log("Passport addition field",loginemail,password,req.body.usertype);
-				   //console.log("User Type",req.user);
-				   if(req.body.usertype = "student"){
+				   console.log("Passport Local Strategy - User Type",req.body.usertype,loginemail);
+				   if (req.body.usertype === "student"){
 					Students.findOne({ 'loginemail': loginemail } , (err, studentMatch) => {
 						console.log("The Local strategy - to find the Student",studentMatch);
 						if (err) {
@@ -26,9 +26,9 @@ const strategy = new LocalStrategy(
 							return done(null, false, { message: 'Incorrect password' })
 						}
 						return done(null, {usertype:"student",userdata:studentMatch})
-					})
+					    });
 					}	
-					else if(req.body.usertype = "teacher"){
+					else if(req.body.usertype === "teacher"){
 						Teachers.findOne({'loginemail': loginemail},(err, teacherMatch) => {
 							console.log("The local strategy to find the Teacher");
 							console.log("-----------------------------------------");
