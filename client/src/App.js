@@ -1,7 +1,7 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Teachermain from "./pages/Teachermain"; //Both teacher and student login
-import Batchmain from "./pages/Batchmain" ; // teacher main page
+import Batchmain from "./pages/Batchmain"; // teacher main page
 import Createbatch from "./pages/Createbatch";
 import Addstudent from "./pages/Addstudent";
 import Homepage from "./pages/Homepage";
@@ -17,32 +17,39 @@ import Addteacher from "./pages/Addteacher";
 
 
 
-const App = () =>
- <Router>
-          <div>
+class App extends Component {
+  state = {
+    isLoogedIn : false
+  }
+  render() {
+    return (
+      <Router>
+        <div>
+        
           <Switch>
-                   <Route exact path = "/" component = {Homepage}/>
-                   <Route exact path = "/teacher/allbatch"component= {Allbatches} />
-                   <Route exact path = "/teacher/tmain" component = {Teachermain}/>
-                   <Route exact path = "/other/students/loginpg" component = {Studentlogin}/>
-                   <Route exact path = "/users/videos" component = {Referencevideos}/>
-                   <Route exact path="/teacher/batchmain" component={Batchmain} />
-                   <Route exact path="/teacher/createbatch" component={Createbatch} />
-                   <Route exact path ="/teacher/batch/addstudent/:batchid" component={Addstudent} />
-                   <Route exact path = "/resources" component = {Resources}/>
-                   <Route exact path ="/teacher/batch/addclass" component={Addclass} />
-                   <Route exact path ="/teacher/searchrecords" component={Search} />
-                   <Route exact path = "/teacher/studentmanagement" component = {StudentManagement} />
-                  <Route exact path ="/teacher/addteacher" component={Addteacher} />
-                   <Switch>
-                      <Route path ="/*" component={Homepage} />
-                   </Switch> 
-                  
-                   {/* <Route exact path="/teacher/login" component = {InstructorLogin} /> */}
+            <Route exact path="/" component={Homepage} />
+            <Route exact path="/teacher/allbatch" component={Allbatches} />
+            <Route exact path="/teacher/tmain" component={Teachermain} />
+            <Route exact path="/other/students/loginpg" component={Studentlogin} />
+            <Route exact path="/users/videos" component={Referencevideos} />
+            <Route exact path="/teacher/batchmain" component={Batchmain} />
+            <Route exact path="/teacher/createbatch" component={Createbatch} />
+            <Route exact path="/teacher/batch/addstudent/:batchid" component={Addstudent} />
+            <Route exact path="/resources" component={Resources} />
+            <Route exact path="/teacher/batch/addclass" component={Addclass} />
+            <Route exact path="/teacher/searchrecords" component={Search} />
+            <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
+            <Route exact path="/teacher/addteacher" component={Addteacher} />
+            <Switch>
+              <Route path="/*" component={Homepage} />
             </Switch>
-          </div>
-  </Router>;
 
-
+            {/* <Route exact path="/teacher/login" component = {InstructorLogin} /> */}
+          </Switch>
+        </div>
+      </Router>
+  )
+  }
+}
 
 export default App;
