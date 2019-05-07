@@ -350,8 +350,9 @@ iframe {
   text-align: center
 }
 
-.panel-body > li {
+li {
   list-style-type:none;
+  list-style: none;
 }
 
 @media only screen and (max-width: 768px)

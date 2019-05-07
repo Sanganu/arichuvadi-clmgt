@@ -5,7 +5,7 @@ import Batchmain from "./pages/Batchmain"; // teacher main page
 import Createbatch from "./pages/Createbatch";
 import Addstudent from "./pages/Addstudent";
 import Homepage from "./pages/Homepage";
-import Referencevideos from "./pages/Referencevideos";
+import Videoreference from "./pages/Videoreference";
 import Resources from "./pages/Resources";
 import Allbatches from "./pages/displayallbatchdetails"
 import Studentlogin from "./pages/Studentlogin";
@@ -31,7 +31,7 @@ class App extends Component {
             <Route exact path="/teacher/allbatch" component={Allbatches} />
             <Route exact path="/teacher/tmain" component={Teachermain} />
             <Route exact path="/other/students/loginpg" component={Studentlogin} />
-            <Route exact path="/users/videos" component={Referencevideos} />
+            <Route exact path="/users/videos" component={Videoreference} />
             <Route exact path="/teacher/batchmain" component={Batchmain} />
             <Route exact path="/teacher/createbatch" component={Createbatch} />
             <Route exact path="/teacher/batch/addstudent/:batchid" component={Addstudent} />

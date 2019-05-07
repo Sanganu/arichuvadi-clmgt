@@ -104,12 +104,7 @@ class Searchstudents extends Component {
                             <button className="createbutton" name="searchbtn" onClick={this.searchrecords}>Search</button>
                         </form>
                     </div>
-                    <div className="col-sm-0 col-md-11 col-lg-5 gifcontainer">
-                    <iframe src="https://giphy.com/embed/XB3V7fwrzbLxuJSc2j"
-                     width="480" height="372" frameBorder="0"
-                      className="giphy-embed" title="searchframe" allowFullScreen></iframe>
-                      {/* <p><a href="https://giphy.com/gifs/tamil-XB3V7fwrzbLxuJSc2j">via GIPHY</a></p> */}
-                    </div>
+               
                 </div>
                 {resultset.length > 0 ?
                     <div className="panel-group">

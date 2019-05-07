@@ -445,13 +445,12 @@ router.get("/api/visitors/:str",(req,res) => {
   //console.log("Youtubheroku e API - Search");
   let videos =[];
   youTube.setKey(process.env.API_YOUTUBE);
-  youTube.search(req.params.str,5,function(error,result){
+  youTube.search(req.params.str,10,function(error,result){
       if(error){
         console.log("error in fetching youtube search data",error);
         res.json(error);
       }
-        //console.log("The Channellist",channellist);
-        //let channellist = JSON.stringify(result,null);
+  
         var channellist=result;
         for(let i =0; i < channellist.items.length;i++)
         {
@@ -468,10 +467,10 @@ router.get("/api/visitors/:str",(req,res) => {
         } // end for
    
        console.log("===================LIST =======================");
-       console.log("Videos",videos);
+       console.log("Videos :-->",videos);
        console.log("===================END=========================")
-      // res.send("What is happening");
-       res.json(videos);
+      //res.json({"msg":"What is happening"});
+       res.json({"videos": videos});
     }); // End of youtube api
  
 }); // end of visitors

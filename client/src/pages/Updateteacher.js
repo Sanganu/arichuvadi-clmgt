@@ -22,4 +22,9 @@ class Updateteacher extends Component{
 
     }
 
+    render() {
+        return(<>
+
+       </> )
+    }
 }

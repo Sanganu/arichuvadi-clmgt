@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Teacherheader from "../components/Teacherheader";
-import { Menubar } from "../components/Menubar";
+import Topmenu  from "../components/Topmenu";
 
 class Addteacher extends Component {
     state = {
@@ -79,7 +79,7 @@ class Addteacher extends Component {
             <div className="container middlecontent">
                 <div className="row" >
                     <div className="col-lg-1 col-md-1 col-sm-12">
-                        <Menubar />
+                        <Topmenu />
                     </div>
                     <div className="col-lg-11 col-md-11 col-sm-12">
 
