@@ -4,20 +4,23 @@ const Schema = mongoose.Schema;
 
 const batchdetailsSchema = new Schema({
         batchdesc: {
-           type: String,
+           type: String
          },
          course: {
-           type: String,
+           type: String
 
          },
         level: {
-          type: String,
+          type: String
 
         },
         teacher :{
-          type:Schema.Types.ObjectId,
-          ref: 'teacherdetials'
+          type: String
         },
+        // teacher :{
+        //   type:Schema.Types.ObjectId,
+        //   ref: 'teacherdetails'
+        // },
         students: [{
           type: Schema.Types.ObjectId,
           ref: 'studentdetails'

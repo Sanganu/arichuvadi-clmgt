@@ -28,6 +28,12 @@ const teacheraccountSchema = new Schema({
         title:{
           type: String
         },
+        zoomlink:{
+          type: String
+        },
+        skypeId: {
+          type: String
+        },
         batchId :[{
           type: Schema.Types.ObjectId,
           ref: 'batchdetails'

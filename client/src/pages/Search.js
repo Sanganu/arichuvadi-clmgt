@@ -53,12 +53,12 @@ class Searchstudents extends Component {
                             field7: "Classes: "+response.data.batchdetails[i].classid.length
                         }
                         matchrecords.push(currentrec)
-                    }
-                }
+                    } // end for
+                } // end if
                 else {
                     displaymessage = true
                     found = false;
-                }
+                } //end else
                 this.setState({
                     results: matchrecords,
                     foundrecords: found,

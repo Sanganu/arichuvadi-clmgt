@@ -113,7 +113,9 @@ router.post('/api/teacher/batch/student/new',function(req,res) {
 router.get("/api/teacher/batch/all",(req,res) => {
       console.log("inside router to get all batch records");
         batchdetails.find({})
-          //  .populate('students') /* Should be removed when click on batch to details of batch */
+          // .populate({
+          //   path:'teacher',
+          //   select:'fname lname'}) /* Should be removed when click on batch to details of batch */
            .then((data) => {
                console.log("Batch details",data);
                res.json(data);
@@ -445,6 +447,7 @@ router.get("/api/visitors/:str",(req,res) => {
   //console.log("Youtubheroku e API - Search");
   let videos =[];
   youTube.setKey(process.env.API_YOUTUBE);
+  youTube.addParam('safeSearch','strict');
   youTube.search(req.params.str,10,function(error,result){
       if(error){
         console.log("error in fetching youtube search data",error);

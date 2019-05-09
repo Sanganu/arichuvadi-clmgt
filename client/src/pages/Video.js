@@ -2,9 +2,7 @@
 import React, { Component } from 'react';
 
 class Video extends Component {
-  componentWillReceiveProps = (nextprops) => {
-    console.log("Props",nextprops)
-  }
+  
   render()
   {
     let videolink = `http://www.youtube.com/embed/${this.props.content.id}?autoplay=0`

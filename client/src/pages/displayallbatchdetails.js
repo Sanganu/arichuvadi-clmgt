@@ -30,7 +30,7 @@ class Allbatches extends Component {
     let allbatches = false
     axios.get('/api/teacher/batch/all')
       .then(response => {
-        //console.log("The Batch Details of  - axios call", response.data);
+        console.log("The Batch Details of  - axios call", response.data);
         if (response.data.length > 0) {
           for (let i = 0; i < response.data.length; i++) {
             // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);

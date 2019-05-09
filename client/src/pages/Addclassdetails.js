@@ -46,6 +46,7 @@ class BatchRecAddclass extends Component
                 }
                 else
                 {
+                  console.log("State values:",this.state.homework,this.state.date,this.state.lessoncovered);
                   axios.post('/api/teacher/batch/class/add',
                   {
                      lessoncovered : this.state.lessoncovered,
@@ -58,7 +59,8 @@ class BatchRecAddclass extends Component
                       console.log("The Response from saving class details",response.data);
                       this.props.newClassDetails({lessoncov:response.data.lessoncovered,
                             homework: response.data.homework,
-                            cldate: response.data.classdate});
+                            cldate: response.data.classdate,
+                            clid:response.data._id});
                       this.setState({ lessoncovered : '',
                                         homework: '',
                                         date: '',

@@ -33,7 +33,8 @@ class Videoreference extends Component {
               console.log("+++then+++");
               console.log("Response: ", response.data.videos);
               this.setState({
-                videos: response.data.videos
+                videos: response.data.videos,
+                searchvideo:""
               },
                 () => {
                   console.log("Axios call to back end to fetch youtube videos")
@@ -56,7 +57,7 @@ class Videoreference extends Component {
             </div>
             <div className="col-md-11 col-sm-11 col-lg-11">
                        <div className="middlecontent">
-                       <h4 className="subhead">Youtube Search...In Progress...</h4>
+                       <h4 className="subhead">Youtube Search</h4>
                         <form className="inputsection">
                           <input type="text"
                             className="form-control"
