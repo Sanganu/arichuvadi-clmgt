@@ -16,8 +16,10 @@ class Allteachers extends Component {
     let allbatches = false
     axios.get('/api/teacher/all')
       .then(response => {
-        //console.log("The Teacheretails of  - axios call", response.data);
-
+        console.log("The Teacheretails of  - axios call", response.data);
+        this.setState({
+          teacherrecords : response.data
+        })
       })
       .catch(error => {
         this.setState({})
@@ -50,13 +52,15 @@ class Allteachers extends Component {
                     <tr>
                       <th>Teacher</th>
                       <th>Batches</th>
-                      <th>Students</th>
-                      <th></th>
-                      <th></th>
                       <th>Number of Batches</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
+                    {this.state.teacherrecords ? 
+                       <TeacherRecords />:<h2>No Teacher details </h2>}
                 </tbody>
                 </table>
             : <div></div> }

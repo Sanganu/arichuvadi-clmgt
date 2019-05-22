@@ -228,7 +228,7 @@ class BatchInfo extends Component {
                 onChange={this.handleInputChange} />
             </div>
             <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-            {/* <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button> */}
+            <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
           </form>
         </div>
         <div className="col-lg-4 col-md-11 col-sm-12">

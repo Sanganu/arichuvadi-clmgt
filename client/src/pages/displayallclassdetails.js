@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 class Allclasses extends Component {
     
  
-      render() {
+      render () {
             const classrec = this.props.classrecs || [{"lesson":"No class details exist","homework":"N/A"}];
             return (<tbody>
                       {classrec.map((data, index) =>
