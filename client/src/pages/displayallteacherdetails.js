@@ -7,7 +7,7 @@ import Topmenu from '../components/Topmenu';
 class Allteachers extends Component {
   state = {
     teacherrecords: [],
-    
+
   }
 
   componentDidMount = () => {
@@ -17,21 +17,21 @@ class Allteachers extends Component {
     axios.get('/api/teacher/all')
       .then(response => {
         //console.log("The Teacheretails of  - axios call", response.data);
-        
-        })
-        .catch(error => {
+
+      })
+      .catch(error => {
         this.setState({})
         //console.log("Error in getting batch records!!!", error);
       });
   } // end component did mount
 
-  getBatchDetails = (batchselected) => {
+  getTeacherDetails = (teacherselected) => {
     //let bid = batchselected.bid;      
     this.setState({
-      batchdet: batchselected,
+      teacherdet: teacherselected,
       details: true,
-      allbatches: false
-    }, () => console.log("selected bxz cvc nbmatch",
+      allteachers: false
+    }, () => console.log("selected bxz cvc",
       this.state.batchdet));
   }
 
@@ -43,37 +43,29 @@ class Allteachers extends Component {
           <Topmenu />
         </div>
         <div className="col-lg-11 col-md-11 col-sm-11">
-          <div className = "middlecontent">
-          {this.state.allbatches ?
-            <table className="table table-hover table-responsive">
-              <thead>
-                <tr>
-                  <th>Teacher</th>
-                  <th>Batches</th>
-                  <th>Students</th>
-                  <th></th>
-                  <th></th>
-                  <th>Number of classes</th>
-                </tr>
-              </thead>
-              <tbody>
-              )}
-              </tbody>
-            </table>
-            : <div>  {this.state.batchdet ?
-                    <BatchInfo
-                      batchdetails={this.state.batchdet}
-                      newbatch={false}
-                    />
-                    : <div></div>}
-             </div>  
-          }    
-          </div>           
-         </div>
-         </div>
-      </div>); // end return
-      } //end render
-  } //end allbatches
-  export default Allteachers;
-  
-  
+          <div className="middlecontent">
+            {this.state.allteachers ?
+                <table className="table table-hover table-responsive">
+                  <thead>
+                    <tr>
+                      <th>Teacher</th>
+                      <th>Batches</th>
+                      <th>Students</th>
+                      <th></th>
+                      <th></th>
+                      <th>Number of Batches</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                </tbody>
+                </table>
+            : <div></div> }
+          </div>
+        </div>
+        </div>
+       </div>); // end return
+  } //end render
+} //end allteachers
+export default Allteachers;
+
+

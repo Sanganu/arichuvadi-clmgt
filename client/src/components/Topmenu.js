@@ -28,6 +28,7 @@ class Topmenu extends Component {
                            <li  className = "list-group-item"><Link to = '/teacher/allbatch' className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i></Link></li>
                            <li  className = "list-group-item"><Link to = '/teacher/addteacher' className  = 'sidemenulink' ><i className="fa fa-chalkboard-teacher fa-2x"></i></Link></li>
                            <li  className = "list-group-item sidemenulink" onClick={this.logoutapp}><i className="fas fa-sign-out-alt fa-2x"></i></li>
+                           {/* <i class="far fa-user-circle"></i> */}
                         </ul>   
             </nav>); //end return
         } //end render
