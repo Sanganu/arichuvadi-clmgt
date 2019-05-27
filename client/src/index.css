@@ -189,9 +189,10 @@ input {
 
 .navbar {
   text-align: center;
-  background-color: rgb(106, 112, 19);
+  /* background-color: rgb(106, 112, 19); */
   transition: all 0.7s  ease-out;
-  background: linear-gradient(270deg, rgba(223, 178, 16, 0.8), rgba(241, 198, 4, 0.8), rgba(222, 238, 6, 0.726), rgba(223, 178, 16, 0.8));
+  background: linear-gradient(270deg, rgba(15, 209, 199, 0.8), rgba(68, 184, 32, 0.877), rgba(48, 6, 238, 0.726),
+  rgba(5, 228, 198, 0.986), rgba(21, 195, 201, 0.329));
   background-position: 1% 50%;
   color:  rgb(244, 247, 246);
 }

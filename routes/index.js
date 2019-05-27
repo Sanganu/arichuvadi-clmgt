@@ -11,8 +11,8 @@ var youTube = new YouTube();
 //Create new batch -- implemented
 router.post('/api/teacher/batch/new',function(req,res) {
       var newrecord = req.body;
-       console.log("Insiderouter to add new batch",req.body);
-
+      //  console.log("Insiderouter to add new batch",req.body);
+       console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
       batchdetails
              .create(newrecord)
              .then(function(dbdetails){
@@ -49,8 +49,7 @@ router.post('/api/teacher/batch/new',function(req,res) {
 
 //Add New student And Update Batches table -- implemented 
 router.post('/api/teacher/batch/student/new',function(req,res) {
-        console.log("Insiderouter to add new student",req.body);
-        console.log("User from req",req.user);
+        console.log("Check Session - teacher login",req.session.passport.user.user);    
         var newrecord = {
           studentfname :req.body.studentfname,
           studentlname: req.body.studentlname,
@@ -111,7 +110,8 @@ router.post('/api/teacher/batch/student/new',function(req,res) {
 
 // Get All batch details -- implemented
 router.get("/api/teacher/batch/all",(req,res) => {
-      console.log("inside router to get all batch records");
+      console.log("<<<<Check Session - teacher login",req.session.passport.user);//undefined
+      console.log("=================<<<<<<<<<===============");
         batchdetails.find({})
           // .populate({
           //   path:'teacher',
@@ -128,6 +128,7 @@ router.get("/api/teacher/batch/all",(req,res) => {
 
 // Get All Student Details -- implemented
 router.get("/api/teacher/students/all",(req,res) => {
+  console.log("Check Session - teacher login",req.session.passport.user);
    studentdetails.find({})
        .populate ({
          path: 'batchid',
@@ -146,7 +147,7 @@ router.get("/api/teacher/students/all",(req,res) => {
 router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
   let batchid = req.params.bid;
   let studentrecords = [];
-  console.log("The request - ",req.params)
+  console.log("The Session data ",req.session.passport.user);
   studentdetails.find({
     batchid : batchid
   }).then((records) => {

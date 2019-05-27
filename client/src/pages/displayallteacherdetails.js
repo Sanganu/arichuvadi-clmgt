@@ -53,8 +53,8 @@ class Allteachers extends Component {
                       <th>Teacher</th>
                       <th>Batches</th>
                       <th>Number of Batches</th>
-                      <th></th>
-                      <th></th>
+                      <th>Email</th>
+                      <th>Phone</th>
                       <th></th>
                     </tr>
                   </thead>
