@@ -18,7 +18,7 @@ class Topmenu extends Component {
       
         render()
         {
-            return(<nav className = 'icon-bar navbar-collapse'>
+            return(<nav className = 'icon-bar'>
                         <ul className ="list-unstyled list-group">
                            <li  className = "list-group-item" data-toggle = "tooltip" data-title="New Cohort"><Link to = '/teacher/batchmain' className = 'sidemenulink'><i  className="fa fa-users fa-2x"></i></Link></li>
                            <li className = "list-group-item"><Link to = '/teacher/searchrecords' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i></Link></li>

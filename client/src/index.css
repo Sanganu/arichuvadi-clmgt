@@ -193,17 +193,13 @@ input {
   transition: all 0.7s  ease-out;
   background: linear-gradient(270deg, rgba(15, 209, 199, 0.8), rgba(68, 184, 32, 0.877), rgba(48, 6, 238, 0.726),
   rgba(5, 228, 198, 0.986), rgba(21, 195, 201, 0.329));
-  background-position: 1% 50%;
+  /* background-position: 1% 50%; */
   color:  rgb(244, 247, 246);
-}
+  width:100vw;
+  padding-right: 0%;
+padding-left:0%;
 
-.navbar:hover {
-  color: rgba(193, 224, 13, 0.747);
-  border: 1px solid hsla(20, 67%, 4%, 0.925);
-  background-position: 99% 50%;
-  font-weight: bold;
 }
-
 
 .otherlinks {
     width: 20%;
@@ -221,6 +217,7 @@ input {
 #searchFor{
   width: 90%;
 }
+
 select{
   color:black;
 }
@@ -253,17 +250,11 @@ select{
 }
 
 .icon-bar{
-  /* background-color: rgb(238, 185, 106); */
   padding-top: 5%;
-  /* padding-right: none;
-  margin-right: none; */
-  
+  padding-bottom: 5%;
+  width:auto;
 }
 
-/* nav  ul {
-  list-style-type:  none;
-  
-} */
 .sidemenulink{
   display:block;
   transition:all 0.3s ease;
@@ -398,9 +389,11 @@ li {
   
   
   .icon-bar {
-    margin-bottom: 1%;
-    padding: 1%;
-    justify-content: space-around;
+    margin-bottom: 3%;
+    /* padding: 1%; */
+    justify-content: space-between;
+    width: 100vw;
+    padding-bottom: 5%;
   }
   .list-unstyled{
     display: flex;
@@ -412,6 +405,7 @@ li {
   }
   
   .middlecontent{
-    margin-top: 1.5%;
+    margin-top: 3%;
+    padding-top: 2%;
   }
 }

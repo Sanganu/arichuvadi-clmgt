@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Allbatches from './displayallbatchdetails';
 import Teacherheader from '../components/Teacherheader';
-import axios  from "axios";
+import axios from "axios";
 import { Menubar } from '../components/Menubar';
 //import Header from '../components/Header';
 // import GoogleLogin from 'react-google-login';
@@ -13,7 +13,7 @@ class Teachermain extends Component {
         vemail: '',
         vpword: '',
         logindisp: true,
-        errmsg:''
+        errmsg: ''
     };
 
 
@@ -36,7 +36,7 @@ class Teachermain extends Component {
 
         if (this.state.vemail === "myemail@yahoo.com" &&
             this.state.vpword === "welcome") {
-           
+
             this.setState({
                 invalid: false,
                 logindisp: false
@@ -51,89 +51,79 @@ class Teachermain extends Component {
 
     logincheck = (event) => {
         event.preventDefault();
-      //  console.log(this.state.vemail, this.state.vpword);
-        axios.post('/auth/login',{
+        //  console.log(this.state.vemail, this.state.vpword);
+        axios.post('/auth/login', {
             loginemail: this.state.vemail,
             password: this.state.vpword,
             usertype: 'teacher'
         })
-        .then((response) => {
-           // console.log("Axios call with this login",this.state.vemail,this.state.password);
-            if(response.data.teacherrecord){
-                console.log("Teacher Login".response.data);
-            }
-            this.setState({
-                invalid: false,
-                logindisp: false,
-                errmsg:''
+            .then((response) => {
+                // console.log("Axios call with this login",this.state.vemail,this.state.password);
+                if (response.data.teacherrecord) {
+                    console.log("Teacher Login".response.data);
+                }
+                this.setState({
+                    invalid: false,
+                    logindisp: false,
+                    errmsg: ''
+                });
+            })
+            .catch((error) => {
+                console.log("Error in ---", error);//end axios call
+                this.setState({
+                    invalid: true
+                });
             });
-        })
-        .catch((error) => {
-            console.log("Error in ---",error);//end axios call
-            this.setState({ 
-                invalid: true
-               });
-        });   
     } // end login check
 
-  
+
 
     render() {
         return (<div>
-            <Teacherheader />
             {this.state.logindisp ?
                 <div className="container middlecontent">
+                    <div>
+                        <form className="inputsection">
+                            <h3> Instructor Login</h3>
+                            <p>Temporary Login page</p>
 
-                    <div className="row" >
-                        <div className="col-lg-1 col-md-1 col-sm-12">
-                            <Menubar />
-                        </div>
-                        <div className="col-lg-11 col-md-11 col-sm-12">
+                            <div className="form-group">
 
-                            <div>
-                                <form className="inputsection">
-                                    <h3> Instructor Login</h3>
-                                    <p>Temporary Login page</p>
-                                 
-                                    <div className="form-group">
-
-                                        <input className="form-control"
-                                            onChange={this.handleInputChange}
-                                            type="text"
-                                            name="vemail"
-                                            id="vemail"
-                                            value={this.state.vemail}
-                                            required />
-                                        <label className="form-control-placeholder"
-                                            htmlFor="vemail">Email Address </label>
-                                    </div>
-                                    <div className="form-group">
-
-                                        <input className="form-control"
-                                            onChange={this.handleInputChange}
-                                            type="password"
-                                            name="vpword"
-                                            id="vpword"
-                                            value={this.state.vpword}
-                                            required />
-                                        <label
-                                            className="form-control-placeholder"
-                                            htmlFor="vpword">Password </label>
-                                    </div>
-
-                                    
-                                    <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
-                                    <div>
-                                    <button className="createbutton" id="tlogin" onClick={this.templogin}>Temp Login</button>
-                                    <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
-                                    </div>
-                                </form>
-                                
+                                <input className="form-control"
+                                    onChange={this.handleInputChange}
+                                    type="text"
+                                    name="vemail"
+                                    id="vemail"
+                                    value={this.state.vemail}
+                                    required />
+                                <label className="form-control-placeholder"
+                                    htmlFor="vemail">Email Address </label>
                             </div>
-                        </div>
+                            <div className="form-group">
+
+                                <input className="form-control"
+                                    onChange={this.handleInputChange}
+                                    type="password"
+                                    name="vpword"
+                                    id="vpword"
+                                    value={this.state.vpword}
+                                    required />
+                                <label
+                                    className="form-control-placeholder"
+                                    htmlFor="vpword">Password </label>
+                            </div>
+
+
+                            <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
+                            <div>
+                                <button className="createbutton" id="tlogin" onClick={this.templogin}>Temp Login</button>
+                                <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
-                : <Allbatches displayall={true} />
+               : <Allbatches displayall={true} />
             }
 
             {this.state.invalid ?
