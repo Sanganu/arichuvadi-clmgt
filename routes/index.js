@@ -13,11 +13,11 @@ const isLoggedIn = (req,res,next) => {
   console.log("Routes - req isloggedin",req.user)
   if(!req.user){
      // USer is not logged in
-     console.log("No user data found",req.user)
+     console.log("Routes isLoggedIn- No user data found",req.user)
      res.redirect("/login");
   }
   else{
-    console.log("USer logged in",req.user);
+    console.log("Routes-IsloggedIn-USer logged in",req.user);
     next();
   }
 }
@@ -140,8 +140,8 @@ router.get("/api/teacher/batch/all",isLoggedIn,(req,res) => {
 }); // Get all batch details -- implemented
 
 // Get All Student Details -- implemented
-router.get("/api/teacher/students/all",(req,res) => {
-  console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
+router.get("/api/teacher/students/all",isLoggedIn,(req,res) => {
+  //console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
    studentdetails.find({})
        .populate ({
          path: 'batchid',
@@ -157,7 +157,7 @@ router.get("/api/teacher/students/all",(req,res) => {
 }); // Get all student details --implemented
 
 // Fetch student records  and class details for the specific batch -- implemented
-router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
+router.get('/api/teacher/batch/student/class/details/:bid',isLoggedIn,(req,res) => {
   let batchid = req.params.bid;
   let studentrecords = [];
   console.log("The Session data ",req.session.passport.user,  req.session.passport.user.user.userdata._id );
@@ -181,7 +181,7 @@ router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
 
 
 // Update Batch --implemented
-router.put("/api/teacher/batch/update",(req,res) => {
+router.put("/api/teacher/batch/update",isLoggedIn,(req,res) => {
   console.log("The batch id: ",req.body.batchid,req.session.passport.user.user.userdata._id);
       batchdetails.update(
         {_id: req.body.batchid},
@@ -199,7 +199,7 @@ router.put("/api/teacher/batch/update",(req,res) => {
 }); // Batch update --implemented
 
 // Add Student Record  without batch linking -- implemented
-router.post("/api/teacher/student/new",(req,res) => {
+router.post("/api/teacher/student/new",isLoggedIn,(req,res) => {
         let insertedstudent={};
           studentdetails 
           .create(req.body.newrecord)
@@ -237,7 +237,7 @@ router.post("/api/teacher/student/new",(req,res) => {
 
 
 // Search Student & Batch Records -- implemented
-router.get('/api/teacher/search/:str',(req,res) => {
+router.get('/api/teacher/search/:str',isLoggedIn,(req,res) => {
   let student_details
   let batch_details 
   let searchString = req.params.str;
@@ -281,7 +281,7 @@ router.get('/api/teacher/search/:str',(req,res) => {
 
 
 // Update Student details from -Student Management --implemented
-router.put("/api/teacher/student/update/:id",(req,res) => {
+router.put("/api/teacher/student/update/:id",isLoggedIn,(req,res) => {
   console.log("Student record",req.body);
   studentdetails.updateOne(
     {_id: req.params.id},
@@ -300,7 +300,7 @@ router.put("/api/teacher/student/update/:id",(req,res) => {
 }); // End of router update for student details --implemented
 
 ////Add Class details And Update Batches table - implemented
-router.post('/api/teacher/batch/class/add',function(req,res) {
+router.post('/api/teacher/batch/class/add',isLoggedIn,function(req,res) {
   // console.log("Insiderouter to add class details",req.body);
 var newrecord = req.body;
   classdetails
