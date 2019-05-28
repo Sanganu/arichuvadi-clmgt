@@ -11,19 +11,28 @@ export const Menubar = () => {
                 <a href='http://www.tamilvu.org/' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
                 <i className ="fa fa-university fa-2x"></i></a></li>
                 <li className = "list-group-item" >
-                <a href = 'https://www.facebook.com/'  className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer" >
-                <i className="fab fa-facebook-square fa-2x"></i></a></li>
-                <li className = "list-group-item" >
-                <a href="https://www.youtube.com/"  target ="_blank" rel="noopener noreferrer" >
-                <i className ="fab fa-youtube-square fa-2x"></i></a></li>
-                <li className = "list-group-item" >
-                <a href='http://wwwlinkedin.com/' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
-                <i className ="fab fa-linkedin fa-2x"></i></a></li>
-                <li className = "list-group-item" >
-                <a href = 'https://commons.wikimedia.org/wiki/Category:Animated_GIF_of_Tamil_letters' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer"><i className="fas fa-asterisk"></i></a></li>
-                <li className = "list-group-item" >
-                <a href = 'https://twitter.com/' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
-                <i className ="fab fa-twitter-square fa-2x"></i></a></li>
+                <a href = 'https://commons.wikimedia.org/wiki/Category:Animated_GIF_of_Tamil_letters' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
+                <i className="fas fa-asterisk"></i></a></li>
+                
+                
+               
+
             </ul>     
   </nav>)    
 } 
+
+
+                // <li className = "list-group-item" >
+                // <a href='http://wwwlinkedin.com/' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
+                // <i className ="fab fa-linkedin fa-2x"></i></a></li>
+                // <li className = "list-group-item" >
+                // <a href = 'https://www.facebook.com/'  className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer" > */}
+                // <i className="fab fa-facebook-square fa-2x"></i></a></li> 
+                // <li><a href = 'https://twitter.com/' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
+                // <i className ="fab fa-twitter-square fa-2x"></i></a></li> 
+                // <li className = "list-group-item" >
+                // <a href="https://www.youtube.com/"  target ="_blank" rel="noopener noreferrer" >
+                // <i className ="fab fa-youtube-square fa-2x"></i></a></li> 
+                // <li className = "list-group-item" >
+                // <a href='http://wwwlinkedin.com/' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
+                // <i className ="fab fa-linkedin fa-2x"></i></a></li> 

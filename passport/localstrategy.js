@@ -9,7 +9,7 @@ const strategy = new LocalStrategy(
 		passReqToCallback:true 
 	},
 		function(req,loginemail, password, done) {
-				  // console.log("=+++++Local Strategy Setup+++++++++");
+				   console.log("=+++++Local Strategy Setup+++++++++");
 				   
 				   //console.log("Passport addition field",loginemail,password,req.body.usertype);
 				   console.log("Passport Local Strategy - User Type",req.body.usertype,loginemail);

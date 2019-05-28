@@ -8,8 +8,21 @@ const teacherdetails = require('../models/Teachers.js');
 var YouTube = require('youtube-node');
 var youTube = new YouTube();
 
+
+const isLoggedIn = (req,res,next) => {
+  console.log("Routes - req isloggedin",req.user)
+  if(!req.user){
+     // USer is not logged in
+     console.log("No user data found",req.user)
+     res.redirect("/login");
+  }
+  else{
+    console.log("USer logged in",req.user);
+    next();
+  }
+}
 //Create new batch -- implemented
-router.post('/api/teacher/batch/new',function(req,res) {
+router.post('/api/teacher/batch/new',isLoggedIn,function(req,res) {
       var newrecord = req.body;
       //  console.log("Insiderouter to add new batch",req.body);
        console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
@@ -48,8 +61,8 @@ router.post('/api/teacher/batch/new',function(req,res) {
 
 
 //Add New student And Update Batches table -- implemented 
-router.post('/api/teacher/batch/student/new',function(req,res) {
-        console.log("Check Session - teacher login",req.session.passport.user.user);    
+router.post('/api/teacher/batch/student/new',isLoggedIn,function(req,res) {
+        console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);    
         var newrecord = {
           studentfname :req.body.studentfname,
           studentlname: req.body.studentlname,
@@ -109,8 +122,8 @@ router.post('/api/teacher/batch/student/new',function(req,res) {
 
 
 // Get All batch details -- implemented
-router.get("/api/teacher/batch/all",(req,res) => {
-      console.log("<<<<Check Session - teacher login",req.session.passport.user);//undefined
+router.get("/api/teacher/batch/all",isLoggedIn,(req,res) => {
+      console.log("<<<<Check Session - teacher login",req.session.passport);//undefined
       console.log("=================<<<<<<<<<===============");
         batchdetails.find({})
           // .populate({
@@ -128,7 +141,7 @@ router.get("/api/teacher/batch/all",(req,res) => {
 
 // Get All Student Details -- implemented
 router.get("/api/teacher/students/all",(req,res) => {
-  console.log("Check Session - teacher login",req.session.passport.user);
+  console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
    studentdetails.find({})
        .populate ({
          path: 'batchid',
@@ -147,7 +160,8 @@ router.get("/api/teacher/students/all",(req,res) => {
 router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
   let batchid = req.params.bid;
   let studentrecords = [];
-  console.log("The Session data ",req.session.passport.user);
+  console.log("The Session data ",req.session.passport.user,  req.session.passport.user.user.userdata._id );
+
   studentdetails.find({
     batchid : batchid
   }).then((records) => {
@@ -168,7 +182,7 @@ router.get('/api/teacher/batch/student/class/details/:bid',(req,res) => {
 
 // Update Batch --implemented
 router.put("/api/teacher/batch/update",(req,res) => {
-  console.log("The batch id: ",req.body.batchid);
+  console.log("The batch id: ",req.body.batchid,req.session.passport.user.user.userdata._id);
       batchdetails.update(
         {_id: req.body.batchid},
         {$set: {batchdesc : req.body.batchdesc,

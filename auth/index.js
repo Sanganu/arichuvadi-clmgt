@@ -4,10 +4,10 @@ const Students = require('../models/Students');
 const Teachers = require('../models/Teachers');
 const passport = require('../passport')
 
-// this route is just used to get the student user basic info
+// this route is just used to get the student or teacher user basic info
 
 router.get('/', (req, res, next) => {
-	console.log('===== /student /Teacher ===user!!======')
+	console.log('===== Auth-Index.js /student /Teacher ===user!!======')
 	console.log(req.session.passport.user.user)
 	if (req.session.passport.user.user) {
 		return res.json({ user: req.session.passport.user.user})
@@ -15,6 +15,8 @@ router.get('/', (req, res, next) => {
 		return res.json({ user: null })
 	}
 })
+
+
 //Step:1
   
 router.post(
@@ -26,13 +28,13 @@ router.post(
 	},
 	passport.authenticate('local'), 
 	(req, res) => {
-		console.log('POST to /login - Local strategy - passport.authenticate callback')
+		console.log('POST to /login - Local strategy - passport.authenticate callback - auth/index.js')
  		getDetails(req,res)
 	}
 )
 
 router.post('/logout', (req, res) => {
-  console.log("Logout.......User",req.user);
+  console.log("Logout.......User - auth/index.js",req.user);
 	if (req.user) {
 		req.session.destroy()
 		res.clearCookie('connect.sid') // clean up!
@@ -46,7 +48,7 @@ router.post('/logout', (req, res) => {
 
 router.post('/student/create', (req, res) => {
 	// ADD VALIDATION
-	console.log("The Request - to create account",req.body)
+	console.log("The Request - to create account - auth/index.js ",req.body)
       Students.findOne({ 'email': email }, (err, studentMatch) => {
         if (studentMatch) {
           return res.json({
@@ -75,7 +77,7 @@ router.post('/student/create', (req, res) => {
 
 
 function getDetails(req,res) {
-  console.log("Get Teacher/student Login Route");
+  console.log("Get student Login Route - auth/index.js");
   console.log("The session data",req.session.passport.user)
 	
 	if (req.session.passport.user === undefined){
