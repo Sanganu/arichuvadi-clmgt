@@ -67,10 +67,10 @@ router.post('/api/teacher/batch/student/new',isLoggedIn,function(req,res) {
           studentfname :req.body.studentfname,
           studentlname: req.body.studentlname,
           parentname: req.body.parentname,
-          loginemail: req.body.loginemail,
+          loginemail: req.body.loginemail.toLowerCase(),
           password : req.body.password,
           batchid:req.body.batchid,
-          parentphonenumber:req.body.phonenumber
+          parentphonenumber:req.body.parentphonenumber
         };
         var insertedstudent = {
              stdid: '',
@@ -90,7 +90,7 @@ router.post('/api/teacher/batch/student/new',isLoggedIn,function(req,res) {
                 loginemail : dbstudentdetails.loginemail,
                 phonenumber : dbstudentdetails.parentphonenumber
               } ;
-              console.log("The Student Record inserted --",insertedstudent);
+              console.log("The Student Record inserted --",insertedstudent,req.body.batchid);
                return batchdetails.findOneAndUpdate({_id:req.body.batchid},
                  {$push:{students: dbstudentdetails._id}});
            }) 
@@ -105,7 +105,7 @@ router.post('/api/teacher/batch/student/new',isLoggedIn,function(req,res) {
                               if( (err.errmsg).substr(0,6) === 'E11000')
                               {
                                 console.log("Student Login - already exist");
-                                res.json({error: "Student email already exist :"});
+                                res.status(404).json({error: "Student email already exist :"});
                               }
                               else {
                                 console.log("Error in updating Batch and Student details",err)
@@ -183,7 +183,7 @@ router.get('/api/teacher/batch/student/class/details/:bid',isLoggedIn,(req,res) 
 // Update Batch --implemented
 router.put("/api/teacher/batch/update",isLoggedIn,(req,res) => {
   console.log("The batch id: ",req.body.batchid,req.session.passport.user.user.userdata._id);
-      batchdetails.update(
+      batchdetails.updateOne(
         {_id: req.body.batchid},
         {$set: {batchdesc : req.body.batchdesc,
                 subject: req.body.subject,
@@ -336,11 +336,15 @@ router.delete("/api/teacher/batch/delete",(req,res) => {
   batchdetails.deleteOne({_id:req.body.batchid})
     .then((data) => {
       console.log("data",data);
+//  batchdetails.save();
       classdetails.deleteMany({batch:req.body.batchid});
-      
+  //    classdetails.save();
+      console.log("The results");
+      res.status(200).json({"Deleted":"Batch and class details"});
     })
     .catch((error) => {
       console.log("Error",error);
+      res.status(404).error({"Error":"Error in deleting batch and class"+errror})
     });
 });
 

@@ -49,7 +49,7 @@ router.post('/logout', (req, res) => {
 router.post('/student/create', (req, res) => {
 	// ADD VALIDATION
 	console.log("The Request - to create account - auth/index.js ",req.body)
-      Students.findOne({ 'email': email }, (err, studentMatch) => {
+      Students.findOne({ 'email': email.toLowerCase() }, (err, studentMatch) => {
         if (studentMatch) {
           return res.json({
             error: `Sorry, already a user with the username: ${username}`

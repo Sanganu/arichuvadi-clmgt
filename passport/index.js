@@ -18,8 +18,7 @@ passport.deserializeUser((user, done) => {
 	const id = user.user.userdata._id;
 	if (user.user.usertype === "student"){
 		Students.findOne(
-			{ _id: id },
-			
+			{ _id: id},
 			(err, user) => {
 				console.log('======= DESERILAIZE STUDENT USER CALLED ======')
 				console.log(user)

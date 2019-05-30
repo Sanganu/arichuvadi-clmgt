@@ -31,7 +31,7 @@ class App extends Component {
           <Teacherheader />
           <div className='row'>
             <div className='col-md-1 col-sm-1 col-lg-1'>
-               <Menubar />
+               <Topmenu />
             </div>
             <div className='col-md-11 col-sm-11 col-lg-11'>
               <Switch>
