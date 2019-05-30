@@ -62,7 +62,7 @@ router.post('/api/teacher/batch/new',isLoggedIn,function(req,res) {
 
 //Add New student And Update Batches table -- implemented 
 router.post('/api/teacher/batch/student/new',isLoggedIn,function(req,res) {
-        console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);    
+        //console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);    
         var newrecord = {
           studentfname :req.body.studentfname,
           studentlname: req.body.studentlname,

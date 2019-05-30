@@ -74,15 +74,8 @@ class Addteacher extends Component {
     };  // end handleclasscreation
 
     render() {
-        return (<div className="frontpage">
-            <Teacherheader />
+        return (           
             <div className="container middlecontent">
-                <div className="row" >
-                    <div className="col-lg-1 col-md-1 col-sm-12">
-                        <Topmenu />
-                    </div>
-                    <div className="col-lg-11 col-md-11 col-sm-12">
-
                         <form className="inputsection">
                             <h5 className="subhead">New Teacher / Admin</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
@@ -153,9 +146,7 @@ class Addteacher extends Component {
                                 Add Teacher</button>
                         </form>
                     </div>
-                </div>
-              </div>
-            </div> );
+                 );
      }
 }
 export default Addteacher;

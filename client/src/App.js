@@ -30,16 +30,16 @@ class App extends Component {
         <div>
           <Teacherheader />
           <div className='row'>
-            <div className='col-md-1 col-sm-12 col-lg-1'>
+            <div className='col-md-1 col-sm-1 col-lg-1'>
                <Menubar />
             </div>
-            <div className='col-md-11 col-sm-12 col-lg-11'>
+            <div className='col-md-11 col-sm-11 col-lg-11'>
               <Switch>
                 <Route exact path="/teacher/allbatch" component={Allbatches} />
                 <Route exact path="/" component={Homepage} />
                 <Route exact path="/teacher/tmain" component={Teachermain} />
-                <Route exact path="/other/students/loginpg" component={Studentlogin} />\
-               <Route exact path="/users/videos" component={Videoreference} />
+                <Route exact path="/other/students/loginpg" component={Studentlogin} />
+                <Route exact path="/users/videos" component={Videoreference} />
                 <Route exact path="/teacher/batchmain" component={Batchmain} />
                 <Route exact path="/teacher/createbatch" component={Createbatch} />
                 <Route exact path="/teacher/batch/addstudent/:batchid" component={Addstudent} />
