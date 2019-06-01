@@ -23,8 +23,18 @@ class Updateteacher extends Component{
     }
 
     render() {
-        return(<>
+        return(<div>
+            <h1>My Account</h1>
+            <p>fname</p>
+            <p>Lname</p>
+            <p>email</p>
+            <p>password</p>
+            <p>zoom</p>
+            <p>Skype</p>    
+            <button>Changepassowrd</button>
 
-       </> )
+       </div> )
     }
 }
+
+export default Updateteacher;

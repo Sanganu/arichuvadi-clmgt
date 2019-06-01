@@ -12,7 +12,7 @@ import Studentlogin from "./pages/Studentlogin";
 import Addclass from "./pages/Addclassdetails";
 import Search from "./pages/Search";
 import StudentManagement from './pages/StudentManagement';
-import Addteacher from "./pages/Addteacher";
+import Updateteacher from "./pages/Updateteacher";
 import Teacherheader from "./components/Teacherheader";
 import {Menubar} from "./components/Menubar";
 import Topmenu from "./components/Topmenu";
@@ -48,7 +48,7 @@ class App extends Component {
                 <Route exact path="/teacher/batch/addclass" component={Addclass} />
                 <Route exact path="/teacher/searchrecords" component={Search} />
                 <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
-                <Route exact path="/teacher/addteacher" component={Addteacher} />
+                <Route exact path="/teacher/profile/update" component={Updateteacher} />
                 <Route exact path="/teacher/allteacher" component={Allteachers} />
                 <Switch>
                   <Route path="/*" component={Homepage} />
