@@ -48,15 +48,8 @@ class Videoreference extends Component {
 
   render() {
     const videos = this.state.videos || "";
-    return (<div>
-      <Teacherheader />
-
-      <div className="row">
-            <div className="col-md-1 col-sm-12 col-lg-1">
-              <Menubar />
-            </div>
-            <div className="col-md-11 col-sm-11 col-lg-11">
-                       <div className="middlecontent">
+    return (<div className="middlecontent">
+                 <div>
                        <h4 className="subhead">Youtube Search</h4>
                         <form className="inputsection">
                           <input type="text"
@@ -68,22 +61,20 @@ class Videoreference extends Component {
                           <button onClick={this.searchfor}>
                             Search for Reference Youtube Videos</button>
                         </form>
-                      </div>
-            </div>  
-        </div>              
+                </div>
+                      
      
-      <div className = "row">  
-        {videos && videos.length ?
-          <div className="card-columns">
-            {videos.map((data, index) =>
-              <Video key={index}
-                content={data} />
-            )}
-          </div> 
-          : <div></div>}
-      </div>  
-    </div>
- )
+              <div className = "row">  
+                {videos && videos.length ?
+                  <div className="card-columns">
+                    {videos.map((data, index) =>
+                      <Video key={index}
+                        content={data} />
+                    )}
+                  </div> 
+                  : <div></div>}
+              </div>  
+      </div>)
   }
 }
 

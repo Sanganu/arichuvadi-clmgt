@@ -190,9 +190,11 @@ input {
   width:100vw;
   padding-right: 0%;
 padding-left:0%;
-
 }
 
+#date{
+  height: 45px;
+}
 .otherlinks {
     width: 20%;
     height:100%;

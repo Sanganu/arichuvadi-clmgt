@@ -70,8 +70,7 @@ class Createbatch extends Component {
     }; // end handleclasscreation
 
     render() {
-        return (<div>
-            <div className="middlecontent">
+        return (        <div className="middlecontent">
                    
                         <form className="inputsection">
                             <h5 className="subhead">New Cohort</h5>
@@ -113,7 +112,7 @@ class Createbatch extends Component {
 
                             <button className="createbutton" name="clcreation" onClick={this.handleBatchCreation}>Create Batch</button>
                         </form>
-                    </div>
+             
                  </div>) // end of return
         } // end of render
   

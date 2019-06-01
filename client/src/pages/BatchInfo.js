@@ -178,54 +178,54 @@ class BatchInfo extends Component {
     return (<div className="middlecontent"> 
       <div className="row">
         <div className="col-lg-4 col-md-11 col-sm-12">
-          <h6>Cohort Details</h6>
+          <h4>Cohort Details</h4>
           <form className="inputsection">
-            <div className="form-group">
+                      <div className="form-group">
 
-              <label className="form-control-placeholder"
-                htmlFor="bdesc">
-                Batch Name </label>
-              <input value={this.state.bdesc}
-                placeholder={this.state.bdesc}
-                name="bdesc"
-                id="bdesc"
-                onChange={this.handleInputChange}
-                className="form-control"
-              />
+                        <label className="form-control-placeholder"
+                          htmlFor="bdesc">
+                          Batch Name </label>
+                        <input value={this.state.bdesc}
+                          placeholder={this.state.bdesc}
+                          name="bdesc"
+                          id="bdesc"
+                          onChange={this.handleInputChange}
+                          className="form-control"
+                        />
 
-            </div>
-            <div className="form-group">
-              <label className="form-control-placeholder">
-                Instructor </label>
-              <input value={this.state.instructor}
-                placeholder={this.state.instructor}
-                name="instructor"
-                id="instructor"
-                className="form-control"
-                onChange={this.handleInputChange} />
-            </div>
-            <div className="form-group row">
-                                <label className="has-float-label">Course : </label>
-                                <select className="form-control droplist"
-                                    onChange={this.handleInputChange}
-                                    value={this.state.course} name="course" id="course">
-                                    <option value='Beginner' default>Beginner</option>
-                                    <option value='Intermediate'>Intermediate</option>
-                                    <option value='Advance'>Advance</option>
-                                </select>
-                            </div>
-                            <div className="form-group row">
-                                <label className="has-float-label">Level </label>
-                                <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
-                                    <option value='Oral' default>Oral Examination</option>
-                                    <option value='Visual'>Visual Examination</option>
-                                    <option value='Written'>Written Examination</option>
-                                    <option value='Online'>Online Examination</option>
-                                    <option value='Offline'>Offline Examination</option>
-                                </select>
-                            </div>
-            <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-            {/* <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button> */}
+                      </div>
+                      <div className="form-group">
+                        <label className="form-control-placeholder">
+                          Instructor </label>
+                        <input value={this.state.instructor}
+                          placeholder={this.state.instructor}
+                          name="instructor"
+                          id="instructor"
+                          className="form-control"
+                          onChange={this.handleInputChange} />
+                      </div>
+                      <div className="form-group row">
+                                          <label className="has-float-label">Course : </label>
+                                          <select className="form-control droplist"
+                                              onChange={this.handleInputChange}
+                                              value={this.state.course} name="course" id="course">
+                                              <option value='Beginner' default>Beginner</option>
+                                              <option value='Intermediate'>Intermediate</option>
+                                              <option value='Advance'>Advance</option>
+                                          </select>
+                                      </div>
+                                      <div className="form-group row">
+                                          <label className="has-float-label">Level </label>
+                                          <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
+                                              <option value='Oral' default>Oral Examination</option>
+                                              <option value='Visual'>Visual Examination</option>
+                                              <option value='Written'>Written Examination</option>
+                                              <option value='Online'>Online Examination</option>
+                                              <option value='Offline'>Offline Examination</option>
+                                          </select>
+                                      </div>
+                      <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
+              {/* <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button> */}
           </form>
         </div>
         <div className="col-lg-4 col-md-11 col-sm-12">

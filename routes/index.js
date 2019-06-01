@@ -431,6 +431,20 @@ router.post('/api/teacher/new', (req, res) => {
     })
 });
 
+//Router to get all teacher details
+
+router.get('/api/teacher/all',(req,res)=>{
+  teacherdetails.find({})
+  .then((reuslts) => {
+     console.log("Records fetched for teachers",results);
+     res.json(results);
+  })
+  .catch((error) => {
+    console.log("Error in fetching",error);
+    res.json(error);
+  });
+});
+
 //Delete student details from a batch-- v1 v2 -- working??
 router.put('/api/batch/student/delete/', (req, res) => {
   console.log("Student delete from batch-inputs", req.body.batchid, req.body.studentid);

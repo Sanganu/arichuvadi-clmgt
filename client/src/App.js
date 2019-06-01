@@ -16,6 +16,7 @@ import Addteacher from "./pages/Addteacher";
 import Teacherheader from "./components/Teacherheader";
 import {Menubar} from "./components/Menubar";
 import Topmenu from "./components/Topmenu";
+import Allteachers from "./pages/Teachermanagement";
 // import InstructorLogin from "./pages/InstructorLogin";
 
 
@@ -48,6 +49,7 @@ class App extends Component {
                 <Route exact path="/teacher/searchrecords" component={Search} />
                 <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
                 <Route exact path="/teacher/addteacher" component={Addteacher} />
+                <Route exact path="/teacher/allteacher" component={Allteachers} />
                 <Switch>
                   <Route path="/*" component={Homepage} />
                 </Switch>

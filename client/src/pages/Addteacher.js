@@ -124,6 +124,7 @@ class Addteacher extends Component {
                                     id="title">
                                     <option value='Teacher' default>Teacher</option>
                                     <option value='Director'>Director</option>
+                                    <option value = 'Webapp'> Web App</option>
                                     <option value='Founder'>Founder</option>
                                 </select>
                             </div>

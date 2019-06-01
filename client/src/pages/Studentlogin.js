@@ -90,14 +90,8 @@ class Studentlogin extends Component {
 
   render() {
     return (<div>
-      <Teacherheader />
+    
       <div className="container middlecontent">
-
-        <div className="row" >
-          <div className="col-lg-1 col-sm-12 col-md-1">
-            <Menubar />
-          </div>
-          <div className="col-lg-11 col-sm-12 col-md-11">
             {this.state.showstlogin ?
               <form className="inputsection">
                 <h3>Student Login </h3>
@@ -129,8 +123,7 @@ class Studentlogin extends Component {
                 classrecords={this.state.classdet} /></div>}
           </div> 
       </div>
-    </div>  
-  </div >) //end return
+   ) //end return
   } //end render
 
 } //end class Student Main

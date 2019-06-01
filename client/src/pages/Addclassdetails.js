@@ -6,7 +6,6 @@ class BatchRecAddclass extends Component
 {
                 state = {
                        date: '',
-                 
                        lessoncovered:'',
                        homework: '',
                        updatestatus: '',

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import BatchRecord from './Getbatchdetails';
-import BatchInfo from './BatchInfo';
+import Teacherrecords from './teacherrecords';
 
 
 class Allteachers extends Component {
@@ -39,13 +38,7 @@ class Allteachers extends Component {
 
   render() {
     const stbatchrec = this.state.batchrecords;
-    return (<div className="container">
-      <div className="row" >
-        <div className="col-lg-1 col-md-1 col-sm-12">
-          <Topmenu />
-        </div>
-        <div className="col-lg-11 col-md-11 col-sm-11">
-          <div className="middlecontent">
+    return (<div className="middlecontent">
             {this.state.allteachers ?
                 <table className="table table-hover table-responsive">
                   <thead>
@@ -60,14 +53,11 @@ class Allteachers extends Component {
                   </thead>
                   <tbody>
                     {this.state.teacherrecords ? 
-                       <TeacherRecords />:<h2>No Teacher details </h2>}
+                       <Teacherrecords />:<h2>No Teacher details </h2>}
                 </tbody>
                 </table>
             : <div></div> }
-          </div>
-        </div>
-        </div>
-       </div>); // end return
+          </div>); // end return
   } //end render
 } //end allteachers
 export default Allteachers;

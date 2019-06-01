@@ -25,9 +25,7 @@ class Batchmain extends Component {
 
 
   render() {
-
-    //const  brecords =this.state.batchdet;
-    return (<div className="container middlecontent">
+  return(<div>
         
             {this.state.displaybatch ? <Createbatch
               onInsert={this.handleBatchCreated} />
