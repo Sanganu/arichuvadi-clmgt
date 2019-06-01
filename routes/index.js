@@ -435,7 +435,7 @@ router.post('/api/teacher/new', (req, res) => {
 
 router.get('/api/teacher/all',(req,res)=>{
   teacherdetails.find({})
-  .then((reuslts) => {
+  .then((results) => {
      console.log("Records fetched for teachers",results);
      res.json(results);
   })

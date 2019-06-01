@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Teacherrecords from './Teacherrecords';
+import Addteacher from './Addteacher';
 
 class Teachermanagement extends Component{
     state ={
@@ -16,9 +17,19 @@ class Teachermanagement extends Component{
             console.log("Error in fetching teacher records",error);
         })
     }
+    handleTeacherCreate = (newTeacher) =>{
+        const teacherrecords = this.state.teacherrecords;
+        teacherrecords.push(newTeacher);
+        this.setState({teacherrecords:teacherrecords},
+          () => {
+              console.log("Teacher Records",this.state.teacherrecords);
+          })
+    }
     render(){
         const { teacherrecords } = this.state;
         return(<div className = 'middlecontent'>
+          <Addteacher 
+               handleNewTeacher = {this.handleTeacherCreate}/>
            <h5 className="subhead">Teacher Records </h5>
             <div className="table-responsive">
                 <table className="table table-hover">
@@ -27,18 +38,15 @@ class Teachermanagement extends Component{
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Email</th>
-                    <th>Password </th>
                     <th>Phonenumber</th>
-                    <th>Delete</th>
                     </tr>
                     {teacherrecords.map((data, index) =>
                     <Teacherrecords key={index}
                         fname={data.fname}
                         lname={data.lname}
-                        email={data.email}
+                        email={data.loginemail}
                         title={data.title}
-                      
-                        phonenumber={data.phonenumber}
+                        phone={data.phone}
                         // deleteTeacherDetails={this.deleteTeacherDetails}
                     />
                     )}

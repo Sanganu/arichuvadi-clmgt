@@ -38,7 +38,7 @@ class Addteacher extends Component {
             this.setState({ errmsg: "No Empty Fields Enter valid data" });
         }
         else {
-            console.log("Axios with new teacher",this.state.firstname)
+           // console.log("Axios with new teacher",this.state.firstname)
             axios.post('/api/teacher/new',
                 {
                     fname: this.state.firstname,
@@ -50,7 +50,7 @@ class Addteacher extends Component {
                 })
                 .then(response => {
                     console.log("The response createe Teacher Account", response);
-                    console.log("The  inserted teacher ID", response.data._id);
+                    //console.log("The  inserted teacher ID", response.data._id);
                     this.setState({
                         firstname: "",
                         lastname: "",
@@ -62,10 +62,18 @@ class Addteacher extends Component {
                     },() =>{ 
                         //console.log("Set State - clear fiels")
                     });
+                    this.props.handleNewTeacher({
+                        fname: this.response.data.fname,
+                        lname: this.response.data.lname,
+                        loginemail:this.response.data.loginemail,
+                        phone:this.response.data.phone,
+                        title:this.response.data.title
+                    });
+                    
                 })
                 .catch(error => {
                     this.setState({ errmsg: error.errstring + " Please check console for further details" }, () => {
-                        console.log("Error in Adding Teacher details", error.err);
+                       // console.log("Error in Adding Teacher details", error.err);
                     });
 
                 }); //end new batch creation - axios call

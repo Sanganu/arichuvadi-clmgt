@@ -8,7 +8,7 @@ class Teacherrecords extends Component
                       <td>{this.props.fname}</td>
                        <td>{this.props.lname}</td>
                        <td>{this.props.email}</td>
-                       <td>{this.props.phonenumber}</td>
+                       <td>{this.props.phone}</td>
             
                   </tr>)
      }
