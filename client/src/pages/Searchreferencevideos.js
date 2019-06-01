@@ -4,12 +4,7 @@ import axios from 'axios';
 import Video from "./Video";
 import { Menubar } from "../components/Menubar";
 import keys from "../keys/keys.js";
-// import myyoutube from "youtube-api-search";
-// import myYoutube from "./myYoutube";
-// import axios from 'axios';
 
-// import dotenv from 'dotenv';
-// dotenv.config();
 const API_KEY = process.env.API_YOUTUBE || keys.API_YOUTUBE;
 
 class Referencevideos extends Component {

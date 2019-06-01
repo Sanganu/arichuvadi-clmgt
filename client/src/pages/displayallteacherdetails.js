@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
-import Topmenu from '../components/Topmenu';
+
 
 class Allteachers extends Component {
   state = {

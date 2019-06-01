@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Teacherheader from '../components/Teacherheader';
 import axios from 'axios';
 import Resultrecords from './Resultrecords';
-import Topmenu from '../components/Topmenu';
+
 
 class Searchstudents extends Component {
 
@@ -88,25 +88,15 @@ class Searchstudents extends Component {
         let resultset = this.state.results
 
         return (<div>
-            <Teacherheader />
-            <div className="middlecontent searchcontent">
-                <div className="row">
-                    <div className="col-sm-12 col-md-1 col-lg-1">
-                        <Topmenu />
-                    </div>
-                    <div className="col-sm-12 col-md-11 col-lg-5">
-                        <form className="inputsection">
+                   <form className="inputsection">
                         <h5 className="subhead">Search Student / Cohort</h5>
                             <div className="form-group row">
                                 <label className="has-float-label"id="lsearchstr">Search </label><br />
                                 <input className="form-control" onChange={this.handleInputChange} type="text" name="searchstring" value={this.state.searchstring} /><br />.
                             </div>
                             <button className="createbutton" name="searchbtn" onClick={this.searchrecords}>Search</button>
-                        </form>
-                    </div>
-               
-                </div>
-                {resultset.length > 0 ?
+                    </form>
+                    {resultset.length > 0 ?
                     <div className="panel-group">
                           <div className = "panel panel-primary">
                             <div>{resultset.map((data, index) =>
@@ -123,13 +113,10 @@ class Searchstudents extends Component {
                          </div>
                    </div>  
                 : <div></div>}        
-                        {this.state.displaymessage ?
+                {this.state.displaymessage ?
                              <div><h3 className = "searcherrmsg">   No Student / Cohort details found</h3></div>
-                         : <div></div>}
-               
-               
-            </div>
-         </div>);
+                   : <div></div>}
+              </div>);
          }
                 
      }

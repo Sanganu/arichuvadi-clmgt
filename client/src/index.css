@@ -359,11 +359,16 @@ li {
        margin-top:3%;
        padding-top:2%;
      }
+     .middlecontent{
+       margin-top: 3%;
+       padding-top: 4%;
+     }
 }
 
 @media only screen and(max-width:907px){
  .middlecontent{
-   padding-top:1%;
+   margin-top:3%;
+   padding-top: 3%;
  }
  .list-unstyled{
    justify-content: space-between;
@@ -398,7 +403,7 @@ li {
   }
   
   .middlecontent{
-    margin-top: 3%;
+    margin-top:2%;
     padding-top: 2%;
   }
 }

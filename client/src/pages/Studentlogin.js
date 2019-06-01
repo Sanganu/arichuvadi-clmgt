@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 //import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Studentmain from './Studentmain';
-import Teacherheader from '../components/Teacherheader';
-import { Menubar } from '../components/Menubar';
+// import Teacherheader from '../components/Teacherheader';
+// import { Menubar } from '../components/Menubar';
 
 class Studentlogin extends Component {
   constructor(props) {

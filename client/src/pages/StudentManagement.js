@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Allstudents from './displayallstudentsdetails';
-import Topmenu from "../components/Topmenu";
-import Teacherheader from '../components/Teacherheader';
+// import Topmenu from "../components/Topmenu";
+// import Teacherheader from '../components/Teacherheader';
 
 class Addstudent extends Component {
   state = {
@@ -157,22 +157,13 @@ class Addstudent extends Component {
   render() {
     const studentrecords = this.state.studentrecords;
     return (
-      <div>
-        <Teacherheader />
-        <div className="middlecontent">
-       
-          <div className="row">
-           
-            <div className="col-lg-1 col-sm-12"> 
-                <Topmenu />
-            </div>
-            <div className="col-sm-12 col-lg-11 col-md-12">
-            
-            <h3 className="subhead">New Student</h3>
-              <p className="errmsg">{this.state.errmsg}</p>
-              <form className="inputsection">
-                <div className =  "row">
-                  <div className = "col-md-5">
+      <div className="middlecontent">
+
+        <h3 className="subhead">New Student</h3>
+        <p className="errmsg">{this.state.errmsg}</p>
+        <form className="inputsection">
+                      <div className="row">
+                        <div className="col-md-5">
                           <div className="form-group row">
                             <label className="has-float-label"
                               forhtml="studentfname">Firstname</label>
@@ -209,10 +200,10 @@ class Addstudent extends Component {
                               id="parentname"
                               required />
                           </div>
-                 </div>
-                 <div className = "col-md-2">
-                 </div>
-                 <div className = "col-md-5">         
+                        </div>
+                        <div className="col-md-2">
+                        </div>
+                        <div className="col-md-5">
                           <div className="form-group row">
                             <label className="has-float-label">
                               Email</label>
@@ -249,51 +240,47 @@ class Addstudent extends Component {
                               id="parentphonenumber"
                               required />
                           </div>
-                     </div>
-                  </div>
-                <div className = "row">
-                   <div className = "col-md-9">
-                      <button
-                        className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
-                    </div>
-                </div>        
-              </form>
-            </div>
-          </div>
-          <br />
-          <h6 className="tablehead">Student Records </h6>
-          <div className="table-responsive">
-            <table className="table table-hover">
-              <tbody>
-                <tr>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Email</th>
-                  <th>Parent </th>
-                  <th>Phonenumber</th>
-                  <th>Update</th>
-                  <th>Delete</th>
-                </tr>
-                {studentrecords.map((data, index) =>
-                  <Allstudents key={index}
-                    stdlname={data.stdlname}
-                    stdid={data.recid}
-                    stdfname={data.stdfname}
-                    parentname={data.parentname}
-                    phonenumber={data.phonenumber}
-                    stdemail={data.stdemail}
-                    subject={data.subject}
-                    deleteStudentDetails={this.deleteStudentDetails}
-                    updateStudentDetails={this.updateStudentDetails}
-                  />
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-    
+                        </div>
+                      </div>
+                      {/* <div className="row">
+                        <div className="col-md-9"> */}
+                          <button
+                            className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
+                        {/* </div>
+                      </div> */}
+        </form>
+      <br />
+      <h6 className="tablehead">Student Records </h6>
+      <div className="table-responsive">
+        <table className="table table-hover">
+          <tbody>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Email</th>
+              <th>Parent </th>
+              <th>Phonenumber</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+            {studentrecords.map((data, index) =>
+              <Allstudents key={index}
+                stdlname={data.stdlname}
+                stdid={data.recid}
+                stdfname={data.stdfname}
+                parentname={data.parentname}
+                phonenumber={data.phonenumber}
+                stdemail={data.stdemail}
+                subject={data.subject}
+                deleteStudentDetails={this.deleteStudentDetails}
+                updateStudentDetails={this.updateStudentDetails}
+              />
+            )}
+          </tbody>
+        </table>
       </div>
-    ) //end return
+       
+   </div> ) //end return
   } // end render
 
 } // end class 

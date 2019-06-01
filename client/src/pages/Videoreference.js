@@ -79,7 +79,7 @@ class Videoreference extends Component {
               <Video key={index}
                 content={data} />
             )}
-          </div>
+          </div> 
           : <div></div>}
       </div>  
     </div>

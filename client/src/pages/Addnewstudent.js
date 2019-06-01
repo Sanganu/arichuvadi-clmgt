@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Allstudents from './displayallstudents';
-import Teacherheader from '../components/Teacherheader';
-import Footer from '../components/Footer';
+
 
 class Addstudent extends Component {
     state = {

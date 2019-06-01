@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Teacherheader from "../components/Teacherheader";
-import Topmenu  from "../components/Topmenu";
+
 
 class Addteacher extends Component {
     state = {

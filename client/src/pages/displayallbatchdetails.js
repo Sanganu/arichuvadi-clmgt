@@ -3,7 +3,7 @@ import axios from 'axios';
 // import BatchRecAddclass from './Addclassdetails';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
-import Topmenu from '../components/Topmenu';
+
 
 class Allbatches extends Component {
   state = {

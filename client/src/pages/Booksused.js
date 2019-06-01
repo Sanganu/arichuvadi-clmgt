@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Teacherheader from "../components/Teacherheader";
-import { Menubar } from "../components/Menubar";
+
 import { Document, Page } from 'react-pdf';
 import "../resources/ukgbook.pdf";
 

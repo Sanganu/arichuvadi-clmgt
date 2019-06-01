@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Createbatch from './Createbatch';
 // import Addstudent from './Addstudent';
 import BatchInfo from './BatchInfo';
-import Topmenu from '../components/Topmenu';
-import Teacherheader from '../components/Teacherheader';
 
 class Batchmain extends Component {
   state = {
@@ -29,22 +27,14 @@ class Batchmain extends Component {
   render() {
 
     //const  brecords =this.state.batchdet;
-    return (<div className="frontpage">
-      <Teacherheader />
-      <div className="container middlecontent">
-        <div className="row">
-          <div className="col-sm-12 col-md-1 col-lg-1">
-            <Topmenu />
-          </div>
-          <div className="col-sm-12 col-md-11 col-lg-11">
+    return (<div className="container middlecontent">
+        
             {this.state.displaybatch ? <Createbatch
               onInsert={this.handleBatchCreated} />
               : <BatchInfo batchdetails={this.state.batchdet}
                 newbatch={true} />}
           </div>
-        </div>
-      </div>
-    </div>) // end return
+        ) // end return
   }// end render
 
 } // end class Batchmain
