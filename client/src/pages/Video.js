@@ -5,7 +5,7 @@ class Video extends Component {
   
   render()
   {
-    let videolink = `http://www.youtube.com/embed/${this.props.content.id}?autoplay=0`
+    let videolink = `https://www.youtube.com/embed/${this.props.content.id}?autoplay=0`
     return(<div className="card">
           <div className = "embed-responsive embed-responsive-16by9">
           <iframe className ="embed-responsive-item"
