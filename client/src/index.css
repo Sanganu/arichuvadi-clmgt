@@ -149,8 +149,8 @@ input {
 }
 
 .middlecontent{
-  margin-top:3%;
- padding-top: 3%;
+  margin-top:1%;
+ padding-top: 1%;
 } 
 
 .modaltitle {
@@ -206,6 +206,10 @@ padding-left:0%;
    margin-top:3%;
    padding-top: 5%;
    margin-left: 3%;
+}
+
+.linkinwords{
+  left:-100;
 }
 
 #searchFor{
@@ -268,7 +272,7 @@ select{
   margin-top: 1%;
 }
 .errmsg {
-  color: white;
+  color: rgb(231, 18, 18);
 }
 
 .searchrecords{
@@ -381,6 +385,10 @@ li {
  }
  .gifcontainer{
    display: none;
+ }
+ .linkinwords{
+   top:-100;
+   
  }
 }
 
