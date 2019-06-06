@@ -31,10 +31,10 @@ class App extends Component {
         <div>
           <Teacherheader />
           <div className='row'>
-            <div className='col-md-1 col-sm-1 col-lg-1'>
+            <div className='col-md-12 col-sm-12 col-lg-1'>
                <Topmenu />
             </div>
-            <div className='col-md-11 col-sm-11 col-lg-11'>
+            <div className='col-md-12 col-sm-12 col-lg-11'>
               <Switch>
                 <Route exact path="/teacher/allbatch" component={Allbatches} />
                 <Route exact path="/" component={Homepage} />
