@@ -7,7 +7,7 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div className="frontpage">
+            // <div className="frontpage">
 
                 <div className="container middlecontent">
 
@@ -33,7 +33,7 @@ class Homepage extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            // </div>
         
         );
     }

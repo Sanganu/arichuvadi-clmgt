@@ -27,24 +27,24 @@ class Teachermain extends Component {
     };
 
 
-    templogin = (event) => {
-        event.preventDefault();
-        console.log("Use myemail@yahoo.com and welcome to enter site ");
-        console.log(this.state.vemail, this.state.vpword);
+    // templogin = (event) => {
+    //     event.preventDefault();
+    //     console.log("Use myemail@yahoo.com and welcome to enter site ");
+    //     console.log(this.state.vemail, this.state.vpword);
 
-        if (this.state.vemail === "myemail@yahoo.com" &&
-            this.state.vpword === "welcome") {
+    //     if (this.state.vemail === "myemail@yahoo.com" &&
+    //         this.state.vpword === "welcome") {
 
-            this.setState({
-                invalid: false,
-                logindisp: false
-            });
-        }
-        else {
+    //         this.setState({
+    //             invalid: false,
+    //             logindisp: false
+    //         });
+    //     }
+    //     else {
 
-            this.setState({ invalid: true });
-        }
-    }
+    //         this.setState({ invalid: true });
+    //     }
+    // }
 
 
     logincheck = (event) => {
@@ -57,14 +57,20 @@ class Teachermain extends Component {
             })
             .then((response) => {
                     // console.log("Axios call with this login",this.state.vemail,this.state.password);
-                    if (response.data.teacherrecord) {
-                        console.log("Teacher Login".response.data);
-                    }
-                    this.setState({
-                        invalid: false,
-                        logindisp: false,
-                        errmsg: ''
-                    });
+                    //if (response.data.teacherrecord) {
+                      
+                        this.setState({
+                            invalid: false,
+                            logindisp: false,
+                            errmsg: ''
+                        },()=>{
+                            console.log("Teacher Login".response);
+                        });
+                        this.props.validLogin({
+                            role:"Board Member",
+                            username:"temp"});
+                    //}
+
             })
             .catch((error) => {
                     console.log("Error in ---", error);//end axios call
@@ -82,7 +88,7 @@ class Teachermain extends Component {
                     <div className="container middlecontent">
                         <div>
                             <form className="inputsection">
-                                <h3> Instructor Login</h3>
+                                <h3>Board Member Login</h3>
                                 <div className="form-group">
 
                                     <input className="form-control"
@@ -111,10 +117,10 @@ class Teachermain extends Component {
 
 
                                 <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
-                                <div>
+                                {/* <div>
                                     <button className="createbutton" id="tlogin" onClick={this.templogin}>Temp Login</button>
                                     <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
-                                </div>
+                                </div> */}
                             </form>
 
                         </div>

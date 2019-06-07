@@ -17,13 +17,26 @@ import Teacherheader from "./components/Teacherheader";
 import {Menubar} from "./components/Menubar";
 import Topmenu from "./components/Topmenu";
 import Allteachers from "./pages/Teachermanagement";
+import Ourteam from "./pages/Ourteam";
+import Alumni from "./pages/Alumni";
 // import InstructorLogin from "./pages/InstructorLogin";
 
 
+//const store = createStore()
 
 class App extends Component {
   state = {
-    isLoogedIn: false
+    isLogedIn: false,
+    role:''
+  }
+  validLogin = (user) => {
+    this.setState({
+      isLogedIn:true,
+      role:user.role,
+      username:user.username
+    },() => {
+      console.log("Logged In");
+    });
   }
   render() {
     return (
@@ -32,14 +45,19 @@ class App extends Component {
           <Teacherheader />
           <div className='row'>
             <div className='col-md-12 col-sm-12 col-lg-1'>
-               <Topmenu />
+            {this.state.isLogedIn ?
+                     <Topmenu/>
+                    :<Menubar/>}
             </div>
             <div className='col-md-12 col-sm-12 col-lg-11'>
+                {this.state.className?
+                  <h3>Welcome </h3>
+                 :<div></div>}
               <Switch>
                 <Route exact path="/teacher/allbatch" component={Allbatches} />
                 <Route exact path="/" component={Homepage} />
-                <Route exact path="/teacher/tmain" component={Teachermain} />
-                <Route exact path="/other/students/loginpg" component={Studentlogin} />
+                <Route exact path="/teacher/tmain" component={Teachermain}  validLogin = {this.state.validLogin}/>
+                <Route exact path="/other/students/loginpg" component={Studentlogin} validLogin = {this.state.validLogin}/>
                 <Route exact path="/users/videos" component={Videoreference} />
                 <Route exact path="/teacher/batchmain" component={Batchmain} />
                 <Route exact path="/teacher/createbatch" component={Createbatch} />
@@ -50,6 +68,8 @@ class App extends Component {
                 <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
                 <Route exact path="/teacher/profile/update" component={Updateteacher} />
                 <Route exact path="/teacher/allteacher" component={Allteachers} />
+                <Route exact path="/ourteam" component={Ourteam} />
+                <Route exact path="/alumni" component={Alumni} />
                 <Switch>
                   <Route path="/*" component={Homepage} />
                 </Switch>
