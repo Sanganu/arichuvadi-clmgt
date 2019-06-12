@@ -8,9 +8,9 @@ export const Menubar = () => {
                 <li  className = "list-group-item">
                 <Link to  = '/' className  = 'sidemenulink'><i className="fa fa-home fa-2x"></i><p>Home</p></Link></li>
                 <li  className = "list-group-item">
-                <Link to  = '/ourteam' className  = 'sidemenulink'><i class="fa fa-user-friends fa-2x"></i><p>Our Team</p></Link></li>
+                <Link to  = '/ourteam' className  = 'sidemenulink'><i className="fa fa-user-friends fa-2x"></i><p>Our Team</p></Link></li>
                 <li  className = "list-group-item">
-                <Link to  = '/alumni' className  = 'sidemenulink'><i class="fa fa-user-graduate fa-2x"></i><p>Alumni</p></Link></li>
+                <Link to  = '/alumni' className  = 'sidemenulink'><i className="fa fa-user-graduate fa-2x"></i><p>Alumni</p></Link></li>
                 <li   className = "list-group-item">
                 <a href='http://www.tamilvu.org/' className  = 'sidemenulink' target ="_blank" rel="noopener noreferrer">
                 <i className ="fa fa-university fa-2x"></i><p>Tamil University</p></a></li>

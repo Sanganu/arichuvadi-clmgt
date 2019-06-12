@@ -11,10 +11,10 @@ const Resources = () => {
             <ul className="list-unstyled list-group">
                 <li className="list-group-item">
                     <a href="http://www.tamilvu.org/en/text-books" target="_blank" rel="noopener noreferrer"
-                    >University Suggested Books link</a></li>
+                    >University Suggested Books</a></li>
                 <li className="list-group-item">
                     <a href="http://www.tamilvu.org/en/primary-course" target="_blank" rel="noopener noreferrer"
-                    >University - Online Games</a></li>
+                    >Online Games</a></li>
                 <li className="list-group-item">
                     <a href="https://www.google.com/intl/ta/inputtools/try/" target="_blank" rel="noopener noreferrer"
                     >Online Google - Writing Tool</a></li>

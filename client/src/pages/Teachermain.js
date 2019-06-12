@@ -37,11 +37,6 @@ class Teachermain extends Component {
 
     //         this.setState({
     //             invalid: false,
-    //             logindisp: false
-    //         });
-    //     }
-    //     else {
-
     //         this.setState({ invalid: true });
     //     }
     // }
@@ -56,20 +51,19 @@ class Teachermain extends Component {
                 usertype: 'teacher'
             })
             .then((response) => {
-                    // console.log("Axios call with this login",this.state.vemail,this.state.password);
-                    //if (response.data.teacherrecord) {
-                      
+                  
                         this.setState({
                             invalid: false,
                             logindisp: false,
                             errmsg: ''
                         },()=>{
-                            console.log("Teacher Login".response);
+                            console.log("Teacher Login",response);
                         });
+                        
                         this.props.validLogin({
                             role:"Board Member",
                             username:"temp"});
-                    //}
+                  
 
             })
             .catch((error) => {
@@ -117,6 +111,7 @@ class Teachermain extends Component {
 
 
                                 <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
+                            
                                 {/* <div>
                                     <button className="createbutton" id="tlogin" onClick={this.templogin}>Temp Login</button>
                                     <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>

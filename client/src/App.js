@@ -29,6 +29,7 @@ class App extends Component {
     isLogedIn: false,
     role:''
   }
+
   validLogin = (user) => {
     this.setState({
       isLogedIn:true,
@@ -38,6 +39,7 @@ class App extends Component {
       console.log("Logged In");
     });
   }
+
   render() {
     return (
       <Router>
@@ -56,8 +58,10 @@ class App extends Component {
               <Switch>
                 <Route exact path="/teacher/allbatch" component={Allbatches} />
                 <Route exact path="/" component={Homepage} />
-                <Route exact path="/teacher/tmain" component={Teachermain}  validLogin = {this.state.validLogin}/>
-                <Route exact path="/other/students/loginpg" component={Studentlogin} validLogin = {this.state.validLogin}/>
+                <Route exact path="/teacher/login" render ={ () =>{
+                  <Teachermain  validLogin = {this.validLogin}/> }}/>
+                <Route exact path="/other/students/loginpg" component= { () =>{ 
+                  <Studentlogin validLogin = {this.validLogin}/>}} />
                 <Route exact path="/users/videos" component={Videoreference} />
                 <Route exact path="/teacher/batchmain" component={Batchmain} />
                 <Route exact path="/teacher/createbatch" component={Createbatch} />
