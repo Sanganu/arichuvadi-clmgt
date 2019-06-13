@@ -117,7 +117,7 @@ class Addstudent extends Component {
       .then(response => {
         console.log("the response", response)
         if (response.status === 200) {
-          const newarray = this.state.studentrecords.filter(function (student) {
+          let  newarray = this.state.studentrecords.filter((student) =>{
             return (student.recid !== id)
           });
           console.log("The newarray delee student", newarray)

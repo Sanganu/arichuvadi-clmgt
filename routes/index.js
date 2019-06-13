@@ -331,10 +331,9 @@ router.post('/api/teacher/batch/class/add', isLoggedIn, function (req, res) {
 
 
 
-//======================================================================
 
 
-//Delete Batch (cascading) - pending ()
+//Delete Batch -- implemented
 router.delete("/api/teacher/batch/delete/:batchid",isLoggedIn, (req, res) => {
                 console.log("Inside delete route for batch to student to class",req.params.batchid);
                 const result =  batchdetails.deleteOne({ _id: req.params.batchid }).exec();
@@ -354,6 +353,8 @@ router.delete("/api/teacher/batch/delete/:batchid",isLoggedIn, (req, res) => {
                   }
                }
 });
+
+//======================================================================
 
 // Update Student - to add batch enrolled (Not yet implemented)
 router.put("/api/teacher/studentbatch/update", (req, res) => {

@@ -69,7 +69,7 @@ class Teachermain extends Component {
             .catch((error) => {
                     console.log("Error in ---", error);//end axios call
                     this.setState({
-                        invalid: true
+                        invalid: "Invalid credentials - reenter Login and password"
                     });
             });
     } // end login check
@@ -77,11 +77,12 @@ class Teachermain extends Component {
 
 
     render() {
-            return (<div>
+            return (<div  className="container middlecontent">
                 {this.state.logindisp ?
-                    <div className="container middlecontent">
-                        <div>
-                            <form className="inputsection">
+                    <div>
+
+                    <h6 className="errmsg">{this.state.invalid}</h6>
+                          <form className="inputsection">
                                 <h3>Board Member Login</h3>
                                 <div className="form-group">
 
@@ -108,28 +109,11 @@ class Teachermain extends Component {
                                         className="form-control-placeholder"
                                         htmlFor="vpword">Password </label>
                                 </div>
-
-
                                 <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
-                            
-                                {/* <div>
-                                    <button className="createbutton" id="tlogin" onClick={this.templogin}>Temp Login</button>
-                                    <p>Hint: (email:myemail@yahoo.com  password:welcome)</p>
-                                </div> */}
                             </form>
-
                         </div>
-                    </div>
                 : <Allbatches displayall={true} />
                 }
-
-                {this.state.invalid ?
-                    <div>
-                        <h6 className="errmsg">Invalid Credentials - Please use right credentials</h6>
-                    </div>
-                    : <div></div>}
-
-
             </div>); //end return
     } //end render
 } //end class Teacher Main

@@ -26,7 +26,7 @@ import Alumni from "./pages/Alumni";
 
 class App extends Component {
   state = {
-    isLogedIn: false,
+    isLogedIn: true,
     role:''
   }
 
