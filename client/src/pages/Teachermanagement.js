@@ -18,8 +18,8 @@ class Teachermanagement extends Component{
         })
     }
     handleTeacherCreate = (newTeacher) =>{
-        const teacherrecords = this.state.teacherrecords;
-        teacherrecords.push(newTeacher);
+        const teacherrecords = {...this.state.teacherrecords,newTeacher};
+        //teacherrecords.push(newTeacher);
         this.setState({teacherrecords:teacherrecords},
           () => {
               console.log("Teacher Records",this.state.teacherrecords);

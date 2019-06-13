@@ -72,6 +72,16 @@ class Allbatches extends Component {
       this.state.batchdet));
   }
 
+  deleteBatch = (batchid) => {
+    let batchrecords = this.state.batchrecords.filter(batch => {
+      return batch.recid != batchid
+    });
+    this.setState({
+      batchrecords:batchrecords,
+      allbatches: true
+    });
+  }
+
   render() {
     const stbatchrec = this.state.batchrecords;
     return (<div className="container">
@@ -107,6 +117,7 @@ class Allbatches extends Component {
                     <BatchInfo
                       batchdetails={this.state.batchdet}
                       newbatch={false}
+                      deleteBatch = {this.deleteBatch}
                     />
                     : <div></div>}
              </div>  

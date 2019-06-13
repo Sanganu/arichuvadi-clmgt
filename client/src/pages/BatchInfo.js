@@ -75,11 +75,12 @@ class BatchInfo extends Component {
   //Batch delete
   deleteBatch = (event) =>{
             event.preventDefault();
-            axios.delete("/api/teacher/batch/delete",{
+            console.log("batch id",this.state.bid)
+            axios.delete(`/api/teacher/batch/delete/${this.state.bid}`,{
               batchid : this.state.bid
             }).then((response) => {
               console.log("Batch deleted", response);
-              return <Allbatches displayall={true}/>
+              this.props.deleteBatch(this.state.bid);
             })
             .catch(error =>{
               console.log("Error in deleting Batch records: ",error);
@@ -225,7 +226,7 @@ class BatchInfo extends Component {
                                           </select>
                                       </div>
                       <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-              {/* <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button> */}
+              <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
           </form>
         </div>
         <div className="col-lg-4 col-md-11 col-sm-12">

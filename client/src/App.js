@@ -30,15 +30,15 @@ class App extends Component {
     role:''
   }
 
-  validLogin = (user) => {
-    this.setState({
-      isLogedIn:true,
-      role:user.role,
-      username:user.username
-    },() => {
-      console.log("Logged In");
-    });
-  }
+  // validLogin = (user) => {
+  //   this.setState({
+  //     isLogedIn:true,
+  //     role:user.role,
+  //     username:user.username
+  //   },() => {
+  //     console.log("Logged In");
+  //   });
+  // }
 
   render() {
     return (
@@ -58,10 +58,13 @@ class App extends Component {
               <Switch>
                 <Route exact path="/teacher/allbatch" component={Allbatches} />
                 <Route exact path="/" component={Homepage} />
-                <Route exact path="/teacher/login" render ={ () =>{
-                  <Teachermain  validLogin = {this.validLogin}/> }}/>
+                <Route exact path="/teacher/login" component ={Teachermain}/>
+                {/* <Route exact path="/teacher/login" render ={ () =>{
+                  <Teachermain  validLogin = {this.validLogin}/> }}/> */}
+                  <Route exact path="/other/students/loginpg" component= {Studentlogin} />
+{/*        
                 <Route exact path="/other/students/loginpg" component= { () =>{ 
-                  <Studentlogin validLogin = {this.validLogin}/>}} />
+                  <Studentlogin validLogin = {this.validLogin}/>}} /> */}
                 <Route exact path="/users/videos" component={Videoreference} />
                 <Route exact path="/teacher/batchmain" component={Batchmain} />
                 <Route exact path="/teacher/createbatch" component={Createbatch} />

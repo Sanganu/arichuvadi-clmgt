@@ -335,9 +335,9 @@ router.post('/api/teacher/batch/class/add', isLoggedIn, function (req, res) {
 
 
 //Delete Batch (cascading) - pending ()
-router.delete("/api/teacher/batch/delete", (req, res) => {
-                console.log("Inside delete route for batch to student to class");
-                const result =  batchdetails.deleteOne({ _id: req.body.batchid }).exec();
+router.delete("/api/teacher/batch/delete/:batchid",isLoggedIn, (req, res) => {
+                console.log("Inside delete route for batch to student to class",req.params.batchid);
+                const result =  batchdetails.deleteOne({ _id: req.params.batchid }).exec();
                 if (result.n === 0) {
                   console.log("Error", error);
                   res.status(404).error({ "Error": "Error in deleting batch and class" + errror })
