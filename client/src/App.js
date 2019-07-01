@@ -19,10 +19,11 @@ import Topmenu from "./components/Topmenu";
 import Allteachers from "./pages/Teachermanagement";
 import Ourteam from "./pages/Ourteam";
 import Alumni from "./pages/Alumni";
+
 // import InstructorLogin from "./pages/InstructorLogin";
 
 
-//const store = createStore()
+//const store = createStore(rootReducer);
 
 class App extends Component {
   state = {
@@ -52,19 +53,13 @@ class App extends Component {
                     :<Menubar/>}
             </div>
             <div className='col-md-12 col-sm-12 col-lg-11'>
-                {this.state.className?
-                  <h3>Welcome </h3>
-                 :<div></div>}
+               
               <Switch>
                 <Route exact path="/teacher/allbatch" component={Allbatches} />
                 <Route exact path="/" component={Homepage} />
                 <Route exact path="/teacher/login" component ={Teachermain}/>
-                {/* <Route exact path="/teacher/login" render ={ () =>{
-                  <Teachermain  validLogin = {this.validLogin}/> }}/> */}
+         
                   <Route exact path="/other/students/loginpg" component= {Studentlogin} />
-{/*        
-                <Route exact path="/other/students/loginpg" component= { () =>{ 
-                  <Studentlogin validLogin = {this.validLogin}/>}} /> */}
                 <Route exact path="/users/videos" component={Videoreference} />
                 <Route exact path="/teacher/batchmain" component={Batchmain} />
                 <Route exact path="/teacher/createbatch" component={Createbatch} />

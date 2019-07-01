@@ -3,7 +3,7 @@ import axios from 'axios';
 // import BatchRecAddclass from './Addclassdetails';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
-
+// import { connect } from 'react-redux';
 
 class Allbatches extends Component {
   state = {
@@ -14,14 +14,16 @@ class Allbatches extends Component {
     recsubj: '',
     reclevel: '',
     recrate: '',
-    allbatches: this.props.displayall,
+    allbatches: this.props.displayall || true,
     sbatchid: '',
     sbdesc: '',
     srate: '',
     slevel: '',
     sbsubj: '',
     student: '',
-    details: this.props.details || false
+    details: this.props.details || false,
+    loginemail: '',
+    username: ''
   }
 
   componentDidMount = () => {
@@ -84,6 +86,7 @@ class Allbatches extends Component {
 
   render() {
     const stbatchrec = this.state.batchrecords;
+    //console.log("Display all batch details --",this.props);
     return (<div className="container">
              <div className = "middlecontent">
           {this.state.allbatches ?
@@ -127,6 +130,21 @@ class Allbatches extends Component {
         ); // end return
       } //end render
   } //end allbatches
-  export default Allbatches;    
+
+//   const mapStateToProps = (state) => {
+//     console.log("Map State to Props : ",state);
+//     return {
+//       loginemail:state.user.loginemail,
+//       userfname:state.user.fname,
+//       userlname:state.userlname,
+//       usertype:state.usertype,
+//       userid:state.userid
+//     }
+    
+// }
+  // export default connect(mapStateToProps)(Allbatches);    
+
+  export default Allbatches;
+
   
   
