@@ -1,5 +1,5 @@
 import React from 'react';
-import Teacherheader from "../components/Teacherheader";
+// import Teacherheader from "../components/Teacherheader";
 import { Menubar } from "../components/Menubar";
 import "../resources/ukgbook.pdf";
 
@@ -25,9 +25,7 @@ const Resources = () => {
                     <a href="https://sketch.io/sketchpad/" target="_blank" rel="noopener noreferrer"
                     >Online Sketchpad - If you have touch screen, try this</a></li>
             </ul>
-            <h5 className="subheading">Basic Level - Reference Book</h5>
-            <embed src="ukgbook.pdf"
-                type="application/pdf" width="800" height="900" />
+            
         </div>
       ); //end return function
 

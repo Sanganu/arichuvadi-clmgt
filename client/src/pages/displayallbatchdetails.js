@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import BatchRecAddclass from './Addclassdetails';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
 // import { connect } from 'react-redux';
@@ -131,18 +130,8 @@ class Allbatches extends Component {
       } //end render
   } //end allbatches
 
-//   const mapStateToProps = (state) => {
-//     console.log("Map State to Props : ",state);
-//     return {
-//       loginemail:state.user.loginemail,
-//       userfname:state.user.fname,
-//       userlname:state.userlname,
-//       usertype:state.usertype,
-//       userid:state.userid
-//     }
-    
-// }
-  // export default connect(mapStateToProps)(Allbatches);    
+ 
+  //export default connect(mapStateToProps)(Allbatches);    
 
   export default Allbatches;
 

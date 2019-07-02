@@ -1,7 +1,7 @@
 import  React,{ Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-
+import { connect } from 'react-redux';
 
 class Topmenu extends Component {
     logoutapp = () => {
@@ -38,6 +38,17 @@ class Topmenu extends Component {
         } //end render
 }// end topmenu
 
-export default Topmenu;
+const mapStateToProps = (state) => {
+  console.log("Map State to Props : ",state);
+  return {
+    loginemail:state.loginemail,
+    userfname:state.fname,
+    userlname:state.userlname,
+    usertype:state.usertype,
+    userid:state.userid
+  }
+  
+}
+export default connect(mapStateToProps)(Topmenu);
 
                                                                                                                                     

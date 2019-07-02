@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import Allbatches from './displayallbatchdetails';
-import Teacherheader from '../components/Teacherheader';
 import axios from "axios";
 import { Menubar } from '../components/Menubar';
 import { connect } from 'react-redux';
 import { loginCredentials } from '../reduxAction/dispatchLoginCredentials';
 
-//import Header from '../components/Header';
-// import GoogleLogin from 'react-google-login';
-//import keys from '../keys/keys.js'
-
-class Teachermain extends Component {
+class Boardmember extends Component {
     state = {
         invalid: '',
         vemail: '',
@@ -44,16 +39,16 @@ class Teachermain extends Component {
                     logindisp: false,
                     errmsg: ''
                 }, () => {
-                    console.log("Teacher Login", response.data);
+                    console.log("Boardmember Login", response.data);
                     var userobj = {
                         loginemail: response.data.loginemail,
-                        usertype: 'boardmemeber',
+                        usertype: 'boardmember',
                         invalid: false,
                         userfname:response.data.fname,
                         userlname:response.data.lname,
                         userid: response.data._id
                     }
-                    console.log("In Teacher Login -",userobj);
+                    console.log("In BoardmemberLogin -",userobj);
                     this.props.setCredetials(userobj);
                 });
             })
@@ -61,7 +56,7 @@ class Teachermain extends Component {
                 console.log("Error in ---", error);//end axios call
                 this.setState({
                     invalid: true,
-                    errmsg: "Invalid credentials - reenter Login and password"
+                    errmsg: "Invalid credentials! Please enter valid Login and password"
                 });
             });
     } // end login check
@@ -73,7 +68,6 @@ class Teachermain extends Component {
         return (<div className="container middlecontent">
             {this.state.logindisp ?
                 <div>
-
                     <h6 className="errmsg">{this.state.errmsg}</h6>
                     <form className="inputsection">
                         <h3>Board Member Login</h3>
@@ -119,4 +113,4 @@ class Teachermain extends Component {
             }
         }
     }
-    export default connect(null, mapDispatchToProps)(Teachermain);
+    export default connect(null, mapDispatchToProps)(Boardmember);

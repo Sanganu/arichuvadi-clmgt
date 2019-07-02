@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Teacherheader from '../components/Teacherheader';
 import axios from 'axios';
 import Resultrecords from './Resultrecords';
 
