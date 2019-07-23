@@ -29,7 +29,15 @@ const studentSchema = new Schema({
             password: {
               type: String
             },
-          createdDate : {
+            levelcompleted:{
+              type:String,
+              // required:true
+            },
+            levelrequested:{
+              type: String,
+              // required: true
+            },
+          createdDate  : {
             type: Date,
             default: Date.now
           },

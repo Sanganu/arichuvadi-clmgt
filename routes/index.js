@@ -67,7 +67,9 @@ router.post('/api/teacher/batch/student/new', isLoggedIn, function (req, res) {
     loginemail: req.body.loginemail.toLowerCase(),
     password: req.body.password,
     batchid: req.body.batchid,
-    parentphonenumber: req.body.parentphonenumber
+    parentphonenumber: req.body.parentphonenumber,
+    levelcompleted:  req.body.levelcompleted,
+    levelrequested: req.body.levelrequested
   };
   var insertedstudent = {
     stdid: '',
@@ -517,7 +519,20 @@ router.get("/api/visitors/:str", (req, res) => {
 }); // end of visitors
 
 
+// Route to fetch student Id and name
 
+router.get('/api/teacher/student/iddetails/',isLoggedIn,(req,res) => {
+  studentdetails.find({},
+  {_id:1,studentfname:1,studentlname:1})
+  .then((results) => {
+    console.log("REcords fetched",results);
+    res.json(results)
+  })
+  .catch((error) => {
+    console.log("Error in fetching student ID",error);
+    res.json({"err":error});
+  })
+});
 
 
 

@@ -10,8 +10,7 @@ class Addstudent extends Component {
       parentname: "",
       parentphonenumber: "",
       password: "",
-      errmsg:'',
-      retypepassword:''
+      errmsg:''
     };
     
   
@@ -34,16 +33,11 @@ class Addstudent extends Component {
            this.state.loginemail === "" ||
            this.state.parentname === "" ||
            this.state.parentphonenumber === "" ||
-           this.state.retypepassword === " " ||
            this.state.password === "")
            {
                console.log("Empty fields not accepted");
                this.setState({errmsg: " Empty fields not accepted"})
              }
-        else if(this.state.retypepassword === this.state.password){
-           console.log("Passwords mismatch");
-           this.setState({errmsg: " Mismatch Password and Confirm password"})
-        }
          else {
            console.log("Add student");
         axios.post('/api/teacher/batch/student/new',
@@ -74,8 +68,6 @@ class Addstudent extends Component {
                                   password:'',
                                   loginemail: '',
                                   parentphonenumber: '',
-                                  levelcompleted: "",
-                                  levelcompleted:""
                       });
                       this.props.newStudent(newstrec);
                     })
@@ -88,8 +80,6 @@ class Addstudent extends Component {
                       password:'',
                       loginemail: '',
                       parentphonenumber: '',
-                      levelcompleted:"",
-                      levelrequested:"",
                       errmsg:"Student Email already exist"
                       }); // Set state
                      console.log("Error - student email already exist !!!!",error)}
@@ -103,11 +93,16 @@ class Addstudent extends Component {
         // const bdetails = this.props.batchdet || false;
             return(
               <div>
+                
                    <p className="errmsg">{this.state.errmsg}</p>
+                              
                     <form className ="inputsection">
+                                 
                                   <div className = "form-group">
+                                   
                                       <label className="form-control-placeholder">
                                       Firstname</label>
+                                   
                                       <input type = "text" 
                                        value={this.state.studentfname} 
                                        onChange = {this.handleInputChange} 
@@ -117,8 +112,10 @@ class Addstudent extends Component {
                                        name =  "studentfname" />
                                   </div>
                                   <div className = "form-group">
+                                  
                                        <label className="form-control-placeholder">
                                        Lastname</label>
+                                    
                                        <input type = "text"  
                                        placeholder = "Student Lastname" 
                                        value={this.state.studentlname}
@@ -130,6 +127,7 @@ class Addstudent extends Component {
                                   <div className = "form-group">
                                        <label className="form-control-laceholder">
                                        Parent</label>
+                                    
                                        <input type = "text" 
                                        placeholder = "Parent name" 
                                        className = "form-control"
@@ -139,8 +137,10 @@ class Addstudent extends Component {
                                        id = "parentname" />
                                   </div>    
                                   <div className = "form-group">
+                                   
                                       <label className="form-control-placeholder">
                                       Username</label> 
+                                   
                                        <input type = "text"  
                                        placeholder = "Login Email"
                                        value={this.state.loginemail} 
@@ -150,8 +150,10 @@ class Addstudent extends Component {
                                        id = "loginemail" />
                                   </div>
                                   <div className = "form-group">
+                                     
                                        <label className="form-control-placeholder">
                                        Password</label>
+                                      
                                        <input type = "password" 
                                        placeholder = "password"  
                                        className = "form-control"
@@ -160,18 +162,10 @@ class Addstudent extends Component {
                                        name = "password" id = "password" />
                                   </div>
                                   <div className = "form-group">
-                                       <label className="form-control-placeholder">
-                                       Confirm Password</label>
-                                       <input type = "retypepassword" 
-                                       placeholder = "retypepassword"  
-                                       className = "form-control"
-                                       value={this.state.retypepassword} 
-                                       onChange = {this.handleInputChange} 
-                                       name = "retypepassword" id = "retypepassword" />
-                                  </div>
-                                  <div className = "form-group">
+                                    
                                        <label className ="form-control-placeholder">
                                        Phone</label>    
+                                    
                                        <input type = "text"   
                                        placeholder = "Phone number" 
                                        value={this.state.parentphonenumber} 
@@ -179,27 +173,7 @@ class Addstudent extends Component {
                                        onChange = {this.handleInputChange} 
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />
-                                  </div>  
-                                  <div className="form-group row">
-                                        <label className="has-float-label">Level Completed :  </label>
-                                      <select className="form-control droplist" value={this.state.levelcompleted} onChange={this.handleInputChange} name="levelcompleted" id="levelcompleted">
-                                          <option value='Oral' default>Oral Examination</option>
-                                          <option value='Visual'>Visual Examination</option>
-                                          <option value='Written'>Written Examination</option>
-                                          <option value='Online'>Online Examination</option>
-                                          <option value='Offline'>Offline Examination</option>
-                                      </select>
-                                      </div>   
-                                      <div className="form-group row">
-                                        <label className="has-float-label">Level Requested :  </label>
-                                      <select className="form-control droplist" value={this.state.levelrequested} onChange={this.handleInputChange} name="levelrequested" id="levelrequested">
-                                          <option value='Oral' default>Oral Examination</option>
-                                          <option value='Visual'>Visual Examination</option>
-                                          <option value='Written'>Written Examination</option>
-                                          <option value='Online'>Online Examination</option>
-                                          <option value='Offline'>Offline Examination</option>
-                                      </select>
-                                      </div>   
+                                  </div>     
                                        <button
                                         className = "rowbtn" 
                                         name = "creation"
@@ -207,6 +181,7 @@ class Addstudent extends Component {
                                         <i className="fa fa-address-card"></i>
                                         Add Student</button>
                     </form>
+                
               </div>
             ) //end return
       } // end render

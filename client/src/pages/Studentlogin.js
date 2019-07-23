@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 //import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Studentmain from './Studentmain';
+import { connect } from 'react-redux';
+import { loginCredentials } from '../reduxAction/dispatchLoginCredentials';
+
 // import Teacherheader from '../components/Teacherheader';
 // import { Menubar } from '../components/Menubar';
 
@@ -65,6 +68,15 @@ class Studentlogin extends Component {
               () => {
                 console.log("State Student Record", this.state.studentrecord);
                 console.log("Class details",this.state.classdet);
+                var userobj = {
+                  loginemail: response.data.loginemail,
+                  usertype: 'student',
+                  invalid: false,
+                  userfname: response.data.fname,
+                  userlname: response.data.lname,
+                  userid: response.data._id
+                }
+                this.props.setCredetials(userobj);
               });
           }
           else {
@@ -128,5 +140,12 @@ class Studentlogin extends Component {
 
 } //end class Student Main
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+      setCredetials: (userCred) => {
+          dispatch(loginCredentials(userCred))
+      }
+  }
+}
 
-export default Studentlogin;
+export default connect(null,mapDispatchToProps)(Studentlogin);

@@ -5,7 +5,6 @@ import BatchAddClassDetails from './Addclassdetails.js';
 import Allstudents from './displayallstudents.js';
 import Allclasses from './displayallclassdetails.js';
 import Allbatches from './displayallbatchdetails.js';
-import StudentID from './StudentID.js';
 
 class BatchInfo extends Component {
   state = {
@@ -98,26 +97,24 @@ class BatchInfo extends Component {
     });
   } //End handle Input change
 
-  // handleNewStudent = (nstudent) => {
-  //   console.log("The student records", nstudent);
-  //   let studentrecs = this.state.studentrecs;
-  //   let newstrec = {
-  //     stdid: nstudent.stdid,
-  //     stdfname: nstudent.stdfname,
-  //     stdlname: nstudent.stdlname,
-  //     stdemail: nstudent.stdemail,
-  //     phonenumber: nstudent.phonenumber
-  //   }
-  //   if (newstrec) {
-  //     studentrecs.push(newstrec);
-  //     this.setState({
-  //       studentrecs: studentrecs
-  //     }, () => { console.log("The Student Records - update with add student", studentrecs); });
-  //   }
+  handleNewStudent = (nstudent) => {
+    console.log("The student records", nstudent);
+    let studentrecs = this.state.studentrecs;
+    let newstrec = {
+      stdid: nstudent.stdid,
+      stdfname: nstudent.stdfname,
+      stdlname: nstudent.stdlname,
+      stdemail: nstudent.stdemail,
+      phonenumber: nstudent.phonenumber
+    }
+    if (newstrec) {
+      studentrecs.push(newstrec);
+      this.setState({
+        studentrecs: studentrecs
+      }, () => { console.log("The Student Records - update with add student", studentrecs); });
+    }
 
-  // }
-
-  
+  }
 
   handleClassDetails = (nclass) => {
     let classrecs = this.state.classrecs;
@@ -234,9 +231,8 @@ class BatchInfo extends Component {
         </div>
         <div className="col-lg-4 col-md-11 col-sm-12">
         <h6>Add New Student</h6>
-          {/* <Addstudent batchdet={this.props.batchdetails}
-            newStudent={this.handleNewStudent} /> */}
-            <StudentID />
+          <Addstudent batchdet={this.props.batchdetails}
+            newStudent={this.handleNewStudent} />
         </div>
         <div className="col-lg-4 col-md-11 col-sm-12">
           <h6>Add Class Details</h6>

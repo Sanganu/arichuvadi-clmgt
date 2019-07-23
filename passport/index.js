@@ -3,7 +3,7 @@ const LocalStrategy = require('./localstrategy.js')
 const Students = require('../models/Students')
 const Teachers = require("../models/Teachers")
 
-//Set up se  encrypt
+//Setup   encrypt
 passport.serializeUser((user, done) => {
 	console.log('======== serialize ... called ============')
 	console.log("The USer DATa Serialized",user) // the whole raw user object!

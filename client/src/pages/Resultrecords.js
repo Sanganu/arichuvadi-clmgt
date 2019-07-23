@@ -15,7 +15,7 @@ class Resultrecords extends Component
                          <ul className ="col-lg-6">
                          <li>{this.props.field4}</li>
                          <li>{this.props.field6}</li>
-                         </ul>
+                         </ul> 
                          </div>
                    </div>);
     }
