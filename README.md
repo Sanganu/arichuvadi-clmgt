@@ -1,3 +1,7 @@
+Developed By: Sangeetha Kaliaperumal
+My Portfolio: sangkal.bitbucket.io
+
+
 Project Management: https://trello.com/b/rsVtbwwi/eduaridev
 
 Project Developmental Stages:
