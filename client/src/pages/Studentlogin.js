@@ -69,12 +69,12 @@ class Studentlogin extends Component {
                 console.log("Class details",this.state.classdet);
                 
                 var userobj = {
-                  loginemail: response.data.loginemail,
+                  loginemail: response.data.studentrecord.email,
                   usertype: 'student',
                   invalid: false,
-                  userfname: response.data.fname,
-                  userlname: response.data.lname,
-                  userid: response.data._id
+                  userfname: response.data.studentrecord.fname,
+                  userlname: response.data.studentrecord.lname,
+                  userid: response.data.studentrecord.stdid
                 }
                 this.props.setCredetials(userobj);
               });
