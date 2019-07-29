@@ -6,7 +6,8 @@ import Eachstudent from "./Eachstudent";
 class StudentID extends Component{
     state = {
         studentrecords : [],
-        value:''
+        value:'',
+        studentid:''
     }
 
     componentDidMount =() => {
@@ -26,9 +27,13 @@ class StudentID extends Component{
     }
 
     handleStudentSelect = (event) => {
-       this.setState({studentid:event.target.value},()=>{
-           console.log("value",event.target.value);
-       });
+        // event.preventDefault();
+        const studentid = event.target.value;
+        const optionlabel = event.target.label;
+        console.log("Event",event.target.value,"Label",optionlabel);
+        this.setState({studentid:studentid},()=>{
+            console.log("value",studentid);
+        });
     }
 
     render(){
@@ -40,7 +45,7 @@ class StudentID extends Component{
                 ((student,index) => 
                         
                         <option value={student._id} key={index}>
-                        {student.studentfname} {student.studentlname}
+                        {student.studentfname} {student.studentlname} {student.loginemail}
                         </option> 
                 )}
              </select>

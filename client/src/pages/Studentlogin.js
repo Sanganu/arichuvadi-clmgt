@@ -63,11 +63,11 @@ class Studentlogin extends Component {
             this.setState({
               showstlogin: false,
               studentrecord: (response.data.studentrecord),
-              classdet: (response.data.classes) || ""
-            },
+              classdet: (response.data.classes) || "{lessoncovered:'No Class details exist',homework:'Please contact boardmembers or instructors} cldate:''"},
               () => {
                 console.log("State Student Record", this.state.studentrecord);
                 console.log("Class details",this.state.classdet);
+                
                 var userobj = {
                   loginemail: response.data.loginemail,
                   usertype: 'student',

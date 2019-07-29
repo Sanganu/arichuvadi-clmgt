@@ -117,7 +117,8 @@ function getDetails(req,res) {
                                       } // end of for loop
                                 } // end if part check for class
                               else {
-                                  classdetails = [{homework: "No Class details Available"}];
+                                  classdetails = [{homework: "No Class details Available",
+                                                  lesson:"Please contact Board members or Instructors"}];
                               }  // end check for class details     
                               var studentrecord = {
                                         stdid: studentdet._id,
@@ -145,18 +146,20 @@ function getDetails(req,res) {
                               phone: studentdet.parentphonenumber,
                               email: studentdet.loginemail,
                               batch : "Student not enrolled in any batch contact Teacher",
-                              subject: "N/A",
+                              subject: "Please contact Board members",
                               level: "N/A",
                               teacher: "N/A"
                             }
-                            res.json({studentrecord:studentrecord}) ;
+                            classdetails = [{homework: "Please contact Board members.",
+                            lesson:"for Batch Enrollment"}];
+                            res.json({studentrecord:studentrecord,classes:classdetails}) ;
                             console.log("Valid Student Login",studentrecord);
                           } // end else part
                         }) // end of then -studentdetails check
                   .catch((err) => { 
                     console.log("Error - Invalid Student Credentials",err);
                     res.json(err);
-                    //return done(null,false,req.flash('message','Invalid Student login credentials'));
+                  
                   }); //end catch
                 }else if(req.session.passport.user.user.usertype === "teacher"){
                  {Teachers.findOne({_id:req.session.passport.user.user.userdata._id})

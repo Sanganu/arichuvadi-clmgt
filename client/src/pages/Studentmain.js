@@ -1,5 +1,5 @@
  import React, { Component } from 'react';
- import Allclasses from './displayallclassdetails';
+ import Allrecords from './displayrecords';
  import axios from 'axios';
 
 class Studentmain extends Component
@@ -16,8 +16,8 @@ class Studentmain extends Component
       course: this.props.studentdet.course || '',
       level: this.props.studentdet.level || '',
       rate: this.props.studentdet.rate || ''
-      
-    }
+     }
+
     handleInputChange = (event) => {
       const target = event.target;
       const value = target.value;
@@ -28,6 +28,7 @@ class Studentmain extends Component
           [name]: value
       });
      };
+
      logoutapp = () => {
       axios.post("/auth/logout")
       .then((response)=> {
@@ -37,13 +38,16 @@ class Studentmain extends Component
          console.log("Error in logging out",error);
          alert("Error in loggin out");
       });
-    }
+     }    
+
     componentDidMount = () => {
-          console.log("props received",this.props.classrecords);
+          console.log("Class Records",this.props.classrecords);
+          console.log("Student Records",this.props.studentdet);
      }
 
       render()
       {
+      const classrecords = this.props.classrecords;
            return(<div className = "middlecontent">
                      <div>
                         <h3>Welcome {this.props.studentdet.fname}    {this.props.studentdet.lname} </h3>
@@ -77,7 +81,7 @@ class Studentmain extends Component
                                     <button onClick = {this.logoutapp}>Logout</button>
                          </div>
                          <div className = "col-lg-6">
-                                          <form>
+                                         
                                                 <div className ="form-group">
                                                       <input className = "form-control"
                                                             type="text"
@@ -127,23 +131,34 @@ class Studentmain extends Component
                                                       <label className="form-control-placeholder">
                                                        Username     </label> 
                                                 </div>
-                                          </form>
-                                     </div>
-                              </div>
-                              
+                                      </div>
+                            </div>  
+                              {classrecords ?
                               <table>
                                     <thead>
                                     <tr>
                                           <th>Lessons Covered</th>
+                                          <th></th>
                                           <th>Homework Assigned</th>
+                                          <th></th>
                                           <th>Class date</th>
                                      </tr>
                                      </thead>
-                                        
-                                    <Allclasses classrecs = {this.props.classrecords}/> 
-                               
+                                     <tbody>
+                                           
+                                     {classrecords.map((data,index) => (
+                                           <Allrecords
+                                               index={index}
+                                               field1 = {data.lesson}
+                                               field2 = {data.homework}
+                                               field3 = {data.classdate} />)
+                                     )}
+                                     </tbody>
                               </table>
-                    
+                               : <div className="card">
+                                   <h4 className="card-title">Class details does not exist</h4>
+                                   <p className="card-body">Please contact Board members or Instructor for further details</p>
+                                 </div>}
                  </div>)
       }
 }

@@ -523,7 +523,7 @@ router.get("/api/visitors/:str", (req, res) => {
 
 router.get('/api/teacher/student/iddetails/',isLoggedIn,(req,res) => {
   studentdetails.find({},
-  {_id:1,studentfname:1,studentlname:1})
+  {_id:1,studentfname:1,studentlname:1,loginemail:1})
   .then((results) => {
     console.log("REcords fetched",results);
     res.json(results)
