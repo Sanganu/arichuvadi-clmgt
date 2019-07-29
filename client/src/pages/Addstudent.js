@@ -22,7 +22,8 @@ class Addstudent extends Component {
       const name = target.type === 'checkbox' ? 'daysofweek' : target.name;
       //console.log('The Value in input change',value,name);
       this.setState({
-         [name]: value
+         [name]: value,
+         errmsg:""
        });
     };
  
@@ -56,15 +57,15 @@ class Addstudent extends Component {
                     parentphonenumber: this.state.parentphonenumber,
                     batchid: this.props.batchdet.bid || this.props.bid
                   })
-                  .then(res =>
+                  .then((res) =>
                     {
                        
                       let newstrec = {
-                          stdid: res.data._id,
+                          stdid: res.data.stdid,
                           stdfname : res.data.studentfname,
                           stdlname : res.data.studentlname,
                           stdemail : res.data.loginemail,
-                          phonenumber: res.data.parentphonenumber
+                          phonenumber: res.data.phonenumber
                       };
                       console.log("The response from adding student",res,newstrec);
                       this.setState({
@@ -159,7 +160,7 @@ class Addstudent extends Component {
                                        onChange = {this.handleInputChange} 
                                        name = "password" id = "password" />
                                   </div>
-                                  <div className = "form-group">
+                                  {/* <div className = "form-group">
                                        <label className="form-control-placeholder">
                                        Confirm Password</label>
                                        <input type = "retypepassword" 
@@ -168,7 +169,7 @@ class Addstudent extends Component {
                                        value={this.state.retypepassword} 
                                        onChange = {this.handleInputChange} 
                                        name = "retypepassword" id = "retypepassword" />
-                                  </div>
+                                  </div> */}
                                   <div className = "form-group">
                                        <label className ="form-control-placeholder">
                                        Phone</label>    
@@ -180,7 +181,7 @@ class Addstudent extends Component {
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />
                                   </div>  
-                                  <div className="form-group row">
+                                  {/* <div className="form-group row">
                                         <label className="has-float-label">Level Completed :  </label>
                                       <select className="form-control droplist" value={this.state.levelcompleted} onChange={this.handleInputChange} name="levelcompleted" id="levelcompleted">
                                           <option value='Oral' default>Oral Examination</option>
@@ -199,8 +200,8 @@ class Addstudent extends Component {
                                           <option value='Online'>Online Examination</option>
                                           <option value='Offline'>Offline Examination</option>
                                       </select>
-                                      </div>   
-                                       <button
+            </div>   */}
+                                       <button 
                                         className = "rowbtn" 
                                         name = "creation"
                                         onClick = {this.handleStudentCreation}>

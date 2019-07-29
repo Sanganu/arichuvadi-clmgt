@@ -29,7 +29,7 @@ class Topmenu extends Component {
                               <li  className = "list-group-item" data-toggle = "tooltip" data-title="New Cohort"><Link to = '/teacher/batchmain' className = 'sidemenulink'><i  className="fa fa-users fa-2x"></i><p className="linkinwords">New Batch</p></Link></li>
                               <li className = "list-group-item"><Link to = '/teacher/searchrecords' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i><p className ="linkinwords">Search</p></Link></li>
                               
-                              <li className ="list-group-item"><Link to = '/teacher/profile/update' className = 'sidemenulink'><i className="fas fa-user-shield fa-2x"></i><p>My Account</p></Link></li>
+                              {/* <li className ="list-group-item"><Link to = '/teacher/profile/update' className = 'sidemenulink'><i className="fas fa-user-shield fa-2x"></i><p>My Account</p></Link></li> */}
                               {/* <Link to = '/teacher/studentmanagement' className  = 'tlink'>Student Details</Link>  */}
                               <li  className = "list-group-item sidemenulink" onClick={this.logoutapp}><i className="fas fa-sign-out-alt fa-2x"></i><p>Logout</p></li>
                               {/* <i class="far fa-user-circle"></i> */}
