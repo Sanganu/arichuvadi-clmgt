@@ -143,7 +143,7 @@ class Addstudent extends Component {
                                       <label className="form-control-placeholder">
                                       Username</label> 
                                        <input type = "text"  
-                                       placeholder = "Login Email"
+                                       placeholder = "Username"
                                        value={this.state.loginemail} 
                                        className ="form-control"
                                        onChange = {this.handleInputChange} 

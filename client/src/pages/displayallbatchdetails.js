@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
-// import { connect } from 'react-redux';
+import Homepage from "./Homepage";
+import { connect } from 'react-redux';
 
 class Allbatches extends Component {
   state = {
@@ -86,7 +87,8 @@ class Allbatches extends Component {
   render() {
     const stbatchrec = this.state.batchrecords;
     //console.log("Display all batch details --",this.props);
-    return (<div className="container">
+    if (this.props.usertype === "boardmember")
+    {return (<div className="container">
              <div className = "middlecontent">
           {this.state.allbatches ?
             <table className="table table-hover table-responsive">
@@ -127,13 +129,28 @@ class Allbatches extends Component {
           </div>           
          </div>
         ); // end return
-      } //end render
+      }// end if props.usertype is boardmember
+     else{
+        return(<Homepage msg="Please Login"/>);
+     }
+    } //end render
   } //end allbatches
 
  
-  //export default connect(mapStateToProps)(Allbatches);    
+  const mapStateToProps = (state) => { 
+    console.log("Map State to Props : ",state);
+    return {
+      loginemail:state.loginemail,
+      userfname:state.userfname,
+      userlname:state.userlname,
+      usertype:state.usertype,
+      userid:state.userid
+    }
+    
+  }
+  export default connect(mapStateToProps)(Allbatches);    
 
-  export default Allbatches;
+  //export default Allbatches;
 
   
   

@@ -62,6 +62,7 @@ class App extends Component {
                 <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
                 <Route exact path="/teacher/profile/update" component={Updateteacher} />
                 <Route exact path="/teacher/allteacher" component={Allteachers} />
+                <Route exact path="/others/newstudent" component={Addstudent} />
                  <Route exact path="/ourteam" component={Ourteam} />
                 <Route exact path="/alumni" component={Alumni} />
                 <Switch>

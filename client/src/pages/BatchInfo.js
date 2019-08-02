@@ -6,6 +6,8 @@ import Allstudents from './displayallstudents.js';
 import Allclasses from './displayallclassdetails.js';
 import Allbatches from './displayallbatchdetails.js';
 import StudentID from './StudentID.js';
+import { connect } from 'react-redux';
+import  Homepage from './Homepage.js';
 
 class BatchInfo extends Component {
   state = {
@@ -147,7 +149,7 @@ class BatchInfo extends Component {
                 stdemail: response.data.srecords[i].loginemail,
                 phonenumber: response.data.srecords[i].parentphonenumber
               } // end rec
-              strecs.push(newstrec);
+              strecs.push(newstrec); 
             } // end for loop
             // console.log("The student recs",strecs);  
           };// end if srecords part
@@ -179,6 +181,7 @@ class BatchInfo extends Component {
 
   render() {
     const studentrec = this.state.studentrecs;
+    if (this.props.usertype === "boardmember"){
     return (<div className="middlecontent"> 
       <div className="row">
         <div className="col-lg-4 col-md-11 col-sm-12">
@@ -284,8 +287,24 @@ class BatchInfo extends Component {
         </div>
       </div>
     </div>)
+    }
+    else {
+      return <Homepage msg="Please Login" />
+    }
   } // end of render
 } //end component
 
-export default BatchInfo;
+const mapStateToProps = (state) => { 
+  console.log("Map State to Props : ",state);
+  return {
+    loginemail:state.loginemail,
+    userfname:state.userfname,
+    userlname:state.userlname,
+    usertype:state.usertype,
+    userid:state.userid
+  }
+}
+
+//export default BatchInfo;
+export default connect(mapStateToProps)(BatchInfo);    
 

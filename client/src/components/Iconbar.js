@@ -16,7 +16,7 @@ class Iconbar extends Component{
    }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => { 
     console.log("Map State to Props : ",state);
     return {
       loginemail:state.loginemail,

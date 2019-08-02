@@ -11,7 +11,7 @@ class Topmenu extends Component {
           window.location = "/";
         }).catch((error) =>{
            console.log("Error in logging out",error);
-           alert("Error in loggin out");
+           alert("Error in logging out");
         });
       }
 
