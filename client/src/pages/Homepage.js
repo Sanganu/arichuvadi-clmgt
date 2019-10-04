@@ -15,9 +15,9 @@ class Homepage extends Component {
                         <div className="card-body box1">
                             <Link to="/teacher/login" className="mainlink">Board Member</Link><br />
                         </div>
-                        <div className="card-body box6">
+                        {/* <div className="card-body box6">
                             <Link to="/teacher/instructor" className="mainlink">Instructor</Link><br />
-                        </div>
+                        </div> */}
                         <div className="card-body box2">
                             <Link to="/other/students/loginpg" className="mainlink">Student</Link><br />
                         </div>

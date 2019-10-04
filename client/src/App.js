@@ -15,27 +15,12 @@ import StudentManagement from './pages/StudentManagement';
 import Updateteacher from "./pages/Updateteacher";
 import Appheader from "./components/Appheader";
 import Iconbar from "./components/Iconbar";
-
 import Allteachers from "./pages/Teachermanagement";
 import Ourteam from "./pages/Ourteam";
 import Alumni from "./pages/Alumni";
+import Studentregistration from "./pages/Studentregistration";
 
 class App extends Component {
-  // state = {
-  //   isLogedIn: true,
-  //   role:''
-  // }
-
-  // validLogin = (user) => {
-  //   this.setState({
-  //     isLogedIn:true,
-  //     role:user.role,
-  //     username:user.username
-  //   },() => {
-  //     console.log("Logged In");
-  //   });
-  // }
-
   render() {
     return (
       <Router>
@@ -62,11 +47,11 @@ class App extends Component {
                 <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
                 <Route exact path="/teacher/profile/update" component={Updateteacher} />
                 <Route exact path="/teacher/allteacher" component={Allteachers} />
-                <Route exact path="/others/newstudent" component={Addstudent} />
+                <Route exact path="/other/newstudent" component={Studentregistration} />
                  <Route exact path="/ourteam" component={Ourteam} />
                 <Route exact path="/alumni" component={Alumni} />
                 <Switch>
-                  <Route path="/*" component={Homepage} />
+                  <Route path="*" component={Homepage} />
                 </Switch>
               </Switch>
             </div>

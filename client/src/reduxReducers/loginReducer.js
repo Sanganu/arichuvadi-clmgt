@@ -7,7 +7,7 @@ const initState = {
     invalid:true
 }
 const loginReducer = (state = initState,action) => {
-    console.log("Redux the parameter received",action);
+   // console.log("Redux the parameter received",action);
     switch(action.type){
      case 'SET_CREDENTIALS':{
         console.log("Redux store values -- ",action.userCred);

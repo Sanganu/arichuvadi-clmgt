@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from "react-redux";
 import Topmenu from "./Topmenu";
-import { Menubar } from "./Menubar";
+import { Menubar , Midmenu } from "./Menubar";
 
 class Iconbar extends Component{
    render(){
@@ -9,6 +9,9 @@ class Iconbar extends Component{
          {if (this.props.usertype === "boardmember")
           {console.log("Role:",this.props.usertype)
                 return <Topmenu />}
+          else if(this.props.usertype === "boardmember"){
+                return <Midmenu />
+          }
           else
           {   console.log("Role:",this.props.usertype);
                return <Menubar /> }

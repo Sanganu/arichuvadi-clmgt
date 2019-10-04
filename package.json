@@ -24,6 +24,7 @@
     "redux": "^4.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "styled-components": "^4.3.2",
     "youtube-node": "^1.3.3"
   },
   "devDependencies": {

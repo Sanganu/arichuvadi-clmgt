@@ -154,7 +154,7 @@ class Addteacher extends Component {
                                 Add Teacher</button>
                         </form>
                     </div>
-                 );
+                 )
      }
 }
 export default Addteacher;

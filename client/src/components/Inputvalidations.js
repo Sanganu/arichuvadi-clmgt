@@ -1,16 +1,16 @@
 import React from "react";
 
 export const ValidateEmail = (mail) => {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)) {
-        return (true)
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return (true);
     }
-    alert("You have entered an invalid email address!")
-    return (false)
+    else
+    return (false);
 }
 
-export const allLetter = (inputtxt) => {
+export const ValidateName = (inputtxt) => {
     var letters = /^[A-Za-z]+$/;
-    if (inputtxt.value.match(letters)) {
+    if (inputtxt.match(letters)) {
         return true;
     }
     else {
@@ -21,40 +21,36 @@ export const allLetter = (inputtxt) => {
 
 export const CheckPassword = (inputtxt) => {
     var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-    if (inputtxt.value.match(passw)) {
-        alert('Correct, try another...')
+    if (inputtxt.match(passw)) {
+       
         return true;
     }
     else {
-        alert('Wrong...!')
+       
         return false;
     }
 }
 
-export const allnumeric = (inputtxt) => {
+export const ValidateNumbers = (inputtxt) => {
     var numbers = /^[0-9]+$/;
-    if (inputtxt.value.match(numbers)) {
-        alert('Your Registration number has accepted....');
-        document.form1.text1.focus();
-        return true;
+    if (inputtxt.match(numbers)) {
+         return true;
     }
     else {
-        alert('Please input numeric characters only');
-        document.form1.text1.focus();
         return false;
     }
 }
 
-export const phonenumber = (inputtxt) =>
+export const ValidatePhonenumber = (inputtxt) =>
 {
   var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-  if((inputtxt.value.match(phoneno))
-        {
+  if (inputtxt.match(phoneno))
+  {
       return true;
-        }
+    }
       else
         {
-        alert("message");
+     
         return false;
         }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import Homepage from './Homepage.js';
 
 
 class Addstudent extends Component {
@@ -13,7 +15,7 @@ class Addstudent extends Component {
       errmsg:'',
       retypepassword:''
     };
-    
+      
   
 
     handleInputChange = (event) => { 
@@ -100,8 +102,10 @@ class Addstudent extends Component {
    
 
 
-      render() {      
+      render(){      
         // const bdetails = this.props.batchdet || false;
+       
+           if (this.props.usertype === "boardmember"){
             return(
               <div>
                    <p className="errmsg">{this.state.errmsg}</p>
@@ -160,16 +164,7 @@ class Addstudent extends Component {
                                        onChange = {this.handleInputChange} 
                                        name = "password" id = "password" />
                                   </div>
-                                  {/* <div className = "form-group">
-                                       <label className="form-control-placeholder">
-                                       Confirm Password</label>
-                                       <input type = "retypepassword" 
-                                       placeholder = "retypepassword"  
-                                       className = "form-control"
-                                       value={this.state.retypepassword} 
-                                       onChange = {this.handleInputChange} 
-                                       name = "retypepassword" id = "retypepassword" />
-                                  </div> */}
+                         
                                   <div className = "form-group">
                                        <label className ="form-control-placeholder">
                                        Phone</label>    
@@ -181,7 +176,7 @@ class Addstudent extends Component {
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />
                                   </div>  
-                                  {/* <div className="form-group row">
+                                   <div className="form-group row">
                                         <label className="has-float-label">Level Completed :  </label>
                                       <select className="form-control droplist" value={this.state.levelcompleted} onChange={this.handleInputChange} name="levelcompleted" id="levelcompleted">
                                           <option value='Oral' default>Oral Examination</option>
@@ -200,8 +195,8 @@ class Addstudent extends Component {
                                           <option value='Online'>Online Examination</option>
                                           <option value='Offline'>Offline Examination</option>
                                       </select>
-            </div>   */}
-                                       <button 
+                                   </div>  
+                                       <button  
                                         className = "rowbtn" 
                                         name = "creation"
                                         onClick = {this.handleStudentCreation}>
@@ -210,8 +205,24 @@ class Addstudent extends Component {
                     </form>
               </div>
             ) //end return
+          }
+          else{
+               return(<Homepage msg="Only Board members can add students ...Please login as Boardmember or contact Board member" />)
+          }
       } // end render
 
 } // end class
 
-export default Addstudent;
+ 
+const mapStateToProps = (state) => { 
+  console.log("Map State to Props : ",state);
+  return {
+    loginemail:state.loginemail,
+    userfname:state.userfname,
+    userlname:state.userlname,
+    usertype:state.usertype,
+    userid:state.userid
+  }
+}
+
+export default connect(mapStateToProps)(Addstudent);

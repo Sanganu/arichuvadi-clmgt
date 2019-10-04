@@ -13,3 +13,10 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - npm install
           - npm test
+  - pipe: atlassian/heroku-deploy:1.0.0
+    variables:
+      HEROKU_API_KEY: $HEROKU_API
+      HEROKU_APP_NAME: 'coarichuvadi'
+      ZIP_FILE: '<string>'
+      # WAIT: 'true' # Optional.
+      # DEBUG: '<boolean>' # Optional
