@@ -8,6 +8,7 @@ import Allbatches from './displayallbatchdetails.js';
 import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
 import  Homepage from './Homepage.js';
+import { ValidateEmail, ValidateName,CheckPassword,ValidatePhonenumber} from '../components/Inputvalidations.js'
 
 class BatchInfo extends Component {
   state = {
@@ -53,6 +54,7 @@ class BatchInfo extends Component {
       updateBatch = (event) => {
             event.preventDefault();
             //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
+           if (this.batchInputValidation()){
             axios.put('/api/teacher/batch/update',
               {
                 batchid: this.state.bid,
@@ -73,6 +75,10 @@ class BatchInfo extends Component {
                     console.log("Error in saving class records!!!", error);
                   });
               }); // end catch
+            }  
+            else {
+              console.log("Invalid Batch DEscription")
+            }
       } // end of update batch
 
   //Batch delete
@@ -91,6 +97,26 @@ class BatchInfo extends Component {
             })
   } //End of delete batch
 
+  studentInputValidation = () => {
+    if (! ValidatePhonenumber()){
+
+    }
+    else if( ! ValidateEmail()){
+
+    }
+    else if( ! CheckPassword() ){
+
+    }
+  }
+
+  batchInputValidation = () => {
+    if(! ValidateName(this.state.batchdesc)){
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
