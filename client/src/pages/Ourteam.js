@@ -14,12 +14,36 @@ const Ourteam = () => {
             </ol>
             <div className="carousel-inner" role="listbox">
 
-
-                <div className="carousel-item active">
-                     <div className="card mb-2">
-                            <img className="card-img-top"
+                   <div className="carousel-item active">
+                        <div className="card mb-3">
+                              <div className="row no-gutters">
+                                    <div className="col-md-4">       
+                                    <img className="card-img-top ourteam"
+                                        src="/images/goldflowers.jpg"
+                                        alt="Card image cap"/>
+                                    </div>
+                                    <div className="col-md-8">    
+                                        <div className="card-body">
+                                            <h4 className="card-title">Anou</h4>
+                                            <h5>Board Member</h5>
+                                            <p className="card-text">
+                                           I am the founder of Arichuvadi.
+                                            </p>
+                                            <a className="btn btn-primary">Button</a>
+                                        </div>
+                                    </div>
+                                </div>      
+                            </div>
+                       </div>
+                <div className="carousel-item">
+                     <div className="card mb-3">
+                        <div className = "row no-gutters">
+                           <div class="col-md-4">
+                               <img className="card-img-top ourteam"
                                 src="/images/helen.jpeg"
                                 alt="Card image cap"/>
+                            </div>
+                            <div class="col-md-8" >   
                                 <div className="card-body">
                                     <h4 className="card-title">Helen</h4>
                                     <h5>Board Member</h5>
@@ -32,14 +56,20 @@ const Ourteam = () => {
                                     </p>
                                     <a className="btn btn-primary">Button</a>
                                 </div>
-                      </div>
+                            </div>   
+                        </div>    
+                     </div>
                  </div>
 
                         <div className="carousel-item">
-                            <div className="card mb-2">
-                                <img className="card-img-top"
+                            <div className="card mb-3">
+                              <div className="row no-gutters">
+                                <div className="col-md-4">       
+                                  <img className="card-img-top ourteam"
                                     src="/images/yamini.jpeg"
                                     alt="Card image cap"/>
+                                </div>
+                                <div className="col-md-8">    
                                     <div className="card-body">
                                         <h4 className="card-title">Yamini</h4>
                                         <h5>Board Member</h5>
@@ -57,43 +87,36 @@ const Ourteam = () => {
                                         </p>
                                         <a className="btn btn-primary">Button</a>
                                     </div>
+                                </div>
+                              </div>      
                             </div>
                         </div>
-
-                            <div className="carousel-item">
-                                <div className="card mb-2">
-                                    <img className="card-img-top"
-                                        src=""
-                                        alt="Card image cap"/>
-                                        <div className="card-body">
-                                            <h4 className="card-title">Chitra Saravanan</h4>
-                                            <p className="card-text">I have been with Arichuvadi for more than 10 years.</p>
-                                            <a className="btn btn-primary">Button</a>
-                                        </div>
+               
+                        <div className="carousel-item">
+                            <div className="card mb-3">
+                              <div className="row no-gutters">
+                                <div className="col-md-4">       
+                                  <img className="card-img-top ourteam"
+                                    src="/images/colors_1.jpg"
+                                    alt="Card image cap"/>
                                 </div>
-                            </div>
-                            <div className="carousel-item">
-                                    <div className="card mb-2">
-                                        <img className="card-img-top"
-                                            src="" alt="Card image cap"/>
-                                            <div className="card-body">
-                                                <h4 className="card-title">Anou</h4>
-                                                <p className="card-text">I am the founder of Arichuvadi.</p>
-                                                <a className="btn btn-primary">Button</a>
-                                            </div>
+                                <div className="col-md-8">    
+                                    <div className="card-body">
+                                        <h4 className="card-title">Chitra</h4>
+                                        <h5>Board Member</h5>
+                                        <p className="card-text">
+                                       I teach small kids insisting on handwritting 
+                                        </p>
+                                        <a className="btn btn-primary">Button</a>
                                     </div>
+                                </div>
+                              </div>      
                             </div>
+                        </div>
             </div>
 
         </div>
-        <a className="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-         <span className="sr-only">Previous</span>
-        </a>
-        <a className="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-         <span className="carousel-control-next-icon" aria-hidden="true"></span>
-         <span className="sr-only">Next</span>
-        </a>            
+        
     </div>);
 }                       
                                 
