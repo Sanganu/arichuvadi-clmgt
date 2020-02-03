@@ -330,11 +330,6 @@ router.post('/api/teacher/batch/class/add', isLoggedIn, function (req, res) {
     });
 }); // Add Class details and update batch --implemented
 
-
-
-
-
-
 //Delete Batch -- implemented
 router.delete("/api/teacher/batch/delete/:batchid",isLoggedIn, (req, res) => {
                 console.log("Inside delete route for batch to student to class",req.params.batchid);

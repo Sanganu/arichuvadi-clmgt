@@ -9,9 +9,7 @@ const dbConnection = require('./models')
 const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require("path");
-
 const routes = require("./routes");
-// const cookieParser = require('cookie-parser');
 
 require('dotenv').config()
 
@@ -19,9 +17,10 @@ require('dotenv').config()
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 //Middleware - Logger
 app.use(morgan('dev'))
-// app.use(cookieParser);
+
 
 // Express session
 app.use(
@@ -56,7 +55,7 @@ app.use(passport.session());
 // Express app & auth routes
 app.use('/auth',require('./auth'));
 app.use(routes);
-//app.use('/auth',require('./auth/authroutes.js'));
+
 
 
 // Serve up static assets

@@ -52,8 +52,8 @@
     "React",
     "Mongoose",
     "Passport",
-    "local",
-    "google"
+    "local"
+ 
   ],
   "author": "SangeethaKp",
   "license": "MIT",

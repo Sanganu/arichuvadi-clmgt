@@ -1,5 +1,5 @@
 const Students = require('../models/Students.js');
-const Teachers = require("../models/Teachers.js");
+const Teachers = require("../models/Teachers.js"); 
 const LocalStrategy = require('passport-local').Strategy;
 
 const strategy = new LocalStrategy(
