@@ -77,7 +77,6 @@ class Addstudent extends Component {
                                   password:'',
                                   loginemail: '',
                                   parentphonenumber: '',
-                                  levelcompleted: "",
                                   levelcompleted:""
                       });
                       this.props.newStudent(newstrec);

@@ -20,12 +20,12 @@ const Ourteam = () => {
                                     <div className="col-md-4">       
                                     <img className="card-img-top ourteam"
                                         src="/images/goldflowers.jpg"
-                                        alt="Card image cap"/>
+                                        alt="Anou"/>
                                     </div>
                                     <div className="col-md-8">    
                                         <div className="card-body">
                                             <h4 className="card-title">Anou</h4>
-                                            <h5>Board Member</h5>
+                                            <h5 className="card-title">Board Member</h5>
                                             <p className="card-text">
                                            I am the founder of Arichuvadi.
                                             </p>
@@ -41,12 +41,12 @@ const Ourteam = () => {
                            <div class="col-md-4">
                                <img className="card-img-top ourteam"
                                 src="/images/helen.jpeg"
-                                alt="Card image cap"/>
+                                alt="Helen"/>
                             </div>
                             <div class="col-md-8" >   
                                 <div className="card-body">
                                     <h4 className="card-title">Helen</h4>
-                                    <h5>Board Member</h5>
+                                    <h5 className="card-title">Board Member</h5>
                                     <p className="card-text">
                                     Hi, I am Helen. I have been teaching Tamil in Arichuvadi
                                     more than 11 years. Teaching is my passion. I have been working in public
@@ -67,12 +67,12 @@ const Ourteam = () => {
                                 <div className="col-md-4">       
                                   <img className="card-img-top ourteam"
                                     src="/images/yamini.jpeg"
-                                    alt="Card image cap"/>
+                                    alt="Yamini"/>
                                 </div>
                                 <div className="col-md-8">    
                                     <div className="card-body">
                                         <h4 className="card-title">Yamini</h4>
-                                        <h5>Board Member</h5>
+                                        <h5 className="card-title">Board Member</h5>
                                         <p className="card-text">
                                         I'm with Arichuvadi and have been teaching here for about
                                         10 years now. I have graduated a batch of students successfully from Basic, through
@@ -98,12 +98,12 @@ const Ourteam = () => {
                                 <div className="col-md-4">       
                                   <img className="card-img-top ourteam"
                                     src="/images/colors_1.jpg"
-                                    alt="Card image cap"/>
+                                    alt="Chitra"/>
                                 </div>
                                 <div className="col-md-8">    
                                     <div className="card-body">
                                         <h4 className="card-title">Chitra</h4>
-                                        <h5>Board Member</h5>
+                                        <h5 className="card-title">Board Member</h5>
                                         <p className="card-text">
                                        I teach small kids insisting on handwritting 
                                         </p>

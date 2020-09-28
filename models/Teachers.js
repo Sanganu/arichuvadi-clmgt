@@ -13,6 +13,10 @@ const teacheraccountSchema = new Schema({
           type: String,
           required:true
         },
+        position:{
+          type: String,
+          required:true
+        },
          loginemail: {
            type: String,
            unique: true,

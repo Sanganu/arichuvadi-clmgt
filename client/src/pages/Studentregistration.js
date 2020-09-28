@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Allstudents from './displayallstudents';
+// import Allstudents from './displayallstudents';
 
 import { CheckPassword } from '../components/Inputvalidations';
 

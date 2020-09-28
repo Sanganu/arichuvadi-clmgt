@@ -4,8 +4,8 @@ import Addstudent from './Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
 import Allstudents from './displayallstudents.js';
 import Allclasses from './displayallclassdetails.js';
-import Allbatches from './displayallbatchdetails.js';
-import StudentID from './StudentID.js';
+// import Allbatches from './displayallbatchdetails.js';
+// import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
 import  Homepage from './Homepage.js';
 import { ValidateEmail, ValidateName,CheckPassword,ValidatePhonenumber} from '../components/Inputvalidations.js'

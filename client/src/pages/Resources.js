@@ -1,6 +1,6 @@
 import React from 'react';
 // import Teacherheader from "../components/Teacherheader";
-import { Menubar } from "../components/Menubar";
+// import { Menubar } from "../components/Menubar";
 import "../resources/ukgbook.pdf";
 
 const Resources = () => {

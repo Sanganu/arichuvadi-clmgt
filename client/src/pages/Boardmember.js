@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Allbatches from './displayallbatchdetails';
 import axios from "axios";
-import { Menubar } from '../components/Menubar';
+// import { Menubar } from '../components/Menubar';
 import { connect } from 'react-redux';
 import { loginCredentials } from '../reduxAction/dispatchLoginCredentials';
 

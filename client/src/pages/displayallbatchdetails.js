@@ -76,7 +76,7 @@ class Allbatches extends Component {
 
   deleteBatch = (batchid) => {
     let batchrecords = this.state.batchrecords.filter(batch => {
-      return batch.recid != batchid
+      return batch.recid !== batchid
     });
     this.setState({
       batchrecords:batchrecords,
