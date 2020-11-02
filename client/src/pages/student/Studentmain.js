@@ -1,5 +1,5 @@
  import React, { Component } from 'react';
- import Allrecords from './displayrecords';
+ import Allrecords from '../displayrecords';
  import axios from 'axios';
 
 class Studentmain extends Component

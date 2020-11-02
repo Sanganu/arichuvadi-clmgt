@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Studentmain from './Studentmain';
 import { connect } from 'react-redux';
-import { loginCredentials } from '../reduxAction/dispatchLoginCredentials';
+import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
 
 // import Teacherheader from '../components/Teacherheader';
 // import { Menubar } from '../components/Menubar';

@@ -4,7 +4,7 @@ import Allstudents from './displayallstudentsdetails';
 // import Topmenu from "../components/Topmenu";
 // import Teacherheader from '../components/Teacherheader';
 
-class Addstudent extends Component {
+class Studentmanagement extends Component {
   state = {
     studentfname: "",
     studentlname: "",
@@ -43,7 +43,9 @@ class Addstudent extends Component {
             stdemail: response.data[i].loginemail,
             parentname: response.data[i].parentname,
             phonenumber: response.data[i].parentphonenumber,
-            noofbatches: response.data[i].batchid.length
+            // noofbatches: response.data[i].batchid.length,
+            levelcompleted: response.data[i].levelcompleted,
+            levelrequested: response.data[i].levelrequested
             // batchid: response.data[i].batchid._id,
             // batchdesc: response.data[i].batchid.batchdesc,
             // subject: response.data[i].batchid.subject
@@ -134,7 +136,7 @@ class Addstudent extends Component {
     axios.put("/api/teacher/student/update/" + studentrecord.recid, studentrecord)
       .then(response => {
         if (response.statatus === 200) {
-          //   () => console.log("The studentrecords", this.state.studentrecords));
+         console.log("The studentrecords", response);
           let updatedStudentrecord = [];
           for (let i = 0; i < this.state.studentrecords; i++) {
             if (this.state.studentrecords.recid !== studentrecord.recid) {
@@ -145,6 +147,8 @@ class Addstudent extends Component {
             }
           }
           console.log("Student Details updated", this.state.studentrecords);
+          // this.setState({ studentrecords: newarray }, () => console.log("The studentrecords", this.state.studentrecords))
+          
         }
 
       })
@@ -260,6 +264,8 @@ class Addstudent extends Component {
               <th>Email</th>
               <th>Parent </th>
               <th>Phonenumber</th>
+              <th>Level Completed</th>
+              <th>Current Level</th>
               <th>Update</th>
               <th>Delete</th>
             </tr>
@@ -271,7 +277,8 @@ class Addstudent extends Component {
                 parentname={data.parentname}
                 phonenumber={data.phonenumber}
                 stdemail={data.stdemail}
-                subject={data.subject}
+                levelcompleted={data.levelcompleted}
+                levelrequested={data.levelrequested}
                 deleteStudentDetails={this.deleteStudentDetails}
                 updateStudentDetails={this.updateStudentDetails}
               />
@@ -285,4 +292,4 @@ class Addstudent extends Component {
 
 } // end class 
 
-export default Addstudent;
+export default Studentmanagement ;

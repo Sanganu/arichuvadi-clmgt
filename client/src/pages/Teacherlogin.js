@@ -5,7 +5,7 @@ import axios from "axios";
 import { connect } from 'react-redux';
 import { loginCredentials } from '../reduxAction/dispatchLoginCredentials';
 
-class Boardmember extends Component {
+class Instructor extends Component {
     state = {
         invalid: '',
         vemail: '',
@@ -30,10 +30,10 @@ class Boardmember extends Component {
         axios.post('/auth/login', {
             loginemail: this.state.vemail.toLocaleLowerCase(),
             password: this.state.vpword,
-            usertype: 'management'
+            usertype: 'teacher'
         })
-           .then((response) => {
-                console.log(response)
+            .then((response) => {
+
                 this.setState({
                     invalid: false,
                     logindisp: false,
@@ -42,7 +42,7 @@ class Boardmember extends Component {
                     console.log("Boardmember Login", response.data);
                     var userobj = {
                         loginemail: response.data.loginemail,
-                        usertype: 'management',
+                        usertype: 'instructor',
                         invalid: false,
                         userfname:response.data.fname,
                         userlname:response.data.lname,
@@ -113,4 +113,4 @@ class Boardmember extends Component {
             }
         }
     }
-    export default connect(null, mapDispatchToProps)(Boardmember);
+    export default connect(null, mapDispatchToProps)(Instructor);

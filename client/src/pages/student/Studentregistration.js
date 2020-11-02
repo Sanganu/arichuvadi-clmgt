@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import Allstudents from './displayallstudents';
 
-import { CheckPassword } from '../components/Inputvalidations';
+import { CheckPassword } from '../../components/Inputvalidations';
 
 class Studentregistration extends Component {
   state = {
@@ -95,7 +95,7 @@ class Studentregistration extends Component {
     const bdetails = this.props.batchdet || false;
     return (
       <div>
-        {/* <Teacherheader /> */}
+
         {bdetails ?
           <div>
             <h4 className="text-center">Batch:  {bdetails.batchdesc}</h4>
@@ -105,7 +105,7 @@ class Studentregistration extends Component {
           </div>
           : <div></div>}
         <br />
-        <h3 className="subhead">Add Students to the Batch</h3>
+        <h3 className="subhead">Student Registration</h3>
         <p className="errmsg">{this.state.errmsg}</p>
 
         <form className="form-inline">

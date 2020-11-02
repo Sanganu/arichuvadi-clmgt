@@ -6,16 +6,19 @@ import { Menubar , Midmenu } from "./Menubar";
 class Iconbar extends Component{
    render(){
      console.log("Values from redux",this.props);
-         {if (this.props.usertype === "boardmember")
-          {console.log("Role:",this.props.usertype)
-                return <Topmenu />}
-          else if(this.props.usertype === "boardmember"){
+         if (this.props.usertype === "management")
+          {
+                console.log("Role:",this.props.usertype)
+                return <Topmenu />
+            }
+          else if(this.props.usertype === "instructor")
+          {
                 return <Midmenu />
           }
           else
           {   console.log("Role:",this.props.usertype);
-               return <Menubar /> }
-         }
+               return <Menubar /> 
+          }
    }
 }
 

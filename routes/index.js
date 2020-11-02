@@ -3,7 +3,7 @@ const router = require("express").Router();
 const batchdetails = require('../models/BatchDetails.js')
 const studentdetails = require('../models/Students.js')
 const classdetails = require('../models/Classdetails.js');
-const teacherdetails = require('../models/Teachers.js');
+const Board = require('../models/Management.js');
 //const passport = require("passport");
 var YouTube = require('youtube-node');
 var youTube = new YouTube();
@@ -202,11 +202,46 @@ router.put("/api/teacher/batch/update", isLoggedIn, (req, res) => {
 }); // Batch update --implemented
 
 // Add Student Record  without batch linking -- implemented
-router.post("/api/teacher/student/new", isLoggedIn, (req, res) => {
+// router.post("/api/teacher/student/new", isLoggedIn, (req, res) => {
+//   let insertedstudent = {};
+//   studentdetails
+//     .create(req.body.newrecord)
+//     .then(function (dbstudentdetails) {
+//       insertedstudent = {
+//         stdid: dbstudentdetails._id,
+//         studentfname: dbstudentdetails.studentfname,
+//         studentlname: dbstudentdetails.studentlname,
+//         loginemail: dbstudentdetails.loginemail,
+//         phonenumber: dbstudentdetails.parentphonenumber,
+//         parentname: dbstudentdetails.parentname
+//       };
+//       console.log("Inserted student record", insertedstudent);
+//       res.json(insertedstudent);
+//     }).catch(function (err) {
+//       console.log("error in student batch", err)
+//       if (err.errmsg) {
+//         if ((err.errmsg).substr(0, 6) === 'E11000') {
+//           console.log("Student Login - already exist");
+//           res.json({ error: "Student email already exist :" });
+//         }
+//         else {
+//           console.log("Error in Creating Student details", err)
+//           res.json(err);
+//         }
+//       }
+//       else {
+//         console.log("Exceptional Error: ", err)
+//         res.json(err);
+//       }
+//     }); // end db studentdetails
+// }); // End router to Student in StudentManagement -- implemented
+router.post("/api/teacher/student/new", (req, res) => {
   let insertedstudent = {};
+  console.log(req.body)
   studentdetails
-    .create(req.body.newrecord)
+    .create(req.body)
     .then(function (dbstudentdetails) {
+      console.log("route",dbstudentdetails)
       insertedstudent = {
         stdid: dbstudentdetails._id,
         studentfname: dbstudentdetails.studentfname,
@@ -295,7 +330,9 @@ router.put("/api/teacher/student/update/:id", isLoggedIn, (req, res) => {
         studentlname: req.body.stdlname,
         loginemail: req.body.stdemail,
         parentname: req.body.parentname,
-        parentphonenumber: req.body.phonenumber
+        parentphonenumber: req.body.phonenumber,
+        levelcompleted:req.body.levelcompleted,
+        levelrequested:req.body.levelrequested
       }
     }
   ).then((data) => {
@@ -409,10 +446,11 @@ router.put('/api/batch/student/del/', (req, res) => {
     }); // end of callback for find record
 }); // end of router delete student from batch
 
-//add teacher
-router.post('/api/teacher/new', (req, res) => {
+
+//board teacher
+router.post('/api/board/new', (req, res) => {
   console.log("Teacher account creation -", req.body);
-  teacherdetails.create(req.body)
+  Board.create(req.body)
     .then((response) => {
       console.log("Teacher details created", response);
       res.json(response);
@@ -420,11 +458,11 @@ router.post('/api/teacher/new', (req, res) => {
     .catch((error) => {
       if (error == 'E11000') {
         console.log("Teacher Detials already exist", error);
-        res.send({ "err": "Teacher Account already exist for this Email ID", "errcode": (error.errmsg) });
+        res.json({ "err": "Account already exist for this Email ID", "errcode": error.errmsg});
       }
       else {
         console.log("Unable to create teacher account", error)
-        res.send({ "err": "Unable to create Teacher Account ", "errcode": (error.errmsg).substr(0, 6) });
+        res.json({ "err": "Unable to create Teacher Account ", "errcode": error.errmsg });
       }
     })
 });
@@ -432,7 +470,7 @@ router.post('/api/teacher/new', (req, res) => {
 //Router to get all teacher details
 
 router.get('/api/teacher/all',(req,res)=>{
-  teacherdetails.find({})
+  Board.find({})
   .then((results) => {
      console.log("Records fetched for teachers",results);
      res.json(results);

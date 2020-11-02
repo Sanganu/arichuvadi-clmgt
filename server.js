@@ -1,4 +1,3 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require('morgan')
@@ -27,9 +26,10 @@ app.use(
       session({
 		secret: process.env.APP_SECRET || 'this is the default passphrase',
 		maxAge:4*60*60*1000,
-		store: new MongoStore({ mongooseConnection: dbConnection }),
+		// store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false,
-		saveUninitialized: false
+		saveUninitialized: false,
+		useUnifiedTopology: true
 	})    
 )
 

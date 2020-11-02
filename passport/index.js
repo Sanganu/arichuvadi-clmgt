@@ -1,7 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('./localstrategy.js')
 const Students = require('../models/Students')
-const Teachers = require("../models/Teachers")
+const Board = require("../models/Management")
 
 //Setup   encrypt
 passport.serializeUser((user, done) => {
@@ -28,7 +28,7 @@ passport.deserializeUser((user, done) => {
 		);
 	}
 	else if(user.user.usertype === "teacher"){
-		Teachers.findOne(
+		Board.findOne(
 			{_id:id},
 			(error,user) => {
 				console.log("=================DeSerialize Teacher User called==========");

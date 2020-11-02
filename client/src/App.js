@@ -1,27 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Homepage from "./pages/Homepage";
+
 import Boardmember from "./pages/Boardmember"; //Both teacher and student login
+import Updateteacher from "./pages/Updateteacher";
+import Allteachers from "./pages/Teachermanagement";
+import AddBoardMember from "./pages/AddBoardMember";
+
 import Batchmain from "./pages/Batchmain"; // teacher main page
 import Createbatch from "./pages/Createbatch";
-import Addstudent from "./pages/Addstudent";
-import Homepage from "./pages/Homepage";
-import Videoreference from "./pages/Videoreference";
-import Resources from "./pages/Resources";
-import Allbatches from "./pages/displayallbatchdetails"
-import Studentlogin from "./pages/Studentlogin";
+import Allbatches from "./pages/displayallbatchdetails";
 import Addclass from "./pages/Addclassdetails";
-import Search from "./pages/Search";
+
+
+
+
+import Studentlogin from "./pages/student/Studentlogin";
 import StudentManagement from './pages/StudentManagement';
-import Updateteacher from "./pages/Updateteacher";
+import NewStudentregistration from "./pages/student/NewStudentregistration";
+import Addstudent from "./pages/Addstudent";
+
+import Search from "./pages/Search";
 import Appheader from "./components/Appheader";
 import Iconbar from "./components/Iconbar";
-import Allteachers from "./pages/Teachermanagement";
+import Videoreference from "./pages/Videoreference";
+import Resources from "./pages/Resources";
 import Ourteam from "./pages/Ourteam";
 import Alumni from "./pages/Alumni";
-import Studentregistration from "./pages/Studentregistration";
+import Addboard from "./pages/board/NewBoardMember";
 
-class App extends Component {
-  render() {
+// import "./index.css";
+
+
+const  App = ()=> {
+
     return (
       <Router>
         <div>
@@ -33,23 +46,33 @@ class App extends Component {
             <div className='col-md-12 col-sm-12 col-lg-11'>
                
               <Switch>
+                <Route exact path="/" render={()=> <Homepage />} />
+                
                 <Route exact path="/teacher/allbatch" component={Allbatches} />
-                <Route exact path="/" component={Homepage} />
-                <Route exact path="/teacher/login" component ={Boardmember}/>
-                <Route exact path="/other/students/loginpg" component= {Studentlogin} />
-                <Route exact path="/users/videos" component={Videoreference} />
                 <Route exact path="/teacher/batchmain" component={Batchmain} />
                 <Route exact path="/teacher/createbatch" component={Createbatch} />
+                
+                <Route exact path="/addboard" component={Allbatches} />
+                <Route exact path="/teacher/login" component ={Boardmember}/>
+                <Route exact path="/important" component ={AddBoardMember}/>
                 <Route exact path="/teacher/batch/addstudent/:batchid" component={Addstudent} />
-                <Route exact path="/resources" component={Resources} />
+                <Route exact path="/teacher/allteacher" component={Allteachers} />
+                <Route exact path="/teacher/profile/update" component={Updateteacher} />
+
+                <Route exact path="/other/newstudent" component={NewStudentregistration} />  
+                <Route exact path="/other/students/loginpg" component= {Studentlogin} />
+                <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
+           
+             
                 <Route exact path="/teacher/batch/addclass" component={Addclass} />
                 <Route exact path="/teacher/searchrecords" component={Search} />
-                <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
-                <Route exact path="/teacher/profile/update" component={Updateteacher} />
-                <Route exact path="/teacher/allteacher" component={Allteachers} />
-                <Route exact path="/other/newstudent" component={Studentregistration} />
-                 <Route exact path="/ourteam" component={Ourteam} />
-                <Route exact path="/alumni" component={Alumni} />
+                <Route exact path="/teacher/addBoard" component={Addboard}/>
+                
+                   <Route exact path="/resources" component={Resources} />
+                   <Route exact path="/users/videos" component={Videoreference} />
+                   <Route exact path="/ourteam" component={Ourteam} />
+                   <Route exact path="/alumni" component={Alumni} />
+                
                 <Switch>
                   <Route path="*" component={Homepage} />
                 </Switch>
@@ -60,6 +83,5 @@ class App extends Component {
       </Router>
     )
   }
-}
 
 export default App;

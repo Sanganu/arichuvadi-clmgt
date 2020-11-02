@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Students = require('../models/Students');
-const Teachers = require("../models/Teachers");
+const Teachers = require("../models/TeacherDetails");
 const passport = require('../passport')
 
 // this route is just used to get the user basic info
@@ -26,6 +26,18 @@ router.get('/teacher', (req, res, next) => {
 		return res.json({ teacher: null })
 	}
 });
+
+router.get('/management', (req, res, next) => {
+	console.log('===== teacher ===user!!======')
+	console.log(req.teacher)
+	if (req.teacher) {
+  		return res.json({ teacher: req.teacher })
+	} else {
+		return res.json({ teacher: null })
+	}
+});
+
+
 router.post(
 	'/student/login',
 	function(req, res, next) {

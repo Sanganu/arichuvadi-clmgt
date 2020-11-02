@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 //This is Display students component used under BatchInfo
 class Teacherrecords extends Component
 {
-    d
+    
     render()
     {            return(<tr key={this.props.index}>
                       <td>{this.props.fname}</td>

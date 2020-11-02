@@ -1,5 +1,6 @@
 const Students = require('../models/Students.js');
-const Teachers = require("../models/Teachers.js"); 
+const Board = require("../models/Management.js"); 
+const Instructor = require("../models/Instructor");
 const LocalStrategy = require('passport-local').Strategy;
 
 const strategy = new LocalStrategy(
@@ -28,8 +29,8 @@ const strategy = new LocalStrategy(
 						return done(null, {usertype:"student",userdata:studentMatch})
 					    });
 					}	
-					else if(req.body.usertype === "teacher"){
-						Teachers.findOne({'loginemail': {"$regex": loginemail, "$options":"i"}},(err, teacherMatch) => {
+					else if(req.body.usertype === "instructor"){
+						Instructor.findOne({'loginemail': {"$regex": loginemail, "$options":"i"}},(err, teacherMatch) => {
 							console.log("The local strategy to find the Teacher");
 							console.log("-----------------------------------------");
 							if(err){
@@ -42,6 +43,22 @@ const strategy = new LocalStrategy(
 								return done(null,false,{message:"Incorrect Password"})
 							}
 							return done(null,{usertype:"teacher",userdata:teacherMatch})
+						});
+					}
+					else if(req.body.usertype === "management"){
+						Board.findOne({'loginemail': {"$regex": loginemail, "$options":"i"}},(err, teacherMatch) => {
+							console.log("The local strategy to find the Teacher");
+							console.log("-----------------------------------------");
+							if(err){
+								return done(err)
+							}
+							if(!teacherMatch){
+								return done(null,false,{message: 'Incorrect Email'})
+							}
+							if(!teacherMatch.checkPassword(password)){
+								return done(null,false,{message:"Incorrect Password"})
+							}
+							return done(null,{usertype:"management",userdata:teacherMatch})
 						});
 					}
 		}

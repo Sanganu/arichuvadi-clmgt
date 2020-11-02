@@ -83,7 +83,7 @@ class Updateteacher extends Component {
                 </div>
             </form>
             <h3>{this.props.userlname+", "+this.props.userfname}</h3>
-            <h5>this.props.  </h5>
+         
        </div>);
     }
 }

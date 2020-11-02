@@ -13,13 +13,13 @@ const batchdetailsSchema = new Schema({
           type: String
 
         },
-        teacher :{
-          type: String
-        },
         // teacher :{
-        //   type:Schema.Types.ObjectId,
-        //   ref: 'teacherdetails'
+        //   type: String
         // },
+        teacher :{
+          type:Schema.Types.ObjectId,
+          ref: 'teacherdetails'
+        },
         students: [{
           type: Schema.Types.ObjectId,
           ref: 'studentdetails'

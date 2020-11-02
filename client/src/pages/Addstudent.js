@@ -132,7 +132,7 @@ class Addstudent extends Component {
                                        id = "studentlname" />
                                   </div>     
                                   <div className = "form-group">
-                                       <label className="form-control-laceholder">
+                                       <label className="form-control-placeholder">
                                        Parent</label>
                                        <input type = "text" 
                                        placeholder = "Parent name" 

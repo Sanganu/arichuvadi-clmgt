@@ -28,7 +28,7 @@ class Teachermanagement extends Component{
     render(){
         const { teacherrecords } = this.state;
         return(<div className = 'middlecontent'>
-          <Addteacher 
+          <Addteacher
                handleNewTeacher = {this.handleTeacherCreate}/>
            <h5 className="subhead">Teacher Records </h5>
             <div className="table-responsive">

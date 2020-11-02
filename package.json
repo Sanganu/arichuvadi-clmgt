@@ -4,7 +4,7 @@
   "description": "Arichuvadi app MERN stack",
   "main": "server.js",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.3",
@@ -13,7 +13,7 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "if-env": "^1.0.4",
-    "mongod": "^2.0.0",
+    "mongodb": "^3.6.2",
     "mongoose": "^5.5.2",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
@@ -24,7 +24,6 @@
     "redux": "^4.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "styled-components": "^4.3.2",
     "youtube-node": "^1.3.3"
   },
   "devDependencies": {
@@ -53,7 +52,6 @@
     "Mongoose",
     "Passport",
     "local"
- 
   ],
   "author": "SangeethaKp",
   "license": "MIT",

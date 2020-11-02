@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-class Addteacher extends Component {
+class AddBoardMember extends Component {
     state = {
         firstname: "",
         lastname: "",
-        title: "Teacher",
+        position: "Management",
         email: "",
         errmsg: "",
         phone: "",
@@ -25,13 +25,13 @@ class Addteacher extends Component {
 
     }
 
-    handleTeacherAccountCreation = (event) => {
+    handleBoardMemberCreation = (event) => {
         event.preventDefault();
-        console.log("In Teacher Account Creation state values", this.state);
+        console.log("In Boad Member Account Creation state values", this.state);
         //var myDate = new Date(this.state.startdate);
         if (this.state.firstname === "" ||
             this.state.lastname === "" ||
-            this.state.title === "" ||
+            this.state.position === "" ||
             this.state.password === "" ||
             this.state.email === "") {
             console.log("No Empty Fields Enter valid data");
@@ -45,16 +45,16 @@ class Addteacher extends Component {
                     lname: this.state.lastname,
                     password: this.state.password,
                     loginemail: this.state.email.toLocaleLowerCase(),
-                    title: this.state.title,
+                    position: this.state.position,
                     phone: this.state.phone
                 })
                 .then(response => {
-                    console.log("The response create Teacher Account", response);
+                    console.log("The response create BoardMember Account", response);
                     //console.log("The  inserted board ID", response.data._id);
                     this.setState({
                         firstname: "",
                         lastname: "",
-                        title: "Teacher",
+                        position: "BoardMember",
                         email: "",
                         errmsg: "",
                         phone: "",
@@ -62,19 +62,20 @@ class Addteacher extends Component {
                     },() =>{ 
                         //console.log("Set State - clear fiels")
                     });
-                    this.props.handleNewTeacher({
+                    this.props.handleNewBoardmember({
                         fname: this.response.data.fname,
                         lname: this.response.data.lname,
                         loginemail:this.response.data.loginemail,
                         phone:this.response.data.phone,
-                        title:this.response.data.title
+                        position:this.response.data.position
                     });
                     
                 })
                 .catch(error => {
-                    this.setState({ errmsg: error.errstring + " Please check console for further details" }, () => {
-                       // console.log("Error in Adding Board memberr details", error.err);
-                    });
+                    // this.setState({ errmsg: error.errstring + " Please check console for further details" }, () => {
+                    //    console.log("Error in Adding Board memberr details", error.err);
+                    // });
+                    console.log("error",error)
 
                 }); //end new batch creation - axios call
         } //end if
@@ -84,7 +85,7 @@ class Addteacher extends Component {
         return (           
             <div className="container middlecontent">
                         <form className="inputsection">
-                            <h5 className="subhead">New Teacher / Admin</h5>
+                            <h5 className="subhead has-float-label">New Teacher / Admin</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
 
                             <div className="form-group row">
@@ -124,16 +125,16 @@ class Addteacher extends Component {
                                     name="password" />
                             </div>
                             <div className="form-group row">
-                                <label className="has-float-label" forhtml="title"></label>
+                                <label className="has-float-label" forhtml="position"></label>
                                 <select className="form-control droplist"
                                     onChange={this.handleInputChange}
-                                    value={this.state.title}
-                                    name="title"
-                                    id="title">
-                                    <option value='Teacher' default>Teacher</option>
-                                    <option value='Director'>Director</option>
-                                    <option value = 'Webapp'> Web App</option>
-                                    <option value='Founder'>Founder</option>
+                                    value={this.state.position}
+                                    name="position"
+                                    id="position">
+                                    <option value='Instructor' default>Instructor</option>
+                                    <option value='Management'>Management</option>
+                               
+                          
                                 </select>
                             </div>
                             <div className="form-group row">
@@ -150,11 +151,11 @@ class Addteacher extends Component {
 
                             <button className="createteacher"
                                 name="clcreation"
-                                onClick={this.handleTeacherAccountCreation }>
-                                Add Teacher</button>
+                                onClick={this.handleBoardMemberCreation }>
+                                Add member</button>
                         </form>
                     </div>
                  )
      }
 }
-export default Addteacher;
+export default AddBoardMember;

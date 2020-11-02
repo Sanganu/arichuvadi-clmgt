@@ -150,7 +150,7 @@ class Allbatches extends Component {
   }
   export default connect(mapStateToProps)(Allbatches);    
 
-  //export default Allbatches;
+  // export default Allbatches;
 
   
   
