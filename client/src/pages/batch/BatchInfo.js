@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Addstudent from './Addstudent.js';
+import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
 import Allstudents from './displayallstudents.js';
 import Allclasses from './displayallclassdetails.js';

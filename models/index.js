@@ -2,12 +2,18 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 let MONGO_URL
-const MONGO_LOCAL_URL = `mongodb://localhost/mern-passport`
+const MONGO_LOCAL_URL = `mongodb://localhost/arichuvadi`
 if (process.env.MONGODB_URI){
-	mongoose.connect(process.env.MONGODB_URI)
+	mongoose.connect(process.env.MONGODB_URI,{
+		useNewUrlParser : true,
+	   useUnifiedTopology: true
+   })
 	MONGO_URL = process.env.MONGODB_URI
 } else {
-	mongoose.connect(MONGO_LOCAL_URL,{ useNewUrlParser : true})
+	mongoose.connect(MONGO_LOCAL_URL,{
+		 useNewUrlParser : true,
+		useUnifiedTopology: true
+	})
 	MONGO_URL = MONGO_LOCAL_URL
 }
 

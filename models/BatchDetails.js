@@ -7,15 +7,10 @@ const batchdetailsSchema = new Schema({
          },
          course: {
            type: String
-
          },
         level: {
           type: String
-
         },
-        // teacher :{
-        //   type: String
-        // },
         teacher :{
           type:Schema.Types.ObjectId,
           ref: 'teacherdetails'
@@ -32,7 +27,6 @@ const batchdetailsSchema = new Schema({
           type:Date,
           default: Date.now
         },
-
 });
 
 

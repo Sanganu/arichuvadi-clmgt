@@ -44,6 +44,10 @@ const studentSchema = new Schema({
           batchid : [{
             type: Schema.Types.ObjectId,
             ref: 'batchdetails'
+          }],
+          teachersComments:[{
+            date: Date,
+            notes:String
           }]
 });
 

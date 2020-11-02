@@ -1,36 +1,33 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/general/Homepage";
 
-import Boardmember from "./pages/Boardmember"; //Both teacher and student login
-import Updateteacher from "./pages/Updateteacher";
-import Allteachers from "./pages/Teachermanagement";
-import AddBoardMember from "./pages/AddBoardMember";
+import Boardmember from "./pages/board/Boardmember"; //Both teacher and student login
+import Updateteacher from "./pages/instructor/Updateinstructor";
+import Allteachers from "./pages/instructor/Instructormanagement";
+import AddBoardMember from "./pages/instructor/Addinstructor";
 
-import Batchmain from "./pages/Batchmain"; // teacher main page
-import Createbatch from "./pages/Createbatch";
-import Allbatches from "./pages/displayallbatchdetails";
-import Addclass from "./pages/Addclassdetails";
-
-
-
+import Batchmain from "./pages/batch/Batchmain"; // teacher main page
+import Createbatch from "./pages/batch/Createbatch";
+import Allbatches from "./pages/batch/displayallbatchdetails";
+import Addclass from "./pages/batch/Addclassdetails";
 
 import Studentlogin from "./pages/student/Studentlogin";
-import StudentManagement from './pages/StudentManagement';
+import StudentManagement from './pages/student/StudentManagement';
 import NewStudentregistration from "./pages/student/NewStudentregistration";
-import Addstudent from "./pages/Addstudent";
+import Addstudent from "./pages/student/Addstudent";
 
-import Search from "./pages/Search";
+import Search from "./pages/general/Search";
 import Appheader from "./components/Appheader";
-import Iconbar from "./components/Iconbar";
-import Videoreference from "./pages/Videoreference";
-import Resources from "./pages/Resources";
-import Ourteam from "./pages/Ourteam";
-import Alumni from "./pages/Alumni";
+import Iconbar from "./navigation/Iconbar";
+
+// import Resources from "./pages/Resources";
+import Ourteam from "./pages/general/Ourteam";
+import Alumni from "./pages/general/Alumni";
 import Addboard from "./pages/board/NewBoardMember";
 
-// import "./index.css";
+import "./bootstrap.css";
 
 
 const  App = ()=> {
@@ -68,8 +65,8 @@ const  App = ()=> {
                 <Route exact path="/teacher/searchrecords" component={Search} />
                 <Route exact path="/teacher/addBoard" component={Addboard}/>
                 
-                   <Route exact path="/resources" component={Resources} />
-                   <Route exact path="/users/videos" component={Videoreference} />
+                   {/* <Route exact path="/resources" component={Resources} />
+                   <Route exact path="/users/videos" component={Videoreference} /> */}
                    <Route exact path="/ourteam" component={Ourteam} />
                    <Route exact path="/alumni" component={Alumni} />
                 

@@ -3,7 +3,7 @@ import API from "../../API/Board"
 
 import { CheckPassword } from '../../components/Inputvalidations';
 
-class Studentregistration extends Component {
+class Teacherregistration extends Component {
     state = {
         studentfname: "",
         studentlname: "",
@@ -87,11 +87,11 @@ class Studentregistration extends Component {
                     <div className="row">
                         <div className="col-md-6 m-3 p-3">
                             <div className="form-group row">
-                                <label className="has-float-label">Student FirstName</label>
+                                <label className="has-float-label">Member FirstName</label>
                                 <input className="form-control" type="text" value={this.state.studentfname} onChange={this.handleInputChange} placeholder="Student Firstname" name="studentfname" />
                             </div>
                             <div className="form-group row">
-                                <label className="has-float-label">Student LastName</label>
+                                <label className="has-float-label">Member LastName</label>
                                 <input type="text" className="form-control" placeholder="Student Last name" value={this.state.studentlname} onChange={this.handleInputChange} name="studentlname" />
                             </div>
                             <div className="form-group row">
@@ -172,4 +172,4 @@ class Studentregistration extends Component {
 
 } // end class
 
-export default Boardmemberregistration;
+export default Teacherregistration;

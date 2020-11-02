@@ -12,11 +12,7 @@ const instructoraccountSchema = new Schema({
           type: String,
           required:true
         },
-        position:{
-          type: String,
-          required:true
-        },
-         loginemail: {
+        loginemail: {
            type: String,
            unique: true,
            required : true
@@ -28,9 +24,6 @@ const instructoraccountSchema = new Schema({
          phone: {
           type:String
         },
-        // title:{
-        //   type: String
-        // },
         zoomlink:{
           type: String
         },
