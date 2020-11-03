@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
-import Allstudents from './displayallstudents.js';
-import Allclasses from './displayallclassdetails.js';
+import Allstudents from '../student/displayallstudents.js';
+import Allclasses from '../batch/displayallclassdetails.js';
 // import Allbatches from './displayallbatchdetails.js';
 // import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
-import  Homepage from './Homepage.js';
-import { ValidateEmail, ValidateName,CheckPassword,ValidatePhonenumber} from '../components/Inputvalidations.js'
+import  Homepage from '../general/Homepage.js';
+import { ValidateEmail, ValidateName,CheckPassword,ValidatePhonenumber} from '../../util/Inputvalidations.js'
 
 class BatchInfo extends Component {
   state = {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
-import Homepage from "./Homepage";
+import Homepage from "../general/Homepage";
 import { connect } from 'react-redux';
 
 class Allbatches extends Component {

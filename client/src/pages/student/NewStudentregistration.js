@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 // import Allstudents from './displayallstudents';
 import API from "../../API/Student"
 
-import { CheckPassword } from '../../components/Inputvalidations';
+import { CheckPassword } from '../../util/Inputvalidations';
+import Homepage from '../general/Homepage';
 
 class Studentregistration extends Component {
     state = {
@@ -13,6 +14,7 @@ class Studentregistration extends Component {
         parentname: "",
         parentphonenumber: "",
         password: "",
+        password1:"",
         levelcompleted: "",
         errmsg: ''
     }               
@@ -35,14 +37,15 @@ class Studentregistration extends Component {
             this.state.loginemail === "" ||
             this.state.parentname === "" ||
             this.state.parentphonenumber === "" ||
-            this.state.password === "") {
+            this.state.password === "" ||
+            this.state.password1 == "") {
             console.log("Empty fields not accepted");
             this.setState({ errmsg: " Empty fields not accepted" })
         }
         else {
-            if (CheckPassword(this.state.password)) {
+            if (this.state.password === this.state.password1) {
                 console.log('Pass')
-            }
+            
             let newstudent =  {
                 studentfname: this.state.studentfname,
                 studentlname: this.state.studentlname,
@@ -63,16 +66,22 @@ class Studentregistration extends Component {
                                 parentphonenumber: '',
                                 completedcourse: '',
                                 completedlevel: '',
+                                password:"",
+                                password1:"",
                                 errmsg: "Student details registered, A Board member will review your details and contact as soon as possible"
                             })
 
-
+                            return <Homepage msg="You may login" />
                 })
                 .catch(error => {
                     this.setState({ errmsg: "Student Email already exist" });
                     console.log("Error!!!!", error)
                 }); // End of axios
+            }else {
+                this.setState({ errmsg: "Password and Re-Type password doesn't match" });
+            }
            } //end if
+
     }; // end of handleStudentCreation
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../API/Board"
 
-import { CheckPassword } from '../../components/Inputvalidations';
+import { CheckPassword } from '../../util/Inputvalidations';
 
 class Teacherregistration extends Component {
     state = {

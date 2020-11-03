@@ -45,19 +45,19 @@ const  App = ()=> {
               <Switch>
                 <Route exact path="/" render={()=> <Homepage />} />
                 
-                <Route exact path="/teacher/allbatch" component={Allbatches} />
+                <Route exact path="/teacher/allbatch" render={props =><Allbatches {...props} />}/>
                 <Route exact path="/teacher/batchmain" component={Batchmain} />
                 <Route exact path="/teacher/createbatch" component={Createbatch} />
                 
-                <Route exact path="/addboard" component={Allbatches} />
-                <Route exact path="/teacher/login" component ={Boardmember}/>
+                {/* <Route exact path="/addboard" component={Allbatches} /> */}
+                <Route exact path="/teacher/login" render ={props => <Boardmember {...props} />} />
                 <Route exact path="/important" component ={AddBoardMember}/>
-                <Route exact path="/teacher/batch/addstudent/:batchid" component={Addstudent} />
+                <Route exact path="/teacher/batch/addstudent/:batchid" render={props => <Addstudent {...props} />} />
                 <Route exact path="/teacher/allteacher" component={Allteachers} />
-                <Route exact path="/teacher/profile/update" component={Updateteacher} />
+                <Route exact path="/teacher/profile/update" render={props=><Updateteacher {...props} />} />
 
                 <Route exact path="/other/newstudent" component={NewStudentregistration} />  
-                <Route exact path="/other/students/loginpg" component= {Studentlogin} />
+                <Route exact path="/other/students/loginpg" render = { props => <Studentlogin {...props}/>} />
                 <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
            
              
@@ -71,7 +71,7 @@ const  App = ()=> {
                    <Route exact path="/alumni" component={Alumni} />
                 
                 <Switch>
-                  <Route path="*" component={Homepage} />
+                  <Route path="*" render ={props => <Homepage {...props}/>}  />
                 </Switch>
               </Switch>
             </div>

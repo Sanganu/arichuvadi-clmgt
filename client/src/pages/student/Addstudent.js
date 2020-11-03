@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import Homepage from './Homepage.js';
+import Homepage from '../general/Homepage.js';
 
 
 class Addstudent extends Component {

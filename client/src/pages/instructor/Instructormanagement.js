@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Teacherrecords from './Teacherrecords';
-import Addteacher from './Addteacher';
+import Teacherrecords from './Instructorrecords';
+import Addteacher from './Addinstructor';
 
 class Teachermanagement extends Component{
     state ={

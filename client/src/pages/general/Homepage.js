@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // import Header from '../components/Header';
 // import { Menubar } from '../components/Menubar';
 import { connect } from 'react-redux';
-import { loginCredentials } from '../reduxAction/dispatchLoginCredentials';
+import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
 
 class Homepage extends Component {
 
