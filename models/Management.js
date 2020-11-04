@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
-const teacheraccountSchema = new Schema({
+const boardMemberSchema = new Schema({
 
         fname: {
            type: String,
@@ -13,8 +13,12 @@ const teacheraccountSchema = new Schema({
           type: String,
           required:true
         },
-        position:{
+        description:{
           type: String,
+          required:true
+        },
+        designation:{
+          type:String,
           required:true
         },
          loginemail: {
@@ -28,9 +32,6 @@ const teacheraccountSchema = new Schema({
          },
          phone: {
           type:String
-        },
-        title:{
-          type: String
         },
         zoomlink:{
           type: String
@@ -48,7 +49,7 @@ const teacheraccountSchema = new Schema({
          }
 });
 
-teacheraccountSchema.methods = {
+boardMemberSchema.methods = {
 	checkPassword: function(inputPassword) {
 		return bcrypt.compareSync(inputPassword, this.password)
 	},
@@ -58,7 +59,7 @@ teacheraccountSchema.methods = {
 }
 
 // Define hooks for pre-saving
-teacheraccountSchema.pre('save', function(next) {
+boardMemberSchema.pre('save', function(next) {
 	if (!this.password) {
 		console.log('=======NO PASSWORD PROVIDED=======')
 		next()
@@ -69,7 +70,7 @@ teacheraccountSchema.pre('save', function(next) {
 });
 
 // Define hooks for pre-saving
-teacheraccountSchema.pre('create', function(next) {
+boardMemberSchema.pre('create', function(next) {
 	if (!this.password) {
 		console.log('=======NO PASSWORD PROVIDED=======')
 		next()
@@ -79,5 +80,5 @@ teacheraccountSchema.pre('create', function(next) {
 	}
 });
 
-const teacherdetails = mongoose.model("teacherdetails", teacheraccountSchema);
-module.exports = teacherdetails;
+const boarddetails = mongoose.model("boarddetails", boardMemberSchema);
+module.exports = boarddetails;

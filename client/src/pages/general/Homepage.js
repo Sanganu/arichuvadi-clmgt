@@ -33,6 +33,9 @@ class Homepage extends Component {
                         <div className="card-body box5">
                             <Link to="/resources" className="mainlink">Resources</Link>
                         </div>
+                        <div className="card-body box5">
+                            <Link to="/board/addBoard" className="mainlink">Add Board Member</Link>
+                        </div>
 
                     </div>
                 </div>

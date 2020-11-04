@@ -1,31 +1,43 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+//General
 import Homepage from "./pages/general/Homepage";
+import Search from "./pages/general/Search";
+import Appheader from "./components/Appheader";
+import Iconbar from "./navigation/Iconbar";
+import Ourteam from "./pages/general/Ourteam";
+import Alumni from "./pages/general/Alumni";
 
-import Boardmember from "./pages/board/Boardmember"; //Both teacher and student login
+//Board Member
+import AddBoardMember from "./pages/board/AddBoardMember";
+import Boardmember from "./pages/board/Boardmember"; 
+
+
+
+//Instructor
 import Updateteacher from "./pages/instructor/Updateinstructor";
 import Allteachers from "./pages/instructor/Instructormanagement";
-import AddBoardMember from "./pages/instructor/Addinstructor";
-
-import Batchmain from "./pages/batch/Batchmain"; // teacher main page
-import Createbatch from "./pages/batch/Createbatch";
-import Allbatches from "./pages/batch/displayallbatchdetails";
-import Addclass from "./pages/batch/Addclassdetails";
-
+//Student
 import Studentlogin from "./pages/student/Studentlogin";
 import StudentManagement from './pages/student/StudentManagement';
 import NewStudentregistration from "./pages/student/NewStudentregistration";
 import Addstudent from "./pages/student/Addstudent";
 
-import Search from "./pages/general/Search";
-import Appheader from "./components/Appheader";
-import Iconbar from "./navigation/Iconbar";
+//Batch
+
+import Batchmain from "./pages/batch/Batchmain"; 
+import Createbatch from "./pages/batch/Createbatch";
+import Allbatches from "./pages/batch/displayallbatchdetails";
+import Addclass from "./pages/batch/Addclassdetails";
+
+
+
+
+// teacher main page
 
 // import Resources from "./pages/Resources";
-import Ourteam from "./pages/general/Ourteam";
-import Alumni from "./pages/general/Alumni";
-import Addboard from "./pages/board/NewBoardMember";
+
 
 import "./bootstrap.css";
 
@@ -44,26 +56,27 @@ const  App = ()=> {
                
               <Switch>
                 <Route exact path="/" render={()=> <Homepage />} />
-                
-                <Route exact path="/teacher/allbatch" render={props =><Allbatches {...props} />}/>
-                <Route exact path="/teacher/batchmain" component={Batchmain} />
-                <Route exact path="/teacher/createbatch" component={Createbatch} />
-                
+                <Route exact path="/teacher/searchrecords" component={Search} />
+
+                <Route exact path="/board/allbatch" render={props =><Allbatches {...props} />}/>
+                <Route exact path="/board/batchmain" component={Batchmain} />
+                <Route exact path="/board/createbatch" component={Createbatch} />
+                <Route exact path="/board/login" render ={props => <Boardmember {...props} />} />
+                <Route exact path="/board/addBoard" component={AddBoardMember}/>
+                <Route exact path="/board/profile/update" render={props=><Updateteacher {...props} />} />
                 {/* <Route exact path="/addboard" component={Allbatches} /> */}
-                <Route exact path="/teacher/login" render ={props => <Boardmember {...props} />} />
-                <Route exact path="/important" component ={AddBoardMember}/>
+                                
                 <Route exact path="/teacher/batch/addstudent/:batchid" render={props => <Addstudent {...props} />} />
                 <Route exact path="/teacher/allteacher" component={Allteachers} />
-                <Route exact path="/teacher/profile/update" render={props=><Updateteacher {...props} />} />
+        
 
                 <Route exact path="/other/newstudent" component={NewStudentregistration} />  
                 <Route exact path="/other/students/loginpg" render = { props => <Studentlogin {...props}/>} />
                 <Route exact path="/teacher/studentmanagement" component={StudentManagement} />
-           
-             
+                       
                 <Route exact path="/teacher/batch/addclass" component={Addclass} />
-                <Route exact path="/teacher/searchrecords" component={Search} />
-                <Route exact path="/teacher/addBoard" component={Addboard}/>
+          
+                
                 
                    {/* <Route exact path="/resources" component={Resources} />
                    <Route exact path="/users/videos" component={Videoreference} /> */}
