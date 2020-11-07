@@ -87,7 +87,7 @@ class Allbatches extends Component {
   render() {
     const stbatchrec = this.state.batchrecords;
     //console.log("Display all batch details --",this.props);
-    if (this.props.usertype === "boardmember" || this.props.usertype === "instructor")
+    if (this.props.usertype === "management")
     {return (<div className="container">
              <div className = "middlecontent">
           {this.state.allbatches ?

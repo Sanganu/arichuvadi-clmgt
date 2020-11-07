@@ -21,12 +21,12 @@ class Topmenu extends Component {
             return(<nav className = 'icon-bar'>
                         <ul className ="list-unstyled list-group">
                              <li  className = "list-group-item"><Link to  = '/' className  = 'sidemenulink'><i className="fa fa-home fa-2x"></i><p>Home Page</p></Link></li>
-                             <li  className = "list-group-item"><Link to = '/teacher/allteacher' className  = 'sidemenulink' ><i className="fa fa-chalkboard-teacher fa-2x"></i><p>Teacher Management</p></Link></li>
-                             <li  className = "list-group-item"><Link to = '/teacher/studentmanagement' className  = 'sidemenulink'><i  data-toggle = 'Student Management' data-title = "Student Management"className="fa fa-user fa-2x"></i><p>Student Management</p></Link></li>
+                             <li  className = "list-group-item"><Link to = '/teacher/teachermanagement' className  = 'sidemenulink' ><i className="fa fa-chalkboard-teacher fa-2x"></i><p>Teacher Management</p></Link></li>
+                             <li  className = "list-group-item"><Link to = '/student/StudentManagement' className  = 'sidemenulink'><i  data-toggle = 'Student Management' data-title = "Student Management"className="fa fa-user fa-2x"></i><p>Student Management</p></Link></li>
                               
-                              <li  className = "list-group-item"><Link to = '/teacher/allbatch' className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i><p>Cohort Management</p></Link></li>
+                              <li  className = "list-group-item"><Link to = '/board/batchmain' className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i><p>Cohort Management</p></Link></li>
                          
-                              <li  className = "list-group-item" data-toggle = "tooltip" data-title="New Cohort"><Link to = '/teacher/batchmain' className = 'sidemenulink'><i  className="fa fa-users fa-2x"></i><p className="linkinwords">New Batch</p></Link></li>
+                              <li  className = "list-group-item" data-toggle = "tooltip" data-title="New Cohort"><Link to = '/board/batchmain' className = 'sidemenulink'><i  className="fa fa-users fa-2x"></i><p className="linkinwords">New Batch</p></Link></li>
                               <li className = "list-group-item"><Link to = '/teacher/searchrecords' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i><p className ="linkinwords">Search</p></Link></li>
                               {/* <li className = "list-group-item"><Link to = '/teacher/addBoard' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i><p className ="linkinwords">Add Board Member</p></Link></li>  */}
                               {/* <li className ="list-group-item"><Link to = '/teacher/profile/update' className = 'sidemenulink'><i className="fas fa-user-shield fa-2x"></i><p>My Account</p></Link></li> */}

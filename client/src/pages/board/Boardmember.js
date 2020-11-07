@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Allbatches from '../batch/displayallbatchdetails';
-import axios from "axios";
+import API from "../../API/Board";
 // import { Menubar } from '../components/Menubar';
 import { connect } from 'react-redux';
 import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
@@ -27,11 +27,12 @@ class Boardmember extends Component {
         event.preventDefault();
         //  console.log(this.state.vemail, this.state.vpword);
         
-        axios.post('/auth/login', {
+        let authdetails = {
             loginemail: this.state.vemail.toLocaleLowerCase(),
             password: this.state.vpword,
             usertype: 'management'
-        })
+        }
+        API.boardMemberLogin(authdetails)
            .then((response) => {
                 console.log(response)
                 this.setState({

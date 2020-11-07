@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import API from '../../API/Batch';
+import Batchmain from "./Batchmain" ;
 
 class Createbatch extends Component {
     state = {
@@ -34,19 +35,18 @@ class Createbatch extends Component {
             this.setState({ errmsg: "No Empty Fields Enter valid data" });
         }
         else {
-            console.log("Before axios call - create batch");
-            axios.post('/api/teacher/batch/new',
+          
+          let newbatchdetails =
                 {
                     batchdesc: this.state.batchdesc,
                     subject: this.state.course,
                     level: this.state.level,
                     teacher: this.state.instructor,
                     course: this.state.course
-                })
+                }
+                console.log("Before axios call - create batch",newbatchdetails);
+                API.newBatch(newbatchdetails)
                 .then(response => {
-                    console.log("The response -newbatch- axios call-Createbatcg", response);
-                    console.log("The inserted record ID", response.data._id);
-
                     let newbatch = {
                         bid: response.data._id,
                         batchdesc: response.data.batchdesc,
@@ -56,8 +56,7 @@ class Createbatch extends Component {
                     }
                     console.log("Batch creation", newbatch);
                     this.props.onInsert(newbatch)
-                    //window.location = '/teacher/batch/addstudent/'+response._id;
-                    //return <Addstudent />
+                     return <Batchmain />
                 })
                 .catch(error => {
                     this.setState({ errmsg: error.errstring + " Please check console for further details" },

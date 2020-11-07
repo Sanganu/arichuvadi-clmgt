@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import Allstudents from './displayallstudents';
 import API from "../../API/Student"
 
-import { CheckPassword } from '../../util/Inputvalidations';
+// import { CheckPassword } from '../../util/Inputvalidations';
 import Homepage from '../general/Homepage';
 
 class Studentregistration extends Component {
@@ -38,7 +38,7 @@ class Studentregistration extends Component {
             this.state.parentname === "" ||
             this.state.parentphonenumber === "" ||
             this.state.password === "" ||
-            this.state.password1 == "") {
+            this.state.password1 === "") {
             console.log("Empty fields not accepted");
             this.setState({ errmsg: " Empty fields not accepted" })
         }

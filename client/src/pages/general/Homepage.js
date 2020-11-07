@@ -13,16 +13,16 @@ class Homepage extends Component {
                     <h4>{msg}</h4>
                     <div className="card-deck" id="content">
                         <div className="card-body box1">
-                            <Link to="/teacher/login" className="mainlink">Board Member</Link><br />
+                            <Link to="/board/login" className="mainlink">Board Member</Link><br />
                         </div>
                         {/* <div className="card-body box6">
                             <Link to="/teacher/instructor" className="mainlink">Instructor</Link><br />
                         </div> */}
                         <div className="card-body box2">
-                            <Link to="/other/students/loginpg" className="mainlink">Student</Link><br />
+                            <Link to="/student/loginpg" className="mainlink">Student</Link><br />
                         </div>
                         <div className="card-body box5">
-                            <Link to="/other/newstudent" className="mainlink">New Student Registration</Link><br />
+                            <Link to="/student/newstudent" className="mainlink">New Student Registration</Link><br />
                         </div>
                         <div className="card-body box3">
                             <Link to="/users/videos" className="mainlink">Reference Videos</Link>

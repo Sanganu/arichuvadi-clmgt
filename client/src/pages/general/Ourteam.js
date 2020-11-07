@@ -38,12 +38,12 @@ const Ourteam = () => {
                 <div className="carousel-item">
                      <div className="card mb-3">
                         <div className = "row no-gutters">
-                           <div class="col-md-4">
+                           <div className="col-md-4">
                                <img className="card-img-top ourteam"
                                 src="/images/helen.jpeg"
                                 alt="Helen"/>
                             </div>
-                            <div class="col-md-8" >   
+                            <div className="col-md-8" >   
                                 <div className="card-body">
                                     <h4 className="card-title">Helen</h4>
                                     <h5 className="card-title">Board Member</h5>

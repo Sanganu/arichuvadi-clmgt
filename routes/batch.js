@@ -112,26 +112,73 @@ router.put('/api/batch/student/delete/', (req, res) => {
       });
   }); // end of router to delete studentfrom batch
 
+//Delete Student from a batch -- V3 -- working??
+router.put('/api/batch/student/del/', (req, res) => {
+  var stdid = req.body.studentid
+  console.log("Student delete from batch-inputs", stdid);
+  batchdetails.findOne({ "_id": req.body.batchid },
+    function (error, record) {
+      if (error) {
+        console.log("Error in deleting student details", err);
+        res.json(err);
+      } else if (record) {
+        var indexofitem = record.students ? record.students.indexOf(stdid) : -1;
+        console.log("Before Index", record, record.students)
+        if (indexofitem !== -1) {
+          record.students.splice(indexofitem, 1);
+          console.log("New Array", record.students)
+          record.save(function (error) {
+            if (error) console.log("Error in remove -student from batch", error);
+            else {
+              console.log("Student Removed from batch", record);
+              res.json(record)
+            };
+          }); // end save
+        } // end if of index
+      }// end if of find record
+    }); // end of callback for find record
+}); // end of router delete student from batch
 
-// Fetch student records  and class details for the specific batch -- implemented
-router.get('/api/teacher/batch/student/class/details/:bid', isLoggedIn, (req, res) => {
-    let batchid = req.params.bid;
-    let studentrecords = [];
-    console.log("The Session data ", req.session.passport.user, req.session.passport.user.user.userdata._id);
-  
-    studentdetails.find({
-      batchid: batchid
-    }).then((records) => {
-      console.log("Student records fetched for the batch", records);
-      classdetails.find({
-        batch: batchid
-      }).then((recs) => {
-        console.log("Class details fetched --", recs);
-        res.json({ srecords: records, crecords: recs });
+//Delete Batch -- implemented
+router.delete("/api/teacher/batch/delete/:batchid",isLoggedIn, (req, res) => {
+  console.log("Inside delete route for batch to student to class",req.params.batchid);
+  const result =  batchdetails.deleteOne({ _id: req.params.batchid }).exec();
+  if (result.n === 0) {
+    console.log("Error", error);
+    res.status(404).error({ "Error": "Error in deleting batch and class" + errror })
+  }
+  else {
+    console.log("The result-n", result);
+    const respdelclass =  classdetails.deleteMany({ batch: req.body.batchid }).exec();
+    if (respdelclass.n === 0) {
+      console.log("Error", error);
+      res.status(404).error({ "Error": "Error in deleting class" + errror })
+    }
+    else {
+      res.status(200).json({ "Deleted": "Batch and class details" });
+    }
+ }
+});
+
+
+//Delete student details from a batch-- v1 v2 -- working??
+router.put('/api/batch/student/delete/', (req, res) => {
+  console.log("Student delete from batch-inputs", req.body.batchid, req.body.studentid);
+  batchdetails.updateOne({ _id: req.body.batchid },
+    { $pull: { students: req.body.studentid } })
+    .then((data) => {
+      console.log("Student details delete from batch", data);
+      batchdetails.findOne({ _id: req.body.batchid }, function (error, record) {
+        if (error) res.json(error);
+        console.log("Record after removing student", record);
+        res.json(record);
       });
-    }).catch((error) => {
-      console.log("Unable to fetch student  and class records for the batch", error);
-      res.json(error);
-    }); // end Studentdetails find
-  });// end router to get batch students and classes -implemented
-  
+
+    })
+    .catch((err) => {
+      console.log("Error in deleting class details", err);
+      res.json(err); student
+    });
+}); // end of router to delete studentfrom batch
+
+module.exports = router;

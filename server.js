@@ -54,6 +54,9 @@ app.use(passport.session());
 
 // Express app & auth routes
 app.use('/auth',require('./auth'));
+app.use(require("./routes/batch"));
+app.use(require("./routes/board"));
+app.use(require("./routes/student"));
 app.use(routes);
 
 

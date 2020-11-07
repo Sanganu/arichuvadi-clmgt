@@ -161,19 +161,19 @@ function getDetails(req,res) {
                     res.json(err);
                   
                   }); //end catch
-                }else if(req.session.passport.user.user.usertype === "teacher"){
-                 {Teachers.findOne({_id:req.session.passport.user.user.userdata._id})
+                }else if(req.session.passport.user.user.usertype === "management"){
+                 {Board.findOne({_id:req.session.passport.user.user.userdata._id})
                     // .populate({
                     //   path:batchId,
                     //   match:{'batchId':{'$ne':''}},
                     //   select:_id,batchdesc, course,level,students,classid
                     // })
                     .then((result) =>{
-                      console.log("Teacher details fetched:",result);
+                      console.log("Management details fetched:",result);
                       res.json(result);
                     })
                     .catch((error) =>{
-                      console.log("Error in fetching Teacher account details",error);
+                      console.log("Error in fetching Management account details",error);
                       res.json(error);
                     });
                   } // else if teacher

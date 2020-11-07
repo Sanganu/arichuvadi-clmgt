@@ -14,7 +14,7 @@ passport.serializeUser((user, done) => {
 // Decode
 passport.deserializeUser((user, done) => {
 	console.log('=========Deserialize USER DATA called===========');
-	console.log("USER",user,"Usertupe",user.user.usertype);
+	console.log("USER",user,"Usertype",user.user.usertype);
 	const id = user.user.userdata._id;
 	if (user.user.usertype === "student"){
 		Students.findOne(
@@ -27,7 +27,7 @@ passport.deserializeUser((user, done) => {
 			}
 		);
 	}
-	else if(user.user.usertype === "teacher"){
+	else if(user.user.usertype === "management"){
 		Board.findOne(
 			{_id:id},
 			(error,user) => {
