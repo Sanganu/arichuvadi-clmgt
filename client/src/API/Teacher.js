@@ -1,7 +1,7 @@
-import React from 'react';
+import axios from "axios";
 
 export default {
     getAllInstructors : {
-        // return axios("/")
+        return axios("/api/board/all")
     }
 }

@@ -36,7 +36,7 @@ router.post('/api/teacher/batch/student/new', isLoggedIn, function (req, res) {
     password: req.body.password,
     batchid: req.body.batchid,
     parentphonenumber: req.body.parentphonenumber,
-    levelcompleted:  req.body.levelcompleted,
+    levelcompleted: req.body.levelcompleted,
     levelrequested: req.body.levelrequested
   };
   var insertedstudent = {
@@ -165,113 +165,72 @@ router.get('/api/teacher/search/:str', isLoggedIn, (req, res) => {
 
 
 // ALL Instructor details - Teachers and Board
-router.get('/api/board/all',(req,res)=>{
-  var boardlist 
-  Board.find({},'_id, fname+" +lname')
-    .then((results) => {
-      boardlist = results
-       console.log("Records fetched for teachers",results);
-       return Teacher.find({},'_id,fname+" "+lname')
-       
-    .then (function(allinstructors){
-       res.json({
-         board: boardlist,
-         teacher: allinstructors
-       });
-    })
-    .catch((error) => {
-      console.log("Error in fetching",erroboardr);
-      res.json(error);
-    });
-  });
-  
+router.get('/api/instructor/all', (req, res) => {
+        var boardlist
+        Board.find({}, '_id, fname+" +lname')
+          .then((results) => {
+            boardlist = results
+            console.log("Records fetched for teachers", results);
+            return Teacher.find({}, '_id,fname+" "+lname')
+          })
+          .then(function (allinstructors) {
+            console.log(allinstructors)
+                res.json({
+                  board: boardlist,
+                  teacher: allinstructors
+                });
+          })
+          .catch((error) => {
+                console.log("Error in fetching", erroboardr);
+                res.json(error);
+          });
+ });
 
-////Add Class details And Update Batches table - implemented
-router.post('/api/teacher/batch/class/add', isLoggedIn, function (req, res) {
-  // console.log("Insiderouter to add class details",req.body);
-  var newrecord = req.body;
-  Classdetails
-    .create(newrecord)
-    .then(function (dbclassdetails) {
-      console.log("The class details entered : ", dbclassdetails)
-      Batchdetails.findOneAndUpdate({ _id: req.body.batch }, { $push: { classid: dbclassdetails._id } })
-        .then(function (data) {
-          console.log("Inserted class details and updated batchdetails with classid", data);
-          res.json(dbclassdetails);
-        })
-      // return(dbclassdetails);
-    })
-    .catch(function (err) {
-      if (err) {
-        console.log("The Error", err)
-        res.json(err);
-      }
-    });
-}); // Add Class details and update batch --implemented
-
-
-
-//======================================================================
-
-//==========================================================
+  ////Add Class details And Update Batches table - implemented
+  router.post('/api/teacher/batch/class/add', isLoggedIn, function (req, res) {
+          // console.log("Insiderouter to add class details",req.body);
+          var newrecord = req.body;
+          Classdetails
+            .create(newrecord)
+          .then(function (dbclassdetails) {
+              console.log("The class details entered : ", dbclassdetails)
+              Batchdetails.findOneAndUdate({ _id: req.body.batch }, { $push: { classid: dbclassdetails._id } })
+          })
+          .then(function (data) {
+                  console.log("Inserted class details and updated batchdetails with classid", data);
+                  res.json(dbclassdetails);
+          })
+          .catch(function (err) {
+              if (err) {
+                console.log("The Error", err)
+                res.json(err);
+              }
+          });
+  }); // Add Class details and update batch --implemented
 
 
 
+  //======================================================================
+
+  //==========================================================
+
+  //Delete Class details from a batch -- working??
+  router.put('/api/batch/class/delete/', (req, res) => {
+          console.log("Class delete from batch-inputs", req.body.batchid, req.body.studentid);
+            Batchdetails.updateOne({ _id: req.body.batchid },
+                    { $pull: { classid: req.body.classid } })
+            .then((data) => {
+              console.log("Classdetails delete from batch", data);
+              res.json(req.body.studentid);
+            })
+            .catch((err) => {
+              console.log("Error in deleting class details", err);
+              res.json(err);
+            });
+  }); // end of router to delete class from batch
 
 
+ 
 
 
-//Delete Class details from a batch -- working??
-router.put('/api/batch/class/delete/', (req, res) => {
-  console.log("Class delete from batch-inputs", req.body.batchid, req.body.studentid);
-  Batchdetails.updateOne({ _id: req.body.batchid },
-    { $pull: { classid: req.body.classid } })
-    .then((data) => {
-      console.log("Classdetails delete from batch", data);
-      res.json(req.body.studentid);
-    })
-    .catch((err) => {
-      console.log("Error in deleting class details", err);
-      res.json(err);
-    });
-}); // end of router to delete class from batch
-
-
-//Reference Videos Login - API to get Channel Videos and serve front end????????
-router.get("/api/visitors/:str", (req, res) => {
-  //console.log("Youtubheroku e API - Search");
-  let videos = [];
-  youTube.setKey(process.env.API_YOUTUBE);
-  youTube.addParam('safeSearch', 'strict');
-  youTube.search(req.params.str, 10, function (error, result) {
-    if (error) {
-      console.log("error in fetching youtube search data", error);
-      res.json(error);
-    }
-
-    var channellist = result;
-    for (let i = 0; i < channellist.items.length; i++) {
-      if (channellist.items[i] && channellist.items[i].id.videoId !== undefined) {
-        videos.push({
-          id: channellist.items[i].id.videoId,
-          title: channellist.items[i].snippet.title,
-          description: channellist.items[i].snippet.description,
-          url: "https://youtu.be/" + channellist.items[i].id.videoId
-          // thumbnail:channellist[i].snippet.thumbnails.default
-        });
-      } // end if
-    } // end for
-
-    console.log("===================LIST =======================");
-    console.log("Videos :-->", videos);
-    console.log("===================END=========================")
-    //res.json({"msg":"What is happening"});
-    res.json({ "videos": videos });
-  }); // End of youtube api
-
-}); // end of visitors
-
-
-
-
-module.exports = router;
+  module.exports = router;

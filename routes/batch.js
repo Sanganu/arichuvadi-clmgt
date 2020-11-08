@@ -30,23 +30,24 @@ router.post('/api/teacher/batch/new', isLoggedIn, function (req, res) {
       })
       .catch(function (err) {
         if (err) {
-          var vrmsg = (err.errmsg).substr(0, 6);
-          if (vrmsg === 'E11000') {
-            console.log("Batch ID already exist -- Please use different ID to create a new batch");
-            res.json({
-              errid: vrmsg,
-              errstring: "Batch details already exist -- Please delete old batch and register again if this is a new batch",
-              err: err
-            });
-          }
-          else {
-            console.log("Error on saving batch details", err);
-            res.json({
-              errid: 'OTHERS',
-              errstring: "OTHERS -Error in saving Batch details",
-              err: err
-            });
-          }
+          console.log(err)
+          // var vrmsg = (err.errmsg).substr(0, 6);
+          // if (vrmsg === 'E11000') {
+          //   console.log("Batch ID already exist -- Please use different ID to create a new batch");
+          //   res.json({
+          //     errid: vrmsg,
+          //     errstring: "Batch details already exist -- Please delete old batch and register again if this is a new batch",
+          //     err: err
+          //   });
+          // }
+          // else {
+          //   console.log("Error on saving batch details", err);
+          //   res.json({
+          //     errid: 'OTHERS',
+          //     errstring: "OTHERS -Error in saving Batch details",
+          //     err: err
+          //   });
+          // }
   
         }
       }); //end catch section

@@ -1,12 +1,12 @@
-import React from 'react';
+// import React from 'react';
 
-const Masterkey = (props) => {
-    return (<>
+// const Masterkey = (props) => {
+//     return (<>
     
-            {this.props.items.map((rec, key) =>
-                <option value={rec.id}>{rec.name}</option>)}
+//             {this.props.items.map((rec, key) =>
+//                 <option value={rec.id}>{rec.name}</option>)}
 
-    </>)
-}
+//     </>)
+// }
 
-export default Masterkey;
+// export default Masterkey;

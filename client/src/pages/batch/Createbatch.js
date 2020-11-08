@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from '../../API/Batch';
 import Batchmain from "./Batchmain" ;
 import Instructor from "../../components/Masterkey";
+import InstructorID from "../../API/Multi";
 
 class Createbatch extends Component {
     state = {
@@ -13,7 +14,10 @@ class Createbatch extends Component {
         errmsg: '',
     }
     componentDidMount = ()=>{
-        
+        InstructorID.getAllInstructors()
+        .then((records) => {
+            console.log("Rec",records)
+        })
     }
 
     handleInputChange = (event) => {
@@ -33,8 +37,8 @@ class Createbatch extends Component {
         //var myDate = new Date(this.state.startdate);
         if (this.state.batchdesc === "" ||
             this.state.course === "" ||
-            this.state.level === "" ||
-            this.state.instructor === "") {
+            this.state.level === "" ){
+            // || this.state.instructor === "") {
             console.log("No Empty Fields Enter valid data");
             this.setState({ errmsg: "No Empty Fields Enter valid data" });
         }
@@ -111,7 +115,7 @@ class Createbatch extends Component {
                             <div className="form-group row">
                                 <label className="has-float-label">Instructor </label>
                                 <select className="form-control droplist" value={this.state.instructor} onChange={this.handleInputChange} name="instructor">
-                                <Instructor />
+                                {/* <Instructor /> */}
                                </select>
                             </div>
 
