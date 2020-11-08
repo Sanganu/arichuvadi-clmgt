@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from '../../API/Batch';
 import Batchmain from "./Batchmain" ;
+import Instructor from "../../components/Masterkey";
 
 class Createbatch extends Component {
     state = {
@@ -10,6 +11,9 @@ class Createbatch extends Component {
         instructor: '',
         batchdet: '',
         errmsg: '',
+    }
+    componentDidMount = ()=>{
+        
     }
 
     handleInputChange = (event) => {
@@ -39,10 +43,10 @@ class Createbatch extends Component {
           let newbatchdetails =
                 {
                     batchdesc: this.state.batchdesc,
-                    subject: this.state.course,
-                    level: this.state.level,
+                    course: this.state.course,
+                        level: this.state.level,
                     teacher: this.state.instructor,
-                    course: this.state.course
+                 
                 }
                 console.log("Before axios call - create batch",newbatchdetails);
                 API.newBatch(newbatchdetails)
@@ -106,7 +110,9 @@ class Createbatch extends Component {
                             </div>
                             <div className="form-group row">
                                 <label className="has-float-label">Instructor </label>
-                                <input type="text" id="instructor" className="form-control" value={this.state.instructor} onChange={this.handleInputChange} name="instructor" />
+                                <select className="form-control droplist" value={this.state.instructor} onChange={this.handleInputChange} name="instructor">
+                                <Instructor />
+                               </select>
                             </div>
 
                             <button className="createbutton" name="clcreation" onClick={this.handleBatchCreation}>Create Batch</button>

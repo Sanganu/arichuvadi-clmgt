@@ -1,6 +1,6 @@
 const path = require("path");
 const router = require("express").Router();
-const management = require('../models/Management.js');
+const Management = require('../models/Management.js');
 
 
 const isLoggedIn = (req, res, next) => {
@@ -20,7 +20,7 @@ const isLoggedIn = (req, res, next) => {
   //board teacher
 router.post('/api/board/new', (req, res) => {
     console.log("Board Member creation -", req.body);
-    management.create(req.body)
+    Management.create(req.body)
       .then((response) => {
         console.log("Board Member details created", response);
         res.json(response);
@@ -36,6 +36,22 @@ router.post('/api/board/new', (req, res) => {
         }
       })
   });
+
+
+//Router to get all teacher details
+
+router.get('/api/board/all',(req,res)=>{
+Management.find({})
+  .then((results) => {
+     console.log("Records fetched for teachers",results);
+     res.json(results);
+  })
+  .catch((error) => {
+    console.log("Error in fetching",erroboardr);
+    res.json(error);
+  });
+});
+
 
 
   module.exports = router;
