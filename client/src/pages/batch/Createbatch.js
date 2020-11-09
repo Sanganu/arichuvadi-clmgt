@@ -12,11 +12,13 @@ class Createbatch extends Component {
         instructor: '',
         batchdet: '',
         errmsg: '',
+        ids:[]
     }
     componentDidMount = ()=>{
         InstructorID.getAllInstructors()
         .then((records) => {
-            console.log("Rec",records)
+            console.log("Rec",records.data) 
+            this.setState({ids:records.data})
         })
     }
 
@@ -72,7 +74,7 @@ class Createbatch extends Component {
                             console.log("Error in Adding Batch", error.err);
                         });
 
-                }); //end new batch creation - axios call
+                }); //end new batch creation - axios ncall
         } //end if
     }; // end handleclasscreation
 
@@ -115,7 +117,7 @@ class Createbatch extends Component {
                             <div className="form-group row">
                                 <label className="has-float-label">Instructor </label>
                                 <select className="form-control droplist" value={this.state.instructor} onChange={this.handleInputChange} name="instructor">
-                                {/* <Instructor /> */}
+                                <Instructor items={this.state.ids}/>
                                </select>
                             </div>
 

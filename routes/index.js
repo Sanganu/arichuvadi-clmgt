@@ -166,19 +166,17 @@ router.get('/api/teacher/search/:str', isLoggedIn, (req, res) => {
 
 // ALL Instructor details - Teachers and Board
 router.get('/api/instructor/all', (req, res) => {
-        var boardlist
-        Board.find({}, '_id, fname+" +lname')
+        let list =[]
+        Board.find({}, 'fname lname')
           .then((results) => {
-            boardlist = results
+            list = results
             console.log("Records fetched for teachers", results);
-            return Teacher.find({}, '_id,fname+" "+lname')
+            return Teacher.find({},'fname lname')
           })
           .then(function (allinstructors) {
             console.log(allinstructors)
-                res.json({
-                  board: boardlist,
-                  teacher: allinstructors
-                });
+            let allinst = list.concat(allinstructors)
+            res.json(allinst);
           })
           .catch((error) => {
                 console.log("Error in fetching", erroboardr);

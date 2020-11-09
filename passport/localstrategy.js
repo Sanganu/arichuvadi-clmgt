@@ -13,10 +13,10 @@ const strategy = new LocalStrategy(
 				   console.log("=+++++Local Strategy Setup+++++++++");
 				   
 				   //console.log("Passport addition field",loginemail,password,req.body.usertype);
-				   console.log("Passport Local Strategy - User Type",req.body.usertype,loginemail);
+				//    console.log("Passport Local Strategy - User Type",req.body.usertype,loginemail);
 				   if (req.body.usertype === "student"){
 					Students.findOne({ 'loginemail': {"$regex":loginemail,"$options":"i"}} , (err, studentMatch) => {
-						console.log("The Local strategy - to find the Student",studentMatch);
+						// console.log("The Local strategy - to find the Student",studentMatch);
 						if (err) {
 							return done(err)
 						}
@@ -31,7 +31,7 @@ const strategy = new LocalStrategy(
 					}	
 					else if(req.body.usertype === "instructor"){
 						Instructor.findOne({'loginemail': {"$regex": loginemail, "$options":"i"}},(err, teacherMatch) => {
-							console.log("The local strategy to find the Teacher");
+							// console.log("The local strategy to find the Teacher");
 							console.log("-----------------------------------------");
 							if(err){
 								return done(err)
@@ -47,8 +47,8 @@ const strategy = new LocalStrategy(
 					}
 					else if(req.body.usertype === "management"){
 						Board.findOne({'loginemail': {"$regex": loginemail, "$options":"i"}},(err, teacherMatch) => {
-							console.log("The local strategy to find the Teacher");
-							console.log("-----------------------------------------");
+							// console.log("The local strategy to find the Teacher");
+							// console.log("-----------------------------------------");
 							if(err){
 								return done(err)
 							}
