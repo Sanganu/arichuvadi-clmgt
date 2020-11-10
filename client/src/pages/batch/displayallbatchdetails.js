@@ -138,7 +138,7 @@ class Allbatches extends Component {
 
  
   const mapStateToProps = (state) => { 
-    console.log("Map State to Props : ",state);
+    console.log("Map State to Props Display all batches: ",state);
     return {
       loginemail:state.loginemail,
       userfname:state.userfname,

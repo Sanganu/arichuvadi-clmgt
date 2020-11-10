@@ -3,6 +3,7 @@ import API from '../../API/Batch';
 import Batchmain from "./Batchmain" ;
 import Instructor from "../../components/Masterkey";
 import InstructorID from "../../API/Multi";
+import { connect } from "react-redux";
 
 class Createbatch extends Component {
     state = {
@@ -33,6 +34,8 @@ class Createbatch extends Component {
         });
     };
 
+    
+
     handleBatchCreation = (event) => {
         event.preventDefault();
         console.log("Create Batch -- Creation state values", this.state);
@@ -50,10 +53,11 @@ class Createbatch extends Component {
                 {
                     batchdesc: this.state.batchdesc,
                     course: this.state.course,
-                        level: this.state.level,
+                     level: this.state.level,
                     teacher: this.state.instructor,
                  
                 }
+                if(this.props.usertype === "management"){
                 console.log("Before axios call - create batch",newbatchdetails);
                 API.newBatch(newbatchdetails)
                 .then(response => {
@@ -65,7 +69,7 @@ class Createbatch extends Component {
                         instructor: response.data.teacher,
                     }
                     console.log("Batch creation", newbatch);
-                    this.props.onInsert(newbatch)
+                    // this.props.onInsert(newbatch)
                      return <Batchmain />
                 })
                 .catch(error => {
@@ -75,8 +79,17 @@ class Createbatch extends Component {
                         });
 
                 }); //end new batch creation - axios ncall
+            }else{
+                console.log("Only Board members can create batch / cohorts - If you are Board memeber ..Please login as Board memeber, Otherwise teach out to board members")
+            }
         } //end if
     }; // end handleclasscreation
+    getInstructor =(value) =>{
+        this.setState({
+            instructor:value
+        })
+        console.log("Instructor",value)
+    }
 
     render() {
         return (        <div className="middlecontent">
@@ -116,9 +129,10 @@ class Createbatch extends Component {
                             </div>
                             <div className="form-group row">
                                 <label className="has-float-label">Instructor </label>
-                                <select className="form-control droplist" value={this.state.instructor} onChange={this.handleInputChange} name="instructor">
-                                <Instructor items={this.state.ids}/>
-                               </select>
+                              
+                                <Instructor items={this.state.ids}
+                                 passInstructor={this.getInstructor}/>
+                       
                             </div>
 
                             <button className="createbutton" name="clcreation" onClick={this.handleBatchCreation}>Create Batch</button>
@@ -129,4 +143,15 @@ class Createbatch extends Component {
   
   } // end class
   
-  export default Createbatch;
+  const mapStateToProps = (state) => { 
+    console.log("Map State to Props create batch: ",state);
+    return {
+      loginemail:state.loginemail,
+      userfname:state.userfname,
+      userlname:state.userlname,
+      usertype:state.usertype,
+      userid:state.userid
+    }
+    
+  }
+  export default connect(mapStateToProps)(Createbatch);

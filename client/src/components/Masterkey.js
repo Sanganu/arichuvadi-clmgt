@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Masterkey = (props) => {
-    return (<React.Fragment>
-    
-            {props.items.map((rec, key) =>
-                <option value={rec._id}>{rec.fname+" "+rec.lname}</option>)}
+class Masterkey extends Component {
+    state = {
+        masterID: ""
+    }
+    handleInputChange = (event) => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        console.log('The Value in input change',value,name);
 
-    </React.Fragment>)
+        this.setState({
+           masterID:value
+        });
+        this.props.passInstructor(value)
+    };
+
+    render() {
+        return (<React.Fragment>
+            <select className="form-control droplist" onChange={this.handleInputChange} name="masterKey" value={this.state.masterID}>
+                {this.props.items.map((rec, key) =>
+                    <option value={rec._id}>{rec.fname + " " + rec.lname}</option>)}
+            </select>
+        </React.Fragment>)
+    }
 }
 
 export default Masterkey;

@@ -34,13 +34,13 @@ class Boardmember extends Component {
         }
         API.boardMemberLogin(authdetails)
            .then((response) => {
-                console.log(response)
+                // console.log(response)
                 this.setState({
                     invalid: false,
                     logindisp: false,
                     errmsg: ''
                 }, () => {
-                    console.log("Boardmember Login", response.data);
+                    // console.log("Boardmember Login", response.data);
                     var userobj = {
                         loginemail: response.data.loginemail,
                         usertype: 'management',
@@ -49,8 +49,8 @@ class Boardmember extends Component {
                         userlname:response.data.lname,
                         userid: response.data._id
                     }
-                    console.log("In BoardmemberLogin -",userobj);
-                    this.props.setCredetials(userobj);
+                    // console.log("In BoardmemberLogin -",userobj);
+                    this.props.setCredentials(userobj);
                 });
             })
             .catch((error) => {
@@ -109,7 +109,7 @@ class Boardmember extends Component {
 
     const mapDispatchToProps = (dispatch) => {
         return {
-            setCredetials: (userCred) => {
+            setCredentials: (userCred) => {
                 dispatch(loginCredentials(userCred))
             }
         }
