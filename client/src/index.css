@@ -418,8 +418,11 @@ li {
   .icon-bar {
     margin-bottom: 1%;
     /* padding: 1%; */
+   
+    display:flex;
     justify-content: space-between;
     width: 100vw;
+
     padding-bottom: 2%;
   }
   .list-unstyled{

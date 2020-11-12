@@ -4,6 +4,7 @@ import Batchmain from "./Batchmain" ;
 import Instructor from "../../components/Masterkey";
 import InstructorID from "../../API/Multi";
 import { connect } from "react-redux";
+import Boardmember from "../board/Boardmember";
 
 class Createbatch extends Component {
     state = {
@@ -69,8 +70,7 @@ class Createbatch extends Component {
                         instructor: response.data.teacher,
                     }
                     console.log("Batch creation", newbatch);
-                    // this.props.onInsert(newbatch)
-                     return <Batchmain />
+                    this.props.onInsert(newbatch)
                 })
                 .catch(error => {
                     this.setState({ errmsg: error.errstring + " Please check console for further details" },
@@ -80,7 +80,8 @@ class Createbatch extends Component {
 
                 }); //end new batch creation - axios ncall
             }else{
-                console.log("Only Board members can create batch / cohorts - If you are Board memeber ..Please login as Board memeber, Otherwise teach out to board members")
+                console.log("Only Board members can create batch / cohorts - If you are Board memeber ..Please login as Board memeber, Otherwise reach out to board members")
+               return <Boardmember />
             }
         } //end if
     }; // end handleclasscreation

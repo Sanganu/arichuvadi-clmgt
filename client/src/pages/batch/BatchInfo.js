@@ -207,7 +207,7 @@ class BatchInfo extends Component {
 
   render() {
     const studentrec = this.state.studentrecs;
-    if (this.props.usertype === "boardmember"){
+    if (this.props.usertype === "management"){
     return (<div className="middlecontent"> 
       <div className="row">
         <div className="col-lg-4 col-md-11 col-sm-12">

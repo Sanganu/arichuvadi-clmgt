@@ -16,9 +16,10 @@ class Batchmain extends Component {
 
     this.setState({
       batchdet: batchdet,
+      displaybatch: false
     },
       () => {
-        this.setState({ displaybatch: false })
+     
         console.log('Setstate callback-batchmain', this.state.batchdet);
       }); //    end thistate
   }; // end handlebatchcreated    
