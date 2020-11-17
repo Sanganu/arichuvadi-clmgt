@@ -104,7 +104,7 @@ class Addstudent extends Component {
       render(){      
         // const bdetails = this.props.batchdet || false;
        
-           if (this.props.usertype === "boardmember"){
+           if (this.props.usertype === "management"){
             return(
               <div>
                    <p className="errmsg">{this.state.errmsg}</p>
@@ -112,7 +112,7 @@ class Addstudent extends Component {
                                   <div className = "form-group">
                                       <label className="form-control-placeholder">
                                       Firstname</label>
-                                      <input type = "text" 
+                                      <input type = "text"
                                        value={this.state.studentfname} 
                                        onChange = {this.handleInputChange} 
                                        placeholder = "Student Firstname"

@@ -7,8 +7,8 @@ import Allclasses from '../batch/displayallclassdetails.js';
 // import Allbatches from './displayallbatchdetails.js';
 // import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
-import  Homepage from '../general/Homepage.js';
-import { ValidateEmail, ValidateName,CheckPassword,ValidatePhonenumber} from '../../util/Inputvalidations.js'
+import Homepage from '../general/Homepage.js';
+import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 
 class BatchInfo extends Component {
   state = {
@@ -26,7 +26,7 @@ class BatchInfo extends Component {
 
 
   deleteStudent = (stdid) => {
-  //  console.log("Student to be deleted", stdid, this.state.bid);//his.props.batchdetails.bid);
+    //  console.log("Student to be deleted", stdid, this.state.bid);//his.props.batchdetails.bid);
     let studentrecs = 0;
     axios.put('/api/batch/student/delete/',
       {
@@ -34,16 +34,14 @@ class BatchInfo extends Component {
         studentid: stdid
       })
       .then(response => {
-//        console.log("Student Details deleted from Batch", response);
-        for(let i =0;i < this.state.studentrecs.length;i++)
-        {
-          if(stdid !== this.state.studentrecs[i].stdid)
-          {
+        //        console.log("Student Details deleted from Batch", response);
+        for (let i = 0; i < this.state.studentrecs.length; i++) {
+          if (stdid !== this.state.studentrecs[i].stdid) {
             studentrecs.push(this.state.studentrecs[i]);
           }
         }
-        this.setState({studentrecs},() => {
-           console.log("The Updated State of studentrecs",this.state.studentrecs);
+        this.setState({ studentrecs }, () => {
+          console.log("The Updated State of studentrecs", this.state.studentrecs);
         });
       }) //end then
       .catch(error => {
@@ -51,66 +49,66 @@ class BatchInfo extends Component {
       }); // end catch
   } //end of delete student
 
-      updateBatch = (event) => {
-            event.preventDefault();
-            //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
-           if (this.batchInputValidation()){
-            axios.put('/api/teacher/batch/update',
-              {
-                batchid: this.state.bid,
-                batchdesc: this.state.bdesc,
-                course: this.state.course,
-                level: this.state.level,
-                teacher: this.state.instructor
-              })
-              .then((response) => {
+  updateBatch = (event) => {
+    event.preventDefault();
+    //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
+    if (this.batchInputValidation()) {
+      axios.put('/api/teacher/batch/update',
+        {
+          batchid: this.state.bid,
+          batchdesc: this.state.bdesc,
+          course: this.state.course,
+          level: this.state.level,
+          teacher: this.state.instructor
+        })
+        .then((response) => {
           //      console.log("The response from update" + response);
-                this.setState({ bdescription: this.state.bdesc }, () => {
-                  console.log("The set state", this.state.bdescription);
-                });
-              })
-              .catch(error => {
-                this.setState({ errmsg: "Error in saving class records" + error, updatestatus: 'Error in updating class details' + error },
-                  () => {
-                    console.log("Error in saving class records!!!", error);
-                  });
-              }); // end catch
-            }  
-            else {
-              console.log("Invalid Batch DEscription")
-            }
-      } // end of update batch
+          this.setState({ bdescription: this.state.bdesc }, () => {
+            console.log("The set state", this.state.bdescription);
+          });
+        })
+        .catch(error => {
+          this.setState({ errmsg: "Error in saving class records" + error, updatestatus: 'Error in updating class details' + error },
+            () => {
+              console.log("Error in saving class records!!!", error);
+            });
+        }); // end catch
+    }
+    else {
+      console.log("Invalid Batch DEscription")
+    }
+  } // end of update batch
 
   //Batch delete
-  deleteBatch = (event) =>{
-            event.preventDefault();
-            console.log("batch id",this.state.bid)
-            axios.delete(`/api/teacher/batch/delete/${this.state.bid}`,{
-              batchid : this.state.bid
-            }).then((response) => {
-              console.log("Batch deleted", response);
-              this.props.deleteBatch(this.state.bid);
-            })
-            .catch(error =>{
-              console.log("Error in deleting Batch records: ",error);
-              
-            })
+  deleteBatch = (event) => {
+    event.preventDefault();
+    console.log("batch id", this.state.bid)
+    axios.delete(`/api/teacher/batch/delete/${this.state.bid}`, {
+      batchid: this.state.bid
+    }).then((response) => {
+      console.log("Batch deleted", response);
+      this.props.deleteBatch(this.state.bid);
+    })
+      .catch(error => {
+        console.log("Error in deleting Batch records: ", error);
+
+      })
   } //End of delete batch
 
   studentInputValidation = () => {
-    if (! ValidatePhonenumber()){
+    if (!ValidatePhonenumber()) {
 
     }
-    else if( ! ValidateEmail()){
+    else if (!ValidateEmail()) {
 
     }
-    else if( ! CheckPassword() ){
+    else if (!CheckPassword()) {
 
     }
   }
 
   batchInputValidation = () => {
-    if(! ValidateName(this.state.batchdesc)){
+    if (!ValidateName(this.state.batchdesc)) {
       return false;
     }
     else {
@@ -145,7 +143,7 @@ class BatchInfo extends Component {
 
   }
 
-  
+
 
   handleClassDetails = (nclass) => {
     let classrecs = this.state.classrecs;
@@ -175,7 +173,7 @@ class BatchInfo extends Component {
                 stdemail: response.data.srecords[i].loginemail,
                 phonenumber: response.data.srecords[i].parentphonenumber
               } // end rec
-              strecs.push(newstrec); 
+              strecs.push(newstrec);
             } // end for loop
             // console.log("The student recs",strecs);  
           };// end if srecords part
@@ -207,112 +205,112 @@ class BatchInfo extends Component {
 
   render() {
     const studentrec = this.state.studentrecs;
-    if (this.props.usertype === "management"){
-    return (<div className="middlecontent"> 
-      <div className="row">
-        <div className="col-lg-4 col-md-11 col-sm-12">
-          <h4>Cohort Details</h4>
-          <form className="inputsection">
-                      <div className="form-group">
+    if (this.props.usertype === "management") {
+      return (<div className="middlecontent">
+        <div className="row">
+          <div className="col-lg-4 col-md-11 col-sm-12">
+            <h4>Cohort Details</h4>
+            <form className="inputsection">
+              <div className="form-group">
 
-                        <label className="form-control-placeholder"
-                          htmlFor="bdesc">
-                          Batch Name </label>
-                        <input value={this.state.bdesc}
-                          placeholder={this.state.bdesc}
-                          name="bdesc"
-                          id="bdesc"
-                          onChange={this.handleInputChange}
-                          className="form-control"
-                        />
+                <label className="form-control-placeholder"
+                  htmlFor="bdesc">
+                  Batch Name </label>
+                <input value={this.state.bdesc}
+                  placeholder={this.state.bdesc}
+                  name="bdesc"
+                  id="bdesc"
+                  onChange={this.handleInputChange}
+                  className="form-control"
+                />
 
-                      </div>
-                      <div className="form-group">
-                        <label className="form-control-placeholder">
-                          Instructor </label>
-                        <input value={this.state.instructor}
-                          placeholder={this.state.instructor}
-                          name="instructor"
-                          id="instructor"
-                          className="form-control"
-                          onChange={this.handleInputChange} />
-                      </div>
-                      <div className="form-group row">
-                                          <label className="has-float-label">Course : </label>
-                                          <select className="form-control droplist"
-                                              onChange={this.handleInputChange}
-                                              value={this.state.course} name="course" id="course">
-                                              <option value='Beginner' default>Beginner</option>
-                                              <option value='Intermediate'>Intermediate</option>
-                                              <option value='Advance'>Advance</option>
-                                          </select>
-                                      </div>
-                                      <div className="form-group row">
-                                          <label className="has-float-label">Level </label>
-                                          <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
-                                              <option value='Oral' default>Oral Examination</option>
-                                              <option value='Visual'>Visual Examination</option>
-                                              <option value='Written'>Written Examination</option>
-                                              <option value='Online'>Online Examination</option>
-                                              <option value='Offline'>Offline Examination</option>
-                                          </select>
-                                      </div>
-                      <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
+              </div>
+              <div className="form-group">
+                <label className="form-control-placeholder">
+                  Instructor </label>
+                <input value={this.state.instructor}
+                  placeholder={this.state.instructor}
+                  name="instructor"
+                  id="instructor"
+                  className="form-control"
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className="form-group row">
+                <label className="has-float-label">Course : </label>
+                <select className="form-control droplist"
+                  onChange={this.handleInputChange}
+                  value={this.state.course} name="course" id="course">
+                  <option value='Beginner' default>Beginner</option>
+                  <option value='Intermediate'>Intermediate</option>
+                  <option value='Advance'>Advance</option>
+                </select>
+              </div>
+              <div className="form-group row">
+                <label className="has-float-label">Level </label>
+                <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
+                  <option value='Oral' default>Oral Examination</option>
+                  <option value='Visual'>Visual Examination</option>
+                  <option value='Written'>Written Examination</option>
+                  <option value='Online'>Online Examination</option>
+                  <option value='Offline'>Offline Examination</option>
+                </select>
+              </div>
+              <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
               <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
-          </form>
-        </div>
-        <div className="col-lg-4 col-md-11 col-sm-12">
-        <h6>Add New Student</h6>
-          <Addstudent batchdet={this.props.batchdetails}
-            newStudent={this.handleNewStudent} />
+            </form>
+          </div>
+          <div className="col-lg-4 col-md-11 col-sm-12">
+            <h6>Add New Student</h6>
+            <Addstudent batchdet={this.props.batchdetails}
+              newStudent={this.handleNewStudent} />
             {/* <StudentID /> */}
-        </div>
-        <div className="col-lg-4 col-md-11 col-sm-12">
-          <h6>Add Class Details</h6>
-          <BatchAddClassDetails batchdet={this.props.batchdetails}
-            newClassDetails={this.handleClassDetails} />
-        </div>
-      </div>
-      <div className="row" >
-        <div className="col-md-6">
-          <div className="table-responsive">
-            <table className="table table-hover">
-            <thead>
-            <tr>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Username</th>
-                  {/* <th>Phone</th> */}
-                </tr>
-              </thead>
-              <tbody>
-               
-                {studentrec.map((data, index) => (
-                  <Allstudents studentrec={data}
-                    deleteStudentDetails={this.deleteStudent}
-                    key={index}
-                  />))}
-              </tbody>
-            </table>
+          </div>
+          <div className="col-lg-4 col-md-11 col-sm-12">
+            <h6>Add Class Details</h6>
+            <BatchAddClassDetails batchdet={this.props.batchdetails}
+              newClassDetails={this.handleClassDetails} />
           </div>
         </div>
-        <div className="col-md-6">
-          <div className="table-responsive">
-            <table className="table table-hover">
-              <thead>
-              <tr>
-                  <th>Lessons Covered</th>
-                  <th>Homework</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
+        <div className="row" >
+          <div className="col-md-6">
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Username</th>
+                    {/* <th>Phone</th> */}
+                  </tr>
+                </thead>
+                <tbody>
+
+                  {studentrec.map((data, index) => (
+                    <Allstudents studentrec={data}
+                      deleteStudentDetails={this.deleteStudent}
+                      key={index}
+                    />))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Lessons Covered</th>
+                    <th>Homework</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
                 <Allclasses
-                 classrecs={this.state.classrecs} />
-            </table>
+                  classrecs={this.state.classrecs} />
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-    </div>)
+      </div>)
     }
     else {
       return <Homepage msg="Please Login" />
@@ -320,17 +318,17 @@ class BatchInfo extends Component {
   } // end of render
 } //end component
 
-const mapStateToProps = (state) => { 
-  console.log("Map State to Props : ",state);
+const mapStateToProps = (state) => {
+  console.log("Map State to Props : ", state);
   return {
-    loginemail:state.loginemail,
-    userfname:state.userfname,
-    userlname:state.userlname,
-    usertype:state.usertype,
-    userid:state.userid
+    loginemail: state.loginemail,
+    userfname: state.userfname,
+    userlname: state.userlname,
+    usertype: state.usertype,
+    userid: state.userid
   }
 }
 
 //export default BatchInfo;
-export default connect(mapStateToProps)(BatchInfo);    
+export default connect(mapStateToProps)(BatchInfo);
 
