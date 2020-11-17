@@ -49,13 +49,15 @@ class Allbatches extends Component {
             batchrecords.push(currentrec);
           } // end for
 
-          console.log("Axios No records exist");
           allbatches = true;
           this.setState({
             batchrecords: batchrecords,
             allbatches: allbatches
           },
             () => { console.log("State of records") });
+        }else{
+
+          console.log("Axios No records exist");
         }
       }) // end then
       .catch(error => {

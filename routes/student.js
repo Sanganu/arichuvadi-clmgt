@@ -18,10 +18,11 @@ const isLoggedIn = (req, res, next) => {
   }
 
   // Add Student Record  without batch linking -- implemented
-router.post("/api/student/new", isLoggedIn, (req, res) => {
+router.post("/api/student/new", (req, res) => {
     let insertedstudent = {};
+    console.log(req.body)
     studentdetails
-      .create(req.body.newrecord)
+      .create(req.body)
       .then(function (dbstudentdetails) {
         insertedstudent = {
           stdid: dbstudentdetails._id,
