@@ -11,6 +11,8 @@ import Homepage from '../general/Homepage.js';
 import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 import API from "../../API/Board";
 import BAPI from "../../API/Batch";
+import Instructor from "../../components/Masterkey";
+import IAPI from "../../API/Multi";
 
 class BatchInfo extends Component {
   state = {
@@ -55,7 +57,7 @@ class BatchInfo extends Component {
     event.preventDefault();
     //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
     if (this.batchInputValidation()) {
-       API.addNewStudentsToBatch(
+      API.addNewStudentsToBatch(
         {
           batchid: this.state.bid,
           batchdesc: this.state.bdesc,
@@ -85,11 +87,11 @@ class BatchInfo extends Component {
   deleteBatch = (event) => {
     event.preventDefault();
     console.log("batch id", this.state.bid)
- BAPI.deleteBatch(this.state.bid)
-    .then((response) => {
-      console.log("Batch deleted", response);
-      this.props.deleteBatch(this.state.bid);
-    })
+    BAPI.deleteBatch(this.state.bid)
+      .then((response) => {
+        console.log("Batch deleted", response);
+        this.props.deleteBatch(this.state.bid);
+      })
       .catch(error => {
         console.log("Error in deleting Batch records: ", error);
 
@@ -116,6 +118,7 @@ class BatchInfo extends Component {
       return true;
     }
   }
+
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -152,14 +155,25 @@ class BatchInfo extends Component {
     classrecs.push(nclass);
     this.setState({ classrecs }, () => { console.log("Class details", classrecs) });
   }
+  getInstructor =(value) =>{
+    this.setState({
+        instructor:value
+    })
+    console.log("Instructor",value)
+}
 
   componentDidMount = () => {
     let bid = this.props.batchdetails.bid;
     let strecs = this.state.studentrecs || [];
     let clrecs = this.state.classrecs || [];
+    IAPI.getAllInstructors()
+      .then((records) => {
+        console.log("Rec", records.data)
+        this.setState({ ids: records.data })
+      })
     //console.log("The batch selected details received",this.props)
     if (this.props.newbatch === false) {
-        BAPI.getClassDetails(bid)
+      BAPI.getClassDetails(bid)
         .then(response => {
           // console.log("The Existing Students & Class",response.data);
           // console.log("The Student records length",response.data.srecords.length);
@@ -226,15 +240,13 @@ class BatchInfo extends Component {
                 />
 
               </div>
-              <div className="form-group">
-                <label className="form-control-placeholder">
-                  Instructor </label>
-                <input value={this.state.instructor}
-                  placeholder={this.state.instructor}
-                  name="instructor"
-                  id="instructor"
-                  className="form-control"
-                  onChange={this.handleInputChange} />
+              <div className="form-group row">
+                <label className="has-float-label">Instructor </label>
+
+                {/* <Instructor items={this.state.ids}
+                  passMasterId={this.getInstructor}
+                  Id={this.state.instructor} /> */}
+
               </div>
               <div className="form-group row">
                 <label className="has-float-label">Course : </label>

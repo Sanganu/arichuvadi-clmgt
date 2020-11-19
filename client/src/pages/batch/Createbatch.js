@@ -132,7 +132,7 @@ class Createbatch extends Component {
                                 <label className="has-float-label">Instructor </label>
                               
                                 <Instructor items={this.state.ids}
-                                 passInstructor={this.getInstructor}/>
+                                 passMasterId={this.getInstructor}/>
                        
                             </div>
 

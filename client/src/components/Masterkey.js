@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Masterkey extends Component {
     state = {
-        masterID: ""
+        masterID: this.props.Id || ""
     }
     handleInputChange = (event) => {
         const target = event.target;
@@ -13,7 +13,7 @@ class Masterkey extends Component {
         this.setState({
            masterID:value
         });
-        this.props.passInstructor(value)
+        this.props.passMasterId(value)
     };
 
     render() {
