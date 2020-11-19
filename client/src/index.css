@@ -367,6 +367,31 @@ li {
 
 @media only screen and (max-width: 768px)
 {
+   
+  /* .icon-bar {
+    margin-bottom: 1%;
+    padding: 1%;
+    max-width: 100%;
+    display:flex;
+    flex-direction: row;
+
+    width: 100vw;
+    padding-bottom: 2%;
+  } 
+
+  .list-unstyled{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    margin-bottom:2%;
+    padding:2%;
+  } */
+
+  .list-unstyled p{
+    display : none;
+  }
 
       footer {
         position: relative;
@@ -414,25 +439,7 @@ li {
 @media only screen and (max-width: 987px)
 {
   
-  
-  .icon-bar {
-    margin-bottom: 1%;
-    /* padding: 1%; */
-   
-    display:flex;
-    justify-content: space-between;
-    width: 100vw;
-
-    padding-bottom: 2%;
-  }
-  .list-unstyled{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width:100%;
-    margin-bottom:2%;
-    padding:2%;
-  }
+ 
   
   .middlecontent{
     margin-top:1;

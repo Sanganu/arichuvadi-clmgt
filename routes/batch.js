@@ -93,8 +93,8 @@ router.put("/api/teacher/batch/update", isLoggedIn, (req, res) => {
     });
   }); // Batch update --implemented
 
-//Delete student details from a batch-- v1 v2 -- working??
-router.put('/api/batch/student/delete/', (req, res) => {
+//trying this ----Delete student details from a batch-- v1 v2 -- working??
+router.put('/api/board/batch/student/delete/', (req, res) => {
     console.log("Student delete from batch-inputs", req.body.batchid, req.body.studentid);
     batchdetails.updateOne({ _id: req.body.batchid },
       { $pull: { students: req.body.studentid } })
@@ -141,7 +141,7 @@ router.put('/api/batch/student/del/', (req, res) => {
 }); // end of router delete student from batch
 
 //Delete Batch -- implemented
-router.delete("/api/teacher/batch/delete/:batchid",isLoggedIn, (req, res) => {
+router.delete("/api/board/batch/delete/:batchid",isLoggedIn, (req, res) => {
   console.log("Inside delete route for batch to student to class",req.params.batchid);
   const result =  batchdetails.deleteOne({ _id: req.params.batchid }).exec();
   if (result.n === 0) {

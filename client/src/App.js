@@ -49,10 +49,10 @@ const App = () => {
       <div>
         <Appheader />
         <div className='row'>
-          <div className='col-md-12 col-sm-12 col-lg-1'>
+          <div className='col-sm-2 col-md-2  col-lg-1'>
             <Iconbar />
           </div>
-          <div className='col-md-12 col-sm-12 col-lg-11'>
+          <div className='col-sm-10 col-md-10 col-lg-11'>
 
             <Switch>
               <Route exact path="/" render={() => <Homepage />} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import API from '../../API/Batch';
 import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
 import Homepage from "../general/Homepage";
@@ -30,7 +30,7 @@ class Allbatches extends Component {
     //  console.log("displayallbatchdetails -- component before axios call",this.props);
     let batchrecords = this.state.batchrecords;
     let allbatches = false
-    axios.get('/api/teacher/batch/all')
+      API.getAllBatch()
       .then(response => {
         console.log("The Batch Details of  - axios call", response.data);
         if (response.data.length > 0) {

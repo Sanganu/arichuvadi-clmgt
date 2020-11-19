@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
 import Allstudents from '../student/displayallstudents.js';
@@ -9,6 +9,8 @@ import Allclasses from '../batch/displayallclassdetails.js';
 import { connect } from 'react-redux';
 import Homepage from '../general/Homepage.js';
 import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
+import API from "../../API/Board";
+import BAPI from "../../API/Batch";
 
 class BatchInfo extends Component {
   state = {
@@ -28,7 +30,7 @@ class BatchInfo extends Component {
   deleteStudent = (stdid) => {
     //  console.log("Student to be deleted", stdid, this.state.bid);//his.props.batchdetails.bid);
     let studentrecs = 0;
-    axios.put('/api/batch/student/delete/',
+    API.deleteStudentFromBatch(
       {
         batchid: this.state.bid,
         studentid: stdid
@@ -53,7 +55,7 @@ class BatchInfo extends Component {
     event.preventDefault();
     //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
     if (this.batchInputValidation()) {
-      axios.put('/api/teacher/batch/update',
+       API.addNewStudentsToBatch(
         {
           batchid: this.state.bid,
           batchdesc: this.state.bdesc,
@@ -83,9 +85,8 @@ class BatchInfo extends Component {
   deleteBatch = (event) => {
     event.preventDefault();
     console.log("batch id", this.state.bid)
-    axios.delete(`/api/teacher/batch/delete/${this.state.bid}`, {
-      batchid: this.state.bid
-    }).then((response) => {
+ BAPI.deleteBatch(this.state.bid)
+    .then((response) => {
       console.log("Batch deleted", response);
       this.props.deleteBatch(this.state.bid);
     })
@@ -158,7 +159,7 @@ class BatchInfo extends Component {
     let clrecs = this.state.classrecs || [];
     //console.log("The batch selected details received",this.props)
     if (this.props.newbatch === false) {
-      axios.get('/api/teacher/batch/student/class/details/' + bid)
+        BAPI.getClassDetails(bid)
         .then(response => {
           // console.log("The Existing Students & Class",response.data);
           // console.log("The Student records length",response.data.srecords.length);
