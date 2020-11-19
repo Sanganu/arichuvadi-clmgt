@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import API from '../../API/Multi';
 import Resultrecords from './Resultrecords';
 
 
@@ -16,7 +16,7 @@ class Searchstudents extends Component {
     searchrecords = (event) => {
         event.preventDefault();
         console.log("BEfore axios call - search str", this.state.searchstring)
-        axios.get(`/api/teacher/search/${this.state.searchstring}`)
+        API.getSearchResults(this.state.searchstring)
             .then((response) => {
                 console.log("Results from search", response);
                 let matchrecords = [];

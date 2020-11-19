@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import API from '../../API/Multi';
 
 
 class BatchRecAddclass extends Component
@@ -46,7 +46,7 @@ class BatchRecAddclass extends Component
                 else
                 {
                   console.log("State values:",this.state.homework,this.state.date,this.state.lessoncovered);
-                  axios.post('/api/teacher/batch/class/add',
+                  API.addClassDetails(
                   {
                      lessoncovered : this.state.lessoncovered,
                      homework : this.state.homework,

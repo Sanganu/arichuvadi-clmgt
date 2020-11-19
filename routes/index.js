@@ -185,7 +185,7 @@ router.get('/api/instructor/all', (req, res) => {
  });
 
   ////Add Class details And Update Batches table - implemented
-  router.post('/api/teacher/batch/class/add', isLoggedIn, function (req, res) {
+  router.post('/api/instructor/batch/class/add', isLoggedIn, function (req, res) {
           // console.log("Insiderouter to add class details",req.body);
           var newrecord = req.body;
           Classdetails

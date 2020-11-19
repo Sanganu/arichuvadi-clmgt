@@ -9,5 +9,8 @@ export default {
     },
     getClassDetails: function(bid){
         return    axios.get('/api/teacher/batch/student/class/details/' + bid)
+    },
+    getAllBatch: function(){
+        return axios.get('/api/teacher/batch/all')
     }
 }
