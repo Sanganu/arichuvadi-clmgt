@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import API from '../../API/Student';
 import Allstudents from './displayallstudentsdetails';
 // import Topmenu from "../components/Topmenu";
 // import Teacherheader from '../components/Teacherheader';
@@ -33,7 +33,7 @@ class Studentmanagement extends Component {
   componentDidMount = (event) => {
     let studentrecords = this.state.studentrecords;
     console.log("ComponentDidmount - Student management")
-    axios.get("/api/teacher/students/all")
+      API.getAllStudents()
       .then(response => {
         for (let i = 0; i < response.data.length; i++) {
           let currentrec = {
@@ -80,8 +80,7 @@ class Studentmanagement extends Component {
         password: this.state.password,
         parentphonenumber: this.state.parentphonenumber,
       }
-      axios.post('/api/teacher/student/new',
-        { newrecord })
+    API.createNewStudent(newrecord)
         .then(res => {
           console.log("The response from adding student", res);
           let newstrec = {
@@ -115,7 +114,7 @@ class Studentmanagement extends Component {
 
   deleteStudentDetails = (id) => {
     console.log("Deletestudentdetails-id", id);
-    axios.delete("/api/teacher/student/delete/" + id)
+      API.deleteStudent(id)
       .then(response => {
         console.log("the response", response)
         if (response.status === 200) {
@@ -133,7 +132,7 @@ class Studentmanagement extends Component {
 
   updateStudentDetails = (studentrecord) => {
     console.log("Student Record", studentrecord);
-    axios.put("/api/teacher/student/update/" + studentrecord.recid, studentrecord)
+      API.updateStudentDetails(studentrecord)
       .then(response => {
         if (response.statatus === 200) {
          console.log("The studentrecords", response);

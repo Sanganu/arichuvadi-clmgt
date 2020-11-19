@@ -118,7 +118,7 @@ router.get('/api/batch/student/class/details/:bid', isLoggedIn, (req, res) => {
 
 
 // Search Student & Batch Records -- implemented
-router.get('/api/teacher/search/:str', isLoggedIn, (req, res) => {
+router.get('/api/instructor/search/:str', isLoggedIn, (req, res) => {
   let student_details
   let batch_details
   let searchString = req.params.str;

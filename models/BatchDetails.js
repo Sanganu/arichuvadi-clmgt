@@ -15,6 +15,9 @@ const batchdetailsSchema = new Schema({
           type:Schema.Types.ObjectId,
           ref: 'teacherdetails'
         },
+        examDAte:{
+          type:Date
+        },
         students: [{
           type: Schema.Types.ObjectId,
           ref: 'studentdetails'

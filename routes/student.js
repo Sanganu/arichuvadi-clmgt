@@ -56,7 +56,7 @@ router.post("/api/student/new", (req, res) => {
 
   // Get All Student Details -- implemented
 router.get("/api/students/all", isLoggedIn, (req, res) => {
-    //console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
+    console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
     studentdetails.find({})
       .then((data) => {
         console.log("student details", data);
@@ -125,41 +125,41 @@ router.put("/api/studentbatch/update", (req, res) => {
 
 
 //Student Registration
-router.post("/api/student/new", (req, res) => {
-  let insertedstudent = {};
-  console.log(req.body)
-  studentdetails
-    .create(req.body)
-    .then(function (dbstudentdetails) {
-      console.log("route",dbstudentdetails)
-      insertedstudent = {
-        stdid: dbstudentdetails._id,
-        studentfname: dbstudentdetails.studentfname,
-        studentlname: dbstudentdetails.studentlname,
-        loginemail: dbstudentdetails.loginemail,
-        phonenumber: dbstudentdetails.parentphonenumber,
-        parentname: dbstudentdetails.parentname
-      };
-      console.log("Inserted student record", insertedstudent);
-      res.json(insertedstudent);
-    }).catch(function (err) {
-      console.log("error in student batch", err)
-      if (err.errmsg) {
-        if ((err.errmsg).substr(0, 6) === 'E11000') {
-          console.log("Student Login - already exist");
-          res.json({ error: "Student email already exist :" });
-        }
-        else {
-          console.log("Error in Creating Student details", err)
-          res.json(err);
-        }
-      }
-      else {
-        console.log("Exceptional Error: ", err)
-        res.json(err);
-      }
-    }); // end db studentdetails
-}); // End router to Student in StudentManagement -- implemented
+// router.post("/api/student/new", (req, res) => {
+//   let insertedstudent = {};
+//   console.log(req.body)
+//   studentdetails
+//     .create(req.body)
+//     .then(function (dbstudentdetails) {
+//       console.log("route",dbstudentdetails)
+//       insertedstudent = {
+//         stdid: dbstudentdetails._id,
+//         studentfname: dbstudentdetails.studentfname,
+//         studentlname: dbstudentdetails.studentlname,
+//         loginemail: dbstudentdetails.loginemail,
+//         phonenumber: dbstudentdetails.parentphonenumber,
+//         parentname: dbstudentdetails.parentname
+//       };
+//       console.log("Inserted student record", insertedstudent);
+//       res.json(insertedstudent);
+//     }).catch(function (err) {
+//       console.log("error in student batch", err)
+//       if (err.errmsg) {
+//         if ((err.errmsg).substr(0, 6) === 'E11000') {
+//           console.log("Student Login - already exist");
+//           res.json({ error: "Student email already exist :" });
+//         }
+//         else {
+//           console.log("Error in Creating Student details", err)
+//           res.json(err);
+//         }
+//       }
+//       else {
+//         console.log("Exceptional Error: ", err)
+//         res.json(err);
+//       }
+//     }); // end db studentdetails
+// }); // End router to Student in StudentManagement -- implemented
 
 
 

@@ -8,6 +8,6 @@ export default {
         return   axios.post('/api/instructor/batch/class/add',classdata)
     },
     getSearchResults:function(searchstring){
-        return   axios.get(`/api/teacher/search/${searchstring}`)
+        return   axios.get(`/api/instructor/search/${searchstring}`)
     }
 }
