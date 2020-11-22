@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 //This is display of all studnets under student management
+//For Student Management
 
 class Allstudents extends Component
 {

@@ -11,8 +11,8 @@ import Homepage from '../general/Homepage.js';
 import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 import API from "../../API/Board";
 import BAPI from "../../API/Batch";
-import Instructor from "../../components/Masterkey";
-import IAPI from "../../API/Multi";
+import MasterKey  from "../../components/Masterkey";
+import  MAPI from "../../API/Multi";
 
 class BatchInfo extends Component {
   state = {
@@ -25,7 +25,8 @@ class BatchInfo extends Component {
     bdescription: this.props.batchdetails.batchdesc || '',
     studentrecs: [],
     classrecs: [],
-    delstdid: ''
+    delstdid: '',
+    instructorList:[]
   }
 
 
@@ -133,22 +134,8 @@ class BatchInfo extends Component {
     let studentrecs = this.state.studentrecs;
     let newstrec = {
       stdid: nstudent.stdid,
-      stdfname: nstudent.stdfname,
-      stdlname: nstudent.stdlname,
-      stdemail: nstudent.stdemail,
-      phonenumber: nstudent.phonenumber
     }
-    if (newstrec) {
-      studentrecs.push(newstrec);
-      this.setState({
-        studentrecs: studentrecs
-      }, () => { console.log("The Student Records - update with add student", studentrecs); });
-    }
-
   }
-
-
-
   handleClassDetails = (nclass) => {
     let classrecs = this.state.classrecs;
     console.log("The class details", nclass);
@@ -161,61 +148,72 @@ class BatchInfo extends Component {
     })
     console.log("Instructor",value)
 }
-
+  getStudent = (student) => {
+     let studentrecs = this.state.studentrecs
+     studentrecs.push(student)
+     this.setState({
+       studentrecs:studentrecs
+     })
+  }
   componentDidMount = () => {
     let bid = this.props.batchdetails.bid;
     let strecs = this.state.studentrecs || [];
     let clrecs = this.state.classrecs || [];
-    IAPI.getAllInstructors()
+    // MAPI.getAllInstructors()
+    //   .then((records) => {
+    //     console.log("Rec", records.data)
+    //     this.setState({ instructorList: records.data })
+    //   })
+    // console.log("The batch selected details received",this.props)
+    // if (this.props.newbatch === false || this.props.student.length >0) {
+      console.log("Batch Info Component did mount")
+      BAPI.getBatchDetail(bid)
       .then((records) => {
-        console.log("Rec", records.data)
-        this.setState({ ids: records.data })
+        console.log("BatchInfo",records)
       })
-    //console.log("The batch selected details received",this.props)
-    if (this.props.newbatch === false) {
-      BAPI.getClassDetails(bid)
-        .then(response => {
-          // console.log("The Existing Students & Class",response.data);
-          // console.log("The Student records length",response.data.srecords.length);
-          // console.log("The class records length",response.data.crecords.length);
-          if (response.data.srecords.length > 0) {
-            for (let i = 0; i < response.data.srecords.length; i++) {
-              //console.log(response.data.srecords[i]);
-              let newstrec = {
-                stdid: response.data.srecords[i]._id,
-                stdfname: response.data.srecords[i].studentfname,
-                stdlname: response.data.srecords[i].studentlname,
-                stdemail: response.data.srecords[i].loginemail,
-                phonenumber: response.data.srecords[i].parentphonenumber
-              } // end rec
-              strecs.push(newstrec);
-            } // end for loop
-            // console.log("The student recs",strecs);  
-          };// end if srecords part
+      // BAPI.getClassDetails(bid)
+      //   .then(response => {
+      //     // console.log("The Existing Students & Class",response.data);
+      //     // console.log("The Student records length",response.data.srecords.length);
+      //     // console.log("The class records length",response.data.crecords.length);
+      //     if (response.data.srecords.length > 0) {
+      //       for (let i = 0; i < response.data.srecords.length; i++) {
+      //         //console.log(response.data.srecords[i]);
+      //         let newstrec = {
+      //           stdid: response.data.srecords[i]._id,
+      //           stdfname: response.data.srecords[i].studentfname,
+      //           stdlname: response.data.srecords[i].studentlname,
+      //           stdemail: response.data.srecords[i].loginemail,
+      //           phonenumber: response.data.srecords[i].parentphonenumber
+      //         } // end rec
+      //         strecs.push(newstrec);
+      //       } // end for loop
+      //       // console.log("The student recs",strecs);  
+      //     };// end if srecords part
 
-          if (response.data.crecords.length > 0) {
-            for (let i = 0; i < response.data.crecords.length; i++) {
-              let newclrec = {
-                lessoncov: response.data.crecords[i].lessoncovered,
-                homework: response.data.crecords[i].homework,
-                cldate: response.data.crecords[i].classdate,
-                clid: response.data.crecords[i]._id
-              }
-              clrecs.push(newclrec);
-            } // end for loop
-          }
-          // end if crecords part         
-          this.setState({
-            studentrecs: strecs,
-            classrecs: clrecs
-          }, () => {
-            console.log("Set State:", this.state.studentrecs, this.state.classrecs);
-          }); // End Set state 
-        }) // end then part
-        .catch(error => {
-          console.log("The Error Encountered in fetching exiting students and class details", error);
-        }); // End Axios
-    } // End if part
+      //     if (response.data.crecords.length > 0) {
+      //       for (let i = 0; i < response.data.crecords.length; i++) {
+      //         let newclrec = {
+      //           lessoncov: response.data.crecords[i].lessoncovered,
+      //           homework: response.data.crecords[i].homework,
+      //           cldate: response.data.crecords[i].classdate,
+      //           clid: response.data.crecords[i]._id
+      //         }
+      //         clrecs.push(newclrec);
+      //       } // end for loop
+      //     }
+      //     // end if crecords part         
+        //   this.setState({
+        //     studentrecs: strecs,
+        //     classrecs: clrecs
+        //   }, () => {
+        //     console.log("Set State:", this.state.studentrecs, this.state.classrecs);
+        //   }); // End Set state 
+        // }) // end then part
+        // .catch(error => {
+        //   console.log("The Error Encountered in fetching exiting students and class details", error);
+        // }); // End Axios
+    //} // End /if part
   } // End ()
 
   render() {
@@ -243,9 +241,12 @@ class BatchInfo extends Component {
               <div className="form-group row">
                 <label className="has-float-label">Instructor </label>
 
-                {/* <Instructor items={this.state.ids}
-                  passMasterId={this.getInstructor}
-                  Id={this.state.instructor} /> */}
+                  <label>{this.state.instructor}</label>
+                {/* // <MasterKey items={this.state.i}
+                //   passMasterId={this.getInstructor}
+                //   Id={this.state.instructor} /> */}
+
+              
 
               </div>
               <div className="form-group row">
@@ -274,8 +275,12 @@ class BatchInfo extends Component {
           </div>
           <div className="col-lg-4 col-md-11 col-sm-12">
             <h6>Add New Student</h6>
-            <Addstudent batchdet={this.props.batchdetails}
-              newStudent={this.handleNewStudent} />
+            <MasterKey
+                IdType="student"
+                passStudentId ={this.getStudent} />
+
+            {/* <Addstudent batchdet={this.props.batchdetails}
+              newStudent={this.handleNewStudent} /> */}
             {/* <StudentID /> */}
           </div>
           <div className="col-lg-4 col-md-11 col-sm-12">

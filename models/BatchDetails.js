@@ -11,9 +11,9 @@ const batchdetailsSchema = new Schema({
         level: {
           type: String
         },
-        teacher :{
+        teacher  :{
           type:Schema.Types.ObjectId,
-          ref: 'teacherdetails'
+          ref: 'boarddetails'
         },
         examDAte:{
           type:Date

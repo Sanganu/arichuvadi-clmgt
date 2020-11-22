@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Students = require('../models/Students');
-const Teachers = require("../models/TeacherDetails");
+const Teachers = require("../models/Management");
 const passport = require('../passport')
 
 // this route is just used to get the user basic info

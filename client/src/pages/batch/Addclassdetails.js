@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import API from '../../API/Multi';
+import API from '../../API/Batch';
 
 
 class BatchRecAddclass extends Component
@@ -45,14 +45,14 @@ class BatchRecAddclass extends Component
                 }
                 else
                 {
-                  console.log("State values:",this.state.homework,this.state.date,this.state.lessoncovered);
-                  API.addClassDetails(
-                  {
-                     lessoncovered : this.state.lessoncovered,
-                     homework : this.state.homework,
-                     batch: this.props.batchdet.bid,
-                     classdate: this.state.date
-                  })
+                  let classrecord =  {
+                    lessoncovered : this.state.lessoncovered,
+                    homework : this.state.homework,
+                    batch: this.props.batchdet.bid,
+                    classdate: this.state.date
+                 }
+                  console.log("User entered State values:",classrecord);
+                  API.addClassDetails(classrecord)
                   .then((response) =>
                     {
                       console.log("The Response from saving class details",response.data);

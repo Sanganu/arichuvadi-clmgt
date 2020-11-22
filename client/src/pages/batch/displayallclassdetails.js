@@ -7,6 +7,7 @@ class Allclasses extends Component {
  
       render () {
             const classrec = this.props.classrecs || [{"lesson":"No class details exist","homework":"N/A"}];
+            console.log("Class",this.props)
             return (<tbody>
                       {classrec.map((data, index) =>
                               <tr key={index}>

@@ -22,6 +22,9 @@ class Boardmember extends Component {
             [name]: value
         });
     };
+    componentDidMount=()=>{
+        console.log("boardmember")
+    }
 
     logincheck = (event) => {
         event.preventDefault();
@@ -78,7 +81,6 @@ class Boardmember extends Component {
                                 onChange={this.handleInputChange}
                                 type="text"
                                 name="vemail"
-                                id="vemail"
                                 value={this.state.vemail}
                                 required />
                             <label className="form-control-placeholder"
@@ -90,14 +92,13 @@ class Boardmember extends Component {
                                 onChange={this.handleInputChange}
                                 type="password"
                                 name="vpword"
-                                id="vpword"
                                 value={this.state.vpword}
                                 required />
                             <label
                                 className="form-control-placeholder"
                                 htmlFor="vpword">Password </label>
                         </div>
-                        <button className="createbutton" id="blogin" onClick={this.logincheck}>Login</button>
+                        <button className="createbutton" onClick={this.logincheck}>Login</button>
                     </form>
                 </div>
                 : <Allbatches displayall={true} />

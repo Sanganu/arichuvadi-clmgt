@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import API from '../../API/Batch';
 import Batchmain from "./Batchmain" ;
 import Instructor from "../../components/Masterkey";
-import InstructorID from "../../API/Multi";
+
 import { connect } from "react-redux";
 import Boardmember from "../board/Boardmember";
 
@@ -16,14 +16,7 @@ class Createbatch extends Component {
         errmsg: '',
         ids:[]
     }
-    componentDidMount = ()=>{
-        InstructorID.getAllInstructors()
-        .then((records) => {
-            console.log("Rec",records.data) 
-            this.setState({ids:records.data})
-        })
-    }
-
+   
     handleInputChange = (event) => {
         const target = event.target;
         const value = target.value;
@@ -102,7 +95,7 @@ class Createbatch extends Component {
                             <div className="form-group row">
                                 <label className="has-float-label">Name    </label>
                                 <input type="text"
-                                    className="form-control"
+                              npm      className="form-control"
                                     id="batchdesc"
                                     value={this.state.batchdesc}
                                     onChange={this.handleInputChange}
@@ -131,7 +124,7 @@ class Createbatch extends Component {
                             <div className="form-group row">
                                 <label className="has-float-label">Instructor </label>
                               
-                                <Instructor items={this.state.ids}
+                                <Instructor IdType="instructor"
                                  passMasterId={this.getInstructor}/>
                        
                             </div>

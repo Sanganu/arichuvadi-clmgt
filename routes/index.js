@@ -4,7 +4,7 @@ const Batchdetails = require('../models/BatchDetails.js')
 const Studentdetails = require('../models/Students.js')
 const Classdetails = require('../models/Classdetails.js');
 const Board = require('../models/Management.js');
-const Teacher = require("./teacher.js")
+// const Teacher = require("./teacher.js")
 //const passport = require("passport");
 var YouTube = require('youtube-node');
 var youTube = new YouTube();
@@ -87,9 +87,10 @@ router.post('/api/board/batch/student/new', isLoggedIn, function (req, res) {
 
 
 
+//Get All of the BatchInfo, details required
 
 
-
+// Get Specific Batch Info
 // Fetch student records  and class details for the specific batch -- implemented
 router.get('/api/batch/student/class/details/:bid', isLoggedIn, (req, res) => {
   let batchid = req.params.bid;
@@ -170,12 +171,13 @@ router.get('/api/instructor/all', (req, res) => {
         Board.find({}, 'fname lname')
           .then((results) => {
             list = results
-            console.log("Records fetched for teachers", results);
+            // console.log("Records fetched for teachers", results);
             return Teacher.find({},'fname lname')
           })
           .then(function (allinstructors) {
-            console.log(allinstructors)
+            // console.log(allinstructors)
             let allinst = list.concat(allinstructors)
+            console.log("All Instructors",allinst)
             res.json(allinst);
           })
           .catch((error) => {
@@ -186,17 +188,19 @@ router.get('/api/instructor/all', (req, res) => {
 
   ////Add Class details And Update Batches table - implemented
   router.post('/api/instructor/batch/class/add', isLoggedIn, function (req, res) {
-          // console.log("Insiderouter to add class details",req.body);
+          console.log("Insiderouter to add class details",req.body);
           var newrecord = req.body;
+          let classrecord =""
           Classdetails
             .create(newrecord)
           .then(function (dbclassdetails) {
+              classrecord = dbclassdetails
               console.log("The class details entered : ", dbclassdetails)
-              Batchdetails.findOneAndUdate({ _id: req.body.batch }, { $push: { classid: dbclassdetails._id } })
+              Batchdetails.findOneAndUpdate({ _id: req.body.batch }, { $push: { classid: dbclassdetails._id } },{new:true})
           })
           .then(function (data) {
                   console.log("Inserted class details and updated batchdetails with classid", data);
-                  res.json(dbclassdetails);
+                  res.json(classrecord);
           })
           .catch(function (err) {
               if (err) {
@@ -206,6 +210,52 @@ router.get('/api/instructor/all', (req, res) => {
           });
   }); // Add Class details and update batch --implemented
 
+  
+  // Batch Info - Get student and class for the specific batch --implemented
+
+  // router.get("/api/board/batch/detail/:bid", function(req,res){
+  //   console.log("batc")
+  //   Batchdetails.findById(req.params.bid)
+  //   // .populate(teacher)
+  //   .populate(
+  //     {path:"students",
+  //     select:'studentfname studentlname teacherComments'})
+  //   .populate({
+  //     path:"classid",
+  //     select:'lessoncovered homework classdate'})
+  //   .then(function(records){
+  //     console.log("BATCH INFO",records)
+  //   })
+  //   .catch(function(error){
+  //     console.log("Error in getting batch details with student and class",error)
+  //   })
+  // })
+
+  // Batch Info - Get student and class for the specific batch --implemented
+
+  router.get("/api/board/batch/detail/:bid", function(req,res){
+    console.log("batc",req.params.bid)
+  let batchdetails =[]
+    Batchdetails.findById(req.params.bid)
+     .populate(
+      {path:"students",
+      select:'studentfname studentlname teacherComments'})
+    .populate({
+      path:"classid",
+      select:'lessoncovered homework classdate'})
+    .then(function(records){
+      batchdetails.push(records)
+        Board.findById(records.teacher).then(function(instructor){
+          batchdetails.push(instructor)
+          console.log("BATCH INFO",instructor)
+          res.json(batchdetails)
+        })
+     
+    })
+    .catch(function(error){
+      console.log("Error in getting batch details with student and class",error)
+    })
+  })
 
 
   //======================================================================

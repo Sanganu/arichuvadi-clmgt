@@ -38,7 +38,7 @@ router.post('/api/board/new', (req, res) => {
   });
 
 
-//Router to get all teacher details
+//Router to get all Board Members only
 
 router.get('/api/board/all',(req,res)=>{
 Management.find({})
