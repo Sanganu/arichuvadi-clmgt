@@ -47,7 +47,13 @@ const boardMemberSchema = new Schema({
            type:Date,
            default: Date.now
          }
-});
+        },
+         {
+           toJSON : {
+             virtuals:true,
+           }
+         }
+);
 
 boardMemberSchema.methods = {
 	checkPassword: function(inputPassword) {
@@ -79,6 +85,13 @@ boardMemberSchema.pre('create', function(next) {
 		next()
 	}
 });
+
+//Virtuals
+boardMemberSchema.virtual('fullName').get(function(){
+  return this.fname+ ' '+this.lname;
+})
+
+
 
 const boarddetails = mongoose.model("boarddetails", boardMemberSchema);
 module.exports = boarddetails;

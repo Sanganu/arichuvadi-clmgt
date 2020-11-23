@@ -33,7 +33,7 @@ class Studentmanagement extends Component {
   componentDidMount = (event) => {
     let studentrecords = this.state.studentrecords;
     console.log("ComponentDidmount - Student management")
-      API.getAllStudents()
+    API.getAllStudents()
       .then(response => {
         for (let i = 0; i < response.data.length; i++) {
           let currentrec = {
@@ -80,7 +80,7 @@ class Studentmanagement extends Component {
         password: this.state.password,
         parentphonenumber: this.state.parentphonenumber,
       }
-    API.createNewStudent(newrecord)
+      API.createNewStudent(newrecord)
         .then(res => {
           console.log("The response from adding student", res);
           let newstrec = {
@@ -114,11 +114,11 @@ class Studentmanagement extends Component {
 
   deleteStudentDetails = (id) => {
     console.log("Deletestudentdetails-id", id);
-      API.deleteStudent(id)
+    API.deleteStudent(id)
       .then(response => {
         console.log("the response", response)
         if (response.status === 200) {
-          let  newarray = this.state.studentrecords.filter((student) =>{
+          let newarray = this.state.studentrecords.filter((student) => {
             return (student.recid !== id)
           });
           console.log("The newarray delee student", newarray)
@@ -132,10 +132,10 @@ class Studentmanagement extends Component {
 
   updateStudentDetails = (studentrecord) => {
     console.log("Student Record", studentrecord);
-      API.updateStudentDetails(studentrecord)
+    API.updateStudentDetails(studentrecord)
       .then(response => {
         if (response.statatus === 200) {
-         console.log("The studentrecords", response);
+          console.log("The studentrecords", response);
           let updatedStudentrecord = [];
           for (let i = 0; i < this.state.studentrecords; i++) {
             if (this.state.studentrecords.recid !== studentrecord.recid) {
@@ -147,7 +147,7 @@ class Studentmanagement extends Component {
           }
           console.log("Student Details updated", this.state.studentrecords);
           // this.setState({ studentrecords: newarray }, () => console.log("The studentrecords", this.state.studentrecords))
-          
+
         }
 
       })
@@ -162,133 +162,135 @@ class Studentmanagement extends Component {
     return (
       <div className="middlecontent">
 
-        <h3 className="subhead">New Student</h3>
-        <p className="errmsg">{this.state.errmsg}</p>
-        <form className="inputsection">
-                      <div className="row">
-                        <div className="col-md-5">
-                          <div className="form-group row">
-                            <label className="has-float-label"
-                              forhtml="studentfname">Firstname</label>
-                            <input type="text"
-                              value={this.state.studentfname}
-                              onChange={this.handleInputChange}
-                              className="form-control"
-                              id="studentfname"
-                              name="studentfname"
-                              required
-                              placeholder="Firstname" />
-                          </div>
-                          <div className="form-group row">
-                            <label className="has-float-label">
-                              Lastname</label>
-                            <input type="text"
-                              placeholder="Lastname"
-                              className="form-control"
-                              value={this.state.studentlname}
-                              onChange={this.handleInputChange}
-                              name="studentlname"
-                              id="studentlname"
-                              required />
-                          </div>
-                          <div className="form=group row">
-                            <label className="has-float-label">
-                              Parent</label>
-                            <input type="text"
-                              placeholder="Parent name"
-                              value={this.state.parentname}
-                              onChange={this.handleInputChange}
-                              name="parentname"
-                              className="form-control"
-                              id="parentname"
-                              required />
-                          </div>
-                        </div>
-                        <div className="col-md-2">
-                        </div>
-                        <div className="col-md-5">
-                          <div className="form-group row">
-                            <label className="has-float-label">
-                              Email</label>
-                            <input type="email"
-                              placeholder="Login Email"
-                              value={this.state.loginemail}
-                              onChange={this.handleInputChange}
-                              name="loginemail"
-                              id="loginemail"
-                              className="form-control"
-                              required />
-                          </div>
-                          <div className="form-group row">
-                            <label className="has-float-label">
-                              Password</label>
-                            <input type="password"
-                              placeholder="password"
-                              value={this.state.password}
-                              onChange={this.handleInputChange}
-                              name="password"
-                              id="password"
-                              className="form-control"
-                              required />
-                          </div>
-                          <div className="form-group row">
-                            <label className="has-float-label">
-                              Phonenumber</label>
-                            <input type="text"
-                              placeholder="Phone number"
-                              className="form-control"
-                              value={this.state.parentphonenumber}
-                              onChange={this.handleInputChange}
-                              name="parentphonenumber"
-                              id="parentphonenumber"
-                              required />
-                          </div>
-                        </div>
-                      </div>
-                      {/* <div className="row">
+        <br />
+        <h3 className="subhead text-center">Student Records</h3>
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <tbody>
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Parent </th>
+                <th>Phonenumber</th>
+                <th>Level Completed</th>
+                <th>Current Level</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+              {studentrecords.map((data, index) =>
+                <Allstudents key={index}
+                  stdlname={data.stdlname}
+                  stdid={data.recid}
+                  stdfname={data.stdfname}
+                  parentname={data.parentname}
+                  phonenumber={data.phonenumber}
+                  stdemail={data.stdemail}
+                  levelcompleted={data.levelcompleted}
+                  levelrequested={data.levelrequested}
+                  deleteStudentDetails={this.deleteStudentDetails}
+                  updateStudentDetails={this.updateStudentDetails}
+                />
+              )}
+            </tbody>
+          </table>
+          <div className="container">
+            <h6 className="subhead text-center">Add a New Student</h6>
+            <p className="errmsg">{this.state.errmsg}</p>
+            <form className="inputsection d-flex flex-wrap">
+              <div className="row">
+                <div className="col-md-5"> 
+                  <div className="form-group row">
+                    <label className="has-float-label"
+                      forhtml="studentfname">Firstname</label>
+                    <input type="text"
+                      value={this.state.studentfname}
+                      onChange={this.handleInputChange}
+                      className="form-control"
+                      id="studentfname"
+                      name="studentfname"
+                      required
+                      placeholder="Firstname" />
+                  </div>
+                  <div className="form-group row">
+                    <label className="has-float-label">
+                      Lastname</label>
+                    <input type="text"
+                      placeholder="Lastname"
+                      className="form-control"
+                      value={this.state.studentlname}
+                      onChange={this.handleInputChange}
+                      name="studentlname"
+                      id="studentlname"
+                      required />
+                  </div>
+                  <div className="form=group row">
+                    <label className="has-float-label">
+                      Parent</label>
+                    <input type="text"
+                      placeholder="Parent name"
+                      value={this.state.parentname}
+                      onChange={this.handleInputChange}
+                      name="parentname"
+                      className="form-control"
+                      id="parentname"
+                      required />
+                  </div>
+                </div>
+                <div className="col-md-2">
+                </div>
+                <div className="col-md-5">
+                  <div className="form-group row">
+                    <label className="has-float-label">
+                      Email</label>
+                    <input type="email"
+                      placeholder="Login Email"
+                      value={this.state.loginemail}
+                      onChange={this.handleInputChange}
+                      name="loginemail"
+                      id="loginemail"
+                      className="form-control"
+                      required />
+                  </div>
+                  <div className="form-group row">
+                    <label className="has-float-label">
+                      Password</label>
+                    <input type="password"
+                      placeholder="password"
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                      name="password"
+                      id="password"
+                      className="form-control"
+                      required />
+                  </div>
+                  <div className="form-group row">
+                    <label className="has-float-label">
+                      Phonenumber</label>
+                    <input type="text"
+                      placeholder="Phone number"
+                      className="form-control"
+                      value={this.state.parentphonenumber}
+                      onChange={this.handleInputChange}
+                      name="parentphonenumber"
+                      id="parentphonenumber"
+                      required />
+                  </div>
+                </div>
+              </div>
+              {/* <div className="row">
                         <div className="col-md-9"> */}
-                          <button
-                            className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
-                        {/* </div>
+              <button
+                className="createbutton" name="creation" onClick={this.handleStudentCreation}>Create Student account</button>
+              {/* </div>
                       </div> */}
-        </form>
-      <br />
-      <h6 className="tablehead">Student Records </h6>
-      <div className="table-responsive">
-        <table className="table table-hover">
-          <tbody>
-            <tr>
-              <th>Firstname</th>
-              <th>Lastname</th>
-              <th>Email</th>
-              <th>Parent </th>
-              <th>Phonenumber</th>
-              <th>Level Completed</th>
-              <th>Current Level</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-            {studentrecords.map((data, index) =>
-              <Allstudents key={index}
-                stdlname={data.stdlname}
-                stdid={data.recid}
-                stdfname={data.stdfname}
-                parentname={data.parentname}
-                phonenumber={data.phonenumber}
-                stdemail={data.stdemail}
-                levelcompleted={data.levelcompleted}
-                levelrequested={data.levelrequested}
-                deleteStudentDetails={this.deleteStudentDetails}
-                updateStudentDetails={this.updateStudentDetails}
-              />
-            )}
-          </tbody>
-        </table>
-      </div>
-       
-   </div> ) //end return
+            </form>
+          </div>
+        </div>
+
+      </div>) //end return
   } // end render
 
 } // end class 
 
-export default Studentmanagement ;
+export default Studentmanagement;

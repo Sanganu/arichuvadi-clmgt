@@ -169,7 +169,8 @@ class BatchInfo extends Component {
       console.log("Batch Info Component did mount")
       BAPI.getBatchDetail(bid)
       .then((records) => {
-        console.log("BatchInfo",records)
+        console.log("BatchInfo",records.data)
+        this.setState({instructor:records.data[1].fname+ " " +records.data[1].lname})
       })
       // BAPI.getClassDetails(bid)
       //   .then(response => {
@@ -222,7 +223,7 @@ class BatchInfo extends Component {
       return (<div className="middlecontent">
         <div className="row">
           <div className="col-lg-4 col-md-11 col-sm-12">
-            <h4>Cohort Details</h4>
+            <h4>{this.state.instructor}'s {this.state.bdesc} Cohort</h4>
             <form className="inputsection">
               <div className="form-group">
 
@@ -242,10 +243,7 @@ class BatchInfo extends Component {
                 <label className="has-float-label">Instructor </label>
 
                   <label>{this.state.instructor}</label>
-                {/* // <MasterKey items={this.state.i}
-                //   passMasterId={this.getInstructor}
-                //   Id={this.state.instructor} /> */}
-
+             
               
 
               </div>
@@ -279,7 +277,7 @@ class BatchInfo extends Component {
                 IdType="student"
                 passStudentId ={this.getStudent} />
 
-            {/* <Addstudent batchdet={this.props.batchdetails}
+            {/* <Addstu     dent batchdet={this.props.batchdetails}
               newStudent={this.handleNewStudent} /> */}
             {/* <StudentID /> */}
           </div>

@@ -195,8 +195,9 @@ router.get('/api/instructor/all', (req, res) => {
             .create(newrecord)
           .then(function (dbclassdetails) {
               classrecord = dbclassdetails
-              console.log("The class details entered : ", dbclassdetails)
-              Batchdetails.findOneAndUpdate({ _id: req.body.batch }, { $push: { classid: dbclassdetails._id } },{new:true})
+              console.log("The class details entered : ", dbclassdetails,req.body)
+              Batchdetails.findByIdAndUpdate( req.body.batch,
+                {$set:{$push: { classid: dbclassdetails._id }} },{new:true, upsert:true})
           })
           .then(function (data) {
                   console.log("Inserted class details and updated batchdetails with classid", data);
@@ -245,7 +246,7 @@ router.get('/api/instructor/all', (req, res) => {
       select:'lessoncovered homework classdate'})
     .then(function(records){
       batchdetails.push(records)
-        Board.findById(records.teacher).then(function(instructor){
+        Board.findById(records.teacher).select('fname lname').then(function(instructor){
           batchdetails.push(instructor)
           console.log("BATCH INFO",instructor)
           res.json(batchdetails)

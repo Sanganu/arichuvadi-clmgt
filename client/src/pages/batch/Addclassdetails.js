@@ -51,7 +51,7 @@ class BatchRecAddclass extends Component
                     batch: this.props.batchdet.bid,
                     classdate: this.state.date
                  }
-                  console.log("User entered State values:",classrecord);
+                  console.log("User entered State values:",classrecord,this.props.batchdet);
                   API.addClassDetails(classrecord)
                   .then((response) =>
                     {
