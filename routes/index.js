@@ -196,10 +196,13 @@ router.get('/api/instructor/all', (req, res) => {
           .then(function (dbclassdetails) {
               classrecord = dbclassdetails
               console.log("The class details entered : ", dbclassdetails,req.body)
-              Batchdetails.findByIdAndUpdate( req.body.batch,
-                {$set:{$push: { classid: dbclassdetails._id }} },{new:true, upsert:true})
+             return Batchdetails.findOneAndUpdate(
+                {_id: req.body.batch},
+                {$push: { classid: dbclassdetails._id }},
+                {new:true})
+               
           })
-          .then(function (data) {
+          .then((data)=> {
                   console.log("Inserted class details and updated batchdetails with classid", data);
                   res.json(classrecord);
           })

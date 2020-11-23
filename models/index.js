@@ -7,14 +7,16 @@ if (process.env.MONGODB_URI) {
 	mongoose.connect(process.env.MONGODB_URI, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-		createIndexes: true
+		useCreateIndex: true,
+		useFindAndModify: false,
 	})
 	MONGO_URL = process.env.MONGODB_URI
 } else {
 	mongoose.connect(MONGO_LOCAL_URL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-		createIndexes: true
+		useCreateIndex: true,
+		useFindAndModify: false,
 	})
 	MONGO_URL = MONGO_LOCAL_URL
 }

@@ -11,8 +11,8 @@ import Homepage from '../general/Homepage.js';
 import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 import API from "../../API/Board";
 import BAPI from "../../API/Batch";
-import MasterKey  from "../../components/Masterkey";
-import  MAPI from "../../API/Multi";
+import MasterKey from "../../components/Masterkey";
+import MAPI from "../../API/Multi";
 
 class BatchInfo extends Component {
   state = {
@@ -26,7 +26,7 @@ class BatchInfo extends Component {
     studentrecs: [],
     classrecs: [],
     delstdid: '',
-    instructorList:[]
+    instructorList: []
   }
 
 
@@ -142,18 +142,18 @@ class BatchInfo extends Component {
     classrecs.push(nclass);
     this.setState({ classrecs }, () => { console.log("Class details", classrecs) });
   }
-  getInstructor =(value) =>{
+  getInstructor = (value) => {
     this.setState({
-        instructor:value
+      instructor: value
     })
-    console.log("Instructor",value)
-}
+    console.log("Instructor", value)
+  }
   getStudent = (student) => {
-     let studentrecs = this.state.studentrecs
-     studentrecs.push(student)
-     this.setState({
-       studentrecs:studentrecs
-     })
+    let studentrecs = this.state.studentrecs
+    studentrecs.push(student)
+    this.setState({
+      studentrecs: studentrecs
+    })
   }
   componentDidMount = () => {
     let bid = this.props.batchdetails.bid;
@@ -166,68 +166,39 @@ class BatchInfo extends Component {
     //   })
     // console.log("The batch selected details received",this.props)
     // if (this.props.newbatch === false || this.props.student.length >0) {
-      console.log("Batch Info Component did mount")
-      BAPI.getBatchDetail(bid)
-      .then((records) => {
-        console.log("BatchInfo",records.data)
-        this.setState({instructor:records.data[1].fname+ " " +records.data[1].lname})
-      })
-      // BAPI.getClassDetails(bid)
-      //   .then(response => {
-      //     // console.log("The Existing Students & Class",response.data);
-      //     // console.log("The Student records length",response.data.srecords.length);
-      //     // console.log("The class records length",response.data.crecords.length);
-      //     if (response.data.srecords.length > 0) {
-      //       for (let i = 0; i < response.data.srecords.length; i++) {
-      //         //console.log(response.data.srecords[i]);
-      //         let newstrec = {
-      //           stdid: response.data.srecords[i]._id,
-      //           stdfname: response.data.srecords[i].studentfname,
-      //           stdlname: response.data.srecords[i].studentlname,
-      //           stdemail: response.data.srecords[i].loginemail,
-      //           phonenumber: response.data.srecords[i].parentphonenumber
-      //         } // end rec
-      //         strecs.push(newstrec);
-      //       } // end for loop
-      //       // console.log("The student recs",strecs);  
-      //     };// end if srecords part
 
-      //     if (response.data.crecords.length > 0) {
-      //       for (let i = 0; i < response.data.crecords.length; i++) {
-      //         let newclrec = {
-      //           lessoncov: response.data.crecords[i].lessoncovered,
-      //           homework: response.data.crecords[i].homework,
-      //           cldate: response.data.crecords[i].classdate,
-      //           clid: response.data.crecords[i]._id
-      //         }
-      //         clrecs.push(newclrec);
-      //       } // end for loop
-      //     }
-      //     // end if crecords part         
-        //   this.setState({
-        //     studentrecs: strecs,
-        //     classrecs: clrecs
-        //   }, () => {
-        //     console.log("Set State:", this.state.studentrecs, this.state.classrecs);
-        //   }); // End Set state 
-        // }) // end then part
-        // .catch(error => {
-        //   console.log("The Error Encountered in fetching exiting students and class details", error);
-        // }); // End Axios
-    //} // End /if part
+    BAPI.getBatchDetail(bid)
+      .then((records) => {
+        console.log("Batch Info Component did mount", records)
+        let batchdetails = records.data
+        this.setState({ instructor: batchdetails[1].fname + " " + batchdetails[1].lname })
+        // console.log("BatchInfo",batchdetails[0].classid)
+        if (batchdetails[0].classid.length > 0) {
+
+          this.setState({ classrecs: batchdetails[0].classid })
+          console.log("Hello", this.state.classrecs)
+        }
+        console.log("BatchInfo", batchdetails[0].students)
+        if (batchdetails[0].students.length > 0) {
+
+          this.setState({ studentrecs: batchdetails[0].students })
+          console.log("Hello", this.state.studentrecs)
+        }
+      })
+
   } // End ()
 
   render() {
     const studentrec = this.state.studentrecs;
     if (this.props.usertype === "management") {
       return (<div className="middlecontent">
-        <div className="row">
-          <div className="col-lg-4 col-md-11 col-sm-12">
+        <div className="row d-flex flex-wrap">
+          <div className="col-lg-11 col-md-11 col-sm-12 border border-info rounded">
             <h4>{this.state.instructor}'s {this.state.bdesc} Cohort</h4>
             <form className="inputsection">
-              <div className="form-group">
+              <div className="form-group row">
 
-                <label className="form-control-placeholder"
+                <label className="has-float-label"
                   htmlFor="bdesc">
                   Batch Name </label>
                 <input value={this.state.bdesc}
@@ -242,9 +213,14 @@ class BatchInfo extends Component {
               <div className="form-group row">
                 <label className="has-float-label">Instructor </label>
 
-                  <label>{this.state.instructor}</label>
-             
-              
+                <input
+                  placeholder={this.state.instructor}
+                  name="instructor"
+                  readOnly
+                  className="form-control"
+                />
+
+
 
               </div>
               <div className="form-group row">
@@ -267,29 +243,21 @@ class BatchInfo extends Component {
                   <option value='Offline'>Offline Examination</option>
                 </select>
               </div>
-              <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-              <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
+              <div className="card">
+              <button onClick={this.updateBatch} className="rowbtn m-1 p-1"><i className="fa fa-edit fa-lg"></i>Update</button>
+              <button onClick={this.deleteBatch} className="rowbtn m-1 p-1"><i className="fa fa-trash fa-lg"></i>Delete</button>
+              {/* <button onClick={}>Change Instructor</buttonn>
+              <button onClick={}>Add Class notes</button>
+              <button onClick={}>Add Students to this batch</button> */}
+              </div>
             </form>
           </div>
-          <div className="col-lg-4 col-md-11 col-sm-12">
-            <h6>Add New Student</h6>
-            <MasterKey
-                IdType="student"
-                passStudentId ={this.getStudent} />
-
-            {/* <Addstu     dent batchdet={this.props.batchdetails}
-              newStudent={this.handleNewStudent} /> */}
-            {/* <StudentID /> */}
-          </div>
-          <div className="col-lg-4 col-md-11 col-sm-12">
-            <h6>Add Class Details</h6>
-            <BatchAddClassDetails batchdet={this.props.batchdetails}
-              newClassDetails={this.handleClassDetails} />
-          </div>
         </div>
+
         <div className="row" >
           <div className="col-md-6">
             <div className="table-responsive">
+              <h6>Students in this Cohort</h6>
               <table className="table table-hover">
                 <thead>
                   <tr>
@@ -312,6 +280,7 @@ class BatchInfo extends Component {
           </div>
           <div className="col-md-6">
             <div className="table-responsive">
+            <h6>Class Notes - sessions covered</h6>
               <table className="table table-hover">
                 <thead>
                   <tr>
@@ -324,6 +293,23 @@ class BatchInfo extends Component {
                   classrecs={this.state.classrecs} />
               </table>
             </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-4 col-md-11 col-sm-12">
+            <h6>Add New Student</h6>
+            <MasterKey
+              IdType="student"
+              passStudentId={this.getStudent} />
+
+            {/* <Addstu     dent batchdet={this.props.batchdetails}
+              newStudent={this.handleNewStudent} /> */}
+            {/* <StudentID /> */}
+          </div>
+          <div className="col-lg-4 col-md-11 col-sm-12">
+            <h6>Add Class Details</h6>
+            <BatchAddClassDetails batchdet={this.props.batchdetails}
+              newClassDetails={this.handleClassDetails} />
           </div>
         </div>
       </div>)
