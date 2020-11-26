@@ -41,13 +41,13 @@ router.post('/api/board/new', (req, res) => {
 //Router to get all Board Members only
 
 router.get('/api/board/all',(req,res)=>{
-Management.find({})
+Management.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
   .then((results) => {
      console.log("Records fetched for teachers",results);
      res.json(results);
   })
   .catch((error) => {
-    console.log("Error in fetching",erroboardr);
+    console.log("Error in fetching",error);
     res.json(error);
   });
 });

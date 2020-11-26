@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../API/Batch';
-import Batchmain from "./Batchmain" ;
 import Instructor from "../../components/Masterkey";
-
 import { connect } from "react-redux";
 import Boardmember from "../board/Boardmember";
 

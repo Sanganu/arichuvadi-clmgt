@@ -57,7 +57,7 @@ router.post("/api/student/new", (req, res) => {
   // Get All Student Details -- implemented
 router.get("/api/students/all", isLoggedIn, (req, res) => {
     console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
-    studentdetails.find({})
+    studentdetails.find({studentfname,studentlname,loginemail,parentname,parentphonenumber,levelcompleted,levelrequested})
       .then((data) => {
         console.log("student details", data);
         res.json(data);
@@ -177,20 +177,7 @@ router.delete('/api/student/delete/:id',isLoggedIn, (req, res) => {
 }); // End of router delete student details
 
 
-// Route to fetch student Id and name
 
-router.get('/api/student/iddetails/',isLoggedIn,(req,res) => {
-  studentdetails.find({},
-  {_id:1,studentfname:1,studentlname:1,loginemail:1})
-  .then((results) => {
-    console.log("REcords fetched",results);
-    res.json(results)
-  })
-  .catch((error) => {
-    console.log("Error in fetching student ID",error);
-    res.json({"err":error});
-  })
-});
 
 // Get All Student Details -- implemented
 router.get("/api/students/batch/all", isLoggedIn, (req, res) => {

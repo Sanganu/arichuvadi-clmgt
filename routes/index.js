@@ -215,25 +215,19 @@ router.get('/api/instructor/all', (req, res) => {
   }); // Add Class details and update batch --implemented
 
   
-  // Batch Info - Get student and class for the specific batch --implemented
-
-  // router.get("/api/board/batch/detail/:bid", function(req,res){
-  //   console.log("batc")
-  //   Batchdetails.findById(req.params.bid)
-  //   // .populate(teacher)
-  //   .populate(
-  //     {path:"students",
-  //     select:'studentfname studentlname teacherComments'})
-  //   .populate({
-  //     path:"classid",
-  //     select:'lessoncovered homework classdate'})
-  //   .then(function(records){
-  //     console.log("BATCH INFO",records)
-  //   })
-  //   .catch(function(error){
-  //     console.log("Error in getting batch details with student and class",error)
-  //   })
-  // })
+  // Add Student Batch - From Student ID onlu
+  router.put("/api/board/batch/student/", function(req,res){
+    console.log("batcd- student ID add",req.body)
+    Batchdetails.findOneAndUpdate({ _id: req.body.batchid },
+      { $push: { students: req.body.studentid } },{new:true})
+    .then(function(records){
+      console.log("BATCH INFO",records)
+      res.json(records)
+    })
+    .catch(function(error){
+      console.log("Error in getting batch details with student and class",error)
+    })
+  })
 
   // Batch Info - Get student and class for the specific batch --implemented
 

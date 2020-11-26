@@ -16,7 +16,8 @@ class Masterkey extends Component {
             })
         }
         else if(this.props.IdType === "students"){
-            StudentID.getAllStudents()
+            console.log("Students")
+            StudentID.getAllStudentId()
             .then((records) => {
                 console.log("Rec",records.data) 
                 this.setState({items:records.data})
@@ -40,7 +41,7 @@ class Masterkey extends Component {
         return (<React.Fragment>
             <select className="form-control droplist" onChange={this.handleInputChange} name="masterKey" value={this.state.masterID}>
                 {this.state.items.map((rec, key) =>
-                    <option key={key} value={rec._id}>{rec.fname + " " + rec.lname}</option>)}
+                    <option key={key} value={rec._id}>{rec.loginemail}</option>)}
             </select>
         </React.Fragment>)
     }

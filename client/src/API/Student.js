@@ -12,5 +12,11 @@ export default  {
     },
     updateStudentDetails: function(studentrecord){
         return     axios.put("/api/student/update/" + studentrecord.recid, studentrecord)
+    },
+    getAllStudentId: function(){
+        return axios.get("/api/student/iddetails/")
+    },
+    addStudentToBatch: function(bidsid){
+        return axios.put("/api/board/batch/student/",bidsid)
     }
-}
+} 
