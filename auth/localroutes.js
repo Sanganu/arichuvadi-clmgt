@@ -203,7 +203,7 @@ function getStudentDetails(req,res) {
 //Teacher Details fetch
 function getTeacherDetails(req,res) {
   console.log("Get Teacher Details -TeacherLogin Route");
-  console.log("The session data",req.session.passport.user)
+  // console.log("The session data",req.session.passport.user)
 	
 	if (req.session.passport.user.user.userdata._id === undefined){
      res.json({err:"Invalid credentials"});

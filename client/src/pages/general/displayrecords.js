@@ -8,7 +8,7 @@ const Allrecords =(props) => {
                                     <td></td>
                                     <td>{props.field2}</td>
                                     <td></td>
-                                    <td>{props.field3 ? props.field3.substr(0, 10): 'N/A'}</td>
+                                    <td>{props.field3 ? props.field3.substr(0, 10): ''}</td>
                      </tr>
                      ); // end return
 

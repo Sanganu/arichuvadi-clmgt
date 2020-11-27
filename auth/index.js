@@ -8,7 +8,7 @@ const passport = require('../passport')
 
 router.get('/', (req, res, next) => {
 	console.log('===== Auth-Index.js /student /Teacher ===user!!======')
-	console.log(req.session.passport.user.user)
+	// console.log(req.session.passport.user.user)
 	if (req.session.passport.user.user) {
 		return res.json({ user: req.session.passport.user.user})
 	} else {

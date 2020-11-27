@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import Addstudent from '../student//Addstudent.js';
+import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
-import Allstudents from '../student/displayallstudents.js';
+import Allstudents from '../general/displayrecords';
 import Allclasses from '../batch/displayallclassdetails.js';
-// import Allbatches from './displayallbatchdetails.js';
+// import Allbatches from './displayallbatchdetails.js'; 
 // import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
 import Homepage from '../general/Homepage.js';
@@ -14,6 +14,7 @@ import MasterKey from "../../components/Masterkey";
 // import MAPI from "../../API/Multi";
 import Modal from "../general/Modal";
 import SAPI from "../../API/Student";
+import {Form, Button} from "react-bootstrap";
 
 class BatchInfo extends Component {
   state = {
@@ -162,6 +163,7 @@ class BatchInfo extends Component {
     this.setState({
       studentrecs: studentrecs
     })
+    this.getUpdatedBatchDetails()
   } //End getStudent()
 
   componentDidMount = () => {
@@ -206,141 +208,146 @@ class BatchInfo extends Component {
     const studentrec = this.state.studentrecs;
     if (this.props.usertype === "management") {
       return (<div className="middlecontent">
-        <div className="row d-flex flex-wrap">
-          <div className="col-lg-12 col-md-12 col-sm-12 border border-info rounded">
-            <h4>{this.state.instructor}'s {this.state.bdesc} Cohort</h4>
-            <form className="inputsection">
-              <div className="form-group row">
+            <div className="row d-flex flex-wrap">
+                 <div className="col-lg-12 col-md-12 col-sm-12 border border-info rounded">
+                <h4>{this.state.instructor}'s {this.state.bdesc} Cohort</h4>
+                            <Form className="inputsection">
+                                      <Form.Group  controlId="formBasicText">
 
-                <label className="has-float-label"
-                  htmlFor="bdesc">
-                  Batch Name </label>
-                <input value={this.state.bdesc}
-                  placeholder={this.state.bdesc}
-                  name="bdesc"
-                  id="bdesc"
-                  onChange={this.handleInputChange}
-                  className="form-control"
-                />
+                                        <label className="has-float-label"
+                                          htmlFor="bdesc">
+                                          Batch Name </label>
+                                        <input value={this.state.bdesc}
+                                          placeholder={this.state.bdesc}
+                                          name="bdesc"
+                                          id="bdesc"
+                                          onChange={this.handleInputChange}
+                                          className="form-control"
+                                        />
 
-              </div>
-              <div className="form-group row">
-                <label className="has-float-label">Instructor </label>
+                                      </Form.Group>
+                                      <Form.Group  controlId="formBasicText">
+                                        <label className="has-float-label">Instructor </label>
 
-                <input
-                  placeholder={this.state.instructor}
-                  name="instructor"
-                  readOnly
-                  className="form-control"
-                />
+                                        <input
+                                          placeholder={this.state.instructor}
+                                          name="instructor"
+                                          readOnly
+                                          className="form-control"
+                                        />
 
+                                      </Form.Group>
+                                        <Form.Group  controlId="formBasicDropList">
+                                          <label className="has-float-label">Course : </label>
+                                          <select className="form-control droplist"
+                                            onChange={this.handleInputChange}
+                                            value={this.state.course} name="course" id="course">
+                                            <option value='Beginner' default>Beginner</option>
+                                            <option value='Intermediate'>Intermediate</option>
+                                            <option value='Advance'>Advance</option>
+                                          </select>
+                                        </Form.Group>
+                                          <Form.Group  controlId="formBasicDropList">
+                                            <label className="has-float-label">Level </label>
+                                            <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
+                                              <option value='Oral' default>Oral Examination</option>
+                                              <option value='Visual'>Visual Examination</option>
+                                              <option value='Written'>Written Examination</option>
+                                              <option value='Online'>Online Examination</option>
+                                              <option value='Offline'>Offline Examination</option>
+                                            </select>
+                                          </Form.Group>
+                                          <div className="card">
+                                            <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
+                                            <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
+                                            {/* <button onClick={}>Change Instructor</buttonn>
+                                          <button onClick={}>Add Class notes</button>
+                                          <button onClick={}>Add Students to this batch</button> */}
 
-
-              </div>
-              <div className="form-group row">
-                <label className="has-float-label">Course : </label>
-                <select className="form-control droplist"
-                  onChange={this.handleInputChange}
-                  value={this.state.course} name="course" id="course">
-                  <option value='Beginner' default>Beginner</option>
-                  <option value='Intermediate'>Intermediate</option>
-                  <option value='Advance'>Advance</option>
-                </select>
-              </div>
-              <div className="form-group row">
-                <label className="has-float-label">Level </label>
-                <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
-                  <option value='Oral' default>Oral Examination</option>
-                  <option value='Visual'>Visual Examination</option>
-                  <option value='Written'>Written Examination</option>
-                  <option value='Online'>Online Examination</option>
-                  <option value='Offline'>Offline Examination</option>
-                </select>
-              </div>
-              <div className="card">
-                <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-                <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
-                {/* <button onClick={}>Change Instructor</buttonn>
-              <button onClick={}>Add Class notes</button>
-              <button onClick={}>Add Students to this batch</button> */}
-                <Modal
-                  Title="Add Students"
-                  IdType="students"
-                  handleNewStudent={this.handleNewStudent} />
-              </div>
-            </form>
-          </div>
-        </div>
+                                          </div>
+                             </Form>
+                      </div>
+                  </div>
 
         <div className="row  border border-danger" >
-          <div className="col-md-6">
-            <div className="table-responsive">
-              <h4>Students in this Cohort</h4>
-              <table className="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Username</th>
-                    {/* <th>Phone</th> */}
-                  </tr>
-                </thead>
-                <tbody>
+                <div className="col-md-8">
+                            <div className="table-responsive">
+                              <h4>Students in this Cohort</h4>
+                              <Table responsive striped bordered hover variant="dark" >
+                                <thead>
+                                  <tr>
+                                    <th>Firstname</th>
+                                    <th>Lastname</th>
+                                    <th>Username</th>
+                                    {/* <th>Phone</th> */}
+                                  </tr>
+                                </thead>
+                                <tbody>
 
-                  {studentrec.map((data, index) => (
-                    <Allstudents studentrec={data}
-                      deleteStudentDetails={this.deleteStudent}
-                      key={index}
-                    />))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          </div>
+                                  {studentrec.map((data, index) => (
+                                    <Allstudents studentrec={data}
+                                      deleteStudentDetails={this.deleteStudent}
+                                      key={index}
+                                    />))}
+                                </tbody>
+                              </Table>
+                            </div>
+                </div>
+                <div class="col-lg-4 ">
+                <Addstudent />
+                <hr />
+                        <Modal
+                          Title="Add Students"
+                          IdType="students"
+                          handleNewStudent={this.handleNewStudent} />
+                   
+                </div>
+          </div>     
+
           <div className="row border border-danger">
-            <div className="col-lg-8 col-md-12">
-              <div className="table-responsive">
-                <h4>Class Notes - sessions covered</h4>
-                <table className="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Lessons Covered</th>
-                      <th>Homework</th>
-                      <th>Date</th>
-                    </tr>
-                  </thead>
-                  <Allclasses
-                    classrecs={this.state.classrecs} />
-                </table>
-              </div>
+                  <div className="col-lg-8 col-md-12">
+                            <div className="table-responsive">
+                              <h4>Class Notes - sessions covered</h4>
+                                    <table className="table table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th>Lessons Covered</th>
+                                          <th>Homework</th>
+                                          <th>Date</th>
+                                        </tr>
+                                      </thead>
+                                      <Allclasses
+                                        classrecs={this.state.classrecs} />
+                                    </table>
+                            </div>
+                  </div>
+
+                    <div className="col-lg-4 col-md-12 col-sm-12">
+                            <h6>Add Class Details</h6>
+                            <BatchAddClassDetails batchdet={this.props.batchdetails}
+                              newClassDetails={this.handleClassDetails} />
+                    </div>
             </div>
-       
-          <div className="col-lg-4 col-md-12 col-sm-12">
-            <h6>Add Class Details</h6>
-            <BatchAddClassDetails batchdet={this.props.batchdetails}
-              newClassDetails={this.handleClassDetails} />
-          </div>
-          </div>
-    
-      </div>)
-    }
+     
+        </div>)
+      }
     else {
       return <Homepage msg="Please Login" />
-    }
-  } // end of render
-} //end component
-
+        }
+      } // end of render
+    } //end component
+    
 const mapStateToProps = (state) => {
-  console.log("Map State to Props : ", state);
-  return {
-    loginemail: state.loginemail,
-    userfname: state.userfname,
-    userlname: state.userlname,
-    usertype: state.usertype,
-    userid: state.userid
-  }
-}
-
-//export default BatchInfo;
-export default connect(mapStateToProps)(BatchInfo);
-
+          console.log("Map State to Props : ", state);
+        return {
+          loginemail: state.loginemail,
+        userfname: state.userfname,
+        userlname: state.userlname,
+        usertype: state.usertype,
+        userid: state.userid
+      }
+    }
+    
+    //export default BatchInfo;
+    export default connect(mapStateToProps)(BatchInfo);
+    

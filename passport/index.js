@@ -6,8 +6,8 @@ const Board = require("../models/Management")
 //Setup   encrypt
 passport.serializeUser((user, done) => {
 	console.log('======== serialize ... called ============')
-	console.log("The USer DATa Serialized",user) // the whole raw user object!
-	console.log('-------------------------------------------------')
+	// console.log("The USer DATa Serialized",user) // the whole raw user object!
+	// console.log('-------------------------------------------------')
 	done(null, { user: user });
 });
 
@@ -21,8 +21,8 @@ passport.deserializeUser((user, done) => {
 			{ _id: id},
 			(err, user) => {
 				console.log('======= DESERILAIZE STUDENT USER CALLED ======')
-				console.log(user)
-				console.log('---------------------------------------------------------')
+				// console.log(user)
+				// console.log('---------------------------------------------------------')
 				done(null, user)
 			}
 		);
@@ -32,8 +32,8 @@ passport.deserializeUser((user, done) => {
 			{_id:id},
 			(error,user) => {
 				console.log("=================DeSerialize Teacher User called==========");
-				console.log(user);
-				console.log("===========================-");
+				// console.log(user);
+				// console.log("===========================-");
 				done(null,user);
 			}
 		);
