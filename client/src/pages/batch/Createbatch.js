@@ -93,7 +93,7 @@ class Createbatch extends Component {
                             <div className="form-group row">
                                 <label className="has-float-label">Name    </label>
                                 <input type="text"
-                              npm      className="form-control"
+                                    className="form-control"
                                     id="batchdesc"
                                     value={this.state.batchdesc}
                                     onChange={this.handleInputChange}
@@ -127,7 +127,7 @@ class Createbatch extends Component {
                        
                             </div>
 
-                            <button className="createbutton" name="clcreation" onClick={this.handleBatchCreation}>Create Batch</button>
+                            <button name="clcreation" onClick={this.handleBatchCreation}>Create Batch</button>
                         </form>
              
                  </div>) // end of return

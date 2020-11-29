@@ -10,11 +10,11 @@ import Homepage from '../general/Homepage.js';
 import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 // import API from "../../API/Board";
 import BAPI from "../../API/Batch";
-import MasterKey from "../../components/Masterkey";
+import MasterKey from "../../components/Masterkey";  
 // import MAPI from "../../API/Multi";
 import Modal from "../general/Modal";
 import SAPI from "../../API/Student";
-import {Form, Button} from "react-bootstrap";
+import {Form, Button, Table} from "react-bootstrap";
 
 class BatchInfo extends Component {
   state = {
@@ -60,7 +60,7 @@ class BatchInfo extends Component {
     event.preventDefault();
     //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
     if (this.batchInputValidation()) {
-      BAPI.addNewStudentsToBatch(
+      BAPI.updateBatch(
         {
           batchid: this.state.bid,
           batchdesc: this.state.bdesc,
@@ -204,6 +204,9 @@ class BatchInfo extends Component {
         }
       })
   }
+  handleChangeInstructor = (instructorIdn) =>{
+
+  }
   render() {
     const studentrec = this.state.studentrecs;
     if (this.props.usertype === "management") {
@@ -258,11 +261,15 @@ class BatchInfo extends Component {
                                             </select>
                                           </Form.Group>
                                           <div className="card">
-                                            <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-                                            <button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</button>
-                                            {/* <button onClick={}>Change Instructor</buttonn>
-                                          <button onClick={}>Add Class notes</button>
-                                          <button onClick={}>Add Students to this batch</button> */}
+                                            <Button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</Button>
+                                            <Button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</Button>
+                                            <Modal
+                          Title="Change Instructor"
+                          IdType="instructor"
+                          handleNewStudent={this.handleChangeInstructor} />
+                                            {/* <Button onClick={}>Change Instructor</Button>
+                                          <Button onClick={}>Add Class notes</Button>
+                                          <Button onClick={}>Add Students to this batch</Button> */}
 
                                           </div>
                              </Form>
@@ -278,29 +285,37 @@ class BatchInfo extends Component {
                                   <tr>
                                     <th>Firstname</th>
                                     <th>Lastname</th>
-                                    <th>Username</th>
+                                    {/* <th>Username</th> */}
                                     {/* <th>Phone</th> */}
                                   </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="text-white">
 
                                   {studentrec.map((data, index) => (
-                                    <Allstudents studentrec={data}
+                                    <tr  key={index}>
+                                    <td>{data.studentfname}</td>
+                                    <td>{data.studentlname}</td>
+                                     <td> <button class="rowdbtn" onClick={this.deleteStudent}><i className="fa fa-trash fa-lg"></i></button></td>
+                                     
+                                      </tr>))}
+
+                                  {/* {studentrec.map((data, index) => (
+                                    <Allstudents field1={data.studentfname}
+                                    field2={data.studentlname}
                                       deleteStudentDetails={this.deleteStudent}
                                       key={index}
-                                    />))}
+                                    />))} */}
                                 </tbody>
                               </Table>
                             </div>
                 </div>
                 <div class="col-lg-4 ">
-                <Addstudent />
-                <hr />
-                        <Modal
-                          Title="Add Students"
+                <Modal
+                          Title="Add Registered students to this Cohort"
                           IdType="students"
                           handleNewStudent={this.handleNewStudent} />
-                   
+                  <h4>Add Student not yet registered</h4>        
+                <Addstudent />
                 </div>
           </div>     
 
