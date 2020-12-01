@@ -6,6 +6,7 @@ import Ourteam from "./Ourteam";
 import { connect } from 'react-redux';
 import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
 import { Accordion, Card, Button, Container , Row, Col} from "react-bootstrap";
+import "./Homepage.css";
 
 class Homepage extends Component {
 
@@ -13,7 +14,7 @@ class Homepage extends Component {
         const msg = this.props.msg || ""
         return (<Container className="middlecontent">
             <Row>
-                <Col xs lg={6}>
+                <Col xs lg={8}>
                   <Ourteam />
                 </Col>
                 <Col>
@@ -21,8 +22,8 @@ class Homepage extends Component {
                     <Accordion>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle variant="link" eventKey="0">
-                                    Sign Up
+                                <Accordion.Toggle variant="link" eventKey="0" className="accordium" >
+                                   Login
                         </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
@@ -32,7 +33,7 @@ class Homepage extends Component {
                                     </div>
 
 
-                                    <div className="card-body box2">
+                                    <div className="card-body box1">
                                         <Link to="/student/loginpg" className="mainlink">Student</Link><br />
                                     </div>
                                 </Card.Body>
@@ -40,23 +41,23 @@ class Homepage extends Component {
                         </Card>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle variant="link" eventKey="1">
+                                <Accordion.Toggle variant="link" eventKey="1" className="accordium" >
                                     Registration
                         </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
-                                <Card.Body>  <div className="card-body box5">
+                                <Card.Body>  <div className="card-body box2">
                                     <Link to="/student/newstudent" className="mainlink">New Student Registration</Link><br />
                                 </div>
-                                    <div className="card-body box5">
-                                        <Link to="/board/addBoard" className="mainlink">Register as Board Member / Teacher</Link>
+                                    <div className="card-body box2">
+                                        <Link to="/board/addBoard" className="mainlink">Register as Teacher</Link>
                                     </div>
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle variant="link" eventKey="0">
+                                <Accordion.Toggle variant="link" eventKey="0" className="accordium" >
                                     External Links
     
                         </Accordion.Toggle>
@@ -66,10 +67,10 @@ class Homepage extends Component {
                                     <div className="card-body box3">
                                         <Link to="/users/videos" className="mainlink">Reference Videos</Link>
                                     </div>
-                                    <div className="card-body box4">
+                                    <div className="card-body box3">
                                         <a href="http://www.tamilvu.org/" target="_blank" rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>
                                     </div>
-                                    <div className="card-body box5">
+                                    <div className="card-body box3">
                                         <Link to="/resources" className="mainlink">Resources</Link>
                                     </div>
 
