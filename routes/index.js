@@ -165,29 +165,6 @@ router.get('/api/instructor/search/:str', isLoggedIn, (req, res) => {
 }); // End of Router -- search implemented
 
 
-// ALL Instructor details - Teachers and Board
-router.get('/api/instructor/all', (req, res) => {
-        let list =[]
-        Board.aggregate([
-
-          {$project: {Fullname:{$concat:["$fname"," ","$lname"]}}}
-        ])
-          .then((allinst) => {
-            // list = results
-            // console.log("Records fetched for teachers", results);
-          //   return Teacher.find({},'fname lname')
-          // })
-          // .then(function (allinstructors) {
-          //   // console.log(allinstructors)
-          //   let allinst = list.concat(allinstructors)
-            console.log("All Instructors",allinst)
-            res.json(allinst);
-          })
-          .catch((error) => {
-                console.log("Error in fetching", error);
-                res.json(error);
-          });
- });
 
   ////Add Class details And Update Batches table - implemented
   router.post('/api/instructor/batch/class/add', isLoggedIn, function (req, res) {

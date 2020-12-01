@@ -28,12 +28,12 @@ class Homepage extends Component {
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
-                                    <div className="card-body box1">
+                                    <div className="card-body box">
                                         <Link to="/board/login" className="mainlink">Board Member</Link><br />
                                     </div>
 
 
-                                    <div className="card-body box1">
+                                    <div className="card-body box">
                                         <Link to="/student/loginpg" className="mainlink">Student</Link><br />
                                     </div>
                                 </Card.Body>
@@ -46,10 +46,10 @@ class Homepage extends Component {
                         </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
-                                <Card.Body>  <div className="card-body box2">
+                                <Card.Body>  <div className="card-body box">
                                     <Link to="/student/newstudent" className="mainlink">New Student Registration</Link><br />
                                 </div>
-                                    <div className="card-body box2">
+                                    <div className="card-body box">
                                         <Link to="/board/addBoard" className="mainlink">Register as Teacher</Link>
                                     </div>
                                 </Card.Body>
@@ -57,20 +57,20 @@ class Homepage extends Component {
                         </Card>
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle variant="link" eventKey="0" className="accordium" >
+                                <Accordion.Toggle variant="link" eventKey="2" className="accordium" >
                                     External Links
     
                         </Accordion.Toggle>
                             </Card.Header>
-                            <Accordion.Collapse eventKey="0">
+                            <Accordion.Collapse eventKey="2">
                                 <Card.Body>
-                                    <div className="card-body box3">
+                                    <div className="card-body box">
                                         <Link to="/users/videos" className="mainlink">Reference Videos</Link>
                                     </div>
-                                    <div className="card-body box3">
+                                    <div className="card-body box">
                                         <a href="http://www.tamilvu.org/" target="_blank" rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>
                                     </div>
-                                    <div className="card-body box3">
+                                    <div className="card-body box">
                                         <Link to="/resources" className="mainlink">Resources</Link>
                                     </div>
 

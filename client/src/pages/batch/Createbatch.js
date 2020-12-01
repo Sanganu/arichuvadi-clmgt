@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import API from '../../API/Batch';
 import Instructor from "../../components/Masterkey";
 import { connect } from "react-redux";
-import Boardmember from "../board/Boardmember";
+
 import Buttons from "../../components/Buttons";
-import Allbatches from "./displayallbatchdetails";
-import { Redirect } from "react-router-dom";
+
 
 class Createbatch extends Component {
     state = {
@@ -15,7 +14,9 @@ class Createbatch extends Component {
         instructor: '',
         batchdet: '',
         errmsg: '',
-        ids: []
+        ids: [],
+        newbatch: "true",
+        message: ""
     }
 
     handleInputChange = (event) => {
@@ -63,8 +64,13 @@ class Createbatch extends Component {
                             instructor: response.data.teacher,
                         }
                         console.log("Batch creation", newbatch);
-                        // this.props.onInsert(newbatch)
-                        //   return <Redirect  to ="/board/allbatch"/>
+                        this.setState({
+                            message: "Batch Successsfully created",
+                            batchdesc: "",
+                            course: "Beginner",
+                            level: "Oral"
+                        })
+
 
                     })
                     .catch(error => {
@@ -98,10 +104,11 @@ class Createbatch extends Component {
         return (
 
             <div className="middlecontent">
-           
+
                 <form className="inputsection">
                     <h5 className="subhead">New Cohort</h5>
-                    <p className="errmsg">{this.state.errmsg}</p>
+                    <h6 className="msg">{this.state.message}</h6>
+                    <h6 className="errmsg">{this.state.errmsg}</h6>
 
                     <div className="form-group row">
                         <label className="has-float-label">Name    </label>
@@ -142,7 +149,7 @@ class Createbatch extends Component {
 
                     <Buttons onButton={this.handleBatchCreation}>Create Batch</Buttons>
                 </form>
-                
+
             </div>) // end of return
 
     } // end of render

@@ -97,7 +97,7 @@ router.put("/api/student/update/:id", isLoggedIn, (req, res) => {
   // Route to fetch student Id and name
 router.get('/api/student/iddetails/',isLoggedIn,(req,res) => {
     studentdetails.aggregate([
-      {$project:{Fullname:{$concat:[studentfname," ",studentlname]}}}
+      {$project:{Fullname:{$concat:["$studentfname"," ","$studentlname"]}}}
     ]).then((results) => {
       console.log("REcords fetched",results);
       res.json(results)

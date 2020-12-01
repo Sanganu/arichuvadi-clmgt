@@ -3,22 +3,13 @@ import { Container, Carousel, Card } from "react-bootstrap";
 const Ourteam = () => {
     return (<Container>
 
-        {/* <div id="multi-item-example" className="carousel slide carousel-multi-item" data-ride="carousel">
-
-
-            <ol className="carousel-indicators">
-                <li data-target="#multi-item-example" data-slide-to="0" className="active"></li>
-                <li data-target="#multi-item-example" data-slide-to="1"></li>
-                <li data-target="#multi-item-example" data-slide-to="2"></li>
-                <li data-target="#multi-item-example" data-slide-to="3"></li>
-            </ol> */}
-        <Carousel>
+       <Carousel>
 
 
             <Carousel.Item interval={1000}>
                 <Card.Img variant="top"
-                    src="/images/helen.jpeg"
-                    alt="Helen" />
+                    src="/images/helen.jpg"
+                    alt="Helen" fluid />
 
                 <Card.Body>
 
@@ -44,8 +35,8 @@ const Ourteam = () => {
 
         <Carousel.Item interval={1000}>
             <Card.Img variant="top"
-                src="/images/yamini.jpeg"
-                alt="Yamini" />
+                src="/images/yamini.jpg"
+                alt="Yamini" fluid />
             <Card.Body>
                 <Card.Title>
                     <h4>Yamini</h4>
@@ -69,7 +60,7 @@ const Ourteam = () => {
         <Carousel.Item interval={500}>
             <Card.Img variant="top"
                 src="/images/colors_1.jpg"
-                alt="Chitra" />
+                alt="Chitra" fluid/>
             <Card.Body>
                 <Card.Title>
                 <h4>Chitra</h4>
@@ -84,7 +75,7 @@ const Ourteam = () => {
 
             <Card.Img variant="top"
                 src="/images/goldflowers.jpg"
-                alt="Anou" />
+                alt="Anou" fluid />
             <Card.Body>
                 <Card.Title>
                 <h4 className="card-title">Anou</h4>
