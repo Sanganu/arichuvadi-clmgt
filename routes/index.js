@@ -168,20 +168,23 @@ router.get('/api/instructor/search/:str', isLoggedIn, (req, res) => {
 // ALL Instructor details - Teachers and Board
 router.get('/api/instructor/all', (req, res) => {
         let list =[]
-        Board.find({}, 'fname lname')
-          .then((results) => {
-            list = results
+        Board.aggregate([
+
+          {$project: {Fullname:{$concat:["$fname"," ","$lname"]}}}
+        ])
+          .then((allinst) => {
+            // list = results
             // console.log("Records fetched for teachers", results);
-            return Teacher.find({},'fname lname')
-          })
-          .then(function (allinstructors) {
-            // console.log(allinstructors)
-            let allinst = list.concat(allinstructors)
+          //   return Teacher.find({},'fname lname')
+          // })
+          // .then(function (allinstructors) {
+          //   // console.log(allinstructors)
+          //   let allinst = list.concat(allinstructors)
             console.log("All Instructors",allinst)
             res.json(allinst);
           })
           .catch((error) => {
-                console.log("Error in fetching", erroboardr);
+                console.log("Error in fetching", error);
                 res.json(error);
           });
  });

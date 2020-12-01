@@ -7,11 +7,13 @@ const boardMemberSchema = new Schema({
 
         fname: {
            type: String,
-           required:true
+           required:true,
+           alias: 'firstname'
          },
          lname: {
           type: String,
-          required:true
+          required:true,
+          alias:'lastname'
         },
         description:{
           type: String,
@@ -47,12 +49,12 @@ const boardMemberSchema = new Schema({
            type:Date,
            default: Date.now
          }
-        },
-         {
-           toJSON : {
-             virtuals:true,
-           }
-         }
+        }
+        //  ,{
+        //    toJSON : {
+        //      virtuals:true,
+        //    }
+        //  }
 );
 
 boardMemberSchema.methods = {
@@ -87,9 +89,9 @@ boardMemberSchema.pre('create', function(next) {
 });
 
 //Virtuals
-boardMemberSchema.virtual('fullName').get(function(){
-  return this.fname+ ' '+this.lname;
-})
+// boardMemberSchema.virtual('fullName').get(function(){
+//   return this.fname+ ' '+ this.lname;
+// })
 
 
 

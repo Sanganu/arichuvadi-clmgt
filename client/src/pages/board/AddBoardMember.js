@@ -89,11 +89,11 @@ class AddBoardMember extends Component {
                     return <Homepage />
                     
                 })
-                .catch(error => {
-                    // this.setState({ errmsg: error.errstring + " Please check console for further details" }, () => {
-                    //    console.log("Error in Adding Board memberr details", error.err);
-                    // });
-                    console.log("error",error)
+                .catch(error => {   this.setState({ errmsg: error.errstring + " Error in the process of creation" }, () => {
+                       console.log("Error in Adding Board memberr details", error.err);
+                    });
+                 
+                  
 
                 }); //end new batch creation - axios call
         } //end if

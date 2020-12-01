@@ -22,9 +22,9 @@ class Boardmember extends Component {
             [name]: value
         });
     };
-    componentDidMount=()=>{
-        console.log("boardmember")
-    }
+    // componentDidMount=()=>{
+    //     console.log("boardmember")
+    // }
 
     logincheck = (event) => {
         event.preventDefault();
@@ -38,22 +38,23 @@ class Boardmember extends Component {
         API.boardMemberLogin(authdetails)
            .then((response) => {
                 // console.log(response)
+                var userobj = {
+                    loginemail: response.data.loginemail,
+                    usertype: 'management',
+                    invalid: false,
+                    userfname:response.data.fname,
+                    userlname:response.data.lname,
+                    userid: response.data._id
+                }
+         
+                this.props.setCredentials(userobj);
                 this.setState({
                     invalid: false,
                     logindisp: false,
                     errmsg: ''
                 }, () => {
                     // console.log("Boardmember Login", response.data);
-                    var userobj = {
-                        loginemail: response.data.loginemail,
-                        usertype: 'management',
-                        invalid: false,
-                        userfname:response.data.fname,
-                        userlname:response.data.lname,
-                        userid: response.data._id
-                    }
-                    // console.log("In BoardmemberLogin -",userobj);
-                    this.props.setCredentials(userobj);
+              
                 });
             })
             .catch((error) => {

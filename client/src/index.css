@@ -26,30 +26,7 @@ body {
   background: linear-gradient(210deg, rgba(187, 14, 14, 0.8), rgba(219, 127, 6, 0.884),rgb(77, 210, 214), rgba(7, 230, 238, 0.904));
 }
 
- button{
-  display: inline-block;
-  text-transform: uppercase;
-  /* font-weight: 500; */
-  font-style: normal;
-  font-size: 0.625rem;
-  letter-spacing: 0.3em;
-  color: rgb(238, 227, 227);
-  border-radius: 30px;
-  padding: 18px 80px 20px;
-  transition: all 0.7s  ease-out;
-  background: linear-gradient(270deg, rgba(161, 159, 152, 0.8), rgba(73, 160, 131, 0.8), rgba(168, 48, 78, 0), rgba(34,34,34,0));
-  background-size: 100% 100%;
-  text-decoration: none;
-  margin: 0.625rem;
-  border: 1px solid hsl(75, 27%, 49%);
- }
- 
- button:hover {
-  color: rgba(26, 25, 25, 0.747);
-  border: 1px solid hsla(20, 67%, 4%, 0.925);
-  background-position: 99% 50%;
-  font-weight: bold; 
-}
+
 
 .rowbtn {
   border-radius: 50%;

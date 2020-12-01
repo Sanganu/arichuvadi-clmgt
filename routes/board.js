@@ -43,7 +43,7 @@ router.post('/api/board/new', (req, res) => {
 router.get('/api/board/all',(req,res)=>{
 Management.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
   .then((results) => {
-     console.log("Records fetched for teachers",results);
+     console.log("Records fetched for Management",results);
      res.json(results);
   })
   .catch((error) => {

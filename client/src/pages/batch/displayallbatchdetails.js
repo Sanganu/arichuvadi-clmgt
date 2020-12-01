@@ -27,43 +27,51 @@ class Allbatches extends Component {
   }
 
   componentDidMount = () => {
-    //  console.log("displayallbatchdetails -- component before axios call",this.props);
+     console.log("displayallbatchdetails -- component before axios call",this.props);
     let batchrecords = this.state.batchrecords;
     let allbatches = false
+    if (this.props.usertype === "management") {
       API.getAllBatch()
-      .then(response => {
-        console.log("The Batch Details of  - axios call", response.data);
-        if (response.data.length > 0) {
-          for (let i = 0; i < response.data.length; i++) {
-            // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
-            let currentrec = {
-              recid: response.data[i]._id,
-              recdesc: response.data[i].batchdesc,
-              recsubj: response.data[i].course,
-              reclevel: response.data[i].level,
-              teacher: response.data[i].teacher,
-              noofstu: response.data[i].students.length,
-              noofclasses: response.data[i].classid.length
-              //recstudents: response.data[i].students
-            }
-            batchrecords.push(currentrec);
-          } // end for
+        .then(response => {
+          // console.log("The Batch Details of  - axios call", response.data);
+          if (response.data.length > 0) {
+            for (let i = 0; i < response.data.length; i++) {
+              // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
+              let currentrec = {
+                recid: response.data[i]._id,
+                recdesc: response.data[i].batchdesc,
+                recsubj: response.data[i].course,
+                reclevel: response.data[i].level,
+                teacher: response.data[i].teacher,
+                noofstu: response.data[i].students.length,
+                noofclasses: response.data[i].classid.length
+                //recstudents: response.data[i].students
+              }
+              batchrecords.push(currentrec);
+            } // end for
 
-          allbatches = true;
-          this.setState({
-            batchrecords: batchrecords,
-            allbatches: allbatches
-          },
-            () => { console.log("State of records") });
-        }else{
+            allbatches = true;
+            this.setState({
+              batchrecords: batchrecords,
+              allbatches: allbatches
+            })
+            // ,() => { console.log("State of records") });
+          } else {
 
-          console.log("Axios No records exist");
-        }
-      }) // end then
-      .catch(error => {
-        this.setState({ allbatches: false })
-        console.log("Error in getting batch records!!!", error);
-      });
+            console.log("Axios No records exist");
+
+          }
+        }) // end then
+        .catch(error => {
+          this.setState({ allbatches: false })
+          console.log("Error in getting batch records!!!", error);
+          return (<Homepage msg="Please Login" />);
+        });
+    }
+    else {
+      console.log("Console error",this.props.usertype)
+      return (<Homepage msg="Please Login" />);
+    }
   } // end component did mount
 
   getBatchDetails = (batchselected) => {
@@ -81,7 +89,7 @@ class Allbatches extends Component {
       return batch.recid !== batchid
     });
     this.setState({
-      batchrecords:batchrecords,
+      batchrecords: batchrecords,
       allbatches: true
     });
   }
@@ -89,9 +97,9 @@ class Allbatches extends Component {
   render() {
     const stbatchrec = this.state.batchrecords;
     //console.log("Display all batch details --",this.props);
-    if (this.props.usertype === "management")
-    {return (<div className="container">
-             <div className = "middlecontent">
+    if (this.props.usertype === "management") {
+      return (<div className="container">
+        <div className="middlecontent">
           {this.state.allbatches ?
             <table className="table table-hover table-responsive">
               <thead>
@@ -120,39 +128,39 @@ class Allbatches extends Component {
               </tbody>
             </table>
             : <div>  {this.state.batchdet ?
-                    <BatchInfo
-                      batchdetails={this.state.batchdet}
-                      newbatch={false}
-                      deleteBatch = {this.deleteBatch}
-                    />
-                    : <div></div>}
-             </div>  
-          }    
-          </div>           
-         </div>
-        ); // end return
-      }// end if props.usertype is boardmember
-     else{
-        return(<Homepage msg="Please Login"/>);
-     }
-    } //end render
-  } //end allbatches
-
- 
-  const mapStateToProps = (state) => { 
-    console.log("Map State to Props Display all batches: ",state);
-    return {
-      loginemail:state.loginemail,
-      userfname:state.userfname,
-      userlname:state.userlname,
-      usertype:state.usertype,
-      userid:state.userid
+              <BatchInfo
+                batchdetails={this.state.batchdet}
+                newbatch={false}
+                deleteBatch={this.deleteBatch}
+              />
+              : <div></div>}
+            </div>
+          }
+        </div>
+      </div>
+      ); // end return
+    }// end if props.usertype is boardmember
+    else {
+      return (<Homepage msg="Please Login as Board member to see all batches" />);
     }
-    
+  } //end render
+} //end allbatches
+
+
+const mapStateToProps = (state) => {
+  // console.log("Map State to Props Display all batches: ", state);
+  return {
+    loginemail: state.loginemail,
+    userfname: state.userfname,
+    userlname: state.userlname,
+    usertype: state.usertype,
+    userid: state.userid
   }
-  export default connect(mapStateToProps)(Allbatches);    
+
+}
+export default connect(mapStateToProps)(Allbatches);
 
   // export default Allbatches;
 
-  
-  
+
+

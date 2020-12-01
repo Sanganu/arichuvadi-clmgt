@@ -7,11 +7,13 @@ const studentSchema = new Schema({
 
           studentfname: {
                type: String,
-               required: true
+               required: true,
+               alias:'firstname'
           },
           studentlname: {
               type: String,
               required: true,
+              alias:'lastname'
             },
             loginemail: {
               type:String,
@@ -48,8 +50,12 @@ const studentSchema = new Schema({
           teachersComments:[{
             date: Date,
             notes:String
-          }]
-});
+          }]}, {
+            toJSON : {
+              virtuals:true,
+            }
+          }
+);
 
 
 studentSchema.methods = {
@@ -82,6 +88,12 @@ studentSchema.pre('create', function(next) {
 		next()
 	}
 });
+
+//Virtuals
+studentSchema.virtual('fullName').get(function(){
+  return this.studentfname+ ' '+this.studentlname;
+})
+
 
 const Students = mongoose.model("studentdetails", studentSchema);
 module.exports = Students;

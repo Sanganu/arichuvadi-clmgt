@@ -14,7 +14,9 @@ import MasterKey from "../../components/Masterkey";
 // import MAPI from "../../API/Multi";
 import Modal from "../general/Modal";
 import SAPI from "../../API/Student";
-import {Form, Button, Table} from "react-bootstrap";
+import {Form,Table} from "react-bootstrap";
+import Buttons from "../../components/Buttons"
+
 
 class BatchInfo extends Component {
   state = {
@@ -261,8 +263,9 @@ class BatchInfo extends Component {
                                             </select>
                                           </Form.Group>
                                           <div className="card">
-                                            <Button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</Button>
-                                            <Button onClick={this.deleteBatch} className="rowbtn"><i className="fa fa-trash fa-lg"></i>Delete</Button>
+                                            <Buttons 
+                                             onButton={this.updateBatch}><i className="fa fa-edit fa-lg"></i>Update</Buttons>
+                                            <Buttons onButton={this.deleteBatch}><i className="fa fa-trash fa-lg"></i>Delete</Buttons>
                                             <Modal
                           Title="Change Instructor"
                           IdType="instructor"

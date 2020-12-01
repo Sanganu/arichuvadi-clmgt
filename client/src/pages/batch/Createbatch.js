@@ -3,6 +3,8 @@ import API from '../../API/Batch';
 import Instructor from "../../components/Masterkey";
 import { connect } from "react-redux";
 import Boardmember from "../board/Boardmember";
+import Buttons from "../../components/Buttons";
+import Allbatches from "./displayallbatchdetails"
 
 class Createbatch extends Component {
     state = {
@@ -41,16 +43,15 @@ class Createbatch extends Component {
         }
         else {
           
-          let newbatchdetails =
+                let newbatchdetails =
                 {
                     batchdesc: this.state.batchdesc,
                     course: this.state.course,
-                     level: this.state.level,
+                    level: this.state.level,
                     teacher: this.state.instructor,
-                 
                 }
-                if(this.props.usertype === "management"){
-                console.log("Before axios call - create batch",newbatchdetails);
+            if(this.props.usertype === "management"){
+                // console.log("Before axios call - create batch",newbatchdetails);
                 API.newBatch(newbatchdetails)
                 .then(response => {
                     let newbatch = {
@@ -60,20 +61,25 @@ class Createbatch extends Component {
                         level: response.data.level,
                         instructor: response.data.teacher,
                     }
-                    console.log("Batch creation", newbatch);
-                    this.props.onInsert(newbatch)
+                    // console.log("Batch creation", newbatch);
+                    // this.props.onInsert(newbatch)
+                   this.props.history.push("/teacher/allteacher")
                 })
                 .catch(error => {
-                    this.setState({ errmsg: error.errstring + " Please check console for further details" },
+                    this.setState({ errmsg: error.errstring + " Please reach out to Board member - there is an error in the process" },
                         () => {
                             console.log("Error in Adding Batch", error.err);
                         });
 
                 }); //end new batch creation - axios ncall
             }else{
+                this.setState({ errmsg: "Only Board members can create batch / cohorts - If you are Board memeber ..Please login as Board memeber, Otherwise reach out to board members" },
+                () => {
                 console.log("Only Board members can create batch / cohorts - If you are Board memeber ..Please login as Board memeber, Otherwise reach out to board members")
-               return <Boardmember />
-            }
+                this.props.history.push("/board/login")
+          
+                })
+            }//end inner if
         } //end if
     }; // end handleclasscreation
     getInstructor =(value) =>{
@@ -84,9 +90,9 @@ class Createbatch extends Component {
     }
 
     render() {
-        return (        <div className="middlecontent">
-                   
-                        <form className="inputsection">
+        // if ( this.props.usertype === "management"){
+        return (<div className="middlecontent">
+                    <form className="inputsection">
                             <h5 className="subhead">New Cohort</h5>
                             <p className="errmsg">{this.state.errmsg}</p>
 
@@ -127,16 +133,19 @@ class Createbatch extends Component {
                        
                             </div>
 
-                            <button name="clcreation" onClick={this.handleBatchCreation}>Create Batch</button>
-                        </form>
+                            <Buttons  onButton={this.handleBatchCreation}>Create Batch</Buttons> 
+                   </form>
              
                  </div>) // end of return
+            // }else{
+            //     return <Boardmember />
+            // }
         } // end of render
   
   } // end class
   
   const mapStateToProps = (state) => { 
-    console.log("Map State to Props create batch: ",state);
+    // console.log("Map State to Props create batch: ",state);
     return {
       loginemail:state.loginemail,
       userfname:state.userfname,

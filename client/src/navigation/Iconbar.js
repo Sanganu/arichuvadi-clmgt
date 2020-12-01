@@ -5,7 +5,7 @@ import { Menubar , Midmenu } from "./Menubar";
 
 class Iconbar extends Component{
    render(){
-     console.log("Values from redux",this.props);
+    //  console.log("Values from redux",this.props);
          if (this.props.usertype === "management")
           {
                 console.log("Role:",this.props.usertype)
@@ -23,7 +23,7 @@ class Iconbar extends Component{
 }
 
 const mapStateToProps = (state) => { 
-    console.log("Map State to Props : ",state);
+    // console.log("Map State to Props : ",state);
     return {
       loginemail:state.loginemail,
       userfname:state.userfname,

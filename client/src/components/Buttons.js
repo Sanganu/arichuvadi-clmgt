@@ -2,7 +2,7 @@ import React from "react";
 import Styling from "./Buttons.css";
 
 function Buttons(props){
-    return(<button  className="createbutton" onClick={props.onbutton}>{props.name}</button>)
+    return(<button  onClick={props.onButton}>{props.children}</button>)
 }
 
 

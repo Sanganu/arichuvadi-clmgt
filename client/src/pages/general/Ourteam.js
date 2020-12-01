@@ -1,7 +1,7 @@
 import React from 'react';
-
+import {Container} from "react-bootstrap";
 const Ourteam = () => {
-    return (<div class="container">
+    return (<Container>
 
         <div id="multi-item-example" className="carousel slide carousel-multi-item" data-ride="carousel">
 
@@ -124,7 +124,7 @@ const Ourteam = () => {
 
         </div>
         
-    </div>);
+    </Container>);
 }                       
                                 
 export default Ourteam;
