@@ -21,7 +21,7 @@ class Topmenu extends Component {
             return(<nav className = 'icon-bar'>
                         <ul className ="list-unstyled list-group">
                              <li  className = "list-group-item"><Link to  = '/' className  = 'sidemenulink'><i className="fa fa-home fa-2x"></i><p>Home Page</p></Link></li>
-                             <li  className = "list-group-item"><Link to = '/teacher/allteacher' className  = 'sidemenulink' ><i className="fa fa-chalkboard-teacher fa-2x"></i><p>Teacher Management</p></Link></li>
+                             {/* <li  className = "list-group-item"><Link to = '/teacher/allteacher' className  = 'sidemenulink' ><i className="fa fa-chalkboard-teacher fa-2x"></i><p>Teacher Management</p></Link></li> */}
                              <li  className = "list-group-item"><Link to = '/student/studentmanagement' className  = 'sidemenulink'><i  data-toggle = 'Student Management' data-title = "Student Management"className="fa fa-user fa-2x"></i><p>Student Management</p></Link></li>
                               
                               <li  className = "list-group-item"><Link to = '/board/allbatch' className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i><p>Cohort Management</p></Link></li>

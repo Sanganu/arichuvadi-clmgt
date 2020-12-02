@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Carousel, Card } from "react-bootstrap";
+import { Container, Carousel, Card, ResponsiveEmbed} from "react-bootstrap";
 const Ourteam = () => {
     return (<Container>
 
@@ -7,12 +7,16 @@ const Ourteam = () => {
 
 
             <Carousel.Item interval={1000}>
-                <Card.Img variant="top"
+                {/* <Card.Img variant="top"
                     src="/images/helen.jpg"
-                    alt="Helen" fluid />
+                    alt="Helen" fluid /> */}
 
                 <Card.Body>
-
+               
+          
+                <ResponsiveEmbed aspectRatio="16by9">
+                     <embed type="image/jpg" src="/images/helen.jpg" />
+                 </ResponsiveEmbed>
 
                     <Card.Title>
                         <h4>Helen</h4>
@@ -30,14 +34,16 @@ const Ourteam = () => {
                     Right now I am teachng students to take University Exams,
                     I feel as a great mile stone achieved in the growth of Arichuvdai. 
                      </Card.Text>
+                     <br />
                  </Card.Body>       
         </Carousel.Item>
 
         <Carousel.Item interval={1000}>
-            <Card.Img variant="top"
-                src="/images/yamini.png"
-                alt="Yamini" fluid />
+           
             <Card.Body>
+            <ResponsiveEmbed aspectRatio="16by9">
+                     <embed type="image/jpg" src="/images/yamini.jpg" />
+                 </ResponsiveEmbed>
                 <Card.Title>
                     <h4>Yamini</h4>
                     <h5 >Board Member</h5>
@@ -54,14 +60,16 @@ const Ourteam = () => {
                     and enjoy my passion with Arichuvadi and help kids to learn the
                     language in the process.
                 </Card.Text>
+                <br />
             </Card.Body>
         </Carousel.Item>
 
         <Carousel.Item interval={500}>
-            <Card.Img variant="top"
-                src="/images/colors_1.jpg"
-                alt="Chitra" fluid/>
+        
             <Card.Body>
+            <ResponsiveEmbed aspectRatio="16by9">
+                     <embed type="image/jpg" src="/images/grey.jpg" />
+                 </ResponsiveEmbed>
                 <Card.Title>
                 <h4>Chitra</h4>
                 <h5 className="card-title">Board Member</h5>
@@ -69,14 +77,15 @@ const Ourteam = () => {
                 <Card.Text>
                     I teach small kids insisting on handwritting
                  </Card.Text>
+                 <br />
             </Card.Body>
         </Carousel.Item>
         <Carousel.Item interval={500}>
 
-            <Card.Img variant="top"
-                src="/images/goldflowers.jpg"
-                alt="Anou" fluid />
             <Card.Body>
+            <ResponsiveEmbed aspectRatio="16by9">
+                     <embed type="image/jpg" src="/images/goldflowers.jpg" />
+                 </ResponsiveEmbed>
                 <Card.Title>
                 <h4 className="card-title">Anou</h4>
                 <h5 className="card-title">Board Member</h5>
@@ -87,9 +96,31 @@ const Ourteam = () => {
                 <a className="btn btn-primary" href="https://www.facebook.com/anou.mana">Facebook</a>
                 <a className="btn" href="https://www.linkedin.com/in/anou-manavalan/">Linked In</a>
                 </Card.Text>
+                <br />
             </Card.Body>
 
         </Carousel.Item>
+        <Carousel.Item interval={500}>
+        
+        <Card.Body>
+        <ResponsiveEmbed aspectRatio="16by9">
+                 <embed type="image/jpg" src="/images/SangeethaK.jpg" />
+             </ResponsiveEmbed>
+            <Card.Title>
+            <h4>Sangeetha</h4>
+            <h5 className="card-title">Web Master</h5>
+            </Card.Title>
+            <Card.Text>
+                I was brought up in Chennai, I am a descendant of Saint.Ramalinga Vallalar, He is a fabulous 
+                person who wrote Thiruarutpa. He is popular in Vadalur, Tamil Nadu. My gradfather was a sincere devotee and 
+                he did his best to spread Arutpa. I had a regret, that I didn't contribute much to Tamil Language. 
+                Hence when Yamini was discussing about the need for website, I stepped into Arichuvadi and contributed my sincere efforts 
+                into developing this site from scratch. This is an ongoing process, we are just in the intial stages 
+                and we hope to develop Arichuvadi and reach out to all Tamil speaking community across the globe.
+             </Card.Text>
+             <br />
+        </Card.Body>
+    </Carousel.Item>
 
         </Carousel>
         

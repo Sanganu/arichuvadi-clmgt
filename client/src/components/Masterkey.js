@@ -12,14 +12,16 @@ class Masterkey extends Component {
             InstructorID.getAllInstructors()
             .then((records) => {
                 console.log("Rec instructors id",records.data) 
-                this.setState({items:records.data})
+                this.setState({items:records.data,
+                masterID:records.data[0]._id || ""})
             })
         }
         else if(this.props.IdType === "students"){
             StudentID.getAllStudentId()
             .then((records) => {
                 console.log("Rec student ids",records.data) 
-                this.setState({items:records.data})
+                this.setState({items:records.data,
+                    masterID:records.data[0]._id || ""})
             })
         }
         console.log(this.state.items)

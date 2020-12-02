@@ -1,8 +1,8 @@
 import React from "react";
-import Styling from "./Buttons.css";
+import  "./Buttons.css";
 
 function Buttons(props){
-    return(<button  onClick={props.onButton}>{props.children}</button>)
+    return(<button  type="submit" onClick={props.onButton}>{props.children}</button>)
 }
 
 

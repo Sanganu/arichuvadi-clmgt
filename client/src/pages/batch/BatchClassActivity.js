@@ -16,7 +16,7 @@ import Modal from "../general/Modal";
 import SAPI from "../../API/Student";
 import { Form, Button, Accordion,Card } from "react-bootstrap";
 
-class BatchInfo extends Component {
+class BatchClassActivity extends Component {
   state = {
     bid: this.props.batchdetails.bid || '',
     bdesc: this.props.batchdetails.batchdesc || '',
@@ -32,95 +32,9 @@ class BatchInfo extends Component {
   }
 
 
-  deleteStudent = (stdid) => {
-    //  console.log("Student to be deleted", stdid, this.state.bid);//his.props.batchdetails.bid);
-    let studentrecs = 0;
-    BAPI.deleteStudentFromBatch(
-      {
-        batchid: this.state.bid,
-        studentid: stdid
-      })
-      .then(response => {
-        //        console.log("Student Details deleted from Batch", response);
-        for (let i = 0; i < this.state.studentrecs.length; i++) {
-          if (stdid !== this.state.studentrecs[i].stdid) {
-            studentrecs.push(this.state.studentrecs[i]);
-          }
-        }
-        this.setState({ studentrecs }, () => {
-          console.log("The Updated State of studentrecs", this.state.studentrecs);
-        });
-      }) //end then
-      .catch(error => {
-        console.log("Error in deleting batch student class records!!!", error);
-      }); // end catch
-  } //end of delete student
 
-  updateBatch = (event) => {
-    event.preventDefault();
-    //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
-    if (this.batchInputValidation()) {
-      BAPI.addNewStudentsToBatch(
-        {
-          batchid: this.state.bid,
-          batchdesc: this.state.bdesc,
-          course: this.state.course,
-          level: this.state.level,
-          teacher: this.state.instructor
-        })
-        .then((response) => {
-          //      console.log("The response from update" + response);
-          this.setState({ bdescription: this.state.bdesc }, () => {
-            console.log("The set state", this.state.bdescription);
-          });
-        })
-        .catch(error => {
-          this.setState({ errmsg: "Error in saving class records" + error, updatestatus: 'Error in updating class details' + error },
-            () => {
-              console.log("Error in saving class records!!!", error);
-            });
-        }); // end catch
-    }
-    else {
-      console.log("Invalid Batch DEscription")
-    }
-  } // end of update batch
-
-  //Batch delete
-  deleteBatch = (event) => {
-    event.preventDefault();
-    console.log("batch id", this.state.bid)
-    BAPI.deleteBatch(this.state.bid)
-      .then((response) => {
-        console.log("Batch deleted", response);
-        this.props.deleteBatch(this.state.bid);
-      })
-      .catch(error => {
-        console.log("Error in deleting Batch records: ", error);
-
-      })
-  } //End of delete batch
-
-  studentInputValidation = () => {
-    if (!ValidatePhonenumber()) {
-
-    }
-    else if (!ValidateEmail()) {
-
-    }
-    else if (!CheckPassword()) {
-
-    }
-  }
-
-  batchInputValidation = () => {
-    if (!ValidateName(this.state.batchdesc)) {
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
+ 
+  
 
   handleInputChange = (event) => {
     const target = event.target;
@@ -131,17 +45,7 @@ class BatchInfo extends Component {
     });
   } //End handle Input change
 
-  handleNewStudent = (nstudent) => {
-    console.log("The student records", nstudent);
-    SAPI.addStudentToBatch({
-      batchid: this.state.bid,
-      studentid: nstudent
-    }).then(result => {
-      console.log(result);
-      this.getUpdatedBatchDetails()
-    })
-  } // End handelNew Student()
-
+ 
   handleClassDetails = (nclass) => {
     let classrecs = this.state.classrecs;
     console.log("The class details", nclass);
@@ -180,29 +84,7 @@ class BatchInfo extends Component {
 
   } // End componentDidMount()
 
-  getUpdatedBatchDetails = () => {
-    let strecs = this.state.studentrecs || [];
-    let clrecs = this.state.classrecs || [];
-    let bid = this.state.bid || "";
-    BAPI.getBatchDetail(bid)
-      .then((records) => {
-        console.log("Batch Info Component did mount", records)
-        let batchdetails = records.data
-        this.setState({ instructor: batchdetails[1].fname + " " + batchdetails[1].lname })
-        // console.log("BatchInfo",batchdetails[0].classid)
-        if (batchdetails[0].classid.length > 0) {
-
-          this.setState({ classrecs: batchdetails[0].classid })
-          console.log("Hello", this.state.classrecs)
-        }
-        console.log("BatchInfo", batchdetails[0].students)
-        if (batchdetails[0].students.length > 0) {
-
-          this.setState({ studentrecs: batchdetails[0].students })
-          console.log("Hello", this.state.studentrecs)
-        }
-      })
-  }
+ 
   render() {
     const studentrec = this.state.studentrecs;
     if (this.props.usertype === "management") {
@@ -350,5 +232,5 @@ const mapStateToProps = (state) => {
 }
 
 //export default BatchInfo;
-export default connect(mapStateToProps)(BatchInfo);
+export default connect(mapStateToProps)(BatchClassActivity);
 

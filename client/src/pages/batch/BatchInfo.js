@@ -7,7 +7,7 @@ import Allclasses from '../batch/displayallclassdetails.js';
 // import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
 import Homepage from '../general/Homepage.js';
-import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
+// import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 // import API from "../../API/Board";
 import BAPI from "../../API/Batch";
 // import MasterKey from "../../components/Masterkey";  
@@ -49,7 +49,7 @@ class BatchInfo extends Component {
         //     studentrecs.push(this.state.studentrecs[i]);
         //   }
         // }
-        studentrecs = this.state.studentrecs.filtere(student => (stdid != student.stdid))
+        studentrecs = this.state.studentrecs.filtere(student => (stdid !== student.stdid))
         this.setState({ studentrecs }, () => {
           console.log("The Updated State of studentrecs", this.state.studentrecs);
         });
@@ -62,7 +62,7 @@ class BatchInfo extends Component {
   updateBatch = (event) => {
     event.preventDefault();
     //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
-    if (this.batchInputValidation()) {
+    // if (this.batchInputValidation()) {
       BAPI.updateBatch(
         {
           batchid: this.state.bid,
@@ -83,10 +83,10 @@ class BatchInfo extends Component {
               console.log("Error in saving class records!!!", error);
             });
         }); // end catch
-    }
-    else {
-      console.log("Invalid Batch DEscription")
-    }
+    // }
+    // else {
+    //   console.log("Invalid Batch DEscription")
+    // }
   } // end of update batch
 
   //Batch delete
@@ -104,26 +104,26 @@ class BatchInfo extends Component {
       })
   } //End of delete batch
 
-  studentInputValidation = () => {
-    if (!ValidatePhonenumber()) {
+  // studentInputValidation = () => {
+  //   if (!ValidatePhonenumber()) {
 
-    }
-    else if (!ValidateEmail()) {
+  //   }
+  //   else if (!ValidateEmail()) {
 
-    }
-    else if (!CheckPassword()) {
+  //   }
+  //   else if (!CheckPassword()) {
 
-    }
-  }
+  //   }
+  // }
 
-  batchInputValidation = () => {
-    if (!ValidateName(this.state.batchdesc)) {
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
+  // batchInputValidation = () => {
+  //   if (!ValidateName(this.state.batchdesc)) {
+  //     return false;
+  //   }
+  //   else {
+  //     return true;
+  //   }
+  // }
 
   handleInputChange = (event) => {
     const target = event.target;
@@ -264,13 +264,13 @@ class BatchInfo extends Component {
                 </select>
               </Form.Group>
               <div className="card">
-                <Buttons
+                {/* <Buttons
                   onButton={this.updateBatch}><i className="fa fa-edit fa-lg"></i>Update</Buttons>
                 <Buttons onButton={this.deleteBatch}><i className="fa fa-trash fa-lg"></i>Delete</Buttons>
                 <Modal
                   Title="Change Instructor"
                   IdType="instructor"
-                  passIdToMaster={this.handleChangeInstructor} />
+                  passIdToMaster={this.handleChangeInstructor} /> */}
                 {/* <Button onClick={}>Change Instructor</Button>
                                           <Button onClick={}>Add Class notes</Button>
                                           <Button onClick={}>Add Students to this batch</Button> */}
@@ -304,7 +304,7 @@ class BatchInfo extends Component {
                     <tr key={index}>
                       <td>{data.studentfname}</td>
                       <td>{data.studentlname}</td>
-                      <td> <button class="rowdbtn" onClick={this.deleteStudent}><i className="fa fa-trash fa-lg"></i></button></td>
+                      {/* <td> <button className="rowdbtn" onClick={this.deleteStudent}><i className="fa fa-trash fa-lg"></i></button></td> */}
 
                     </tr>))}
 
@@ -320,7 +320,7 @@ class BatchInfo extends Component {
           </div>
           <div className="col-md-12">
 
-            <h6 className="text-center bg-info">Add Student not yet registered</h6>
+            <h5 className="text-center border border-primary">Add Student not yet registered</h5>
             <Addstudent
               bid={this.state.bid}
               newStudent={this.getStudent} />
@@ -330,7 +330,7 @@ class BatchInfo extends Component {
         <div className="row border border-danger">
           <div className="col-lg-8 col-md-12">
             <div className="table-responsive">
-              <h4>Class Notes - sessions covered</h4>
+              <h4 className="text-center">Class Notes</h4>
               <table className="table table-hover">
                 <thead>
                   <tr>

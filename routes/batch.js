@@ -167,7 +167,7 @@ router.delete("/api/board/batch/delete/:batchid",isLoggedIn, (req, res) => {
 router.put('/api/batch/student/delete/', (req, res) => {
   console.log("Student delete from batch-inputs", req.body.batchid, req.body.studentid);
   batchdetails.updateOne({ _id: req.body.batchid },
-    { $pull: { students: req.body.studentid } })
+    { $pull: { students: req.body.studentid } },{new:true})
     .then((data) => {
       console.log("Student details delete from batch", data);
       batchdetails.findOne({ _id: req.body.batchid }, function (error, record) {

@@ -57,7 +57,12 @@ router.post("/api/student/new", (req, res) => {
   // Get All Student Details -- implemented
 router.get("/api/students/all", isLoggedIn, (req, res) => {
     console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
-    studentdetails.find({studentfname,studentlname,loginemail,parentname,parentphonenumber,levelcompleted,levelrequested})
+    studentdetails
+    .find({studentfname,studentlname,loginemail,parentname,parentphonenumber,levelcompleted,levelrequested})
+    .populate({
+      path:batchid,
+      select:"batchdesc description "
+    })
       .then((data) => {
         console.log("student details", data);
         res.json(data);
@@ -71,7 +76,7 @@ router.get("/api/students/all", isLoggedIn, (req, res) => {
   // Update Student details from -Student Management --implemented
 router.put("/api/student/update/:id", isLoggedIn, (req, res) => {
     console.log("Student record", req.body);
-    studentdetails.updateOne(
+    studentdetails.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {

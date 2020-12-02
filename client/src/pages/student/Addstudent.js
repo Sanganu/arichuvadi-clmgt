@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Homepage from '../general/Homepage.js';
 import API from "../../API/Student";
+import {Form} from "react-bootstrap";
+import Button from "../../components/Buttons";
 
 
 class Addstudent extends Component {

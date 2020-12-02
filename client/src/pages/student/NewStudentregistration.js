@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 // import Allstudents from './displayallstudents';
 import API from "../../API/Student"
+import Email from "../../components/Email";
+import Password from "../../components/Password";
 
 // import { CheckPassword } from '../../util/Inputvalidations';
 import Homepage from '../general/Homepage';
@@ -14,7 +16,6 @@ class Studentregistration extends Component {
         parentname: "",
         parentphonenumber: "",
         password: "",
-        password1:"",
         levelcompleted: "",
         errmsg: ''
     }               
@@ -28,6 +29,14 @@ class Studentregistration extends Component {
             [name]: value
         });
     } // end od handleInputChange
+    //Handle email
+    setEmail = (email) => {
+        this.setState({loginemail:email})
+    }
+
+    setPassword = (password) =>{
+        this.setState({password})
+    }
 
     handleStudentCreation = (event) => {
         event.preventDefault();
@@ -37,10 +46,9 @@ class Studentregistration extends Component {
             this.state.loginemail === "" ||
             this.state.parentname === "" ||
             this.state.parentphonenumber === "" ||
-            this.state.password === "" ||
-            this.state.password1 === "") {
+            this.state.password === "" ) {
             console.log("Empty fields not accepted");
-            this.setState({ errmsg: " Empty fields not accepted" })
+            this.setState({ errmsg: " Enter valid data in all fields " })
         }
         else {
             if (this.state.password === this.state.password1) {
@@ -67,8 +75,7 @@ class Studentregistration extends Component {
                                 completedcourse: '',
                                 completedlevel: '',
                                 password:"",
-                                password1:"",
-                                errmsg: "Student details registered, A Board member will review your details and contact as soon as possible"
+                                 errmsg: "Student details registered, A Board member will review your details and contact as soon as possible"
                             })
 
                             return <Homepage msg="You may login" />
@@ -109,10 +116,13 @@ class Studentregistration extends Component {
                                 <label className="has-float-label">Parent Name</label>
                                 <input type="text" className="form-control" placeholder="Parent Name" value={this.state.parentname} onChange={this.handleInputChange} name="parentname" />
                             </div>
-                            <div className="form-group row">
+                            {/* <div className="form-group row">
                                 <label className="has-float-label">Parent Email(login email)</label>
                                 <input type="text" className="form-control" placeholder="Login Email" value={this.state.loginemail} onChange={this.handleInputChange} name="loginemail" />
-                            </div>
+                            </div> */}
+                            <Email 
+                              email={this.state.email}
+                              setEmail ={this.setEmail}/>
                             <div className="form-group row">
                                 <label className="has-float-label">Password(Please not this down)</label>
                                 <input type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} name="password" />
@@ -121,6 +131,7 @@ class Studentregistration extends Component {
                                 <label className="has-float-label">ReType Password</label>
                                 <input type="password" className="form-control" placeholder="Retype Password" value={this.state.password1} onChange={this.handleInputChange} name="password1" />
                             </div>
+                         
                             <div className="form-group row">
                                 <label className="has-float-label">Phone Number</label>
                                 <input type="text" className="form-control" placeholder="Phone number" value={this.state.parentphonenumber} onChange={this.handleInputChange} name="parentphonenumber" />

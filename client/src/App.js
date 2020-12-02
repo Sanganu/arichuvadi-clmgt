@@ -27,7 +27,7 @@ import Addstudent from "./pages/student/Addstudent";
 //Batch
 
 import Batchmain from "./pages/batch/Batchmain";
-import Createbatch from "./pages/batch/Createbatch";
+// import Createbatch from "./pages/batch/Createbatch";
 import Allbatches from "./pages/batch/displayallbatchdetails";
 import Addclass from "./pages/batch/Addclassdetails";
 
