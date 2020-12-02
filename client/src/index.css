@@ -6,7 +6,9 @@ body {
 }
 
 
-
+.modalstudents{
+  background: linear-gradient(270deg, rgba(161, 159, 152, 0.8), rgba(73, 160, 131, 0.8), rgba(168, 48, 78, 0), rgba(34,34,34,0));
+}
 
 .rowbtn {
   border-radius: 50%;

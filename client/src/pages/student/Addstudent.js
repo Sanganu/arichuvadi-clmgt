@@ -20,7 +20,7 @@ class Addstudent extends Component {
       const target = event.target;
       const value = target.type === 'checkbox' ? target.name : target.value;
       const name = target.type === 'checkbox' ? 'daysofweek' : target.name;
-      //console.log('The Value in input change',value,name);
+      //console.log('The Value in Form.Control change',value,name);
       this.setState({
          [name]: value,
          errmsg:""
@@ -106,33 +106,33 @@ class Addstudent extends Component {
             return(
               <div>
                    <p className="errmsg">{this.state.errmsg}</p>
-                    <form className ="inputsection">
-                                  <div className = "form-group">
-                                      <label className="form-control-placeholder">
-                                      Firstname</label>
-                                      <input type = "text"
+                    <Form>
+                                  <Form.Group>
+                                      <Form.Label className="form-control-placeholder">
+                                      Firstname</Form.Label>
+                                      <Form.Control type = "text"
                                        value={this.state.studentfname} 
                                        onChange = {this.handleInputChange} 
                                        placeholder = "Student Firstname"
                                        className = "form-control"
                                        id = "studentfname"
                                        name =  "studentfname" />
-                                  </div>
-                                  <div className = "form-group">
-                                       <label className="form-control-placeholder">
-                                       Lastname</label>
-                                       <input type = "text"  
+                                  </Form.Group>
+                                  <Form.Group>
+                                       <Form.Label className="form-control-placeholder">
+                                       Lastname</Form.Label>
+                                       <Form.Control type = "text"  
                                        placeholder = "Student Lastname" 
                                        value={this.state.studentlname}
                                        onChange = {this.handleInputChange} 
                                        className = "form-control"
                                        name = "studentlname"
                                        id = "studentlname" />
-                                  </div>     
+                                  </Form.Group>     
                                   <div className = "form-group">
-                                       <label className="form-control-placeholder">
-                                       Parent</label>
-                                       <input type = "text" 
+                                       <Form.Label className="form-control-placeholder">
+                                       Parent</Form.Label>
+                                       <Form.Control type = "text" 
                                        placeholder = "Parent name" 
                                        className = "form-control"
                                        value={this.state.parentname}
@@ -141,9 +141,9 @@ class Addstudent extends Component {
                                        id = "parentname" />
                                   </div>    
                                   <div className = "form-group">
-                                      <label className="form-control-placeholder">
-                                      Username</label> 
-                                       <input type = "text"  
+                                      <Form.Label className="form-control-placeholder">
+                                      Username</Form.Label> 
+                                       <Form.Control type = "email"  
                                        placeholder = "Username"
                                        value={this.state.loginemail} 
                                        className ="form-control"
@@ -152,9 +152,9 @@ class Addstudent extends Component {
                                        id = "loginemail" />
                                   </div>
                                   <div className = "form-group">
-                                       <label className="form-control-placeholder">
-                                       Password</label>
-                                       <input type = "password" 
+                                       <Form.Label className="form-control-placeholder">
+                                       Password</Form.Label>
+                                       <Form.Control type = "password" 
                                        placeholder = "password"  
                                        className = "form-control"
                                        value={this.state.password} 
@@ -163,9 +163,9 @@ class Addstudent extends Component {
                                   </div>
                          
                                   <div className = "form-group">
-                                       <label className ="form-control-placeholder">
-                                       Phone</label>    
-                                       <input type = "text"   
+                                       <Form.Label className ="form-control-placeholder">
+                                       Phone</Form.Label>    
+                                       <Form.Control type = "text"   
                                        placeholder = "Phone number" 
                                        value={this.state.parentphonenumber} 
                                        className = "form-control"
@@ -173,33 +173,31 @@ class Addstudent extends Component {
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />
                                   </div>  
-                                   <div className="form-group row">
+                                   <Form.Group>
                                         <label className="has-float-label">Level Completed :  </label>
-                                      <select className="form-control droplist" value={this.state.levelcompleted} onChange={this.handleInputChange} name="levelcompleted" id="levelcompleted">
+                                      <Form.Control as="select" value={this.state.levelcompleted} onChange={this.handleInputChange} name="levelcompleted" id="levelcompleted">
                                           <option value='Oral' default>Oral Examination</option>
                                           <option value='Visual'>Visual Examination</option>
                                           <option value='Written'>Written Examination</option>
                                           <option value='Online'>Online Examination</option>
                                           <option value='Offline'>Offline Examination</option>
-                                      </select>
-                                      </div>   
-                                      <div className="form-group row">
+                                      </Form.Control>
+                                      </Form.Group>   
+                                      <Form.Group>
                                         <label className="has-float-label">Level Requested :  </label>
-                                      <select className="form-control droplist" value={this.state.levelrequested} onChange={this.handleInputChange} name="levelrequested" id="levelrequested">
+                                      <Form.Control  as="select" value={this.state.levelrequested} onChange={this.handleInputChange} name="levelrequested" id="levelrequested">
                                           <option value='Oral' default>Oral Examination</option>
                                           <option value='Visual'>Visual Examination</option>
                                           <option value='Written'>Written Examination</option>
                                           <option value='Online'>Online Examination</option>
                                           <option value='Offline'>Offline Examination</option>
-                                      </select>
-                                   </div>  
-                                       <button  
-                                        className = "rowbtn" 
-                                        name = "creation"
-                                        onClick = {this.handleStudentCreation}>
+                                      </Form.Control>
+                                   </Form.Group>  
+                                       <Button
+                                        onButton = {this.handleStudentCreation}>
                                         <i className="fa fa-address-card"></i>
-                                        Add Student</button>
-                    </form>
+                                        Add Student</Button>
+                    </Form>
               </div>
             ) //end return
           }

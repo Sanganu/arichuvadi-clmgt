@@ -201,12 +201,14 @@ router.get('/api/instructor/search/:str', isLoggedIn, (req, res) => {
     Batchdetails.findOneAndUpdate({ _id: req.body.batchid },
       { $push: { students: req.body.studentid } },{new:true})
     .then(function(records){
-      Studentdetails.updateOne({_id:req.body.studentid},
-      {$push: {batchid:req.body.batchid}})
-      console.log("BATCH INFO",records)
-      res.json(records)
-    })
-    .catch(function(error){
+      console.log(req.body.studentid)
+      return Studentdetails.findOneAndUpdate({_id:req.body.studentid},
+       {batchid:req.body.batchid})
+      }).then((studres => {
+        console.log("BATCH INFO Update Student",studrecs)
+        res.json(studrecs)
+      }))
+     .catch(function(error){
       console.log("Error in getting batch details with student and class",error)
     })
   })

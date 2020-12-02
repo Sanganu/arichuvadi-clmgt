@@ -5,9 +5,16 @@ import MasterKey from "../../components/Masterkey";
 
 const AddModal = (props) => {
     const [show, setShow] = useState(false);
+    const [masterkey,setMasterkey] = useState();
 
-    const handleClose = () => setShow(false);
+    const handleClose = () =>{
+      setShow(false)
+      props.passIdToMaster(masterkey)};
     const handleShow = () => setShow(true);
+
+    const getMasterKey = (masterID) => {
+      setMasterkey(masterID)
+    }
   
     return (
       <React.Fragment>
@@ -22,7 +29,7 @@ const AddModal = (props) => {
           <Modal.Body>
           <MasterKey
             IdType={props.IdType}
-            passMasterId={props.handleNewStudent}/>
+            passMasterId={getMasterKey}/>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
