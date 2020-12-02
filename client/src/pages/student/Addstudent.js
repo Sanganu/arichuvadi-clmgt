@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import Homepage from '../general/Homepage.js';
+import API from "../../API/Student";
 
 
 class Addstudent extends Component {
@@ -15,9 +15,7 @@ class Addstudent extends Component {
       errmsg:'',
       retypepassword:''
     };
-      
-  
-
+     
     handleInputChange = (event) => { 
       const target = event.target;
       const value = target.type === 'checkbox' ? target.name : target.value;
@@ -48,8 +46,8 @@ class Addstudent extends Component {
            this.setState({errmsg: " Mismatch Password and Confirm password"})
         }
          else {
-           console.log("Add student");
-        axios.post('/api/teacher/batch/student/new',
+           console.log("Add student",this.props);
+           API.addNewStudentToBatch(
                   {   
                     studentfname: this.state.studentfname,
                     studentlname: this.state.studentlname,
@@ -57,7 +55,7 @@ class Addstudent extends Component {
                     loginemail: this.state.loginemail,
                     password: this.state.password,
                     parentphonenumber: this.state.parentphonenumber,
-                    batchid: this.props.batchdet.bid || this.props.bid
+                    batchid: this.props.bid||""
                   })
                   .then((res) =>
                     {

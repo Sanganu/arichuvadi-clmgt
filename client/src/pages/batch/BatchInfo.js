@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
-import Allstudents from '../general/displayrecords';
+// import Allstudents from '../general/displayrecords';
 import Allclasses from '../batch/displayallclassdetails.js';
 // import Allbatches from './displayallbatchdetails.js'; 
 // import StudentID from './StudentID.js';
@@ -10,7 +10,7 @@ import Homepage from '../general/Homepage.js';
 import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 // import API from "../../API/Board";
 import BAPI from "../../API/Batch";
-import MasterKey from "../../components/Masterkey";  
+// import MasterKey from "../../components/Masterkey";  
 // import MAPI from "../../API/Multi";
 import Modal from "../general/Modal";
 import SAPI from "../../API/Student";
@@ -184,8 +184,8 @@ class BatchInfo extends Component {
   } // End componentDidMount()
 
   getUpdatedBatchDetails = () => {
-    let strecs = this.state.studentrecs || [];
-    let clrecs = this.state.classrecs || [];
+    // let strecs = this.state.studentrecs || [];
+    // let clrecs = this.state.classrecs || [];
     let bid = this.state.bid || "";
     BAPI.getBatchDetail(bid)
       .then((records) => {
@@ -317,8 +317,10 @@ class BatchInfo extends Component {
                           Title="Add Registered students to this Cohort"
                           IdType="students"
                           handleNewStudent={this.handleNewStudent} />
-                  <h4>Add Student not yet registered</h4>        
-                <Addstudent />
+                  <h6 className="text-center bg-info">Add Student not yet registered</h6>        
+                <Addstudent
+                  bid ={this.state.bid}
+                 newStudent ={this.getStudent} />
                 </div>
           </div>     
 

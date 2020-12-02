@@ -201,6 +201,8 @@ router.get('/api/instructor/search/:str', isLoggedIn, (req, res) => {
     Batchdetails.findOneAndUpdate({ _id: req.body.batchid },
       { $push: { students: req.body.studentid } },{new:true})
     .then(function(records){
+      Studentdetails.updateOne({_id:req.body.studentid},
+      {$push: {batchid:req.body.batchid}})
       console.log("BATCH INFO",records)
       res.json(records)
     })

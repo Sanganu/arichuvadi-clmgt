@@ -35,7 +35,7 @@ const Ourteam = () => {
 
         <Carousel.Item interval={1000}>
             <Card.Img variant="top"
-                src="/images/yamini.jpg"
+                src="/images/yamini.png"
                 alt="Yamini" fluid />
             <Card.Body>
                 <Card.Title>

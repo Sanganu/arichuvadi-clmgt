@@ -18,5 +18,8 @@ export default  {
     },
     addStudentToBatch: function(bidsid){
         return axios.put("/api/board/batch/student/",bidsid)
+    },
+    addNewStudentToBatch: function(student){
+        return     axios.post('/api/board/batch/student/new',student)
     }
 } 

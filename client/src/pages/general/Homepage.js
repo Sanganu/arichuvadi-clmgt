@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Ourteam from "./Ourteam";
 import { connect } from 'react-redux';
 import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
-import { Accordion, Card, Button, Container , Row, Col} from "react-bootstrap";
+import { Accordion, Card, Container , Row, Col} from "react-bootstrap";
 import "./Homepage.css";
 
 class Homepage extends Component {
@@ -58,36 +58,28 @@ class Homepage extends Component {
                         <Card>
                             <Card.Header>
                                 <Accordion.Toggle variant="link" eventKey="2" className="accordium" >
-                                    External Links
+                                 Resources
     
                         </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="2">
                                 <Card.Body>
-                                    <div className="card-body box">
-                                        <Link to="/users/videos" className="mainlink">Reference Videos</Link>
-                                    </div>
+                                    
                                     <div className="card-body box">
                                         <a href="http://www.tamilvu.org/" target="_blank" rel="noopener noreferrer" className="mainlink">Tamil Virtual Academy</a>
                                     </div>
+                                    <li   className = "list-group-item">
+              
                                     <div className="card-body box">
                                         <Link to="/resources" className="mainlink">Resources</Link>
                                     </div>
-
+                                    </li>
 
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
-                    <div className="card-deck" id="content">
-
-                        {/* <div className="card-body box6">
-                            <Link to="/teacher/instructor" className="mainlink">Instructor</Link><br />
-                        </div> */}
-
-
-
-                    </div>
+                    
                 </Col>
             </Row>
         </Container>
