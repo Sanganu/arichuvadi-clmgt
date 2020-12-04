@@ -61,6 +61,4 @@ typings/
 
 package-lock.json
 
-seeds/boardseeds.js
-
-seeds/studentseeds.js
+seedsfolder/
