@@ -23,7 +23,8 @@ class Searchstudents extends Component {
                 let found = false;
                 let displaymessage = false;
                 if ((response.data.studentdetails.length > 0) ||
-                    (response.data.batchdetails.length > 0)) {
+                    (response.data.batchdetails.length > 0) ||
+                    (response.data.managementdetails.length > 0)) {
                     found = true;
                     displaymessage = false;
                    // console.log("if statement");
@@ -53,19 +54,32 @@ class Searchstudents extends Component {
                         }
                         matchrecords.push(currentrec)
                     } // end for
+                    for(let i=0;i < response.data.managementdetails.length;i++){
+                        let currentrec = {
+                            field1: response.data.managementdetails[i]._id,
+                            field2:"First Name" + response.data.managementdetails[i].fname,
+                            field3: "Last Name" + response.data.managementdetails[i].lname,
+                            field4: "Description: "+response.data.managementdetails[i].description,
+                            field5: "Login email " + response.data.managementdetails[i].loginemil,
+                            field6: "Designation: "+ response.data.managementdetails[i].designation,
+                            field7: "Phone: " + response.data.managementdetails[i].phone,
+                        }
+                        matchrecords.push(currentrec)
+                    }
+                    this.setState({
+                        results: matchrecords,
+                        foundrecords: found,
+                        displaymessage: displaymessage
+                    },
+                        () => {
+                            console.log("State", this.state.results, 'found', this.state.foundrecords);
+                        });
                 } // end if
                 else {
                     displaymessage = true
                     found = false;
                 } //end else
-                this.setState({
-                    results: matchrecords,
-                    foundrecords: found,
-                    displaymessage: displaymessage
-                },
-                    () => {
-                        console.log("State", this.state.results, 'found', this.state.foundrecords);
-                    });
+     
             })
             .catch((err) => {
                 console.log("The error:", err);
@@ -88,7 +102,7 @@ class Searchstudents extends Component {
 
         return (<div>
                    <form className="inputsection">
-                        <h5 className="subhead">Search Student / Cohort</h5>
+                        <h5 className="subhead">Search Student / Cohort / Instructor / Boardmember</h5>
                             <div className="form-group row">
                                 <label className="has-float-label"id="lsearchstr">Search </label><br />
                                 <input className="form-control" onChange={this.handleInputChange} type="text" name="searchstring" value={this.state.searchstring} /><br />.

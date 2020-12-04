@@ -9,7 +9,7 @@ const isLoggedIn = (req, res, next) => {
     if (!req.user) {
       // USer is not logged in
       console.log("Routes isLoggedIn- No user data found", req.user)
-      res.redirect("/login");
+      res.redirect("/");
     }
     else {
       console.log("Routes-IsloggedIn-USer logged in", req.user);
@@ -61,7 +61,7 @@ router.get("/api/students/all", isLoggedIn, (req, res) => {
     .find({studentfname,studentlname,loginemail,parentname,parentphonenumber,levelcompleted,levelrequested})
     .populate({
       path:batchid,
-      select:"batchdesc description "
+      select:"batchdesc"
     })
       .then((data) => {
         console.log("student details", data);

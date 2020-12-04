@@ -16,7 +16,8 @@ class Createbatch extends Component {
         errmsg: '',
         ids: [],
         newbatch: "true",
-        message: ""
+        message: "",
+        examdate:""
     }
 
     handleInputChange = (event) => {
@@ -36,50 +37,53 @@ class Createbatch extends Component {
         event.preventDefault();
         // console.log("Create Batch -- Creation state values", this.state);
         //var myDate = new Date(this.state.startdate);
-        if (this.state.batchdesc === "" ||
-            this.state.course === "" ||
-            this.state.level === "") {
-            // || this.state.instructor === "") {
-            console.log("No Empty Fields Enter valid data");
-            this.setState({ errmsg: "No Empty Fields Enter valid data" });
-        }
-        else {
+        if (this.props.usertype === "management") {
+                    if (this.state.batchdesc === "" ||
+                        this.state.course === "" ||
+                        this.state.level === "") {
+                        // || this.state.instructor === "") {
+                        console.log("No Empty Fields Enter valid data");
+                        this.setState({ errmsg: "No Empty Fields Enter valid data" });
+                    }
+                    else {
 
-            let newbatchdetails =
-                {
-                    batchdesc: this.state.batchdesc,
-                    course: this.state.course,
-                    level: this.state.level,
-                    teacher: this.state.instructor,
-                }
-            if (this.props.usertype === "management") {
-                // console.log("Before axios call - create batch",newbatchdetails);
-                API.newBatch(newbatchdetails)
-                    .then(response => {
-                        let newbatch = {
-                            bid: response.data._id,
-                            batchdesc: response.data.batchdesc,
-                            course: response.data.course,
-                            level: response.data.level,
-                            instructor: response.data.teacher,
-                        }
-                        console.log("Batch creation", newbatch);
-                        this.setState({
-                            message: "Batch Successsfully created",
-                            batchdesc: "",
-                            course: "Beginner",
-                            level: "Oral"
-                        })
+                                let newbatchdetails =
+                                    {
+                                        batchdesc: this.state.batchdesc,
+                                        course: this.state.course,
+                                        level: this.state.level,
+                                        teacher: this.state.instructor,
+                                        examDate:this.state.examdate
+                                    }
+       
+                                    // console.log("Before axios call - create batch",newbatchdetails);
+                                    API.newBatch(newbatchdetails)
+                                        .then(response => {
+                                            let newbatch = {
+                                                bid: response.data._id,
+                                                batchdesc: response.data.batchdesc,
+                                                course: response.data.course,
+                                                level: response.data.level,
+                                                instructor: response.data.teacher,
+                                            }
+                                            console.log("Batch creation", newbatch);
+                                            this.setState({
+                                                message: "Batch Successsfully created",
+                                                batchdesc: "",
+                                                course: "Beginner",
+                                                level: "Oral",
+                                                examdate:""
+                                            })
 
 
-                    })
-                    .catch(error => {
-                        this.setState({ errmsg: error.errstring + " Please reach out to Board member - there is an error in the process" },
-                            () => {
-                                console.log("Error in Adding Batch", error.err);
-                            });
+                                        }).catch(error => {
+                                            this.setState({ errmsg: error.errstring + " Please reach out to Board member - Error in process" },
+                                                () => {
+                                                    console.log("Error in Adding Batch", error.err);
+                                                });
 
-                    }); //end new batch creation - axios ncall
+                                        }); //end new batch creation - axios ncall
+                              }    //end inner if                
             } else {
                 this.setState({ errmsg: "Only Board members can create batch / cohorts - If you are Board memeber ..Please login as Board memeber, Otherwise reach out to board members" },
                     () => {
@@ -87,8 +91,8 @@ class Createbatch extends Component {
                         // return <Boardmember />
 
                     })
-            }//end inner if
-        } //end if
+  
+        } //end outer  if
     }; // end handleclasscreation
 
 
@@ -100,7 +104,6 @@ class Createbatch extends Component {
     }
 
     render() {
-
         return (
 
             <div className="middlecontent">
@@ -139,6 +142,15 @@ class Createbatch extends Component {
                         </Form.Control>
                     </Form.Group>
                     <Form.Group>
+                    <Form.Group>
+                        <Form.Label>Exam Date   </Form.Label>
+                        <Form.Control 
+                            id="examdate"
+                            type = "date"
+                            value={this.state.examdate}
+                            onChange={this.handleInputChange}
+                            name="examdate" />
+                    </Form.Group>
                         <Form.Label className="has-float-label">Instructor </Form.Label>
 
                         <Instructor IdType="instructor"

@@ -9,7 +9,7 @@ const isLoggedIn = (req, res, next) => {
     if (!req.user) {
       // USer is not logged in
       console.log("Routes isLoggedIn- No user data found", req.user)
-      res.redirect("/login");
+      res.redirect("/");
     }
     else {
       console.log("Routes-IsloggedIn-USer logged in", req.user);
@@ -32,7 +32,7 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
       .catch(function (err) {
         if (err) {
           console.log(err)
-         res.json(err) 
+         res.error(err) 
         }
       }); //end catch section
   }); // end batchdetails -- create batch implemented

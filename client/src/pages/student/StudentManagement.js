@@ -31,11 +31,13 @@ class Studentmanagement extends Component {
   };
 
   componentDidMount = (event) => {
-    let studentrecords = this.state.studentrecords;
+    let studentrecords = [];
     console.log("ComponentDidmount - Student management")
     API.getAllStudents()
       .then(response => {
-        for (let i = 0; i < response.data.length; i++) {
+        console.log(response.data)
+        
+      for (let i = 0; i < response.data.length; i++) {
           let currentrec = {
             recid: response.data[i]._id,
             stdfname: response.data[i].studentfname,
@@ -45,13 +47,13 @@ class Studentmanagement extends Component {
             phonenumber: response.data[i].parentphonenumber,
             // noofbatches: response.data[i].batchid.length,
             levelcompleted: response.data[i].levelcompleted,
-            levelrequested: response.data[i].levelrequested
-            // batchid: response.data[i].batchid._id,
-            // batchdesc: response.data[i].batchid.batchdesc,
-            // subject: response.data[i].batchid.subject
+            levelrequested: response.data[i].levelrequested,
+             batchid: response.data[i].batchid._id,
+            batchdesc: response.data[i].batchid.batchdesc,
+        
           }
           studentrecords.push(currentrec);
-        } // end for
+        } // end for  
         this.setState({ studentrecords: studentrecords }, () => console.log("Student Management:", studentrecords))
       }) //end then
       .catch(error => {

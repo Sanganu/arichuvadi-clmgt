@@ -63,26 +63,26 @@ class BatchInfo extends Component {
     event.preventDefault();
     //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
     // if (this.batchInputValidation()) {
-      BAPI.updateBatch(
-        {
-          batchid: this.state.bid,
-          batchdesc: this.state.bdesc,
-          course: this.state.course,
-          level: this.state.level,
-          teacher: this.state.instructor
-        })
-        .then((response) => {
-          //      console.log("The response from update" + response);
-          this.setState({ bdescription: this.state.bdesc }, () => {
-            console.log("The set state", this.state.bdescription);
+    BAPI.updateBatch(
+      {
+        batchid: this.state.bid,
+        batchdesc: this.state.bdesc,
+        course: this.state.course,
+        level: this.state.level,
+        teacher: this.state.instructor
+      })
+      .then((response) => {
+        //      console.log("The response from update" + response);
+        this.setState({ bdescription: this.state.bdesc }, () => {
+          console.log("The set state", this.state.bdescription);
+        });
+      })
+      .catch(error => {
+        this.setState({ errmsg: "Error in saving class records" + error, updatestatus: 'Error in updating class details' + error },
+          () => {
+            console.log("Error in saving class records!!!", error);
           });
-        })
-        .catch(error => {
-          this.setState({ errmsg: "Error in saving class records" + error, updatestatus: 'Error in updating class details' + error },
-            () => {
-              console.log("Error in saving class records!!!", error);
-            });
-        }); // end catch
+      }); // end catch
     // }
     // else {
     //   console.log("Invalid Batch DEscription")
@@ -262,6 +262,15 @@ class BatchInfo extends Component {
                   <option value='Online'>Online Examination</option>
                   <option value='Offline'>Offline Examination</option>
                 </select>
+                <Form.Group>
+                  <Form.Label>Exam Date   </Form.Label>
+                  <Form.Control
+                    id="examdate"
+                    type="date"
+                    value={this.state.examdate}
+                    onChange={this.handleInputChange}
+                    name="examdate" />
+                </Form.Group>
               </Form.Group>
               <div className="card">
                 {/* <Buttons
