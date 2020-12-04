@@ -32,38 +32,18 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
       .catch(function (err) {
         if (err) {
           console.log(err)
-          // var vrmsg = (err.errmsg).substr(0, 6);
-          // if (vrmsg === 'E11000') {
-          //   console.log("Batch ID already exist -- Please use different ID to create a new batch");
-          //   res.json({
-          //     errid: vrmsg,
-          //     errstring: "Batch details already exist -- Please delete old batch and register again if this is a new batch",
-          //     err: err
-          //   });
-          // }
-          // else {
-          //   console.log("Error on saving batch details", err);
-          //   res.json({
-          //     errid: 'OTHERS',
-          //     errstring: "OTHERS -Error in saving Batch details",
-          //     err: err
-          //   });
-          // }
-  
+         res.json(err) 
         }
       }); //end catch section
   }); // end batchdetails -- create batch implemented
 
   // Get All batch details -- implemented
 router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
-    console.log("<<<<Check Session - teacher login", req.session.passport);//undefined
+  //  console.log("<<<<Check Session - teacher login", req.session.passport);//undefined
     console.log("=================<<<<<<<<<===============");
     batchdetails.find({})
-      // .populate({
-      //   path:'teacher',
-      //   select:'fname lname'}) /* Should be removed when click on batch to details of batch */
       .then((data) => {
-        console.log("Batch details", data);
+   //     console.log("Batch details", data);
         res.json(data);
       })
       .catch((err) => {

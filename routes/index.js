@@ -119,9 +119,10 @@ router.get('/api/batch/student/class/details/:bid', isLoggedIn, (req, res) => {
 
 
 // Search Student & Batch Records -- implemented
-router.get('/api/instructor/search/:str', isLoggedIn, (req, res) => {
-  let student_details
-  let batch_details
+router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
+  let student_details = []
+  let batch_details= []
+  let management_details =[]
   let searchString = req.params.str;
   console.log("Inside route search", searchString);
   // Search for Student details
@@ -133,35 +134,59 @@ router.get('/api/instructor/search/:str', isLoggedIn, (req, res) => {
           { studentlname: { "$regex": searchString, "$options": "i" } },
           { loginemail: { "$regex": searchString, "$options": "i" } },
           { parentname: { "$regex": searchString, "$options": "i" } },
-          { parentphonenumber: { "$regex": searchString, "$options": "i" } }
+          { parentphonenumber: { "$regex": searchString, "$options": "i" } },
+          { levelcompleted: { "$regex": searchString, "$options": "i" } },
+          { levelrequested: { "$regex": searchString, "$options": "i" } },
+          { teacherComments: { "$regex": searchString, "$options": "i" } }
+          // { cretedDate: { "$regex": searchString, "$options": "i" } }
         ]
     })
     .then((studentdet) => {
-      console.log("Search - Student done", studentdet, "Str", searchString);
-      Student_details = studentdet;
-      Batchdetails.find({
-        $or: [
-          { batchdesc: { "$regex": searchString, "$options": "i" } },
-          { level: { "$regex": searchString, "$options": "i" } },
-          { course: { "$regex": searchString, "$options": "i" } },
-          { teacher: { "$regex": searchString, "$options": "i" } }
-        ]
-      })
-        .then((batchdet) => {
-          console.log("REcords fetched", batchdet)
-          res.json({ studentdetails: studentdet || "", batchdetails: batchdet || "" })
-        })
-        .catch((err) => {
-          console.log("No records found-1", err);
-          res.json({ err })
-        });
-      // res.json(studentdet)
-    })
-    .catch((err) => {
-      console.log("No records found-2", err);
-      // res.json(err);
-      res.json({ err })
-    }); // end fetch studentdetails records
+              console.log("Search - Student done", studentdet, "Str", searchString);
+              student_details = studentdet||[]
+              Batchdetails.find({
+                $or: [
+                  { batchdesc: { "$regex": searchString, "$options": "i" } },
+                  { level: { "$regex": searchString, "$options": "i" } },
+                  { course: { "$regex": searchString, "$options": "i" } }
+                
+                ]
+              }).then((batchdet) => {
+                      console.log("Records fetched batch", batchdet)
+                      batch_details = batchdet||[]
+                      Board.find({
+                        $or: [
+                          { fname: { "$regex": searchString, "$options": "i" } },
+                          { lname :{ "$regex": searchString, "$options": "i" } },
+                          { description: { "$regex": searchString, "$options": "i" } },
+                          { loginemail: { "$regex": searchString, "$options": "i" } },
+                          { designation: { "$regex": searchString, "$options": "i" } },
+                          { phone: { "$regex": searchString, "$options": "i" } },
+                          { skypeId: { "$regex": searchString, "$options": "i" } }
+                        ]
+                      })
+                      .then((boarddet) => {
+                          console.log("REcords fetched", boarddet)
+                          management_details = boarddet ||[]
+                          res.json(
+                            { studentdetails: studentdet || "",
+                            batchdetails: batchdet || "",
+                            managementdetails : management_details })
+                      })
+                      .catch(boarderror =>{
+                        console.log("Board Error",boarderror)
+                        res.json(boarderror)
+                      });
+            })  
+             .catch((err) => {
+                  console.log("Batch error", err);
+                  res.error( err)
+            });
+      }).catch(studenterror => {
+        console.log("Student Error",studenterror)
+        res.json(studenterror)
+      })  ;
+    
 }); // End of Router -- search implemented
 
 

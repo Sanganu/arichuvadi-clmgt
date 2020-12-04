@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import API from '../../API/Batch';
 import Instructor from "../../components/Masterkey";
 import { connect } from "react-redux";
-
+import { Form } from "react-bootstrap";
 import Buttons from "../../components/Buttons";
 
 
@@ -105,50 +105,49 @@ class Createbatch extends Component {
 
             <div className="middlecontent">
 
-                <form className="inputsection">
+                <Form className="inputsection">
                     <h5 className="subhead">New Cohort</h5>
                     <h6 className="msg">{this.state.message}</h6>
                     <h6 className="errmsg">{this.state.errmsg}</h6>
 
-                    <div className="form-group row">
-                        <label className="has-float-label">Name    </label>
-                        <input type="text"
-                            className="form-control"
+                    <Form.Group>
+                        <Form.Label>Name    </Form.Label>
+                        <Form.Control 
                             id="batchdesc"
                             value={this.state.batchdesc}
                             onChange={this.handleInputChange}
                             name="batchdesc" />
-                    </div>
-                    <div className="form-group row">
-                        <label className="has-float-label">Course : </label>
-                        <select className="form-control droplist"
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Course : </Form.Label>
+                        <Form.Control as="select" 
                             onChange={this.handleInputChange}
                             value={this.state.course} name="course" id="course">
                             <option value='Beginner' default>Beginner</option>
                             <option value='Intermediate'>Intermediate</option>
                             <option value='Advance'>Advance</option>
-                        </select>
-                    </div>
-                    <div className="form-group row">
-                        <label className="has-float-label">Level </label>
-                        <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label >Level </Form.Label>
+                        <Form.Control as="select"  value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
                             <option value='Oral' default>Oral Examination</option>
                             <option value='Visual'>Visual Examination</option>
                             <option value='Written'>Written Examination</option>
                             <option value='Online'>Online Examination</option>
                             <option value='Offline'>Offline Examination</option>
-                        </select>
-                    </div>
-                    <div className="form-group row">
-                        <label className="has-float-label">Instructor </label>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label className="has-float-label">Instructor </Form.Label>
 
                         <Instructor IdType="instructor"
                             passMasterId={this.getInstructor} />
 
-                    </div>
+                    </Form.Group>
 
                     <Buttons onButton={this.handleBatchCreation}>Create Batch</Buttons>
-                </form>
+                </Form>
 
             </div>) // end of return
 

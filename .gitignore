@@ -60,3 +60,7 @@ typings/
 .env
 
 package-lock.json
+
+seeds/boardseeds.js
+
+seeds/studentseeds.js

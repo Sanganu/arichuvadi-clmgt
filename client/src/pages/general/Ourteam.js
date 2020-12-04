@@ -41,7 +41,7 @@ const Ourteam = () => {
         <Carousel.Item interval={1000}>
            
             <Card.Body>
-            <ResponsiveEmbed aspectRatio="16by9">
+            <ResponsiveEmbed aspectRatio="1by1">
                      <embed type="image/jpg" src="/images/yamini.jpg" />
                  </ResponsiveEmbed>
                 <Card.Title>
@@ -100,10 +100,10 @@ const Ourteam = () => {
             </Card.Body>
 
         </Carousel.Item>
-        <Carousel.Item interval={500}>
+        <Carousel.Item interval={1000}>
         
         <Card.Body>
-        <ResponsiveEmbed aspectRatio="16by9">
+        <ResponsiveEmbed aspectRatio="1by1">
                  <embed type="image/jpg" src="/images/SangeethaK.jpg" />
              </ResponsiveEmbed>
             <Card.Title>

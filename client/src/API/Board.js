@@ -11,5 +11,10 @@ export default {
     },
     deleteStudentFromBatch: function(idDetails){
         return axios.put("/api/board/batch/student/delete/")
+    },
+    getSearchResults:function(searchstring){
+        return   axios.get(`/api/board/search/${searchstring}`)
     }
+
+    
 }

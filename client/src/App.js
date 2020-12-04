@@ -8,7 +8,7 @@ import Appheader from "./components/Appheader";
 import Iconbar from "./navigation/Iconbar";
 import Ourteam from "./pages/general/Ourteam";
 import Alumni from "./pages/general/Alumni";
-
+import Footer from "./components/Stfooter";
 //Board Member
 import AddBoardMember from "./pages/board/AddBoardMember";
 import Boardmember from "./pages/board/Boardmember";
@@ -49,46 +49,47 @@ const App = () => {
       <div>
         <Appheader />
         <div className='row'>
-          <div className='col-sm-2 col-md-2  col-lg-1'>
-            <Iconbar />
-          </div>
-          <div className='col-sm-10 col-md-10 col-lg-11'>
-
-            <Switch>
-              <Route exact path="/" render={() => <Homepage />} />
-
-
-              <Route exact path="/board/searchrecords" component={Search} />
-              <Route exact path="/board/allbatch" render={props => <Allbatches {...props} />} />
-              <Route exact path="/board/batchmain" component={Batchmain} />
-              {/* <Route exact path="/board/createbatch" component={Createbatch} /> */}
-              <Route exact path="/board/addBoard" component={AddBoardMember} />
-              <Route exact path="/board/login" render={props => <Boardmember />} />
-              <Route exact path="/board/batch/addstudent/:batchid" render={props => <Addstudent {...props} />} />
-              <Route exact path="/board/profile/update" render={props => <Updateteacher {...props} />} />
-              {/* <Route exact path="/addboard" component={Allbatches} /> */}
+                <div className='col-sm-2 col-md-2  col-lg-1'>
+                  <Iconbar />
+                </div>
+                <div className='col-sm-10 col-md-10 col-lg-11'>
+  
+                      <Switch>
+                        <Route exact path="/" render={() => <Homepage />} />
 
 
-              <Route exact path="/teacher/allteacher" component={Allteachers} />
-              <Route exact path="/teacher/batch/addclass" component={Addclass} />
+                        <Route exact path="/board/searchrecords" component={Search} />
+                        <Route exact path="/board/allbatch" render={props => <Allbatches {...props} />} />
+                        <Route exact path="/board/batchmain" component={Batchmain} />
+                        {/* <Route exact path="/board/createbatch" component={Createbatch} /> */}
+                        <Route exact path="/board/addBoard" component={AddBoardMember} />
+                        <Route exact path="/board/login" render={props => <Boardmember />} />
+                        <Route exact path="/board/batch/addstudent/:batchid" render={props => <Addstudent {...props} />} />
+                        <Route exact path="/board/profile/update" render={props => <Updateteacher {...props} />} />
+                        {/* <Route exact path="/addboard" component={Allbatches} /> */}
 
-              <Route exact path="/student/newstudent" component={NewStudentregistration} />
-              <Route exact path="/student/studentmanagement" component={StudentManagement} />
-              <Route exact path="/student/loginpg" render={props => <Studentlogin {...props} />} />
+
+                        <Route exact path="/teacher/allteacher" component={Allteachers} />
+                        <Route exact path="/teacher/batch/addclass" component={Addclass} />
+
+                        <Route exact path="/student/newstudent" component={NewStudentregistration} />
+                        <Route exact path="/student/studentmanagement" component={StudentManagement} />
+                        <Route exact path="/student/loginpg" render={props => <Studentlogin {...props} />} />
 
 
 
-              {/* <Route exact path="/resources" component={Resources} />
-                   <Route exact path="/users/videos" component={Videoreference} /> */}
-              <Route exact path="/ourteam" component={Ourteam} />
-              <Route exact path="/alumni" component={Alumni} />
+                        {/* <Route exact path="/resources" component={Resources} />
+                            <Route exact path="/users/videos" component={Videoreference} /> */}
+                        <Route exact path="/ourteam" component={Ourteam} />
+                        <Route exact path="/alumni" component={Alumni} />
 
-              <Switch>
-                <Route path="*" render={props => <Homepage {...props} />} />
-              </Switch>
-            </Switch>
-          </div>
-        </div>
+                        <Switch>
+                          <Route path="*" render={props => <Homepage {...props} />} />
+                        </Switch>
+                      </Switch>
+                  </div>
+                </div>
+        <Footer />
       </div>
     </Router>
   )

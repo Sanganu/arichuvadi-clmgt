@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import API from '../../API/Multi';
+import API from '../../API/Board';
 import Resultrecords from './Resultrecords';
 
 

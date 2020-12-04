@@ -5,10 +5,9 @@ class Sfooter extends Component {
   render()
   {
     return(
-        <div className = "footer">
-         <h6>&#169; Edu Track by Sangeetha</h6>
-         <Link>Return to Edutrack</Link>
-        </div>
+        <footer className = "footer">
+         <p>&#169;Sangeetha K, 2020</p>
+        </footer>
     );
   }
 }

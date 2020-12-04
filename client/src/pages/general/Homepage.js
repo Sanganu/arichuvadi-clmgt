@@ -14,10 +14,10 @@ class Homepage extends Component {
         const msg = this.props.msg || ""
         return (<Container className="middlecontent">
             <Row>
-                <Col xs lg={8}>
+                <Col xs={12} lg={8}>
                   <Ourteam />
                 </Col>
-                <Col>
+                <Col xs={12} lg={4} >
                     <h4>{msg}</h4>
                     <Accordion>
                         <Card>

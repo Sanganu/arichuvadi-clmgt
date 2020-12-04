@@ -42,6 +42,7 @@ class Masterkey extends Component {
     render() {
         return (<React.Fragment>
             <select className="form-control droplist" onChange={this.handleInputChange} name="masterKey" value={this.state.masterID}>
+            <option key="first" value="">Please select One</option>
                 {this.state.items.map((rec, key) =>
                     <option key={key} value={rec._id}>{rec.Fullname}</option>)}
             </select>
