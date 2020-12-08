@@ -58,12 +58,8 @@ router.post("/api/student/new", (req, res) => {
 router.get("/api/students/all", isLoggedIn, (req, res) => {
     console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
     studentdetails
-    .find({studentfname,studentlname,loginemail,parentname,parentphonenumber,levelcompleted,levelrequested})
-    .populate({
-      path:batchid,
-      select:"batchdesc"
-    })
-      .then((data) => {
+    .find()
+    .then((data) => {
         console.log("student details", data);
         res.json(data);
       })

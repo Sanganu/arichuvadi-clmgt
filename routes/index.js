@@ -229,7 +229,7 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
       console.log(req.body.studentid)
       return Studentdetails.findOneAndUpdate({_id:req.body.studentid},
        {batchid:req.body.batchid})
-      }).then((studres => {
+      }).then((studrecs => {
         console.log("BATCH INFO Update Student",studrecs)
         res.json(studrecs)
       }))

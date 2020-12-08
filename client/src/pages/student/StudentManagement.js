@@ -32,29 +32,13 @@ class Studentmanagement extends Component {
 
   componentDidMount = (event) => {
     let studentrecords = [];
-    console.log("ComponentDidmount - Student management")
+    
     API.getAllStudents()
       .then(response => {
-        console.log(response.data)
+        console.log("Student Records",response.data)
         
-      for (let i = 0; i < response.data.length; i++) {
-          let currentrec = {
-            recid: response.data[i]._id,
-            stdfname: response.data[i].studentfname,
-            stdlname: response.data[i].studentlname,
-            stdemail: response.data[i].loginemail,
-            parentname: response.data[i].parentname,
-            phonenumber: response.data[i].parentphonenumber,
-            // noofbatches: response.data[i].batchid.length,
-            levelcompleted: response.data[i].levelcompleted,
-            levelrequested: response.data[i].levelrequested,
-             batchid: response.data[i].batchid._id,
-            batchdesc: response.data[i].batchid.batchdesc,
-        
-          }
-          studentrecords.push(currentrec);
-        } // end for  
-        this.setState({ studentrecords: studentrecords }, () => console.log("Student Management:", studentrecords))
+      
+        this.setState({ studentrecords: response.data }, () => console.log("Student Management:", this.state.studentrecords))
       }) //end then
       .catch(error => {
         console.log("Error is fetching all student records", error);
@@ -168,8 +152,8 @@ class Studentmanagement extends Component {
         <h3 className="subhead text-center">Student Records</h3>
         <div className="table-responsive">
           <table className="table table-hover">
-            <tbody>
-              <tr>
+            <thead>
+            <tr>
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Email</th>
@@ -180,14 +164,17 @@ class Studentmanagement extends Component {
                 <th>Update</th>
                 <th>Delete</th>
               </tr>
+            </thead>
+            <tbody>
+              
               {studentrecords.map((data, index) =>
                 <Allstudents key={index}
-                  stdlname={data.stdlname}
                   stdid={data.recid}
-                  stdfname={data.stdfname}
+                  stdlname={data.studentlname}
+                  stdfname={data.studentfname}
                   parentname={data.parentname}
-                  phonenumber={data.phonenumber}
-                  stdemail={data.stdemail}
+                  phonenumber={data.parentphonenumber}
+                  stdemail={data.loginemail}
                   levelcompleted={data.levelcompleted}
                   levelrequested={data.levelrequested}
                   deleteStudentDetails={this.deleteStudentDetails}

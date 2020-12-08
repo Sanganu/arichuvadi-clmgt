@@ -60,5 +60,5 @@ typings/
 .env
 
 package-lock.json
-
+temp/
 seedsfolder/

@@ -99,27 +99,27 @@ function getDetails(req,res) {
                     {
                        var classdetails = [];
                       //  console.log("Studet",studentdet);
-                      //  console.log("batch",studentdet.batchid);
-                      //  console.log("class",studentdet.batchid[0].classid);
-                       if( studentdet.batchid.length > 0)
-                       {
-                              if( studentdet.batchid[0].classid !== undefined)
-                              {
-                                      for(let i = 0; i < studentdet.batchid[0].classid.length; i++)
+                       console.log("batch",studentdet.batchid);
+                       console.log("class",studentdet.batchid.classid);
+                       if( studentdet.batchid)
+                       {     classdetails = studentdet.batchid.classid
+                              // if( studentdet.batchid.classid.length >0)
+                              // {
+                              //         for(let i = 0; i < studentdet.batchid[0].classid.length; i++)
 
-                                      {
-                                          let { homework,lessoncovered,classdate } = studentdet.batchid[0].classid[i];
-                                          classdetails.push ({
-                                                  homework : homework,
-                                                  lesson: lessoncovered, 
-                                                  classdate: classdate      
-                                                });
-                                      } // end of for loop
-                                } // end if part check for class
-                              else {
-                                  classdetails = [{homework: "No Class details Available",
-                                                  lesson:"Please contact Board members or Instructors"}];
-                              }  // end check for class details     
+                              //         {
+                              //             let { homework,lessoncovered,classdate } = studentdet.batchid[0].classid[i];
+                              //             classdetails.push ({
+                              //                     homework : homework,
+                              //                     lesson: lessoncovered, 
+                              //                     classdate: classdate      
+                              //                   });
+                              //         } // end of for loop
+                              //   } // end if part check for class
+                              // else {
+                              //     classdetails = [{homework: "No Class details Available",
+                              //                     lesson:"Please contact Board members or Instructors"}];
+                              // }  // end check for class details     
                               var studentrecord = {
                                         stdid: studentdet._id,
                                         fname: studentdet.studentfname,
@@ -127,10 +127,10 @@ function getDetails(req,res) {
                                         parent: studentdet.parentname,
                                         phone: studentdet.parentphonenumber,
                                         email: studentdet.loginemail,
-                                        batch: studentdet.batchid[0].batchdesc || "Not available",
-                                        subject: studentdet.batchid[0].course || "N/A",
-                                        level: studentdet.batchid[0].level || "N/A",
-                                        teacher: studentdet.batchid[0].teacher || "N/A"
+                                        batch: studentdet.batchid.batchdesc || "Not available",
+                                        subject: studentdet.batchid.course || "N/A",
+                                        level: studentdet.batchid.level || "N/A",
+                                        teacher: studentdet.batchid.teacher || "N/A"
                               }
                                     console.log("Valid student login",studentrecord);
                                     console.log("Classdetails array",classdetails);

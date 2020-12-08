@@ -24,7 +24,7 @@ class Topmenu extends Component {
                              {/* <li  className = "list-group-item"><Link to = '/teacher/allteacher' className  = 'sidemenulink' ><i className="fa fa-chalkboard-teacher fa-2x"></i><p>Teacher Management</p></Link></li> */}
                              <li  className = "list-group-item"><Link to = '/student/studentmanagement' className  = 'sidemenulink'><i  data-toggle = 'Student Management' data-title = "Student Management"className="fa fa-user fa-2x"></i><p>Student Management</p></Link></li>
                               
-                              <li  className = "list-group-item"><Link to = '/board/allbatch' className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i><p>Cohort Management</p></Link></li>
+                              <li  className = "list-group-item"><Link to = '/board/allbatch' displayall={true} className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i><p>Cohort Management</p></Link></li>
                          
                               <li  className = "list-group-item" data-toggle = "tooltip" data-title="New Cohort"><Link to = '/board/batchmain' className = 'sidemenulink'><i  className="fa fa-users fa-2x"></i><p className="linkinwords">New Batch</p></Link></li>
                               <li className = "list-group-item"><Link to = '/board/searchrecords' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i><p className ="linkinwords">Search</p></Link></li>

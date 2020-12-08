@@ -79,7 +79,7 @@ class Allbatches extends Component {
     this.setState({
       batchdet: batchselected,
       details: true,
-      allbatches: false
+      allbatches: "false"
     }, () => console.log("selected bxz cvc nbmatch",
       this.state.batchdet));
   }
@@ -100,43 +100,42 @@ class Allbatches extends Component {
     if (this.props.usertype === "management") {
       return (<div className="container">
         <div className="middlecontent">
-          {this.state.allbatches ?
-            <table className="table table-hover table-responsive">
-              <thead>
-                <tr>
-                  <th>Batch</th>
-                  <th>Course</th>
-                  <th>Level</th>
-                  <th>Instructor</th>
-                  <th>Number of Students</th>
-                  <th>Number of classes</th>
-                </tr>
-              </thead>
-              <tbody>{stbatchrec.map((data, index) =>
-                <BatchRecord
-                  bid={data.recid}
-                  bdesc={data.recdesc}
-                  bsubj={data.recsubj}
-                  blevel={data.reclevel}
-                  teacher={data.teacher}
-                  students={data.noofstu}
-                  classes={data.noofclasses}
-                  getBatchDetails={this.getBatchDetails}
-                  key={index}
-                />
-              )}
-              </tbody>
-            </table>
-            : <div>  {this.state.batchdet ?
-              <BatchInfo
-                batchdetails={this.state.batchdet}
-                newbatch={false}
-                deleteBatch={this.deleteBatch}
-              />
-              : <div></div>}
+          {this.state.allbatches === true ?
+                  <table className="table table-hover table-responsive">
+                    <thead>
+                      <tr>
+                        <th>Batch</th>
+                        <th>Course</th>
+                        <th>Level</th>
+                        <th>Instructor</th>
+                        <th>Number of Students</th>
+                        <th>Number of classes</th>
+                      </tr>
+                    </thead>
+                    <tbody>{stbatchrec.map((data, index) =>
+                      <BatchRecord
+                        bid={data.recid}
+                        bdesc={data.recdesc}
+                        bsubj={data.recsubj}
+                        blevel={data.reclevel}
+                        teacher={data.teacher}
+                        students={data.noofstu}
+                        classes={data.noofclasses}
+                        getBatchDetails={this.getBatchDetails}
+                        key={index}
+                      />
+                    )}
+                    </tbody>
+                  </table>
+                // : <div>  {this.state.batchdet ?
+                :  <BatchInfo
+                    batchdetails={this.state.batchdet}
+                    newbatch={false}
+                    deleteBatch={this.deleteBatch}
+                  />}
+             : <div></div>}
             </div>
           }
-        </div>
       </div>
       ); // end return
     }// end if props.usertype is boardmember

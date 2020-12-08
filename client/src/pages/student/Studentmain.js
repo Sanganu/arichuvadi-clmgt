@@ -149,7 +149,7 @@ class Studentmain extends Component
                                      {classrecords.map((data,index) => (
                                            <Allrecords
                                                key ={index}
-                                               field1 = {data.lesson}
+                                               field1 = {data.lessoncovered}
                                                field2 = {data.homework}
                                                field3 = {data.classdate} />)
                                      )}
