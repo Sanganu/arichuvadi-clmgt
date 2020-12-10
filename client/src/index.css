@@ -173,8 +173,9 @@ footer{
   /* background-position: 1% 50%; */
   color:  rgb(244, 247, 246);
   position: fixed;
+  bottom:0;
   width:100vw;
-  height:2%;
+  height:8%;
 }
 
 #date{

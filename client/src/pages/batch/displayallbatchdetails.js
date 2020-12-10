@@ -111,7 +111,7 @@ class Allbatches extends Component {
     if (this.props.usertype === "management") {
       return (<div className="container">
         <div className="middlecontent">
-          {this.state.allbatches?
+              {this.state.allbatches?
                   <table className="table table-hover table-responsive">
                     <thead>
                       <tr>
@@ -138,17 +138,15 @@ class Allbatches extends Component {
                     )}
                     </tbody>
                   </table>
-                // : <div>  {this.state.batchdet ?
+       
                 :  <BatchInfo
                     batchdetails={this.state.batchdet}
                     newbatch={false}
                     deleteBatch={this.deleteBatch}
                   
                   />}
-             : <div></div>}
-            </div>
-          }
-      </div>
+             </div>
+           </div> //End container
       ); // end return
     }// end if props.usertype is boardmember
     else {
