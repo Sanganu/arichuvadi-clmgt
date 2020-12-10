@@ -62,7 +62,7 @@ body {
 .icon-bar p{
   font-size: 11px;
 }
-.footer {
+/* .footer {
   position: fixed;;
   width: 100%;
   padding:1%;
@@ -73,7 +73,7 @@ body {
   background-color: linear-gradient(270deg, rgba(15, 209, 199, 0.8), rgba(68, 184, 32, 0.877), rgba(48, 6, 238, 0.726),
   rgba(5, 228, 198, 0.986), rgba(21, 195, 201, 0.329));
   color:  rgb(244, 247, 246);
-}
+} */
 
 .form-control{
   color : black;
@@ -172,11 +172,9 @@ footer{
   rgba(5, 228, 198, 0.986), rgba(21, 195, 201, 0.329));
   /* background-position: 1% 50%; */
   color:  rgb(244, 247, 246);
-  /* width:100vw;
-  padding-right: 0%;
-  padding-left:0%;
+  position: fixed;
+  width:100vw;
   height:2%;
-  margin-top:1%; */
 }
 
 #date{

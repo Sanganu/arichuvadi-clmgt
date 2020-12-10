@@ -169,7 +169,7 @@ class Studentmanagement extends Component {
               
               {studentrecords.map((data, index) =>
                 <Allstudents key={index}
-                  stdid={data.recid}
+                  stdid={data._id}
                   stdlname={data.studentlname}
                   stdfname={data.studentfname}
                   parentname={data.parentname}

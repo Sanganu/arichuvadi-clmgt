@@ -20,13 +20,13 @@ import Buttons from "../../components/Buttons"
 
 class BatchInfo extends Component {
   state = {
-    bid: this.props.batchdetails.bid || '',
-    bdesc: this.props.batchdetails.batchdesc || '',
-    instructor: this.props.batchdetails.instructor || '',
-    level: this.props.batchdetails.level || '',
-    course: this.props.batchdetails.course || '',
-    students: this.props.batchdetails.students || '',
-    bdescription: this.props.batchdetails.batchdesc || '',
+    bid:  this.props.batchdetails.bid || '',
+    bdesc:  this.props.batchdetails.batchdesc || '',
+    instructor:  this.props.batchdetails.instructor || '',
+    level:  this.props.batchdetails.level || '',
+    course:  this.props.batchdetails.course || '',
+    students:  '',
+    bdescription:  '',
     studentrecs: [],
     classrecs: [],
     delstdid: '',
@@ -197,19 +197,23 @@ class BatchInfo extends Component {
         if (batchdetails[0].classid.length > 0) {
 
           this.setState({ classrecs: batchdetails[0].classid })
-          console.log("Hello", this.state.classrecs)
+          console.log("Hello Class Records", this.state.classrecs)
         }
-        console.log("BatchInfo", batchdetails[0].students)
+        // console.log("BatchInfo", batchdetails[0].students)
         if (batchdetails[0].students.length > 0) {
 
           this.setState({ studentrecs: batchdetails[0].students })
-          console.log("Hello", this.state.studentrecs)
+          console.log("Hello Student Records", this.state.studentrecs)
         }
       })
   }
+
+
   handleChangeInstructor = (instructorIdn) => {
 
   }
+
+  
   render() {
     const studentrec = this.state.studentrecs;
     if (this.props.usertype === "management") {

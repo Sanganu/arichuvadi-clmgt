@@ -26,8 +26,8 @@ import Addstudent from "./pages/student/Addstudent";
 
 //Batch
 
-import Batchmain from "./pages/batch/Batchmain";
-// import Createbatch from "./pages/batch/Createbatch";
+// import Batchmain from "./pages/batch/Batchmain";
+import Createbatch from "./pages/batch/Createbatch";
 import Allbatches from "./pages/batch/displayallbatchdetails";
 import Addclass from "./pages/batch/Addclassdetails";
 
@@ -59,9 +59,10 @@ const App = () => {
 
 
                         <Route exact path="/board/searchrecords" component={Search} />
-                        <Route exact path="/board/allbatch" render={props => <Allbatches {...props} displayall="true" />} />
-                        <Route exact path="/board/batchmain" component={Batchmain} />
-                        {/* <Route exact path="/board/createbatch" component={Createbatch} /> */}
+                        <Route exact path="/board/allbatch/:displayall" render={props => <Allbatches {...props} displayall="true" />} />
+                        {/* <Route exact path="/board/batchmain" component={Batchmain} /> */}
+                        <Route exact path="/board/createbatch" component={Createbatch} />
+
                         <Route exact path="/board/addBoard" component={AddBoardMember} />
                         <Route exact path="/board/login" render={props => <Boardmember />} />
                         <Route exact path="/board/batch/addstudent/:batchid" render={props => <Addstudent {...props} />} />

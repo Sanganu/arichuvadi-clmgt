@@ -14,7 +14,7 @@ class Allbatches extends Component {
     recsubj: '',
     reclevel: '',
     recrate: '',
-    allbatches: this.props.displayall || true,
+    allbatches: this.props.displayall || this.props.location.displayall || true,
     sbatchid: '',
     sbdesc: '',
     srate: '',
@@ -27,13 +27,12 @@ class Allbatches extends Component {
   }
 
   componentDidMount = () => {
-     console.log("displayallbatchdetails -- component before axios call",this.props);
+    //  console.log("displayallbatchdetails -- component before axios call",this.props);
     let batchrecords = this.state.batchrecords;
-    let allbatches = false
-    if (this.props.usertype === "management") {
+   if (this.props.usertype === "management") {
       API.getAllBatch()
         .then(response => {
-          // console.log("The Batch Details of  - axios call", response.data);
+          console.log("The Batch Details of  - axios call", response.data, this.props);
           if (response.data.length > 0) {
             for (let i = 0; i < response.data.length; i++) {
               // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
@@ -50,10 +49,9 @@ class Allbatches extends Component {
               batchrecords.push(currentrec);
             } // end for
 
-            allbatches = true;
             this.setState({
               batchrecords: batchrecords,
-              allbatches: allbatches
+              allbatches: true
             })
             // ,() => { console.log("State of records") });
           } else {
@@ -74,12 +72,22 @@ class Allbatches extends Component {
     }
   } // end component did mount
 
+
+  componentWillReceiveProps =(nextprops) => {
+    console.log("NextProps",nextprops)
+    const { displayall } = this.props.match.params
+
+    if(displayall === "alltrue"){
+      this.setState({allbatches:true},()=> console.log("state allbatches",this.setdisplayall.displayall))
+    }
+  }
+
   getBatchDetails = (batchselected) => {
     //let bid = batchselected.bid;      
     this.setState({
       batchdet: batchselected,
       details: true,
-      allbatches: "false"
+      allbatches: false
     }, () => console.log("selected bxz cvc nbmatch",
       this.state.batchdet));
   }
@@ -94,13 +102,16 @@ class Allbatches extends Component {
     });
   }
 
+   setdisplayall=()=>{
+ 
+   }
   render() {
     const stbatchrec = this.state.batchrecords;
-    //console.log("Display all batch details --",this.props);
+    console.log("Display all batch details --",this.props);
     if (this.props.usertype === "management") {
       return (<div className="container">
         <div className="middlecontent">
-          {this.state.allbatches === true ?
+          {this.state.allbatches?
                   <table className="table table-hover table-responsive">
                     <thead>
                       <tr>
@@ -132,6 +143,7 @@ class Allbatches extends Component {
                     batchdetails={this.state.batchdet}
                     newbatch={false}
                     deleteBatch={this.deleteBatch}
+                  
                   />}
              : <div></div>}
             </div>

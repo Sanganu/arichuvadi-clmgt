@@ -1,4 +1,4 @@
-const path = require("path");
+
 const router = require("express").Router();
 const Batchdetails = require('../models/BatchDetails.js')
 const Studentdetails = require('../models/Students.js')
@@ -6,8 +6,6 @@ const Classdetails = require('../models/Classdetails.js');
 const Board = require('../models/Management.js');
 // const Teacher = require("./teacher.js")
 //const passport = require("passport");
-var YouTube = require('youtube-node');
-var youTube = new YouTube();
 
 
 const isLoggedIn = (req, res, next) => {
@@ -53,7 +51,7 @@ router.post('/api/board/batch/student/new', isLoggedIn, function (req, res) {
       insertedstudent = {
         stdid: dbstudentdetails._id,
         studentfname: dbstudentdetails.studentfname,
-        studentlname: dbstudentdetails.studentlname,
+        studentlname: dbstudentdetainpmls.studentlname,
         loginemail: dbstudentdetails.loginemail,
         phonenumber: dbstudentdetails.parentphonenumber
       };
@@ -84,10 +82,6 @@ router.post('/api/board/batch/student/new', isLoggedIn, function (req, res) {
     }); // End db studentdetails batchdetails
 }); // End router Student add to batch -- implemented
 
-
-
-
-//Get All of the BatchInfo, details required
 
 
 // Get Specific Batch Info

@@ -6,7 +6,7 @@ import BatchInfo from './BatchInfo';
 class Batchmain extends Component {
   state = {
     batchdet: '',
-    displaybatch: this.props.dbatch || true
+    displayall: Boolean(this.props.displayall) || true
   }
 
   handleBatchCreated = (batchnew) => {
@@ -19,21 +19,27 @@ class Batchmain extends Component {
       displaybatch: false
     },
       () => {
-     
+
         console.log('Setstate callback-batchmain', this.state.batchdet);
       }); //    end thistate
   }; // end handlebatchcreated    
 
+  renderPage = () => {
+    if (this.state.displayall) {
+      return <Createbatch
+        onInsert={this.handleBatchCreated} />
+    }
+    else {
+      <BatchInfo batchdetails={this.state.batchdet}
+        newbatch={true} />
+    }
+  }
 
   render() {
-  return(<div>
-        
-            {this.state.displaybatch ? <Createbatch
-              onInsert={this.handleBatchCreated} />
-              : <BatchInfo batchdetails={this.state.batchdet}
-                newbatch={true} />}
-          </div>
-        ) // end return
+    return (<div>
+      {this.renderPage()}
+    </div>
+    ) // end return
   }// end render
 
 } // end class Batchmain

@@ -1,4 +1,4 @@
-const path = require("path");
+
 const router = require("express").Router();
 
 const batchdetails = require('../models/BatchDetails.js')
@@ -43,7 +43,7 @@ router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
     console.log("=================<<<<<<<<<===============");
     batchdetails.find({})
       .then((data) => {
-   //     console.log("Batch details", data);
+       console.log("Batch details - ALL BATCHES", data);
         res.json(data);
       })
       .catch((err) => {
