@@ -120,44 +120,26 @@ class BatchClassActivity extends Component {
               </Form.Group>
               <Form.Group controlId="formBasicDropList">
                 <label className="has-float-label">Course : </label>
-                <select className="form-control droplist"
-                  onChange={this.handleInputChange}
-                  value={this.state.course} name="course" id="course">
-                  <option value='Beginner' default>Beginner</option>
-                  <option value='Intermediate'>Intermediate</option>
-                  <option value='Advance'>Advance</option>
-                </select>
+                <input 
+                  placeholder={this.state.course} 
+                  readOnly
+                  className="form-control"
+                  name="course" 
+                
+                />
               </Form.Group>
               <Form.Group controlId="formBasicDropList">
                 <label className="has-float-label">Level </label>
-                <select className="form-control droplist" value={this.state.level} onChange={this.handleInputChange} name="level" id="level">
-                  <option value='Oral' default>Oral Examination</option>
-                  <option value='Visual'>Visual Examination</option>
-                  <option value='Written'>Written Examination</option>
-                  <option value='Online'>Online Examination</option>
-                  <option value='Offline'>Offline Examination</option>
-                </select>
+                <input placeholder = {this.state.level} 
+                 name="level"
+                 readOnly
+                 className="form-control"
+                />
               </Form.Group>
-              <div className="card">
-                <button onClick={this.updateBatch} className="rowbtn"><i className="fa fa-edit fa-lg"></i>Update</button>
-              </div>
+             
             </Form>
           </div>
-          <div class="col-md-3">
-            {studentrec.map((data, index) => (<Accordion>
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    {data.studentname}
-                   </Accordion.Toggle>
-                  </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                  <Card.Body></Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-                      ))}
-          </div>
+         
         </div>
 
         <div className="row  border border-danger" >

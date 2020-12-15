@@ -19,7 +19,8 @@ export default {
     getBatchDetail: function(batchid){
         return  axios.get("/api/board/batch/detail/"+batchid)
     },
-    updateBatch: function(updatedBatch){
-        return axios.post("/api/board/batch/update",this.updateBatch)
+    updateBatch: function(updateBatchInfo){
+        // console.log("API UPDATE passdata",updateBatchInfo)
+        return axios.put("/api/board/batch/update",updateBatchInfo)
     }
 }

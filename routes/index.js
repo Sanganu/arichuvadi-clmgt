@@ -51,7 +51,7 @@ router.post('/api/board/batch/student/new', isLoggedIn, function (req, res) {
       insertedstudent = {
         stdid: dbstudentdetails._id,
         studentfname: dbstudentdetails.studentfname,
-        studentlname: dbstudentdetainpmls.studentlname,
+        studentlname: dbstudentdetails.studentlname,
         loginemail: dbstudentdetails.loginemail,
         phonenumber: dbstudentdetails.parentphonenumber
       };

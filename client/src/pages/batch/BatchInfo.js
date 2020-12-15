@@ -16,6 +16,7 @@ import Modal from "../general/Modal";
 import SAPI from "../../API/Student";
 import { Form, Table, Container, Row, Col } from "react-bootstrap";
 import Buttons from "../../components/Buttons";
+import moment from "moment";
 
 
 
@@ -23,11 +24,13 @@ class BatchInfo extends Component {
   state = {
     bid: this.props.batchdetails.bid || '',
     bdesc: this.props.batchdetails.batchdesc || '',
-    instructor: this.props.batchdetails.instructor || '',
+    instructorID : "",
+    instructor:  this.props.batchdetails.teacher || '',
     level: this.props.batchdetails.level || '',
     course: this.props.batchdetails.course || '',
+    examdate: this.props.batchdetails.examDate || '',
     students: '',
-    bdescription: '',
+    // bdescription: '',
     studentrecs: [],
     classrecs: [],
     delstdid: '',
@@ -62,7 +65,7 @@ class BatchInfo extends Component {
 
   updateBatch = (event) => {
     event.preventDefault();
-    //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.rate,this.state.level,this.state.subject,this.state.students);
+    //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.level,this.state.subject,this.state.students);
     // if (this.batchInputValidation()) {
     BAPI.updateBatch(
       {
@@ -70,13 +73,14 @@ class BatchInfo extends Component {
         batchdesc: this.state.bdesc,
         course: this.state.course,
         level: this.state.level,
-        teacher: this.state.instructor
+        teacher: this.state.instructorID,
+        examDate:this.state.examdate
       })
       .then((response) => {
-        //      console.log("The response from update" + response);
-        this.setState({ bdescription: this.state.bdesc }, () => {
-          console.log("The set state", this.state.bdescription);
-        });
+             console.log("The response from update" + response);
+        // this.setState({ bdesc: this.state.bdesc }, () => {
+        //   console.log("The set state", this.state.bdescription);
+        // });
       })
       .catch(error => {
         this.setState({ errmsg: "Error in saving class records" + error, updatestatus: 'Error in updating class details' + error },
@@ -173,7 +177,7 @@ class BatchInfo extends Component {
     //   .then((records) => {
     //     console.log("Rec", records.data)
     //     this.setState({ instructorList: records.data })
-    //   })
+    //   }) 
     // console.log("The batch selected details received",this.props)
     // if (this.props.newbatch === false || this.props.student.length >0) {
 
@@ -189,7 +193,10 @@ class BatchInfo extends Component {
       .then((records) => {
         console.log("Batch Info Component did mount", records)
         let batchdetails = records.data
-        this.setState({ instructor: batchdetails[1].fname + " " + batchdetails[1].lname })
+        this.setState(
+          { instructor: batchdetails[1].fname + " " + batchdetails[1].lname,
+            instructorID :records.data[0].teacher
+       })
         // console.log("BatchInfo",batchdetails[0].classid)
         if (batchdetails[0].classid.length > 0) {
 
@@ -207,7 +214,10 @@ class BatchInfo extends Component {
 
 
   handleChangeInstructor = (instructorIdn) => {
-
+    
+     this.setState({instructorID:instructorIdn},() => {
+      console.log(instructorIdn)
+     })
   }
 
 
@@ -268,22 +278,23 @@ class BatchInfo extends Component {
                   <Form.Control
                     id="examdate"
                     type="date"
-                    value={this.state.examdate}
+                    value={moment(this.state.examDate).format("mm/dd/yyyy")}
                     onChange={this.handleInputChange}
                     name="examdate" />
                 </Form.Group>
               </Form.Group>
               <div className="card">
-                {/* <Buttons
+                <Buttons
                   onButton={this.updateBatch}><i className="fa fa-edit fa-lg"></i>Update</Buttons>
                 <Buttons onButton={this.deleteBatch}><i className="fa fa-trash fa-lg"></i>Delete</Buttons>
                 <Modal
                   Title="Change Instructor"
                   IdType="instructor"
-                  passIdToMaster={this.handleChangeInstructor} /> */}
+                  passIdToMaster={this.handleChangeInstructor} /> 
+                  
                 {/* <Button onClick={}>Change Instructor</Button>
                                           <Button onClick={}>Add Class notes</Button>
-                                          <Button onClick={}>Add Students to this batch</Button> */}
+      <Button onClick={}>Add Students to this batch</Button>*/}
 
 
               </div>
@@ -327,6 +338,7 @@ class BatchInfo extends Component {
                   Title="Add Registered students to this Cohort"
                   IdType="students"
                   passIdToMaster={this.handleNewStudent} />
+            
 
               </div>
             </Col>

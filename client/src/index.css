@@ -6,7 +6,7 @@ body {
 }
 
 
-.modalstudents{
+.modalheader{
   background: linear-gradient(270deg, rgba(161, 159, 152, 0.8), rgba(73, 160, 131, 0.8), rgba(168, 48, 78, 0), rgba(34,34,34,0));
 }
 
@@ -175,7 +175,9 @@ footer{
   position: fixed;
   bottom:0;
   width:100vw;
-  height:8%;
+  height:5%;
+  margin-top: 2%;
+  padding-top: 2%;
 }
 
 #date{
@@ -239,11 +241,13 @@ select{
 .sidemenulink{
   display:block;
   transition:all 0.3s ease;
+
  }
 
 .list-group-item{
   border:none;
   background-color: rgb(39,43,48);
+ 
 }
 
 

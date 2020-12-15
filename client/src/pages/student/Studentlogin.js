@@ -5,8 +5,6 @@ import Studentmain from './Studentmain';
 import { connect } from 'react-redux';
 import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
 
-// import Teacherheader from '../components/Teacherheader';
-// import { Menubar } from '../components/Menubar';
 
 class Studentlogin extends Component {
   constructor(props) {
@@ -21,6 +19,7 @@ class Studentlogin extends Component {
     };
 
   } //end constructor
+  
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -57,7 +56,7 @@ class Studentlogin extends Component {
           usertype:"student"
         })
         .then((response) => {
-          console.log("The response from axios", response.data);
+          // console.log("The response from axios", response.data);
           //  console.log("The classes details", response.data.classes);
           if (response.data.studentrecord) {
             this.setState({
@@ -65,8 +64,8 @@ class Studentlogin extends Component {
               studentrecord: (response.data.studentrecord),
               classdet: (response.data.classes) || "{lessoncovered:'No Class details exist',homework:'Please contact boardmembers or instructors} cldate:''"},
               () => {
-                console.log("State Student Record", this.state.studentrecord);
-                console.log("Class details",this.state.classdet);
+                // console.log("State Student Record", this.state.studentrecord);
+                // console.log("Class details",this.state.classdet);
                 
                 var userobj = {
                   loginemail: response.data.studentrecord.email,

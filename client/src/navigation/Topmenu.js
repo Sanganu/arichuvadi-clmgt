@@ -26,7 +26,9 @@ class Topmenu extends Component {
                               
                               <li  className = "list-group-item"><Link to = '/board/allbatch/alltrue' className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i><p>Cohort Management</p></Link></li>
                          
-                              <li  className = "list-group-item" data-toggle = "tooltip" data-title="New Cohort"><Link to = '/board/createbatch' className = 'sidemenulink'><i  className="fa fa-users fa-2x"></i><p className="linkinwords">New Batch</p></Link></li>
+                              <li  className = "list-group-item"><Link to = '/teacher/batch/addclass' className  = 'sidemenulink' ><i className="fa fa-book fa-2x"></i><p>Class Activities</p></Link></li>
+                         
+                              <li  className = "list-group-item"><Link to = '/board/createbatch' className = 'sidemenulink'><i  className="fa fa-user-circle fa-2x"></i><p className="linkinwords">New Batch</p></Link></li>
                               <li className = "list-group-item"><Link to = '/board/searchrecords' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i><p className ="linkinwords">Search</p></Link></li>
                               {/* <li className = "list-group-item"><Link to = '/teacher/addBoard' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i><p className ="linkinwords">Add Board Member</p></Link></li>  */}
                               {/* <li className ="list-group-item"><Link to = '/teacher/profile/update' className = 'sidemenulink'><i className="fas fa-user-shield fa-2x"></i><p>My Account</p></Link></li> */}

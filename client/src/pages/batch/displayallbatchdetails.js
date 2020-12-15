@@ -43,7 +43,8 @@ class Allbatches extends Component {
                 reclevel: response.data[i].level,
                 teacher: response.data[i].teacher,
                 noofstu: response.data[i].students.length,
-                noofclasses: response.data[i].classid.length
+                noofclasses: response.data[i].classid.length,
+                examDate: response.data[i].examDate
                 //recstudents: response.data[i].students
               }
               batchrecords.push(currentrec);
@@ -74,7 +75,7 @@ class Allbatches extends Component {
 
 
   componentWillReceiveProps =(nextprops) => {
-    console.log("NextProps",nextprops)
+    // console.log("NextProps",nextprops)
     const { displayall } = this.props.match.params
 
     if(displayall === "alltrue"){
@@ -107,7 +108,7 @@ class Allbatches extends Component {
    }
   render() {
     const stbatchrec = this.state.batchrecords;
-    console.log("Display all batch details --",this.props);
+    // console.log("Display all batch details --",this.props);
     if (this.props.usertype === "management") {
       return (<div className="container">
         <div className="middlecontent">
@@ -118,9 +119,10 @@ class Allbatches extends Component {
                         <th>Batch</th>
                         <th>Course</th>
                         <th>Level</th>
-                        <th>Instructor</th>
+                        <th>Exam Date</th>
                         <th>Number of Students</th>
                         <th>Number of classes</th>
+                        <th>Instructor</th>
                       </tr>
                     </thead>
                     <tbody>{stbatchrec.map((data, index) =>
@@ -132,6 +134,7 @@ class Allbatches extends Component {
                         teacher={data.teacher}
                         students={data.noofstu}
                         classes={data.noofclasses}
+                        examDate={data.examDate}
                         getBatchDetails={this.getBatchDetails}
                         key={index}
                       />

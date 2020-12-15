@@ -24,7 +24,7 @@ const AddModal = (props) => {
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>{props.Title}</Modal.Title>
+            <Modal.Title className="modalheader">{props.Title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <MasterKey
