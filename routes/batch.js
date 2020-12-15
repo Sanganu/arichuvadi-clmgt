@@ -6,14 +6,20 @@ const batchdetails = require('../models/BatchDetails.js')
 
 const isLoggedIn = (req, res, next) => {
     console.log("Routes - req isloggedin", req.user)
-    if (!req.user ){//|| req.user.user.usertype !=="management") {
+    if (!req.user ){
       // USer is not logged in
       console.log("Routes isLoggedIn- No user data found", req.user)
       res.redirect("/");
     }
     else {
+      if (req.user.user.usertype !=="management"){
       console.log("Routes-IsloggedIn-USer logged in", req.user);
       next();
+      }
+      else{
+        console.log("Only board member can edit")
+        res.redirect("/");
+      }
     }
   }
 
@@ -124,7 +130,7 @@ router.put('/api/batch/student/del/',isLoggedIn, (req, res) => {
 
 //Delete Batch -- implemented
 router.delete("/api/board/batch/delete/:batchid",isLoggedIn, (req, res) => {
-  // console.log("Inside delete route for batch to student to class",req.params.batchid,req.user);
+  console.log("Inside delete route for batch to student to class",req.params.batchid,req.user);
   const result =  batchdetails.deleteOne({ _id: req.params.batchid }).exec();
   if (result.n === 0) {
     console.log("Error", error);

@@ -28,7 +28,7 @@ class BatchInfo extends Component {
     instructor:  this.props.batchdetails.teacher || '',
     level: this.props.batchdetails.level || '',
     course: this.props.batchdetails.course || '',
-    examdate: this.props.batchdetails.examDate || '',
+    examdate: moment(this.props.batchdetails.examDate).format("YYYY-MM-DD") || '',
     students: '',
     // bdescription: '',
     studentrecs: [],
@@ -182,6 +182,7 @@ class BatchInfo extends Component {
     // if (this.props.newbatch === false || this.props.student.length >0) {
 
     this.getUpdatedBatchDetails()
+    console.log(moment(this.props.batchdetails.examDate).format("MM/DD/YYYY") || '',)
 
   } // End componentDidMount()
 
@@ -278,7 +279,8 @@ class BatchInfo extends Component {
                   <Form.Control
                     id="examdate"
                     type="date"
-                    value={moment(this.state.examDate).format("mm/dd/yyyy")}
+                    value={this.state.examdate}
+                    placeholder={this.state.examdate}
                     onChange={this.handleInputChange}
                     name="examdate" />
                 </Form.Group>
@@ -292,6 +294,11 @@ class BatchInfo extends Component {
                   IdType="instructor"
                   passIdToMaster={this.handleChangeInstructor} /> 
                   
+                <Modal
+                  Title="Add Registered students to this Cohort"
+                  IdType="students"
+                  passIdToMaster={this.handleNewStudent} />
+            
                 {/* <Button onClick={}>Change Instructor</Button>
                                           <Button onClick={}>Add Class notes</Button>
       <Button onClick={}>Add Students to this batch</Button>*/}
@@ -302,7 +309,7 @@ class BatchInfo extends Component {
           </Col>
           </Row>
           <Row >
-            <Col>
+            <Col lg={true} sm={12}>
               <div className="table-responsive">
 
                 <h4 className="text-center">Students in this Cohort</h4>
@@ -334,15 +341,10 @@ class BatchInfo extends Component {
                   </tbody>
                 </Table>
 
-                <Modal
-                  Title="Add Registered students to this Cohort"
-                  IdType="students"
-                  passIdToMaster={this.handleNewStudent} />
-            
 
               </div>
             </Col>
-            <Col>
+            <Col lg={true} sm={8}>
               <h5 className="text-center border border-primary">Add Student not yet registered</h5>
               <Addstudent
                 bid={this.state.bid}

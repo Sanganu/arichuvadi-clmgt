@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Card, ResponsiveEmbed } from "react-bootstrap";
 const Ourteam = () => {
     return (<Container className="d-flex flex-wrap">
-        <Card>
+        <Card style={{ maxWidth:'18rem'}}>
             <Card.Body>
 
 
@@ -19,17 +19,17 @@ const Ourteam = () => {
                     Hi, I am Helen. I have been teaching Tamil in Arichuvadi
                 more than 11 years. Teaching is my passion. I have been working in public
                 school too. I have acted in Classical Tamil dramas. I also do anchoring in TAC,
-                I am know for giving intro with a classical touch.
+                I am known for comphering with classical style.
                 I am a very friendly person and loves to dress up in Indian attire.
-                I would make my atmost attempts to passon the tradition
-                and culture for furture generations and there by nutrture them to respect every culture and people.
-                Right now I am teachng students to take University Exams,
+                I would make my at most attempts to pass on the tradition
+                and culture for future generations and there by nurture them to respect all culture and people.
+                Right now I am teaching students to take University Exams,
                 I feel as a great mile stone achieved in the growth of Arichuvdai.
                      </Card.Text>
                 <br />
             </Card.Body>
         </Card>
-        <Card>
+        <Card  style={{ maxWidth:'18rem'}}>
             <Card.Body>
                 <ResponsiveEmbed aspectRatio="1by1">
                     <embed type="image/jpg" src="/images/yamini.jpg" />
@@ -45,15 +45,15 @@ const Ourteam = () => {
                     another batch and have moved on to intermediate with them. To
                     tell a little bit about myself. I have two boys Kavin and Kathir whose names we
                     mindfully chose to be in Tamil. Myself and my husband have been
-                    passionate about teaching Tamil to our kids and found Arichuvadi as a great oppurtunity
-                    to extend their knowledge into taking certificate exams. I plan to stay
+                    passionate about teaching Tamil to our kids and found Arichuvadi as a great opportunity
+                    to extend their knowledge into taking certification exams. I plan to stay
                     and enjoy my passion with Arichuvadi and help kids to learn the
                     language in the process.
                 </Card.Text>
                 <br />
             </Card.Body>
         </Card>
-        <Card>
+        <Card  style={{ maxWidth:'18rem'}}>
             <Card.Body>
                 <ResponsiveEmbed aspectRatio="16by9">
                     <embed type="image/jpg" src="/images/grey.jpg" />
@@ -68,7 +68,7 @@ const Ourteam = () => {
                 <br />
             </Card.Body>
         </Card>
-        <Card>
+        <Card  style={{ maxWidth:'18rem'}}>
             <Card.Body>
                 <ResponsiveEmbed aspectRatio="16by9">
                     <embed type="image/jpg" src="/images/goldflowers.jpg" />
@@ -86,7 +86,7 @@ const Ourteam = () => {
                 <br />
             </Card.Body>
         </Card>
-        <Card>
+        <Card  style={{ maxWidth:'18rem'}}>
 
             <Card.Body>
                 <ResponsiveEmbed aspectRatio="1by1">
