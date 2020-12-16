@@ -3,7 +3,7 @@ import {Carousel,Container, Card, ResponsiveEmbed} from "react-bootstrap";
 
 const Alumni = () => {
     return(<Container>
-    
+    <h1>We are proud of our stuents</h1>
            <Carousel>
     
     
@@ -16,12 +16,12 @@ const Alumni = () => {
                    
               
                     <ResponsiveEmbed aspectRatio="16by9">
-                         <embed type="image/jpg" src="/images/helen.jpg" />
+                         <embed type="image/jpg" src="/images/grad1.jpg" />
                      </ResponsiveEmbed>
     
                         <Card.Title>
-                            <h4>Helen</h4>
-                            <h6>Board Member</h6>
+                            Advance Level Completion
+                    
                         </Card.Title>
                       
                      </Card.Body>       
@@ -31,11 +31,10 @@ const Alumni = () => {
                
                 <Card.Body>
                 <ResponsiveEmbed aspectRatio="1by1">
-                         <embed type="image/jpg" src="/images/yamini.jpg" />
+                         <embed type="image/jpg" src="/images/grad2.jpg" />
                      </ResponsiveEmbed>
                     <Card.Title>
-                        <h4>Yamini</h4>
-                        <h5 >Board Member</h5>
+                        Basic Course
                     </Card.Title>
                    
                 </Card.Body>
@@ -45,16 +44,13 @@ const Alumni = () => {
             
                 <Card.Body>
                 <ResponsiveEmbed aspectRatio="16by9">
-                         <embed type="image/jpg" src="/images/grey.jpg" />
+                         <embed type="image/jpg" src="/images/gre.jpg" />
                      </ResponsiveEmbed>
                     <Card.Title>
-                    <h4>Chitra</h4>
-                    <h5 className="card-title">Board Member</h5>
+                    Chitra
+              
                     </Card.Title>
-                    <Card.Text>
-                        I teach small kids insisting on handwritting
-                     </Card.Text>
-                     <br />
+                  
                 </Card.Body>
             </Carousel.Item>
             <Carousel.Item interval={500}>
@@ -64,8 +60,8 @@ const Alumni = () => {
                          <embed type="image/jpg" src="/images/goldflowers.jpg" />
                      </ResponsiveEmbed>
                     <Card.Title>
-                    <h4 className="card-title">Anou</h4>
-                    <h5 className="card-title">Board Member</h5>
+                      Gradutaion  celebration
+           
                     </Card.Title>
                   
                     <br />
@@ -76,11 +72,10 @@ const Alumni = () => {
             
             <Card.Body>
             <ResponsiveEmbed aspectRatio="1by1">
-                     <embed type="image/jpg" src="/images/SangeethaK.jpg" />
+                     <embed type="image/jpg" src="/images/S.jpg" />
                  </ResponsiveEmbed>
                 <Card.Title>
-                <h4>Sangeetha</h4>
-                <h5 className="card-title">Web Master</h5>
+             Students
                 </Card.Title>
               
             </Card.Body>

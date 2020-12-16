@@ -17,7 +17,7 @@ class Homepage extends Component {
                 <Col xs={12} lg={true}>
                   <Ourteam />
                 </Col>
-                <Col xs={12} lg={true} >
+                <Col xs={12} lg={4} >
                     <h4>{msg}</h4>
                     <Accordion>
                         <Card>
