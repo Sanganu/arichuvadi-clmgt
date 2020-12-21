@@ -27,7 +27,7 @@ class Allbatches extends Component {
   }
 
   componentDidMount = () => {
-    //  console.log("displayallbatchdetails -- component before axios call",this.props);
+     console.log("displayallbatchdetails -- component before axios call",this.props);
     let batchrecords = this.state.batchrecords;
    if (this.props.usertype === "management") {
       API.getAllBatch()

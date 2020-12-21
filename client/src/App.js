@@ -61,7 +61,7 @@ const App = () => {
                         <Route exact path="/board/searchrecords" component={Search} />
                         <Route exact path="/board/allbatch/:displayall" render={props => <Allbatches {...props} displayall="true" />} />
                         {/* <Route exact path="/board/batchmain" component={Batchmain} /> */}
-                        <Route exact path="/board/createbatch" component={Createbatch} />
+                        <Route exact path="/board/createbatch" render={props => <Createbatch {...props} />}/>
 
                         <Route exact path="/board/addBoard" component={AddBoardMember} />
                         <Route exact path="/board/login" render={props => <Boardmember />} />

@@ -1,16 +1,16 @@
-.box1{
+/* .box1{
     background: rgb(177, 145, 145); 
     margin: 5px;
      padding:5px;
   }
-  
+   */
   .box{
-    background: linear-gradient( 150deg, rgba(6, 237, 225, 0.8), rgba(48, 6, 238, 0.726),rgba(68, 184, 32, 0.877));
+    background: linear-gradient( 150deg, rgba(6, 237, 225, 0.8), rgba(38, 165, 152, 0.726),rgba(30, 162, 177, 0.877),rgb(99, 99, 181));
     margin: 5px;
     padding:5px;
   }
   
-  .box3{
+  /* .box3{
     background: linear-gradient( rgba(15, 209, 199, 0.8), rgba(48, 6, 238, 0.726),
     rgba(5, 228, 198, 0.986), rgba(21, 195, 201, 0.329),rgba(68, 184, 32, 0.877) );
     margin: 5px;
@@ -26,12 +26,15 @@
   }
   .box6{
     background: linear-gradient(210deg,rgba(68, 184, 32, 0.877), rgba(1, 94, 123, 0.562), rgba(12, 180, 192, 0.884),
-    rgb(77, 210, 214), rgba(7, 230, 238, 0.904));
-  }
+    rgb(77, 210, 214), rgba(7, 230, 238, 0.904)); */
+  /* } */
 
   .accordium{
       width:99%;
       border: 1px solid black;
       border-radius: 15px;
       background-color: linear-gradient(180deg, rgb(50, 87, 179), rgb(83, 229, 240), rgb(19, 19, 202),rgba(223, 223, 24, 0.871));
+  }
+  .card{
+    width: 50%;
   }

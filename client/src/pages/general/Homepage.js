@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Ourteam from "./Ourteam";
 import { connect } from 'react-redux';
 import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
-import { Accordion, Card, Container , Row, Col} from "react-bootstrap";
+import { Accordion, Card, Container, Row, Col } from "react-bootstrap";
 import "./Homepage.css";
 
 class Homepage extends Component {
@@ -13,18 +13,17 @@ class Homepage extends Component {
     render() {
         const msg = this.props.msg || ""
         return (<Container className="middlecontent">
+                  <h4>{msg}</h4>
             <Row>
-                <Col xs={12} lg={true}>
-                  <Ourteam />
-                </Col>
-                <Col xs={12} lg={4} >
-                    <h4>{msg}</h4>
-                    <Accordion>
+
+                <Col>
+          
+                    <Accordion className="d-flex flex-wrap">
                         <Card>
                             <Card.Header>
                                 <Accordion.Toggle variant="link" eventKey="0" className="accordium" >
-                                   Login
-                        </Accordion.Toggle>
+                                    <p className="text-justify">Login</p>
+                            </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
@@ -39,23 +38,31 @@ class Homepage extends Component {
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
-                        <Card>
+                    {/* </Accordion> */}
+                {/* </Col>
+                <Col xs={6} lg={6}> */}
+                    {/* <Accordion > */}
+                        <Card >
                             <Card.Header>
-                                <Accordion.Toggle variant="link" eventKey="1" className="accordium" >
-                                    Registration
-                        </Accordion.Toggle>
+                                <Accordion.Toggle variant="link" eventKey="1" className="accordium">
+                                   <p className="text-justify"> Registration</p>
+                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
-                                <Card.Body>  <div className="card-body box">
-                                    <Link to="/student/newstudent" className="mainlink">New Student Registration</Link><br />
-                                </div>
+                                <Card.Body>
+
+                                    <div className="card-body box">
+                                        <Link to="/student/newstudent" className="mainlink">New Student Registration</Link><br />
+                                    </div>
                                     <div className="card-body box">
                                         <Link to="/board/addBoard" className="mainlink">Register as Teacher</Link>
                                     </div>
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
-                        <Card>
+                    </Accordion>
+                </Col>
+                {/* <Card>
                             <Card.Header>
                                 <Accordion.Toggle variant="link" eventKey="2" className="accordium" >
                                  Resources
@@ -77,9 +84,13 @@ class Homepage extends Component {
 
                                 </Card.Body>
                             </Accordion.Collapse>
-                        </Card>
-                    </Accordion>
-                    
+                        </Card> */}
+
+
+            </Row>
+            <Row>
+                <Col xs={12} lg={12}>
+                    <Ourteam />
                 </Col>
             </Row>
         </Container>

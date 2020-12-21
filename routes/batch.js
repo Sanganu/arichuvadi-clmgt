@@ -5,14 +5,14 @@ const batchdetails = require('../models/BatchDetails.js')
 
 
 const isLoggedIn = (req, res, next) => {
-    console.log("Routes - req isloggedin", req.user)
+    console.log("Routes - req isloggedin", req)
     if (!req.user ){
       // USer is not logged in
       console.log("Routes isLoggedIn- No user data found", req.user)
       res.redirect("/");
     }
     else {
-      if (req.user.user.usertype !=="management"){
+      if (req.user.usertype !=="management"){
       console.log("Routes-IsloggedIn-USer logged in", req.user);
       next();
       }
