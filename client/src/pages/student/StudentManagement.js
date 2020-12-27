@@ -31,7 +31,7 @@ class Studentmanagement extends Component {
   };
 
   componentDidMount = (event) => {
-    let studentrecords = [];
+    // let studentrecords = [];
     
     API.getAllStudents()
       .then(response => {

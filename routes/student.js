@@ -12,8 +12,13 @@ const isLoggedIn = (req, res, next) => {
       res.redirect("/");
     }
     else {
+      if (req.user.usertype !=="student"){
       console.log("Routes-IsloggedIn-USer logged in", req.user);
       next();
+      }else{
+        console.log("Login is not a student");
+        res.redirect("/")
+      }
     }
   }
 

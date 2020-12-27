@@ -5,10 +5,10 @@ const batchdetails = require('../models/BatchDetails.js')
 
 
 const isLoggedIn = (req, res, next) => {
-    console.log("Routes - req isloggedin", req)
+    // console.log("Routes - req isloggedin", req)
     if (!req.user ){
       // USer is not logged in
-      console.log("Routes isLoggedIn- No user data found", req.user)
+      // console.log("Routes isLoggedIn- No user data found", req.user)
       res.redirect("/");
     }
     else {
@@ -60,7 +60,7 @@ router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
 
   // Update Batch --implemented
 router.put("/api/board/batch/update", isLoggedIn, (req, res) => {
-    // console.log("The batch id: ",req.body, req.body.batchid, req.session.passport.user.user.userdata._id);
+    console.log("The batch id: ",req.body);
     batchdetails.updateOne(
       { _id: req.body.batchid },
       {
@@ -128,26 +128,7 @@ router.put('/api/batch/student/del/',isLoggedIn, (req, res) => {
     }); // end of callback for find record
 }); // end of router delete student from batch
 
-//Delete Batch -- implemented
-router.delete("/api/board/batch/delete/:batchid",isLoggedIn, (req, res) => {
-  console.log("Inside delete route for batch to student to class",req.params.batchid,req.user);
-  const result =  batchdetails.deleteOne({ _id: req.params.batchid }).exec();
-  if (result.n === 0) {
-    console.log("Error", error);
-    res.status(404).error({ "Error": "Error in deleting batch and class" + errror })
-  }
-  else {
-    console.log("The result-n", result);
-    const respdelclass =  classdetails.deleteMany({ batch: req.body.batchid }).exec();
-    if (respdelclass.n === 0) {
-      console.log("Error", error);
-      res.status(404).error({ "Error": "Error in deleting class" + errror })
-    }
-    else {
-      res.status(200).json({ "Deleted": "Batch and class details" });
-    }
- }
-});
+
 
 
 //Delete student details from a batch-- v1 v2 -- working??

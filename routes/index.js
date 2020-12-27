@@ -16,8 +16,13 @@ const isLoggedIn = (req, res, next) => {
     res.redirect("/");
   }
   else {
+    if (req.user.usertype !=="management"){
     console.log("Routes-IsloggedIn-USer logged in", req.user);
     next();
+    }else {
+      console.log("Not management")
+      res.redirect("/")
+    }
   }
 }
 
@@ -279,7 +284,26 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
   }); // end of router to delete class from batch
 
 
- 
+ //Delete Batch -- implemented
+router.delete("/api/board/batch/delete/:batchid",isLoggedIn, (req, res) => {
+  console.log("Inside delete route for delete batch",req.params.batchid);
+  const result =  Batchdetails.deleteOne({ _id: req.params.batchid }).exec();
+  if (result.n === 0) {
+    console.log("Error", error);
+    res.status(404).error({ "Error": "Error in deleting batch and class" + errror })
+  }
+  else {
+    console.log("The result-n", result);
+    const respdelclass =  Classdetails.deleteMany({ batch: req.body.batchid }).exec();
+    if (respdelclass.n === 0) {
+      console.log("Error", error);
+      res.status(404).error({ "Error": "Error in deleting class" + errror })
+    }
+    else {
+      res.status(200).json({ "Deleted": "Batch and class details" });
+    }
+ }
+});
 
 
   module.exports = router;

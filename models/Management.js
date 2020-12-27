@@ -41,10 +41,10 @@ const boardMemberSchema = new Schema({
         skypeId: {
           type: String
         },
-        batchId :[{
-          type: Schema.Types.ObjectId,
-          ref: 'batchdetails'
-        }],
+        // batchId :[{
+        //   type: Schema.Types.ObjectId,
+        //   ref: 'batchdetails'
+        // }],
         createdDate: {
            type:Date,
            default: Date.now

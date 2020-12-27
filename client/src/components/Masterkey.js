@@ -11,7 +11,7 @@ class Masterkey extends Component {
         if(this.props.IdType === "instructor"){
             InstructorID.getAllInstructors()
             .then((records) => {
-                console.log("Rec instructors id",records.data) 
+                // console.log("Rec instructors id",records.data) 
                 this.setState({items:records.data,
                 masterID:records.data[0]._id || ""})
             })
@@ -19,8 +19,8 @@ class Masterkey extends Component {
         else if(this.props.IdType === "students"){
             StudentID.getAllStudentId()
             .then((records) => {
-                console.log("Rec student ids",records.data) 
-                this.setState({items:records.data,
+                // console.log("Rec student ids",records.data) 
+                this.setState({items:records.data||[],
                     masterID:records.data[0]._id || ""})
             })
         }
@@ -32,12 +32,14 @@ class Masterkey extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        console.log('The Value in input change',value,name,target);
+        const index = event.nativeEvent.target.selectedIndex;
+        const display = event.nativeEvent.target[index].text   
+        console.log('The Value in input change',value,name,display);
 
         this.setState({
            masterID:value
         });
-        this.props.passMasterId(value)
+        this.props.passMasterId(value,display)
     };
     render() {
         return (<React.Fragment>

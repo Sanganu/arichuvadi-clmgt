@@ -20,7 +20,7 @@ function Email(props){
     };
 
     return( <Form.Group controlId="formEmail">
-    <Form.Text className="text-muted text-white bg-warning">{message}</Form.Text>
+    <Form.Text className="text-muted text-white bg-warning m-1 p-1">{message}</Form.Text>
     <Form.Label>
       Login Email</Form.Label>
     <Form.Control

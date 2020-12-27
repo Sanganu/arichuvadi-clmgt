@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-// import Allstudents from './displayallstudents';
 import API from "../../API/Student"
 import Email from "../../components/Email";
-import Password from "../../components/Password";
-
-// import { CheckPassword } from '../../util/Inputvalidations';
+// import Password from "../../components/Password";
 import Homepage from '../general/Homepage';
+import Name from "../../components/MemberName";
 
 class Studentregistration extends Component {
     state = {
@@ -36,6 +33,15 @@ class Studentregistration extends Component {
 
     setPassword = (password) =>{
         this.setState({password})
+    }
+    setName =(firstname,lastname)=>{
+        this.setState({
+            studentfname:firstname,
+            studentlname:lastname
+        })
+    }
+    setParentName = (firstname,lastname) =>{
+         this.setState({parentname: firstname+" "+lastname})
     }
 
     handleStudentCreation = (event) => {
@@ -104,23 +110,9 @@ class Studentregistration extends Component {
                 <form className="inputsection container">
                     <div className="row">
                         <div className="col-md-6 m-3 p-3">
-                            <div className="form-group row">
-                                <label className="has-float-label">Student FirstName</label>
-                                <input className="form-control" type="text" value={this.state.studentfname} onChange={this.handleInputChange} placeholder="Student Firstname" name="studentfname" />
-                            </div>
-                            <div className="form-group row">
-                                <label className="has-float-label">Student LastName</label>
-                                <input type="text" className="form-control" placeholder="Student Last name" value={this.state.studentlname} onChange={this.handleInputChange} name="studentlname" />
-                            </div>
-                            <div className="form-group row">
-                                <label className="has-float-label">Parent Name</label>
-                                <input type="text" className="form-control" placeholder="Parent Name" value={this.state.parentname} onChange={this.handleInputChange} name="parentname" />
-                            </div>
-                            {/* <div className="form-group row">
-                                <label className="has-float-label">Parent Email(login email)</label>
-                                <input type="text" className="form-control" placeholder="Login Email" value={this.state.loginemail} onChange={this.handleInputChange} name="loginemail" />
-                            </div> */}
-                            <Email 
+                           <Name onChange ={this.setName}/>
+                           <Name onChange={this.setParentName} />
+                           <Email 
                               email={this.state.email}
                               setEmail ={this.setEmail}/>
                             <div className="form-group row">
