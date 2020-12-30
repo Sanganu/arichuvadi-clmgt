@@ -114,6 +114,7 @@ class Studentregistration extends Component {
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} name="password" />
           <input type="password" placeholder="Retype Password" value={this.state.password1} onChange={this.handleInputChange} name="password1" />
           <input type="text" placeholder="Phone number" value={this.state.parentphonenumber} onChange={this.handleInputChange} name="parentphonenumber" />
+          <h1>Studentregistration</h1>
           <div className="form-group row">
             <label className="has-float-label">Completed Course : </label>
             <select className="form-control droplist"

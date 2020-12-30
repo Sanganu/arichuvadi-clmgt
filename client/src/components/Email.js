@@ -29,7 +29,6 @@ function Email(props){
       value={loginemail}
       onChange={handleInputChange}
       name="loginemail"
-      id="loginemail"
       required />
       <Form.Text className="text-muted">
       We'll never share your email with anyone else.

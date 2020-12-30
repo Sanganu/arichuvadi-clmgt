@@ -18,14 +18,14 @@ function MemberName(props) {
       } else if (field === "lastname") {
         setLastName(nametext)
       }
-      if (firstname.length > 2 && lastname.length > 2) {
-        props.setName(firstname, lastname)
-      }
+      // if (firstname.length > 2 && lastname.length > 2) {
+      //   props.setName(firstname, lastname)
+      // }
 
 
     }
     else {
-      setMessage("Enter Valid Name")
+      setMessage("Enter Valid Name - Only Text")
     }
 
   }
@@ -34,13 +34,13 @@ function MemberName(props) {
 
     <Form.Group controlID="formText">
       <Form.Text className="text-muted text-white bg-warning m-1 p-1">{message}</Form.Text>
-      <Form.Label>{props.name}</Form.Label>
-      <Form.Control type="text" value={firstname} onChange={this.handleInputChange} required name="firstname" />
+      <Form.Label>{props.name+' First Name:' }</Form.Label>
+      <Form.Control type="text" value={firstname} onChange={handleInputChange} required name="firstname" />
     </Form.Group>
     <Form.Group controlID="formText">
       <Form.Text className="text-muted text-white bg-warning m-1 p-1">{message}</Form.Text>
-      <Form.Label>{props.name}</Form.Label>
-      <Form.Control type="text" value={lastname} onChange={this.handleInputChange} required name="lastname" />
+      <Form.Label>{props.name + 'Last Name:'} </Form.Label>
+      <Form.Control type="text" value={lastname} onChange={handleInputChange} required name="lastname" />
     </Form.Group>
   </React.Fragment>)
 }

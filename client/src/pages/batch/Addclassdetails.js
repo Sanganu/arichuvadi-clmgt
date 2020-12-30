@@ -87,7 +87,6 @@ class BatchRecAddclass extends Component
                        value={this.state.lessoncovered}
                        onChange = {this.handleInputChange} 
                        name = "lessoncovered"  
-                       id = "lessoncovered" 
                        placeholder="Lesson Covered" 
                        className = "form-control"
                        required />
@@ -98,7 +97,7 @@ class BatchRecAddclass extends Component
                      <input type = "text" 
                        value={this.state.homework} 
                        onChange = {this.handleInputChange} 
-                       name = "homework" id = "homework" 
+                       name = "homework" 
                        placeholder = "Homework assigned" 
                        className = "form-control"
                        required/>
@@ -112,7 +111,7 @@ class BatchRecAddclass extends Component
                        name = "date" 
                        placeholder = "mm/dd/yyyy" 
                        className = "form-control"
-                       id = "date" required/>
+                        required/>
                   </div>
                   <button className = "rowbtn"
                           onClick = {this.saveClassDetails}>

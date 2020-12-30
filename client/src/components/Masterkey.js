@@ -39,7 +39,8 @@ class Masterkey extends Component {
         this.setState({
            masterID:value
         });
-        this.props.passMasterId(value,display)
+        console.log(value,display)
+        this.props.passMasterId(value)
     };
     render() {
         return (<React.Fragment>

@@ -157,7 +157,9 @@ class BatchInfo extends Component {
     this.setState({
       instructor: value
     })
-    console.log("Instructor", value)
+    console.log("Instructor", value);
+    this.updateBatch()
+    this.getUpdatedBatchDetails()
   } // End getInstructor
 
   getStudent = (student) => {
@@ -215,13 +217,13 @@ class BatchInfo extends Component {
   }
 
 
-  handleChangeInstructor = (instructorIdn, instructorName) => {
-    console.log(instructorIdn, instructorName)
+  handleChangeInstructor = (instructorIdn) => {
+    console.log(instructorIdn)
     this.setState({
-      instructorID: instructorIdn,
-      instructor: instructorName
+      instructorID: instructorIdn
     }, () => {
-      console.log(instructorIdn, instructorName, this.state.instructorID, this.state.instructor)
+      console.log(instructorIdn,this.state.instructorID, this.state.instructor)
+
     })
   }
 
@@ -234,6 +236,13 @@ class BatchInfo extends Component {
           <Col>
             <h4 className="text-center">{this.state.instructor}'s {this.state.bdesc} Cohort</h4>
             <Form className="inputsection">
+              <Form.Group controlId="formBasicText">
+                <label className="has-float-label">Instructor </label>
+
+                <h6 name="instructor"
+                  className="form-control">{this.state.instructor}</h6>
+
+              </Form.Group>
               <Form.Group controlId="formBasicText">
 
                 <label className="has-float-label"
@@ -248,17 +257,7 @@ class BatchInfo extends Component {
                 />
 
               </Form.Group>
-              <Form.Group controlId="formBasicText">
-                <label className="has-float-label">Instructor </label>
 
-                <input
-                  placeholder={this.state.instructor}
-                  name="instructor"
-                  readOnly
-                  className="form-control"
-                />
-
-              </Form.Group>
               <Form.Group controlId="formBasicDropList">
                 <label className="has-float-label">Course : </label>
                 <select className="form-control droplist"
@@ -302,6 +301,8 @@ class BatchInfo extends Component {
                 <Modal
                   Title="Change Instructor"
                   IdType="instructor"
+                  Id={this.state.instructorID}
+                  Value={this.state.instructor}
                   passIdToMaster={this.handleChangeInstructor} />
 
                 <Modal
@@ -318,7 +319,7 @@ class BatchInfo extends Component {
             </Form>
           </Col>
         </Row>
-        <Row  className="m-2 p-2">
+        <Row className="m-2 p-2">
           <Col lg={true} sm={12}>
             <div className="table-responsive">
 
@@ -363,7 +364,7 @@ class BatchInfo extends Component {
         </Row>
 
 
-        <Row  className="m-2 p-2"c>
+        <Row className="m-2 p-2">
           <Col>
             <div className="table-responsive">
               <h4 className="text-center">Class Notes</h4>

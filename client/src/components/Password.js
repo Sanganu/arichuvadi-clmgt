@@ -42,17 +42,14 @@ function Password(props) {
                 value={password}
                 onChange={handleInputChange}
                 name="password"
-                id = "password"
                 required />
             <Form.Label  controlId="forRetypepassword">
                 Retype Password</Form.Label>
             <Form.Control
                 type="password"
                 value={retypepassword}
-             
                 onChange={handleInputChange}
                 name="retypepassword"
-                id="retypepassword"
                 required />
 
         </Form.Group>)

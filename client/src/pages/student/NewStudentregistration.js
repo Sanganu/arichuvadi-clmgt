@@ -104,14 +104,19 @@ class Studentregistration extends Component {
         return (
             <div>
 
-                <h3 className="subhead">Student Registration</h3>
+                <h3 className="subhead">New Student Registration</h3>
+
                 <p className="errmsg">{this.state.errmsg}</p>
 
                 <form className="inputsection container">
                     <div className="row">
                         <div className="col-md-6 m-3 p-3">
-                           <Name onChange ={this.setName}/>
-                           <Name onChange={this.setParentName} />
+                           <Name 
+                           name="Student's"
+                           onChange ={this.setName}/>
+                           <Name 
+                           name = "Parent 's"
+                           onChange={this.setParentName} />
                            <Email 
                               email={this.state.email}
                               setEmail ={this.setEmail}/>
@@ -176,6 +181,7 @@ class Studentregistration extends Component {
                     </div>
 
                     <button className="createbutton" name="clcreation" onClick={this.handleStudentCreation}>Create Student account</button>
+                    <p>Please consider donating at least $10 per level to cover the basic cost.</p>
                 </form>
                 <br />
 
