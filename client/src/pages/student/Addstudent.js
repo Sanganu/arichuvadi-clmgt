@@ -175,7 +175,7 @@ class Addstudent extends Component {
                                        name = "parentphonenumber" 
                                        id = "parentphonenumber" />
                                   </div>  
-                                   <Form.Group>
+                                   {/* <Form.Group>
                                         <label className="has-float-label">Level Completed :  </label>
                                       <Form.Control as="select" value={this.state.levelcompleted} onChange={this.handleInputChange} name="levelcompleted" id="levelcompleted">
                                           <option value='Oral' default>Oral Examination</option>
@@ -194,7 +194,7 @@ class Addstudent extends Component {
                                           <option value='Online'>Online Examination</option>
                                           <option value='Offline'>Offline Examination</option>
                                       </Form.Control>
-                                   </Form.Group>  
+                                   </Form.Group>   */}
                                        <Button
                                         onButton = {this.handleStudentCreation}>
                                         <i className="fa fa-address-card"></i>

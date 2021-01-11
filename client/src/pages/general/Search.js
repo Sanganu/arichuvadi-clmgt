@@ -21,12 +21,12 @@ class Searchstudents extends Component {
                 console.log("Results from search", response);
                 let matchrecords = [];
                 let found = false;
-                let displaymessage = false;
+           
                 if ((response.data.studentdetails.length > 0) ||
                     (response.data.batchdetails.length > 0) ||
                     (response.data.managementdetails.length > 0)) {
                     found = true;
-                    displaymessage = false;
+                  
                    // console.log("if statement");
                     for (let i = 0; i < response.data.studentdetails.length; i++) {
 
@@ -69,20 +69,24 @@ class Searchstudents extends Component {
                     this.setState({
                         results: matchrecords,
                         foundrecords: found,
-                        displaymessage: displaymessage
+                        displaymessage: "",
+                        searchstring:""
                     },
                         () => {
                             console.log("State", this.state.results, 'found', this.state.foundrecords);
                         });
                 } // end if
                 else {
-                    displaymessage = true
+                    this.setState({
+                        displaymessage:"No matching records found for the search term....."
+                    })
                     found = false;
                 } //end else
      
             })
             .catch((err) => {
                 console.log("The error:", err);
+                this.setState({displaymessage:"Invalid search... Please login as Board member and then search for relevant records..."})
             });
     }
 
@@ -104,8 +108,9 @@ class Searchstudents extends Component {
                    <form className="inputsection">
                         <h5 className="subhead">Search Student / Cohort / Instructor / Boardmember</h5>
                             <div className="form-group row">
-                                <label className="has-float-label"id="lsearchstr">Search </label><br />
-                                <input className="form-control" onChange={this.handleInputChange} type="text" name="searchstring" value={this.state.searchstring} /><br />.
+                                <label className="has-float-label">Search </label><br />
+                                <input className="form-control" onChange={this.handleInputChange} type="text" name="searchstring" value={this.state.searchstring} />
+      
                             </div>
                             <button className="createbutton" name="searchbtn" onClick={this.searchrecords}>Search</button>
                     </form>
@@ -125,10 +130,8 @@ class Searchstudents extends Component {
                             </div> 
                          </div>
                    </div>  
-                : <div></div>}        
-                {this.state.displaymessage ?
-                             <div><h3 className = "searcherrmsg">   No Student / Cohort details found</h3></div>
-                   : <div></div>}
+                :                   <div><h3 className = "searcherrmsg"> {this.state.displaymessage}</h3></div>
+               }
               </div>);
          }
                 
