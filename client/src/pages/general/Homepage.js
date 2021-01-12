@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Ourteam from "./Ourteam";
 import { connect } from 'react-redux';
 import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
-import { Accordion, Card, Container, Row, Col } from "react-bootstrap";
+import { Accordion, Card, Container, Row, Col, Jumbotron } from "react-bootstrap";
 import "./Homepage.css";
 
 class Homepage extends Component {
@@ -89,8 +89,14 @@ class Homepage extends Component {
 
             </Row>
             <Row>
-                <Col xs={12} lg={12}>
-                    <Ourteam />
+                <Col>
+                <Jumbotron  className="d-flex flex-wrap m-1 p-1 mission ">
+                <h4 className="text-center text-wrap">Our Mission</h4>
+                <p className="text-center text-wrap">In this school we aspire to help students learn tamil (through reading and writing) to maintain connections to their mother tongue 
+                    and strengthen their bond to their heritage by teaching them Tamil in a way that they'll never forget. 
+                We tie up with Anna Unviersity, Chennai, India. The Exam dates and number of students are registered, we conduct test
+                    and submit test papers, the University grades them and award Certificates</p>
+            </Jumbotron>
                 </Col>
             </Row>
         </Container>
