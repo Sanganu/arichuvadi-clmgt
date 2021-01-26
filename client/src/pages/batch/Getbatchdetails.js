@@ -22,6 +22,7 @@ class BatchRecAddclass extends Component {
       <td>{this.props.students}</td>
       <td>{this.props.classes}</td>
       <td>{this.props.teacher}</td>
+      <td><button onClick={()=>this.props.deleteBatch(this.props.bid)}>Delete</button></td>
     </tr>) //end return
   } // end render
 } // end component

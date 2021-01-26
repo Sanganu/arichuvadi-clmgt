@@ -94,6 +94,8 @@ class Allbatches extends Component {
   }
 
   deleteBatch = (batchid) => {
+    API.deleteBatch(batchid)
+    .then(response => {
     let batchrecords = this.state.batchrecords.filter(batch => {
       return batch.recid !== batchid
     });
@@ -101,11 +103,10 @@ class Allbatches extends Component {
       batchrecords: batchrecords,
       allbatches: true
     });
+    })
   }
 
-   setdisplayall=()=>{
- 
-   }
+  
   render() {
     const stbatchrec = this.state.batchrecords;
     // console.log("Display all batch details --",this.props);
@@ -136,6 +137,7 @@ class Allbatches extends Component {
                         classes={data.noofclasses}
                         examDate={data.examDate}
                         getBatchDetails={this.getBatchDetails}
+                        deleteBatch = {this.deleteBatch}
                         key={index}
                       />
                     )}

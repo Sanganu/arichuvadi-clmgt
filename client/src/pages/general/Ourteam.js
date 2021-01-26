@@ -1,5 +1,5 @@
 import React from 'react';
-import  { Container, Row,Jumbotron,Card, ResponsiveEmbed } from "react-bootstrap";
+import  { Container,Card, ResponsiveEmbed } from "react-bootstrap";
 const Ourteam = () => {
     return (<Container  className="d-flex flex-wrap">
                 <Card style={{ maxWidth: '20rem' }}>

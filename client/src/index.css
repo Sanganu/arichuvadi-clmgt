@@ -13,12 +13,9 @@ body {
 .rowbtn {
   border-radius: 50%;
   padding: 5px;
-
-}
-
-.center {
+  color:000000; 
   display: block;
-
+  font-weight: normal;
 }
 #content {
   margin-top: 10%;
@@ -341,7 +338,7 @@ li {
 }
 
 .mission{
-  opacity: 0.5;
+  opacity:0.25;
 
 }
 @media only screen and (max-width: 768px)

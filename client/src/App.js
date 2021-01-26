@@ -31,7 +31,7 @@ import Createbatch from "./pages/batch/Createbatch";
 import Allbatches from "./pages/batch/displayallbatchdetails";
 import Addclass from "./pages/batch/Addclassdetails";
 
-
+import Dashboard from "./pages/board/Dashboard";
 
 
 // teacher main page
@@ -62,9 +62,9 @@ const App = () => {
                         <Route exact path="/board/allbatch/:displayall" render={props => <Allbatches {...props} displayall="true" />} />
                         {/* <Route exact path="/board/batchmain" component={Batchmain} /> */}
                         <Route exact path="/board/createbatch" render={props => <Createbatch {...props} />}/>
-
+                        <Route exact path="/board/dashboard" compoenent={props => <Dashboard {...props}/>} />
                         <Route exact path="/board/addBoard" component={AddBoardMember} />
-                        <Route exact path="/board/login" render={props => <Boardmember />} />
+                        <Route exact path="/board/login" render={props => <Boardmember {...props} />} />
                         <Route exact path="/board/batch/addstudent/:batchid" render={props => <Addstudent {...props} />} />
                         <Route exact path="/board/profile/update" render={props => <Updateteacher {...props} />} />
                         {/* <Route exact path="/addboard" component={Allbatches} /> */}

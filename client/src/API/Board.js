@@ -14,6 +14,9 @@ export default {
     },
     getSearchResults:function(searchstring){
         return   axios.get(`/api/board/search/${searchstring}`)
+    },
+    getBoardMemberAllDetails: function(memberDetails){
+        return axios.get('/api/board/dashboard/',(memberDetails))
     }
 
     

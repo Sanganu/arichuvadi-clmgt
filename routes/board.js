@@ -17,7 +17,7 @@ const isLoggedIn = (req, res, next) => {
   }
 
 
-  //board teacher
+  //board teacher registration ---> NEED TO RETHINK ON THIS ONE
 router.post('/api/board/new', (req, res) => {
     console.log("Board Member creation -", req.body);
     Management.create(req.body)

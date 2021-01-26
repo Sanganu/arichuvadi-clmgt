@@ -220,7 +220,7 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
 
   
   // Add Student Batch - From Student ID onlu
-  router.put("/api/board/batch/student/", function(req,res){
+  router.put("/api/board/batch/student/", isLoggedIn, function(req,res){
     console.log("batcd- student ID add",req.body)
     Batchdetails.findOneAndUpdate({ _id: req.body.batchid },
       { $push: { students: req.body.studentid } },{new:true})
@@ -239,7 +239,7 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
 
   // Batch Info - Get student and class for the specific batch --implemented
 
-  router.get("/api/board/batch/detail/:bid", function(req,res){
+  router.get("/api/board/batch/detail/:bid", isLoggedIn,function(req,res){
     console.log("batc",req.params.bid)
   let batchdetails =[]
     Batchdetails.findById(req.params.bid)
@@ -269,7 +269,7 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
   //==========================================================
 
   //Delete Class details from a batch -- working??
-  router.put('/api/batch/class/delete/', (req, res) => {
+  router.put('/api/batch/class/delete/', isLoggedIn,(req, res) => {
           console.log("Class delete from batch-inputs", req.body.batchid, req.body.studentid);
             Batchdetails.updateOne({ _id: req.body.batchid },
                     { $pull: { classid: req.body.classid } })
@@ -287,6 +287,7 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
  //Delete Batch -- implemented
 router.delete("/api/board/batch/delete/:batchid",isLoggedIn, (req, res) => {
   console.log("Inside delete route for delete batch",req.params.batchid);
+
   const result =  Batchdetails.deleteOne({ _id: req.params.batchid }).exec();
   if (result.n === 0) {
     console.log("Error", error);
