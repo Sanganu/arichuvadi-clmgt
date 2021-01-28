@@ -4,18 +4,20 @@ import Email from "../../components/Email";
 // import Password from "../../components/Password";
 import Homepage from '../general/Homepage';
 import Name from "../../components/MemberName";
+import { Row, Col, Container } from "react-bootstrap";
 
 class Studentregistration extends Component {
     state = {
         studentfname: "",
         studentlname: "",
         loginemail: "",
-        parentname: "",
+        parentfname: "",
+        parentlname:"",
         parentphonenumber: "",
         password: "",
         levelcompleted: "",
         errmsg: ''
-    }               
+    }
     handleInputChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.name : target.value;
@@ -28,72 +30,78 @@ class Studentregistration extends Component {
     } // end od handleInputChange
     //Handle email
     setEmail = (email) => {
-        this.setState({loginemail:email})
+        this.setState({ loginemail: email })
     }
 
-    setPassword = (password) =>{
-        this.setState({password})
+    setPassword = (password) => {
+        this.setState({ password })
     }
-    setName =(firstname,lastname)=>{
-        this.setState({
-            studentfname:firstname,
-            studentlname:lastname
-        })
-    }
-    setParentName = (firstname,lastname) =>{
-         this.setState({parentname: firstname+" "+lastname})
-    }
+    // setName = (firstname, lastname) => {
+    //     this.setState({
+    //         studentfname: firstname,
+    //         studentlname: lastname
+    //     })
+    // }
+    // setParentName = (firstname, lastname) => {
+    //     this.setState({ parentname: firstname + " " + lastname })
+    // }
 
+    setName =(field,value) => {
+          this.setState({
+              [field] :value
+          })
+    }
     handleStudentCreation = (event) => {
         event.preventDefault();
-        console.log("In Student Creation");
+        console.log("In Student Creation", this.state);
         if (this.state.studentfname === "" ||
             this.state.studentlname === "" ||
             this.state.loginemail === "" ||
             this.state.parentname === "" ||
             this.state.parentphonenumber === "" ||
-            this.state.password === "" ) {
-            console.log("Empty fields not accepted");
+            this.state.password === "") {
+            console.log("Empty fields not accepted", this.state.studentfname.this.state.studentlname, this.state.loginemail, this.state.parentname, this.state.parentphonenumber, this.state.password);
             this.setState({ errmsg: " Enter valid data in all fields " })
         }
         else {
             if (this.state.password === this.state.password1) {
                 console.log('Pass')
-            
-            let newstudent =  {
-                studentfname: this.state.studentfname,
-                studentlname: this.state.studentlname,
-                parentname: this.state.parentname,
-                loginemail: this.state.loginemail,
-                password: this.state.password,
-                parentphonenumber: this.state.parentphonenumber
-              }
-                API.createNewStudent(newstudent)
-                .then(res => {
-                    console.log("The response from adding student", res);
-          
-                            this.setState({
-                                studentfname: '',
-                                studentlname: '',
-                                parentname: '',
-                                loginemail: '',
-                                parentphonenumber: '',
-                                completedcourse: '',
-                                completedlevel: '',
-                                password:"",
-                                 errmsg: "Student details registered, A Board member will review your details and contact as soon as possible"
-                            })
 
-                            return <Homepage msg="You may login" />
-                })
-                .catch(error => {
-                    this.setState({ errmsg: "Student Email already exist" });
-                    console.log("Error!!!!", error)
-                }); // End of axios
-            }else {
+                let newstudent = {
+                    studentfname: this.state.studentfname,
+                    studentlname: this.state.studentlname,
+                    parentname: this.state.parentfname+ " "+this.state.parentlname,
+                    loginemail: this.state.loginemail,
+                    password: this.state.password,
+                    parentphonenumber: this.state.parentphonenumber
+                }
+                API.createNewStudent(newstudent)
+                    .then(res => {
+                        console.log("The response from adding student", res);
+
+                        this.setState({
+                            studentfname: '',
+                            studentlname: '',
+                            parentfname: '',
+                            parentlname:'',
+                            loginemail: '',
+                            parentphonenumber: '',
+                            completedcourse: '',
+                            completedlevel: '',
+                            password: "",
+                            errmsg: "Student details registered, A Board member will review your details and contact as soon as possible"
+                        })
+
+                        return <Homepage msg="You may login" />
+                    })
+                    .catch(error => {
+                        this.setState({ errmsg: "Student Email already exist" });
+                        console.log("Error!!!!", error)
+                    }); // End of axios
+            } else {
                 this.setState({ errmsg: "Password and Re-Type password doesn't match" });
             }
-           } //end if
+        } //end if
 
     }; // end of handleStudentCreation
 
@@ -107,33 +115,41 @@ class Studentregistration extends Component {
                 <h3 className="subhead">New Student Registration</h3>
 
                 <p className="errmsg">{this.state.errmsg}</p>
+                <Container>
+                    <form className="inputsection">
+                        <Row>
+                            <Col>
+                                <Name
+                                    name="student"
+                                    setName={this.setName} />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Name
+                                    name="parent"
+                                    setName={this.setName} />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Email
+                                email={this.state.email}
+                                setEmail={this.setEmail} />
+                        </Row>
+                        <Row>
+                            <label className="has-float-label">Password</label>
+                            <input type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} name="password" />
 
-                <form className="inputsection container">
-                    <div className="row">
-                        <div className="col-md-6 m-3 p-3">
-                           <Name 
-                           name="Student's"
-                           onChange ={this.setName}/>
-                           <Name 
-                           name = "Parent 's"
-                           onChange={this.setParentName} />
-                           <Email 
-                              email={this.state.email}
-                              setEmail ={this.setEmail}/>
-                            <div className="form-group row">
-                                <label className="has-float-label">Password(Please not this down)</label>
-                                <input type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} name="password" />
-                            </div>
                             <div className="form-group row">
                                 <label className="has-float-label">ReType Password</label>
                                 <input type="password" className="form-control" placeholder="Retype Password" value={this.state.password1} onChange={this.handleInputChange} name="password1" />
                             </div>
-                         
-                            <div className="form-group row">
-                                <label className="has-float-label">Phone Number</label>
-                                <input type="text" className="form-control" placeholder="Phone number" value={this.state.parentphonenumber} onChange={this.handleInputChange} name="parentphonenumber" />
-                            </div>
+                        </Row>
+                        <div className="form-group row">
+                            <label className="has-float-label">Phone Number</label>
+                            <input type="text" className="form-control" placeholder="Phone number" value={this.state.parentphonenumber} onChange={this.handleInputChange} name="parentphonenumber" />
                         </div>
+
                         <div className="col-md-6 m-3 p-3">
                             <div className="form-group row">
                                 <label className="has-float-label">Completed Course : </label>
@@ -178,15 +194,15 @@ class Studentregistration extends Component {
                                 </select>
                             </div>
                         </div>
-                    </div>
 
-                    <button className="createbutton" name="clcreation" onClick={this.handleStudentCreation}>Create Student account</button>
-                    <p>Please consider donating at least $10 per level to cover the basic cost.</p>
-                </form>
+                        <button className="createbutton" name="clcreation" onClick={this.handleStudentCreation}>Create Student account</button>
+                        <p>Please consider donating at least $10 per level to cover the basic cost.</p>
+                    </form>
+                </Container >
                 <br />
 
 
-            </div>
+            </div >
         ) //end return
     } // end render
 

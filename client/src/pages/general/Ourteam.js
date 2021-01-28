@@ -7,7 +7,7 @@ const Ourteam = () => {
 
 
                         <ResponsiveEmbed aspectRatio="1by1">
-                            <embed type="image/jpg" src="/images/helen.jpg" />
+                            <embed type="image/gif" src="/images/helen.gif" />
                         </ResponsiveEmbed>
 
                         <Card.Title>
@@ -32,7 +32,8 @@ const Ourteam = () => {
                 <Card style={{ maxWidth: '20rem' }}>
                     <Card.Body>
                         <ResponsiveEmbed aspectRatio="1by1">
-                            <embed type="image/jpg" src="/images/yamini.jpg" />
+                            <embed type="image/gif" src="/images/yamini.gif
+                            " />
                         </ResponsiveEmbed>
                         <Card.Title>
                             <h4>Yamini</h4>
@@ -57,7 +58,7 @@ const Ourteam = () => {
 
                     <Card.Body>
                         <ResponsiveEmbed aspectRatio="1by1">
-                            <embed type="image/jpg" src="/images/sangeetha.jpg" />
+                            <embed type="image/gif" src="/images/sangeetha.gif" />
                         </ResponsiveEmbed>
                         <Card.Title>
                             <h4>Sangeetha</h4>
@@ -77,7 +78,7 @@ const Ourteam = () => {
                 <Card style={{ maxWidth: '18rem' }}>
                     <Card.Body>
                         <ResponsiveEmbed aspectRatio="16by9">
-                            <embed type="image/jpg" src="/images/goldflowers.jpg" />
+                            <embed type="image/gif" src="/images/goldflowers.gif" />
                         </ResponsiveEmbed>
                         <Card.Title>
                             <h4 className="card-title">Anou</h4>
@@ -95,7 +96,7 @@ const Ourteam = () => {
                 <Card style={{ maxWidth: '18rem' }}>
                     <Card.Body>
                         <ResponsiveEmbed aspectRatio="16by9">
-                            <embed type="image/jpg" src="/images/grey.jpg" />
+                            <embed type="image/gif" src="/images/grey.gif" />
                         </ResponsiveEmbed>
                         <Card.Title>
                             <h4>Chitra</h4>

@@ -4,6 +4,7 @@ import BatchRecord from './Getbatchdetails';
 import BatchInfo from './BatchInfo';
 import Homepage from "../general/Homepage";
 import { connect } from 'react-redux';
+import moment from "moment";
 
 class Allbatches extends Component {
   state = {
@@ -23,7 +24,8 @@ class Allbatches extends Component {
     student: '',
     details: this.props.details || false,
     loginemail: '',
-    username: ''
+    username: '',
+    batchSelected:false
   }
 
   componentDidMount = () => {
@@ -44,7 +46,7 @@ class Allbatches extends Component {
                 teacher: response.data[i].teacher,
                 noofstu: response.data[i].students.length,
                 noofclasses: response.data[i].classid.length,
-                examDate: response.data[i].examDate
+                examDate: moment(response.data[i].examDate).format("MM-DD-YYYY")
                 //recstudents: response.data[i].students
               }
               batchrecords.push(currentrec);
@@ -88,7 +90,8 @@ class Allbatches extends Component {
     this.setState({
       batchdet: batchselected,
       details: true,
-      allbatches: false
+      allbatches: false,
+      batchSelected:true
     }, () => console.log("selected bxz cvc nbmatch",
       this.state.batchdet));
   }
@@ -123,7 +126,7 @@ class Allbatches extends Component {
                         <th>Exam Date</th>
                         <th>Number of Students</th>
                         <th>Number of classes</th>
-                        <th>Instructor</th>
+                        {/* <th>Instructor</th> */}
                       </tr>
                     </thead>
                     <tbody>{stbatchrec.map((data, index) =>
@@ -143,13 +146,13 @@ class Allbatches extends Component {
                     )}
                     </tbody>
                   </table>
-       
-                :  <BatchInfo
+             : 
+                   <BatchInfo
                     batchdetails={this.state.batchdet}
                     newbatch={false}
-                    deleteBatch={this.deleteBatch}
-                  
-                  />}
+                    deleteBatch={this.deleteBatch}/>
+                    
+              }
              </div>
            </div> //End container
       ); // end return

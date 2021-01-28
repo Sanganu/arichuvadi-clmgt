@@ -1,47 +1,59 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Row, Col} from "react-bootstrap";
 
 function MemberName(props) {
   const [firstname, setFirstName] = useState(props.firstName);
   const [lastname, setLastName] = useState(props.lastName);
-  const [message, setMessage] = useState();
+  const [fmessage, setFMessage] = useState();
+  const [lmessage,setLMessage] = useState();
 
-  function handleInputChange (event) {
+  function handleInputChange(event) {
     const field = event.target.name;
     const nametext = event.target.value;
     var letters = /^[A-Za-z]+$/;
 
     if (nametext.match(letters)) {
-      setMessage("")
+      setLMessage("")
+      setFMessage("")
       if (field === "firstname") {
         setFirstName(nametext)
+        props.setName(props.name+"fname",nametext)
       } else if (field === "lastname") {
         setLastName(nametext)
+        props.setName(props.name+"lname",nametext)
       }
-      // if (firstname.length > 2 && lastname.length > 2) {
-      //   props.setName(firstname, lastname)
-      // }
-
+      
 
     }
     else {
-      setMessage("Enter Valid Name - Only Text")
+      if (field === "firstname") {
+        setFMessage("Enter Valid Name - Only Text")
+      } else if (field === "lastname") {
+        setLMessage("Enter Valid Name - Only Text")
+      }
+   
     }
 
   }
 
   return (<React.Fragment>
-
-    <Form.Group controlID="formText">
-      <Form.Text className="text-muted text-white bg-warning m-1 p-1">{message}</Form.Text>
-      <Form.Label>{props.name+' First Name:' }</Form.Label>
+    <Row>
+     <Col>
+    <Form.Group >
+   
+      <Form.Label>{props.name + "'s  First Name:"}</Form.Label>
+      <Form.Text className="text-muted text-danger m-1 p-2">{fmessage}</Form.Text>
       <Form.Control type="text" value={firstname} onChange={handleInputChange} required name="firstname" />
     </Form.Group>
-    <Form.Group controlID="formText">
-      <Form.Text className="text-muted text-white bg-warning m-1 p-1">{message}</Form.Text>
-      <Form.Label>{props.name + 'Last Name:'} </Form.Label>
-      <Form.Control type="text" value={lastname} onChange={handleInputChange} required name="lastname" />
+    </Col>
+    <Col>
+    <Form.Group>
+      <Form.Label>{props.name + "'s  Last Name:"} </Form.Label>
+      <Form.Text className="text-muted text-red m-1 p-2">{lmessage}</Form.Text>
+      <Form.Control type="text" value={lastname} onChange={handleInputChange} required name="lastname"  />
     </Form.Group>
+    </Col>
+    </Row>
   </React.Fragment>)
 }
 

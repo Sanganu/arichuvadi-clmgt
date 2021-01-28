@@ -28,7 +28,7 @@ const isLoggedIn = (req, res, next) => {
 router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
     var newrecord = req.body;
     
-    console.log("Check Session - teacher login", req.session.passport.user.user.userdata._id,req.body);
+    // console.log("Check Session - teacher login", req.session.passport.user.user.userdata._id,req.body);
     batchdetails
       .create(newrecord)
       .then(function (dbdetails) {
@@ -46,7 +46,7 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
   // Get All batch details -- implemented
 router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
   //  console.log("<<<<Check Session - teacher login", req.session.passport,req.body);//undefined
-    console.log("=================<<<<<<<<<===============");
+    // console.log("=================<<<<<<<<<===============");
     batchdetails.find({})
       .then((data) => {
        console.log("Batch details - ALL BATCHES", data);
@@ -63,7 +63,7 @@ router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
 
   // Update Batch --implemented
 router.put("/api/board/batch/update", isLoggedIn, (req, res) => {
-    console.log("The batch id: ",req.body);
+    // console.log("The batch id: ",req.body);
     batchdetails.updateOne(
       { _id: req.body.batchid },
       {

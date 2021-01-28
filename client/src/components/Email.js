@@ -20,9 +20,10 @@ function Email(props){
     };
 
     return( <Form.Group controlId="formEmail">
-    <Form.Text className="text-muted text-white bg-warning m-1 p-1">{message}</Form.Text>
+
     <Form.Label>
       Login Email</Form.Label>
+      <Form.Text className="text-muted text-danger m-3 p-3">{message}</Form.Text>
     <Form.Control
        type="email"
       placeholder="name@example.com"
@@ -30,7 +31,7 @@ function Email(props){
       onChange={handleInputChange}
       name="loginemail"
       required />
-      <Form.Text className="text-muted">
+      <Form.Text className="text-muted ">
       We'll never share your email with anyone else.
       </Form.Text>
   </Form.Group>

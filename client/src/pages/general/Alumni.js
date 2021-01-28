@@ -8,15 +8,12 @@ const Alumni = () => {
     
     
                 <Carousel.Item interval={1000}>
-                    {/* <Card.Img variant="top"
-                        src="/images/helen.jpg"
-                        alt="Helen" fluid /> */}
-    
+               
                     <Card.Body>
                    
               
                     <ResponsiveEmbed aspectRatio="16by9">
-                         <embed type="image/jpg" src="/images/grad1.jpeg" />
+                         <embed type="image/gif" src="/images/grad1.gif" />
                      </ResponsiveEmbed>
     
                         <Card.Title>
@@ -31,7 +28,7 @@ const Alumni = () => {
                
                 <Card.Body>
                 <ResponsiveEmbed aspectRatio="1by1">
-                         <embed type="image/jpg" src="/images/grad2.jpeg" />
+                         <embed type="image/gif" src="/images/grad2.gif" />
                      </ResponsiveEmbed>
                     <Card.Title>
                         Advance level Completion
@@ -44,7 +41,7 @@ const Alumni = () => {
             
                 <Card.Body>
                 <ResponsiveEmbed aspectRatio="16by9">
-                         <embed type="image/jpg" src="/images/grad3.jpeg" />
+                         <embed type="image/gif" src="/images/grad3.gif" />
                      </ResponsiveEmbed>
                     <Card.Title>
                     Advance level Trophy handover
@@ -56,7 +53,7 @@ const Alumni = () => {
     
                 <Card.Body>
                 <ResponsiveEmbed aspectRatio="16by9">
-                         <embed type="image/jpg" src="/images/grad4.jpeg" />
+                         <embed type="image/gif" src="/images/grad4.gif" />
                      </ResponsiveEmbed>
                     <Card.Title>
                   Advance level Trophy handover
@@ -70,7 +67,7 @@ const Alumni = () => {
             
             <Card.Body>
             <ResponsiveEmbed aspectRatio="1by1">
-                     <embed type="image/jpg" src="/images/grad6.jpeg" />
+                     <embed type="image/gif" src="/images/grad6.gif" />
                  </ResponsiveEmbed>
                 <Card.Title>
                  Basic and Intermediate level students
@@ -82,7 +79,7 @@ const Alumni = () => {
             
             <Card.Body>
             <ResponsiveEmbed aspectRatio="1by1">
-                     <embed type="image/jpg" src="/images/grad7.jpeg" />
+                     <embed type="image/gif" src="/images/grad7.gif" />
                  </ResponsiveEmbed>
                 <Card.Title>
                Parents and Volunteers
