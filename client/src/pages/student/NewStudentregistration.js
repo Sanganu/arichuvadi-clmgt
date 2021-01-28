@@ -4,7 +4,7 @@ import Email from "../../components/Email";
 // import Password from "../../components/Password";
 import Homepage from '../general/Homepage';
 import Name from "../../components/MemberName";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Form } from "react-bootstrap";
 
 class Studentregistration extends Component {
     state = {
@@ -116,7 +116,8 @@ class Studentregistration extends Component {
 
                 <p className="errmsg">{this.state.errmsg}</p>
                 <Container>
-                    <form className="inputsection">
+                    {/* <form className="inputsection"> */}
+                    <Form>
                         <Row>
                             <Col>
                                 <Name
@@ -197,7 +198,7 @@ class Studentregistration extends Component {
 
                         <button className="createbutton" name="clcreation" onClick={this.handleStudentCreation}>Create Student account</button>
                         <p>Please consider donating at least $10 per level to cover the basic cost.</p>
-                    </form>
+                    </Form>
                 </Container >
                 <br />
 

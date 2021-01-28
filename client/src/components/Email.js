@@ -19,7 +19,7 @@ function Email(props){
 
     };
 
-    return( <Form.Group controlId="formEmail">
+    return( <Form.Group>
 
     <Form.Label>
       Login Email</Form.Label>
