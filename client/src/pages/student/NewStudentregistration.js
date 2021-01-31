@@ -12,7 +12,7 @@ class Studentregistration extends Component {
         studentlname: "",
         loginemail: "",
         parentfname: "",
-        parentlname:"",
+        parentlname: "",
         parentphonenumber: "",
         password: "",
         levelcompleted: "",
@@ -46,10 +46,10 @@ class Studentregistration extends Component {
     //     this.setState({ parentname: firstname + " " + lastname })
     // }
 
-    setName =(field,value) => {
-          this.setState({
-              [field] :value
-          })
+    setName = (field, value) => {
+        this.setState({
+            [field]: value
+        })
     }
     handleStudentCreation = (event) => {
         event.preventDefault();
@@ -70,7 +70,7 @@ class Studentregistration extends Component {
                 let newstudent = {
                     studentfname: this.state.studentfname,
                     studentlname: this.state.studentlname,
-                    parentname: this.state.parentfname+ " "+this.state.parentlname,
+                    parentname: this.state.parentfname + " " + this.state.parentlname,
                     loginemail: this.state.loginemail,
                     password: this.state.password,
                     parentphonenumber: this.state.parentphonenumber
@@ -83,7 +83,7 @@ class Studentregistration extends Component {
                             studentfname: '',
                             studentlname: '',
                             parentfname: '',
-                            parentlname:'',
+                            parentlname: '',
                             loginemail: '',
                             parentphonenumber: '',
                             completedcourse: '',
@@ -151,50 +151,49 @@ class Studentregistration extends Component {
                             <input type="text" className="form-control" placeholder="Phone number" value={this.state.parentphonenumber} onChange={this.handleInputChange} name="parentphonenumber" />
                         </div>
 
-                        <div className="col-md-6 m-3 p-3">
-                            <div className="form-group row">
-                                <label className="has-float-label">Completed Course : </label>
-                                <select className="form-control droplist"
-                                    onChange={this.handleInputChange}
-                                    value={this.state.completedcourse} name="completedcourse" >
-                                    <option value='None' default>None</option>
-                                    <option value='Beginner'>Beginner</option>
-                                    <option value='Intermediate'>Intermediate</option>
-                                    <option value='Advance'>Advance</option>
-                                </select>
-                            </div>
-                            <div className="form-group row">
-                                <label className="has-float-label">Completed Level : </label>
-                                <select className="form-control droplist" value={this.state.completedlevel} onChange={this.handleInputChange} name="completedlevel" >
-                                    <option value='None' default>None</option>
-                                    <option value='Oral'>Oral Examination</option>
-                                    <option value='Visual'>Visual Examination</option>
-                                    <option value='Written'>Written Examination</option>
-                                    <option value='Online'>Online Examination</option>
-                                    <option value='Offline'>Offline Examination</option>
-                                </select>
-                            </div>
-                            <div className="form-group row">
-                                <label className="has-float-label">Requesting Course : </label>
-                                <select className="form-control droplist"
-                                    onChange={this.handleInputChange}
-                                    value={this.state.completedcourse} name="requestcourse" >
-                                    <option value='Beginner'>Beginner</option>
-                                    <option value='Intermediate'>Intermediate</option>
-                                    <option value='Advance'>Advance</option>
-                                </select>
-                            </div>
-                            <div className="form-group row">
-                                <label className="has-float-label">Requesting Level : </label>
-                                <select className="form-control droplist" value={this.state.requestlevel} onChange={this.handleInputChange} name="requestlevel" >
-                                    <option value='Oral'>Oral Examination</option>
-                                    <option value='Visual'>Visual Examination</option>
-                                    <option value='Written'>Written Examination</option>
-                                    <option value='Online'>Online Examination</option>
-                                    <option value='Offline'>Offline Examination</option>
-                                </select>
-                            </div>
-                        </div>
+                        <Form.Group>
+                            <Form.Label>Completed Course : </Form.Label>
+                            <select className="form-control droplist"
+                                onChange={this.handleInputChange}
+                                value={this.state.completedcourse} name="completedcourse" >
+                                <option value='None' default>None</option>
+                                <option value='Beginner'>Beginner</option>
+                                <option value='Intermediate'>Intermediate</option>
+                                <option value='Advance'>Advance</option>
+                            </select>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Completed Level : </Form.Label>
+                            <select className="form-control droplist" value={this.state.completedlevel} onChange={this.handleInputChange} name="completedlevel" >
+                                <option value='None' default>None</option>
+                                <option value='Oral'>Oral Examination</option>
+                                <option value='Visual'>Visual Examination</option>
+                                <option value='Written'>Written Examination</option>
+                                <option value='Online'>Online Examination</option>
+                                <option value='Offline'>Offline Examination</option>
+                            </select>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Requesting Course : </Form.Label>
+                            <select className="form-control droplist"
+                                onChange={this.handleInputChange}
+                                value={this.state.completedcourse} name="requestcourse" >
+                                <option value='Beginner'>Beginner</option>
+                                <option value='Intermediate'>Intermediate</option>
+                                <option value='Advance'>Advance</option>
+                            </select>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label className="has-float-label">Requesting Level : </Form.Label>
+                            <select className="form-control droplist" value={this.state.requestlevel} onChange={this.handleInputChange} name="requestlevel" >
+                                <option value='Oral'>Oral Examination</option>
+                                <option value='Visual'>Visual Examination</option>
+                                <option value='Written'>Written Examination</option>
+                                <option value='Online'>Online Examination</option>
+                                <option value='Offline'>Offline Examination</option>
+                            </select>
+                        </Form.Group>
+
 
                         <button className="createbutton" name="clcreation" onClick={this.handleStudentCreation}>Create Student account</button>
                         <p>Please consider donating at least $10 per level to cover the basic cost.</p>
