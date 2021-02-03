@@ -1,43 +1,16 @@
-Developed By: Sangeetha Kaliaperumal
 
-My Portfolio: https://sangkal.bitbucket.io/
+Website: Arichuvadi
+Organization:
+A Tamil Volunteer organization, which conducts classes and teach Tamil for next generation Tamil origin Kids. Exams are conducted in collabration with Anna University, Chennai. The Papers are graded and certificate are awarded be Anna university.
 
-
-
-
-Project Management: https://trello.com/b/rsVtbwwi/eduaridev
-
-Project Developmental Stages:
-
-Stage:1
-https://github.com/scodingjs/Edutrack 
-
-Stage:2
-https://github.com/scodingjs/gkedutrack
-
- (Repor Moved from Scodingjs to Sanganu - Private Repo)
-Stage:3
-https://github.com/Sanganu/Edutrack
+Founder and Board of Directors: 
+   Anou Manavalan, Director, Charles Schwab
+   Yamini Ramesh, Medical Coder at Univeristy of Colorado
+   Helen , Special needs teacher, Cherry creek Schools
+   Chitra Saravanan
+ 
+Web Master :  Sangeetha Kaliaperumal
 
 
-https://github.com/Sanganu/gkedutrack
+Technology: MERN stack Application. Passport.js for authentication Board members, Teachers, Students. Teachers portal not yet implement. Bcrypt for encryption. REACT and Redux for state management, Ract-bootstrap for style components.
 
-
-(Now Development moved to Bitbucket - Repo)
-https://bitbucket.org/Sangkal/clmgnt/src/master/
-
-Deployment URL:
-https://coarichuvadi.herokuapp.com/ (Current)
-https://glacial-journey-48111.herokuapp.com/(version-3)
-https://glacial-hamlet-77539.herokuapp.com/ (Version- 2)
-https://secret-garden-26062.herokuapp.com/ (Version -1)
-
-Additional Features to be implemented:
-1. Drop down list of Teachers for Cohort creation.
-2. Reference Video search and save for each teacher
-3. List of Borad members
-4. Past Students testimonial
-5. Teen Volunteers
-6. Awards, Achivements and Perfomrance videos
-
-Analysis, Design, Development & Deployment By: Sangeetha

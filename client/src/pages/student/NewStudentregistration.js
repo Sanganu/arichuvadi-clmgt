@@ -114,7 +114,6 @@ class Studentregistration extends Component {
 
                 <h3 className="subhead">New Student Registration</h3>
 
-                <p className="errmsg">{this.state.errmsg}</p>
                 <Container>
                     {/* <form className="inputsection"> */}
                     <Form>
@@ -150,7 +149,8 @@ class Studentregistration extends Component {
                             <label className="has-float-label">Phone Number</label>
                             <input type="text" className="form-control" placeholder="Phone number" value={this.state.parentphonenumber} onChange={this.handleInputChange} name="parentphonenumber" />
                         </div>
-
+                        <Row>
+                             <Col>
                         <Form.Group>
                             <Form.Label>Completed Course : </Form.Label>
                             <select className="form-control droplist"
@@ -162,6 +162,8 @@ class Studentregistration extends Component {
                                 <option value='Advance'>Advance</option>
                             </select>
                         </Form.Group>
+                        </Col>
+                        <Col>
                         <Form.Group>
                             <Form.Label>Completed Level : </Form.Label>
                             <select className="form-control droplist" value={this.state.completedlevel} onChange={this.handleInputChange} name="completedlevel" >
@@ -173,6 +175,9 @@ class Studentregistration extends Component {
                                 <option value='Offline'>Offline Examination</option>
                             </select>
                         </Form.Group>
+                        </Col>
+                        </Row>
+
                         <Form.Group>
                             <Form.Label>Requesting Course : </Form.Label>
                             <select className="form-control droplist"
