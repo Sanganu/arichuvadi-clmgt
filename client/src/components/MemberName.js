@@ -41,14 +41,14 @@ function MemberName(props) {
      <Col>
     <Form.Group >
    
-      <Form.Label>{props.name + "'s  First Name:"}</Form.Label>
+      <Form.Label>{props.fname + "'s  First Name:"}</Form.Label>
       <Form.Text className="text-muted text-danger m-1 p-2">{fmessage}</Form.Text>
       <Form.Control type="text" value={firstname} onChange={handleInputChange} required name="firstname" />
     </Form.Group>
     </Col>
     <Col>
     <Form.Group>
-      <Form.Label>{props.name + "'s  Last Name:"} </Form.Label>
+      <Form.Label>{props.lname + "'s  Last Name:"} </Form.Label>
       <Form.Text className="text-muted text-red m-1 p-2">{lmessage}</Form.Text>
       <Form.Control type="text" value={lastname} onChange={handleInputChange} required name="lastname"  />
     </Form.Group>

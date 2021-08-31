@@ -114,3 +114,4 @@ class Instructor extends Component {
         }
     }
     export default connect(null, mapDispatchToProps)(Instructor);
+ 

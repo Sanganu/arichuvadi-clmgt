@@ -39,8 +39,7 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
         if (err) {
           console.log(err)
          res.error(err) 
-        }
-      }); //end catch section
+        }      }); //end catch section
   }); // end batchdetails -- create batch implemented
 
   // Get All batch details -- implemented

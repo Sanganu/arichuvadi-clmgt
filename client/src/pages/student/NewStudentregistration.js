@@ -36,31 +36,31 @@ class Studentregistration extends Component {
     setPassword = (password) => {
         this.setState({ password })
     }
-    // setName = (firstname, lastname) => {
-    //     this.setState({
-    //         studentfname: firstname,
-    //         studentlname: lastname
-    //     })
-    // }
-    // setParentName = (firstname, lastname) => {
-    //     this.setState({ parentname: firstname + " " + lastname })
-    // }
+    setName = (firstname, lastname) => {
+        this.setState({
+            studentfname: firstname,
+            studentlname: lastname
+        })
+    }
+    setParentName = (firstname, lastname) => {
+        this.setState({ parentname: firstname + " " + lastname })
+    }
 
-    setName = (field, value) => {
+    setParentName = (field, value) => {
         this.setState({
             [field]: value
         })
     }
     handleStudentCreation = (event) => {
         event.preventDefault();
-        console.log("In Student Creation", this.state);
+        // console.log("In Student Creation", this.state);
         if (this.state.studentfname === "" ||
             this.state.studentlname === "" ||
             this.state.loginemail === "" ||
             this.state.parentname === "" ||
             this.state.parentphonenumber === "" ||
             this.state.password === "") {
-            console.log("Empty fields not accepted", this.state.studentfname.this.state.studentlname, this.state.loginemail, this.state.parentname, this.state.parentphonenumber, this.state.password);
+            // console.log("Empty fields not accepted", this.state.studentfname.this.state.studentlname, this.state.loginemail, this.state.parentname, this.state.parentphonenumber, this.state.password);
             this.setState({ errmsg: " Enter valid data in all fields " })
         }
         else {
@@ -90,9 +90,10 @@ class Studentregistration extends Component {
                             completedlevel: '',
                             password: "",
                             errmsg: "Student details registered, A Board member will review your details and contact as soon as possible"
+                        },()=>{
+                            console.log("Student Created")
+                        // return <Homepage msg="You may login" />
                         })
-
-                        return <Homepage msg="You may login" />
                     })
                     .catch(error => {
                         this.setState({ errmsg: "Student Email already exist" });
@@ -113,22 +114,24 @@ class Studentregistration extends Component {
             <div>
 
                 <h3 className="subhead">New Student Registration</h3>
-
+                {this.state.errmsg}
                 <Container>
                     {/* <form className="inputsection"> */}
                     <Form>
                         <Row>
                             <Col>
                                 <Name
-                                    name="student"
+                                    fname={this.state.studentfname}
+                                    lname={this.state.studentlname}
                                     setName={this.setName} />
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Name
-                                    name="parent"
-                                    setName={this.setName} />
+                                    fname={this.state.parentfname}
+                                    lname={this.state.parentlname}
+                                    setName={this.setParentName} />
                             </Col>
                         </Row>
                         <Row>

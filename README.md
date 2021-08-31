@@ -6,7 +6,7 @@ A Tamil Volunteer organization, which conducts classes and teach Tamil for next 
 Founder and Board of Directors: 
    Anou Manavalan, Director, Charles Schwab
    Yamini Ramesh, Medical Coder at Univeristy of Colorado
-   Helen , Special needs teacher, Cherry creek Schools
+   Helen Samuel , Special needs teacher, Cherry creek Schools
    Chitra Saravanan
  
 Web Master :  Sangeetha Kaliaperumal

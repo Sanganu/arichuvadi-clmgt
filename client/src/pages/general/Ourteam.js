@@ -16,7 +16,7 @@ const Ourteam = () => {
                         </Card.Title>
                         <Card.Text>
 
-                            Hi, I am Helen. I have been teaching Tamil in Arichuvadi
+                            Hi, I am Helen Samuel. I have been teaching Tamil in Arichuvadi
                         more than 11 years. Teaching is my passion. I have been working in public
                         school too. I have acted in Classical Tamil dramas. I also do anchoring in TAC,
                         I am known for comphering with classical style.

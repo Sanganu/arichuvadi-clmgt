@@ -38,22 +38,22 @@ router.post("/api/student/new", (req, res) => {
           parentname: dbstudentdetails.parentname
         };
         console.log("Inserted student record", insertedstudent);
-        res.json(insertedstudent);
+        res.status(200).json(insertedstudent);
       }).catch(function (err) {
         console.log("error in student batch", err)
         if (err.errmsg) {
           if ((err.errmsg).substr(0, 6) === 'E11000') {
             console.log("Student Login - already exist");
-            res.json({ error: "Student email already exist :" });
+            res.status(500).json({ error: "Student email already exist :" });
           }
           else {
             console.log("Error in Creating Student details", err)
-            res.json(err);
+            res.status(500).json(err);
           }
         }
         else {
           console.log("Exceptional Error: ", err)
-          res.json(err);
+          res.status(500).json(err);
         }
       }); // end db studentdetails
   }); // End router to Student in StudentManagement -- implemented

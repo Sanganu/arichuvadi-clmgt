@@ -26,8 +26,7 @@ app.use(
       session({
 		secret: process.env.APP_SECRET || 'this is the default passphrase',
 		maxAge:4*60*60*1000,
-		// store: new MongoStore({ mongooseConnection: dbConnection }),
-		resave: false,
+	    resave: false,
 		saveUninitialized: false,
 		useUnifiedTopology: true
 	})    
@@ -40,14 +39,14 @@ app.use(passport.session());
 
 //Production environment
 
-// if (process.env.NODE_ENV === 'production'){
-// 	const path = require('path')
-// 	console.log('Production environment')
-// 	app.use('/static',express.static(path.join(_dirname,'../build/static')))
-// 	app.get('/', (req, res) => {
-// 	  res.sendFile(path.join(__dirname, '../build/'))
-//   })
-// }
+if (process.env.NODE_ENV === 'production'){
+	const path = require('path')
+	// console.log('Production environment')
+	app.use('/static',express.static(path.join(_dirname,'../build/static')))
+	app.get('/', (req, res) => {
+	  res.sendFile(path.join(__dirname, '../build/'))
+  })
+}
 
  
 
@@ -59,7 +58,9 @@ app.use(require("./routes/board"));
 app.use(require("./routes/student"));
 app.use(routes);
 
-
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 // Serve up static assets
 app.use(express.static(path.join(__dirname,"client/build")));

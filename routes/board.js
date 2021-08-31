@@ -28,11 +28,11 @@ router.post('/api/board/new', (req, res) => {
       .catch((error) => {
         if (error == 'E11000') {
           console.log("Board  Detials already exist", error);
-          res.send({ "err": "Board member already exist for this Email ID", "errcode": (error.errmsg) });
+          res.status(500).send({ "err": "Board member already exist for this Email ID", "errcode": (error.errmsg) });
         }
         else {
           console.log("Unable to create board member account", error)
-          res.send({ "err": "Unable to create board member Account ", "errcode": error.errmsg });
+          res.status(500).send({ "err": "Unable to create board member Account ", "errcode": error.errmsg });
         }
       })
   });
