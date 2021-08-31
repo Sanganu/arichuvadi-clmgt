@@ -121,6 +121,7 @@ class Studentregistration extends Component {
                         <Row>
                             <Col>
                                 <Name
+                                    name="Student"
                                     fname={this.state.studentfname}
                                     lname={this.state.studentlname}
                                     setName={this.setName} />
@@ -129,6 +130,7 @@ class Studentregistration extends Component {
                         <Row>
                             <Col>
                                 <Name
+                                    name="Parent"
                                     fname={this.state.parentfname}
                                     lname={this.state.parentlname}
                                     setName={this.setParentName} />
