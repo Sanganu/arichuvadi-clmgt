@@ -1,5 +1,6 @@
 /* Mongo Database */
 const mongoose = require('mongoose')
+require("dotenv").config()
 mongoose.Promise = global.Promise
 
 if (process.env.MONGODB_URI) {
