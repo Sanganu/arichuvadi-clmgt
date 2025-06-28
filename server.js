@@ -1,10 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const morgan = require('morgan')
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
+
 const passport = require("./passport");
-const dbConnection = require('./models')
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require("path");
@@ -13,9 +12,9 @@ const routes = require("./routes");
 require('dotenv').config()
 
 
-// Configure body parser for AJAX requests
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Configure
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //Middleware - Logger
 app.use(morgan('dev'))
@@ -58,14 +57,19 @@ app.use(require("./routes/board"));
 app.use(require("./routes/student"));
 app.use(routes);
 
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-
 // Serve up static assets
-app.use(express.static(path.join(__dirname,"client/build")));
 
- app.use(express.static('Files'));
+// app.use(express.static(path.join(__dirname,"client/build")));
+
+//  app.use(express.static('Files'));
+
+
+//Wildcard route to server index.html 
+
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
+
  
 // ====== Error handler ====
 app.use(function(err, req, res, next) {
@@ -77,7 +81,7 @@ app.use(function(err, req, res, next) {
 // Start the API server 
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-//   yesapp = true;
+
 });
 
 

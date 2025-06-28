@@ -4,6 +4,7 @@ require("dotenv").config()
 mongoose.Promise = global.Promise
 
 if (process.env.MONGODB_URI) {
+	console.log("Using MongoDB URI from environment variables")
 	mongoose.connect(process.env.MONGODB_URI, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,

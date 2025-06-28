@@ -1,29 +1,29 @@
-const initState = {
-    loginemail: "",
-    userid: "",
-    usertype : "",
-    userfname:"",
-    userlname:"",
-    invalid:true
-}
-const loginReducer = (state = initState,action) => {
-   // console.log("Redux the parameter received",action);
-    switch(action.type){
-     case 'SET_CREDENTIALS':{
-        console.log("Redux store values -- ",action.userCred);
-          return{
-             loginemail: action.userCred.loginemail,
-             userfname: action.userCred.userfname,
-             userlname: action.userCred.userlname,
-             usertype: action.userCred.usertype,
-             invalid: action.userCred.invalid,
-             userid: action.userCred.userid
-         }
-      }
-     default:
-       return state;
-    }
-}    
+import { createSlice } from '@reduxjs/toolkit';
 
-export default loginReducer;
+const initialState = {
+  loginemail: '',
+  userid: '',
+  usertype: '',
+  userfname: '',
+  userlname: '',
+  invalid: true,
+};
 
+const loginSlice = createSlice({
+  name: 'login',
+  initialState,
+  reducers: {
+    setCredentials: (state, action) => {
+      const { loginemail, userfname, userlname, usertype, invalid, userid } = action.payload;
+      state.loginemail = loginemail;
+      state.userfname = userfname;
+      state.userlname = userlname;
+      state.usertype = usertype;
+      state.invalid = invalid;
+      state.userid = userid;
+    },
+  },
+});
+
+export const { setCredentials } = loginSlice.actions;
+export default loginSlice.reducer;
