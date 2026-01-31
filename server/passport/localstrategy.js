@@ -1,7 +1,7 @@
-const Students = require('../models/Students.js');
-const Board = require("../models/Management.js"); 
-const Instructor = require("../models/Instructor");
-const LocalStrategy = require('passport-local').Strategy;
+import Students from '../models/Students.js';
+import Board from "../models/Management.js"; 
+import Instructor from "../models/Instructor.js";
+import { Strategy as LocalStrategy } from "passport-local";
 
 const strategy = new LocalStrategy(
 	{
@@ -64,4 +64,4 @@ const strategy = new LocalStrategy(
 		}
 )
 
-module.exports = strategy
+export default strategy;

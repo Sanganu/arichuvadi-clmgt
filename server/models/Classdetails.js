@@ -1,7 +1,7 @@
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+const { Schema } = mongoose;
 const classdetailsSchema = new Schema({
 
         lessoncovered: {
@@ -24,5 +24,6 @@ const classdetailsSchema = new Schema({
 });
 
     
-const classdetails = mongoose.model("classdetails", classdetailsSchema);
-module.exports = classdetails;
+const Classdetails = mongoose.model("Classdetails", classdetailsSchema);
+
+export default Classdetails;

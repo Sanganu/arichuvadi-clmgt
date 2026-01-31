@@ -1,11 +1,16 @@
 import  express from "express";
+import path from "path";
 import morgan from 'morgan';
 import session from 'express-session';
-import db from './config/connection';
-const passport = require("./passport");
-const path = require("path");
-const routes = require("./routes");
-require('dotenv').config()
+import db from './config/connection.js';
+import passport from "./passport/index.js";
+import routes from "./routes/index.js";
+import auth from "./auth/index.js";
+import batchRoutes from "./routes/batch.js";
+import boardRoutes from "./routes/board.js";
+import studentRoutes from "./routes/student.js";
+//import teacherRoutes from "./routes/teacher.js"
+
 
 await db();
 
@@ -39,10 +44,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Express app & auth routes
-app.use('/auth',require('./auth'));
-app.use(require("./routes/batch"));
-app.use(require("./routes/board"));
-app.use(require("./routes/student"));
+app.use('/auth',auth);
+app.use(batchRoutes);
+app.use(boardRoutes);
+app.use(studentRoutes);
+//app.use(teacherRoutes)
 app.use(routes);
 
 //Production environment

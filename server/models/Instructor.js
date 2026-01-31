@@ -1,7 +1,8 @@
 
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
+const { Schema } = mongoose;
 
 const instructoraccountSchema = new Schema({
         fname: {
@@ -70,6 +71,6 @@ instructoraccountSchema.pre('create', function(next) {
 		next()
 	}
 });
+const Instructordetails = mongoose.model("Instructordetails", instructoraccountSchema);
 
-const instructordetails = mongoose.model("instructordetails", instructoraccountSchema);
-module.exports = instructordetails;
+export default Instructordetails;

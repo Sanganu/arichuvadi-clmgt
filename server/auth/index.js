@@ -1,8 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const Students = require('../models/Students');
-const Board = require('../models/Management');
-const passport = require('../passport')
+import {Router} from 'express';
+const router = Router()
+import Students from "../models/Students.js";
+import Board from "../models/Management.js";
+import passport from '../passport/index.js';
+
 
 // this route is just used to get the student or teacher user basic info
 
@@ -181,4 +182,4 @@ function getDetails(req,res) {
       }  // End else part
 }
 
-module.exports = router
+export default router;

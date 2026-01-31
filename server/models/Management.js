@@ -1,7 +1,8 @@
 
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
+const { Schema } = mongoose;
 
 const boardMemberSchema = new Schema({
 
@@ -95,5 +96,7 @@ boardMemberSchema.pre('create', function(next) {
 
 
 
-const boarddetails = mongoose.model("boarddetails", boardMemberSchema);
-module.exports = boarddetails;
+const Boarddetails = mongoose.model("Boarddetails", boardMemberSchema);
+
+export default Boarddetails;
+

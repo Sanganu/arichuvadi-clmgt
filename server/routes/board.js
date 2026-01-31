@@ -1,6 +1,8 @@
 
-const router = require("express").Router();
-const Management = require('../models/Management.js');
+import {Router} from "express";
+const router = Router()
+import Management from "../models/Management.js";
+
 
 
 const isLoggedIn = (req, res, next) => {
@@ -74,4 +76,5 @@ router.get('/api/instructor/all', (req, res) => {
     });
 });
 
-  module.exports = router;
+ export default router;
+ 

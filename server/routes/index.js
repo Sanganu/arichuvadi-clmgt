@@ -1,9 +1,11 @@
+import { Router } from "express";
+const router = Router();
+import Batchdetails from "../models/BatchDetails.js";
+import Studentdetails from "../models/Students.js";
+import Classdetails from "../models/Classdetails.js";
+import Board from "../models/Management.js";
 
-const router = require("express").Router();
-const Batchdetails = require('../models/BatchDetails.js')
-const Studentdetails = require('../models/Students.js')
-const Classdetails = require('../models/Classdetails.js');
-const Board = require('../models/Management.js');
+
 // const Teacher = require("./teacher.js")
 //const passport = require("passport");
 
@@ -306,5 +308,4 @@ router.delete("/api/board/batch/delete/:batchid",isLoggedIn, (req, res) => {
  }
 });
 
-
-  module.exports = router;
+export default router;

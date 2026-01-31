@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt')
-//mongoose.promise = Promise
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
+const { Schema } = mongoose;
 
 const studentSchema = new Schema({
 
@@ -95,5 +95,6 @@ studentSchema.virtual('fullName').get(function(){
 })
 
 
-const Students = mongoose.model("studentdetails", studentSchema);
-module.exports = Students;
+const Students = mongoose.model("Student", studentSchema);
+
+export default Students;

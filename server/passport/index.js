@@ -1,7 +1,7 @@
-const passport = require('passport')
-const LocalStrategy = require('./localstrategy.js')
-const Students = require('../models/Students')
-const Board = require("../models/Management")
+import passport from 'passport';
+import LocalStrategy from'./localstrategy.js';
+import Students from '../models/Students.js';
+import Board from "../models/Management.js";
 
 //Setup   encrypt
 passport.serializeUser((user, done) => {
@@ -44,5 +44,4 @@ passport.deserializeUser((user, done) => {
 
 passport.use(LocalStrategy)
 
-
-module.exports = passport   
+export default passport; 

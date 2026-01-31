@@ -1,7 +1,6 @@
-
-const router = require("express").Router();
-
-const studentdetails = require('../models/Students.js')
+import {Router} from "express";
+const router = Router()
+import Students from "../models/Students.js";
 
 
 const isLoggedIn = (req, res, next) => {
@@ -26,7 +25,7 @@ const isLoggedIn = (req, res, next) => {
 router.post("/api/student/new", (req, res) => {
     let insertedstudent = {};
     console.log(req.body)
-    studentdetails
+    Student
       .create(req.body)
       .then(function (dbstudentdetails) {
         insertedstudent = {
@@ -62,7 +61,7 @@ router.post("/api/student/new", (req, res) => {
   // Get All Student Details -- implemented
 router.get("/api/students/all", isLoggedIn, (req, res) => {
     console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
-    studentdetails
+    Students
     .find()
     .then((data) => {
         console.log("student details", data);
@@ -77,7 +76,7 @@ router.get("/api/students/all", isLoggedIn, (req, res) => {
   // Update Student details from -Student Management --implemented
 router.put("/api/student/update/:id", isLoggedIn, (req, res) => {
     console.log("Student record", req.body);
-    studentdetails.findOneAndUpdate(
+    Students.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
@@ -102,7 +101,7 @@ router.put("/api/student/update/:id", isLoggedIn, (req, res) => {
 
   // Route to fetch student Id and name
 router.get('/api/student/iddetails/',isLoggedIn,(req,res) => {
-    studentdetails.aggregate([
+    Students.aggregate([
       {$project:{Fullname:{$concat:["$studentfname"," ","$studentlname"]}}}
     ]).then((results) => {
       console.log("REcords fetched",results);
@@ -117,7 +116,7 @@ router.get('/api/student/iddetails/',isLoggedIn,(req,res) => {
   // Update Student - to add batch enrolled (Not yet implemented)
 router.put("/api/studentbatch/update", (req, res) => {
   console.log("Student details", req.body);
-  studentdetails.updateOne(
+  Students.updateOne(
     { _id: req.body.studentid },
 
   ).then((data) => {
@@ -171,7 +170,7 @@ router.put("/api/studentbatch/update", (req, res) => {
 
 // Delete Student Details completely - Student Management --???
 router.delete('/api/student/delete/:id',isLoggedIn, (req, res) => {
-  studentdetails.deleteOne({ _id: req.params.id })
+  Students.deleteOne({ _id: req.params.id })
     .then((data) => {
       console.log("The deletion data", data);
       res.json(data);
@@ -188,7 +187,7 @@ router.delete('/api/student/delete/:id',isLoggedIn, (req, res) => {
 // Get All Student Details -- implemented
 router.get("/api/students/batch/all", isLoggedIn, (req, res) => {
   //console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
-  studentdetails.find({})
+  Students.find({})
     .populate({
       path: 'batchid',
       select: '_id batchdesc subject'
@@ -203,4 +202,5 @@ router.get("/api/students/batch/all", isLoggedIn, (req, res) => {
     });
 }); // Get all student details --implemented
 
-module.exports = router;
+export default router;
+

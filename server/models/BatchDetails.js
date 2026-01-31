@@ -1,5 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
+const { Schema } = mongoose;
 
 const batchdetailsSchema = new Schema({
         batchdesc: {
@@ -33,5 +35,6 @@ const batchdetailsSchema = new Schema({
 });
 
 
-const batchdetails = mongoose.model("batchdetails", batchdetailsSchema);
-module.exports = batchdetails;
+const Batchdetails = mongoose.model("Batchdetails", batchdetailsSchema);
+
+export default Batchdetails;

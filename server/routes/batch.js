@@ -1,8 +1,6 @@
-
-const router = require("express").Router();
-
-const batchdetails = require('../models/BatchDetails.js')
-
+import {Router} from "express";
+const router = Router()
+import Batchdetails from "../models/BatchDetails.js";
 
 const isLoggedIn = (req, res, next) => {
     // console.log("Routes - req isloggedin", req)
@@ -29,7 +27,7 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
     var newrecord = req.body;
     
     // console.log("Check Session - teacher login", req.session.passport.user.user.userdata._id,req.body);
-    batchdetails
+    Batchdetails
       .create(newrecord)
       .then(function (dbdetails) {
         console.log("Inserted record details", dbdetails);
@@ -46,7 +44,7 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
 router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
   //  console.log("<<<<Check Session - teacher login", req.session.passport,req.body);//undefined
     // console.log("=================<<<<<<<<<===============");
-    batchdetails.find({})
+    Batchdetails.find({})
       .then((data) => {
        console.log("Batch details - ALL BATCHES", data);
         res.json(data);
@@ -63,7 +61,7 @@ router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
   // Update Batch --implemented
 router.put("/api/board/batch/update", isLoggedIn, (req, res) => {
     // console.log("The batch id: ",req.body);
-    batchdetails.updateOne(
+    Batchdetails.updateOne(
       { _id: req.body.batchid },
       {
         $set: {
@@ -86,7 +84,7 @@ router.put("/api/board/batch/update", isLoggedIn, (req, res) => {
 //trying this ----Delete student details from a batch-- v1 v2 -- working??
 router.put('/api/board/batch/student/delete/',isLoggedIn, (req, res) => {
     // console.log("Student delete from batch-inputs",req.user, req.body.batchid, req.body.studentid);
-    batchdetails.updateOne({ _id: req.body.batchid },
+    Batchdetails.updateOne({ _id: req.body.batchid },
       { $pull: { students: req.body.studentid } })
       .then((data) => {
         console.log("Student details delete from batch", data);
@@ -107,7 +105,7 @@ router.put('/api/board/batch/student/delete/',isLoggedIn, (req, res) => {
 router.put('/api/batch/student/del/',isLoggedIn, (req, res) => {
   var stdid = req.body.studentid
   console.log("Student delete from batch-inputs", stdid);
-  batchdetails.findOne({ "_id": req.body.batchid },
+  Batchdetails.findOne({ "_id": req.body.batchid },
     function (error, record) {
       if (error) {
         console.log("Error in deleting student details", err);
@@ -136,7 +134,7 @@ router.put('/api/batch/student/del/',isLoggedIn, (req, res) => {
 //Delete student details from a batch-- v1 v2 -- working??
 router.put('/api/batch/student/delete/', isLoggedIn, (req, res) => {
   // console.log("Student delete from batch-inputs", req.user,req.body.batchid, req.body.studentid);
-  batchdetails.updateOne({ _id: req.body.batchid },
+  Batchdetails.updateOne({ _id: req.body.batchid },
     { $pull: { students: req.body.studentid } },{new:true})
     .then((data) => {
       console.log("Student details delete from batch", data);
@@ -155,4 +153,4 @@ router.put('/api/batch/student/delete/', isLoggedIn, (req, res) => {
 
 
 
-module.exports = router;
+export default router;
