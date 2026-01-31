@@ -1,0 +1,18 @@
+
+  .box{
+    background: linear-gradient( 150deg, rgba(6, 237, 225, 0.8), rgba(38, 165, 152, 0.726),rgba(30, 162, 177, 0.877),rgb(99, 99, 181));
+    margin: 5px;
+    padding:5px;
+  }
+  
+
+
+  .accordium{
+      width:99%;
+      border: 1px solid black;
+      border-radius: 15px;
+      background-color: linear-gradient(180deg, rgb(50, 87, 179), rgb(83, 229, 240), rgb(19, 19, 202),rgba(223, 223, 24, 0.871));
+  }
+  .card{
+    width: 50%;
+  }
