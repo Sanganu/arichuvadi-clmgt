@@ -1,6 +1,9 @@
 const express = require("express");
 const morgan = require('morgan')
 const session = require('express-session')
+const db = require('./config/connection.js');
+
+await db();
 
 const passport = require("./passport");
 

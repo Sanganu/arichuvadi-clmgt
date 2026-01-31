@@ -31,7 +31,7 @@ class AddBoardMember extends Component {
 
     handleBoardMemberCreation = (event) => {
         event.preventDefault();
-        console.log("In Boad Member Account Creation state values", this.state);
+        console.log("In Teacher Account Creation state values", this.state);
         //var myDate = new Date(this.state.startdate);
         if (this.state.fname === "" ||
             this.state.lname === "" ||
@@ -103,8 +103,8 @@ class AddBoardMember extends Component {
         return (           
             <div className="container middlecontent">
                         <form className="inputsection">
-                            <h5 className="subhead has-float-label">Create Management Team </h5>
-                            <h6>Founder/Board Members/Website Design and Development</h6>
+                            <h5 className="subhead has-float-label">Volunteer Registration</h5>
+                            <h6>Please register here to volunteer as teacher / tutor/ content manager </h6>
                             <p className="errmsg">{this.state.errmsg}</p>
 
                             <div className="form-group row">
@@ -155,11 +155,9 @@ class AddBoardMember extends Component {
                                     onChange={this.handleInputChange}
                                     value={this.state.position}
                                     name="designation">
-                                    <option value='Board' default>Founder</option>
-                                    <option value='Board' default>Board Member</option>
-                                    <option value='IT'>Web Site Manager</option>
-                                    <option value='IT'>Web Master</option>
-                                    <option value='Management'>Management</option>
+                                    <option value='teacher' default>Teacher</option>
+                                    <option value='tutor' default>Tutor</option>
+                                    <option value='content'>Content Manager</option>
                                 </select>
                             </div>
                             <div className="form-group row">
