@@ -1,18 +1,18 @@
-const express = require("express");
-const morgan = require('morgan')
-const session = require('express-session')
-const db = require('./config/connection.js');
+import  express from "express";
+import morgan from 'morgan';
+import session from 'express-session';
+import db from './config/connection';
+const passport = require("./passport");
+const path = require("path");
+const routes = require("./routes");
+require('dotenv').config()
 
 await db();
 
-const passport = require("./passport");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const path = require("path");
-const routes = require("./routes");
 
-require('dotenv').config()
 
 
 // Configure
@@ -38,6 +38,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Express app & auth routes
+app.use('/auth',require('./auth'));
+app.use(require("./routes/batch"));
+app.use(require("./routes/board"));
+app.use(require("./routes/student"));
+app.use(routes);
 
 //Production environment
 
@@ -53,12 +59,7 @@ if (process.env.NODE_ENV === 'production'){
  
 
 
-// Express app & auth routes
-app.use('/auth',require('./auth'));
-app.use(require("./routes/batch"));
-app.use(require("./routes/board"));
-app.use(require("./routes/student"));
-app.use(routes);
+
 
 // Serve up static assets
 
