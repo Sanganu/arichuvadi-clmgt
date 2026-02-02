@@ -66,7 +66,7 @@ const Ourteam = () => {
                         </Card.Title>
                         <Card.Text>
                             I was brought up in Chennai, I am a descendant of Saint.Ramalinga Vallalar, He is a fabulous
-                            person who wrote Thiruarutpa. He is popular in Vadalur, Tamil Nadu. My gradfather was a sincere devotee and
+                            person who wrote Thiruarutpa. He is popular in Vadalur, Tamil Nadu. My grandfather was a sincere devotee and
                             he did his best to spread Arutpa. I had a regret, that I didn't contribute much to Tamil Language.
                             Hence when Yamini was discussing about the need for website, I stepped into Arichuvadi and contributed my sincere efforts
                             into developing this site from scratch. This is an ongoing process, we are just in the intial stages

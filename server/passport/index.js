@@ -31,6 +31,17 @@ passport.deserializeUser((user, done) => {
 		Board.findOne(
 			{_id:id},
 			(error,user) => {
+				console.log("=================DeSerialize BOARD User called==========");
+				// console.log(user);
+				// console.log("===========================-");
+				done(null,user);
+			}
+		);
+	}
+		else if(user.user.usertype === "instructor"){
+		Instructor.findOne(
+			{_id:id},
+			(error,user) => {
 				console.log("=================DeSerialize Teacher User called==========");
 				// console.log(user);
 				// console.log("===========================-");
