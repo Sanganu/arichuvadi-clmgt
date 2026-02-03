@@ -31,6 +31,10 @@ const instructoraccountSchema = new Schema({
         skypeId: {
           type: String
         },
+        accountActivated:{
+          type:Boolean,
+          default:false
+        },
         batchId :[{
           type: Schema.Types.ObjectId,
           ref: 'batchdetails'
