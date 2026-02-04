@@ -1,0 +1,66 @@
+[
+    {
+        
+        "fname":"Yamini",
+        "lname":"Ramesh",
+        "description":"Learn Tamil and get recognized",
+        "designation":"Board",
+        "loginemail":"yamini@gmail.com",
+        "password":"yaminiRamesh!@9",
+        "phone":"111-121-1211",
+        "zoomlink":"https://www.zoom.com/",
+        "skypeId":"Support-Desk",
+        "image":"/images/yamini.gif"
+    },
+     {
+        
+        "fname":"Hellen",
+        "lname":"Samuel",
+        "description":"Learn Tamil and get recognized",
+        "designation":"Board",
+        "loginemail":"hellen@gmail.com",
+        "password":"HellenSamuel12#",
+        "phone":"111-121-1211",
+        "zoomlink":"https://www.zoom.com/",
+        "skypeId":"dev.team_01",
+        "image":"/images/helen.gif"
+    },
+     {
+        
+        "fname":"Sangeetha",
+        "lname":"Kaliaperumal",
+        "description":"Website tamil",
+        "designation":"WebMaster",
+        "loginemail":"skperumal@gmail.com",
+        "password":"sKaliaperumal12#",
+        "phone":"111-121-1211",
+        "zoomlink":"https://www.zoom.com/",
+        "skypeId":"skype.user1",
+        "image":"/images/sangeetha.gif"
+    },
+     {
+         
+        "fname":"Anou",
+        "lname":"Manavallan",
+        "description":"Learn Tamil and get recognized",
+        "designation":"Chairman",
+        "loginemail":"anoum@gmail.com",
+        "password":"AnouManavallan123@",
+        "phone":"111-121-1211",
+        "zoomlink":"https://www.zoom.com/",
+        "skypeId":"User.Name_123",
+        "image":"/images/goldflowers.gif"
+    },
+     {
+        
+        "fname":"Chitra",
+        "lname":"Ramesh",
+        "description":"Learn Tamil and get recognized",
+        "designation":"Board",
+        "loginemail":"chitra@gmail.com",
+        "password":"ChitraRamesh12%",
+        "phone":"111-121-1211",
+        "zoomlink":"https://www.zoom.com/",
+        "skypeId":"alpha_beta.gamma"
+    }
+]

@@ -64,4 +64,5 @@ temp/
 seedsfolder/
 
 
-seeds
+seeds/board.json
+seeds/*.json
