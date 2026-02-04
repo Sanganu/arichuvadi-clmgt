@@ -2,7 +2,7 @@ import  express from "express";
 import path from "path";
 import morgan from 'morgan';
 import session from 'express-session';
-import db from './config/connection.js';
+import {db} from './config/connection.js';
 import passport from "./passport/index.js";
 import routes from "./routes/index.js";
 import auth from "./auth/index.js";

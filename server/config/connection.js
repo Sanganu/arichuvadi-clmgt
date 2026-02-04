@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config()
 mongoose.set("strictQuery", false);
 
+console.log("MONGODB_URI =", process.env.MONGODB_URI);
 
 
 const db = async () => {
@@ -18,5 +19,9 @@ const db = async () => {
     }
 }
 
+const disconnectDB = async () => {
+  await mongoose.connection.close();
+  console.log("Database disconnected.");
+};
 
-export default db;
+export{db,disconnectDB};
