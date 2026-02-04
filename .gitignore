@@ -66,3 +66,4 @@ seedsfolder/
 
 seeds/board.json
 seeds/*.json
+seeds/*
