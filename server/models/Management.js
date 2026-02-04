@@ -48,6 +48,7 @@ const boardMemberSchema = new Schema({
          },
          phone: {
           type:String,
+          set: v => v.replace(/\D/g, ''), // removes -, spaces, ()
           match:[
             /^\+?[1-9]\d{7,14}$/,
             "Phone number must be valid"
