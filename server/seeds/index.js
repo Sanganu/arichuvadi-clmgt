@@ -1,6 +1,7 @@
 import {db, disconnectDB} from "../config/connection.js";
 import Boarddetails  from "../models/Management.js";
 import fs from "fs/promises";
+import bcrypt from "bcrypt";
 
 async function seed() {
   try {
@@ -12,13 +13,24 @@ async function seed() {
       await fs.readFile(new URL("./board.json", import.meta.url), "utf8")
     );
 
+   
     //  Optional: delete old records
     await Boarddetails.deleteMany({});
     console.log("Old board records deleted");
 
-    //  Insert new records (NO callback)
+    /*
+    //  Insert new records (NO callback) with hashed password
+     for(let board of boardData){
+      board.password = await bcrypt.has(user.password,10)
+    }
     await Boarddetails.insertMany(boardData);
     console.log("Inserted board sample data");
+    */
+
+    for (let board of boardData){
+      const newBoard = new Boarddetails(board);
+      await newBoard.save()
+    }
 
     //  Fetch all records after insert
     const seededData = await Boarddetails.find({});
