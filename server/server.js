@@ -10,6 +10,8 @@ import batchRoutes from "./routes/batch.js";
 import boardRoutes from "./routes/board.js";
 import studentRoutes from "./routes/student.js";
 //import teacherRoutes from "./routes/teacher.js"
+import MongoStore from "connect-mongo";
+
 
 
 await db();
@@ -29,16 +31,25 @@ app.use(morgan('dev'))
 
 
 // Express session
-app.use(
-      session({
-		secret: process.env.APP_SECRET || 'this is the default passphrase',
-		maxAge:4*60*60*1000,
-	    resave: false,
-		saveUninitialized: false,
-		useUnifiedTopology: true
-	})    
-)
 
+app.use(
+  session({
+    name: "board.sid",
+    secret: process.env.APP_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongoUrl: process.env.MONGODB_URI,
+      collectionName: "sessions"
+    }),
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 4 * 60 * 60 * 1000 // 4 hours
+    }
+  })
+);
 // Passport setup
 app.use(passport.initialize());
 app.use(passport.session());

@@ -1,7 +1,7 @@
 
 import {Router} from "express";
 const router = Router()
-import Management from "../models/Management.js";
+import Boarddetails from "../models/Management.js";
 
 
 
@@ -22,7 +22,7 @@ const isLoggedIn = (req, res, next) => {
   //board teacher registration ---> NEED TO RETHINK ON THIS ONE
 router.post('/api/board/new', (req, res) => {
     console.log("Board Member creation -", req.body);
-    Management.create(req.body)
+    Boarddetails.create(req.body)
       .then((response) => {
         console.log("Board Member details created", response);
         res.json(response);
@@ -43,9 +43,9 @@ router.post('/api/board/new', (req, res) => {
 //Router to get all Board Members only
 
 router.get('/api/board/all',(req,res)=>{
-Management.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
+Boarddetails.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
   .then((results) => {
-     console.log("Records fetched for Management",results);
+     console.log("Records fetched for Boarddetails",results);
      res.json(results);
   })
   .catch((error) => {
@@ -55,25 +55,59 @@ Management.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
 });
 
 
-// ALL Instructor details - Teachers and Board
-router.get('/api/instructor/all', (req, res) => {
-  let list =[]
-  Management.aggregate([{$project: {Fullname:{$concat:["$fname"," ","$lname"]}}}])
-  .then((allinst) => {
-      // list = results
-      // console.log("Records fetched for teachers", results);
-    //   return Teacher.find({},'fname lname')
-    // })
-    // .then(function (allinstructors) {
-    //   // console.log(allinstructors)
-    //   let allinst = list.concat(allinstructors)
-      console.log("All Instructors",allinst)
-      res.json(allinst);
-    })
-    .catch((error) => {
-          console.log("Error in fetching", error);
-          res.json(error);
+// Boarddetails Board Login
+router.post("/api/board/login", async (req, res) => {
+  try {
+    const { loginemail, password } = req.body;
+
+    const boardMember = await Boarddetails.findOne({ loginemail });
+    if (!boardMember) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    const isMatch = await bcrypt.compare(password, boardMember.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    // ✅ Set session values
+    req.session.user = {
+      id: boardMember._id,
+      loginemail: boardMember.loginemail,
+      role: "board"
+    };
+
+    req.session.isAuthenticated = true;
+
+    res.json({
+      message: "Login successful",
+      user: req.session.user
     });
+
+  } catch (err) {
+    console.error("Login error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/api/board/logout", (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).json({ error: "Logout failed" });
+    }
+
+    res.clearCookie("board.sid");
+    res.json({ message: "Logged out successfully" });
+  });
+});
+
+
+router.get("/api/board/me", (req, res) => {
+  if (!req.session.isAuthenticated) {
+    return res.status(401).json({ error: "Not logged in" });
+  }
+
+  res.json(req.session.user);
 });
 
  export default router;

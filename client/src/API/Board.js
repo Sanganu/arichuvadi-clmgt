@@ -4,7 +4,7 @@ export default {
         return axios.post('/api/board/new', memberDetails)
     },
     boardMemberLogin: function (authdetails) {
-        return axios.post('/auth/login', authdetails)
+        return axios.post('/api/board/login', authdetails)
     },
     addNewStudentsToBatch: function(studentdetails){
         return     axios.put('/api/board/batch/student/new',studentdetails)
