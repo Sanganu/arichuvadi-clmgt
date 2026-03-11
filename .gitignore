@@ -67,3 +67,8 @@ seedsfolder/
 server/seeds/*.json
 server/seeds/board.json
 
+frontend
+
+notes_changes
+old
+old/*
