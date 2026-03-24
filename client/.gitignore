@@ -23,3 +23,6 @@ yarn-error.log*
 # KEYS
 keyvalues.js
  /src/KEYS
+
+ src/keys/keys.js
+ 
