@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import API from "../../API/Student"
 import Email from "../../components/Email";
 // import Password from "../../components/Password";
-import Homepage from '../general/Homepage';
 import Name from "../../components/MemberName";
 import { Row, Col, Container, Form } from "react-bootstrap";
 

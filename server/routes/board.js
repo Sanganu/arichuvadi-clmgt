@@ -2,7 +2,7 @@
 import {Router} from "express";
 const router = Router()
 import Boarddetails from "../models/Management.js";
-
+import bcrypt from "bcrypt";
 
 
 const isLoggedIn = (req, res, next) => {
@@ -59,9 +59,19 @@ Boarddetails.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
 router.post("/api/board/login", async (req, res) => {
   try {
     const { loginemail, password } = req.body;
+    console.log("POST LOGIN ROUTe",loginemail,password)
 
-    const boardMember = await Boarddetails.findOne({ loginemail });
+    const boardMember = await Boarddetails.findOne({ loginemail }).select(
+      "+password"
+    );
     if (!boardMember) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    if (
+      typeof password !== "string" ||
+      typeof boardMember.password !== "string"
+    ) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
@@ -74,14 +84,23 @@ router.post("/api/board/login", async (req, res) => {
     req.session.user = {
       id: boardMember._id,
       loginemail: boardMember.loginemail,
-      role: "board"
+      role: "board",
+     
     };
 
     req.session.isAuthenticated = true;
 
     res.json({
       message: "Login successful",
-      user: req.session.user
+      name:boardMember.fullName,
+      fname:boardMember.fname,
+      lname:boardMember.lname,
+      description:boardMember.description,
+      designation:boardMember.designation,
+      email:boardMember.loginemail,
+      phone:boardMember.phone,
+      zoomlink:boardMember.zoomlink,
+      skypeId:boardMember.skypeId
     });
 
   } catch (err) {

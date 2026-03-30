@@ -1,11 +1,17 @@
 /* Mongo Database */
 import mongoose from 'mongoose';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config()
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Dev script runs with cwd = server/; .env lives at repo root
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
 mongoose.set("strictQuery", false);
 
-console.log("MONGODB_URI =", process.env.MONGODB_URI);
+console.log('MONGODB_URI =', process.env.MONGODB_URI ? '(set)' : 'undefined');
 
 
 const db = async () => {

@@ -37,7 +37,7 @@ class Boardmember extends Component {
         }
         API.boardMemberLogin(authdetails)
            .then((response) => {
-                // console.log(response)
+                 console.log(response)
                 var userobj = {
                     loginemail: response.data.loginemail,
                     usertype: 'management',
