@@ -25,7 +25,17 @@ class Allbatches extends Component {
     details: this.props.details || false,
     loginemail: '',
     username: '',
-    batchSelected:false
+    batchSelected:false,
+    batchdet:{
+      bid:'',
+      batchdesc:'',
+      batchdetails:{
+        teacher:'',
+        level:'',
+        course:'',
+        examDate:''
+      }
+    }
   }
 
   componentDidMount = () => {
@@ -34,7 +44,7 @@ class Allbatches extends Component {
    if (this.props.usertype === "management") {
       API.getAllBatch()
         .then(response => {
-          console.log("The Batch Details of  - axios call", response.data, this.props);
+          console.log("The Batch Details of  - axios call", response.json(), this.props);
           if (response.data.length > 0) {
             for (let i = 0; i < response.data.length; i++) {
               // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
@@ -87,6 +97,7 @@ class Allbatches extends Component {
 
   getBatchDetails = (batchselected) => {
     //let bid = batchselected.bid;      
+    console.log(batchselected)
     this.setState({
       batchdet: batchselected,
       details: true,
@@ -146,12 +157,13 @@ class Allbatches extends Component {
                     )}
                     </tbody>
                   </table>
-             : 
-                   <BatchInfo
+             :  <>
+                    <BatchInfo
                     batchdetails={this.state.batchdet}
                     newbatch={false}
                     deleteBatch={this.deleteBatch}/>
-                    
+                  <h4>No batches yet</h4>
+                   </> 
               }
              </div>
            </div> //End container

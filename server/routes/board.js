@@ -85,7 +85,7 @@ router.post("/api/board/login", async (req, res) => {
       id: boardMember._id,
       loginemail: boardMember.loginemail,
       role: "board",
-     
+      name:boardMember.fullName
     };
 
     req.session.isAuthenticated = true;
@@ -100,7 +100,8 @@ router.post("/api/board/login", async (req, res) => {
       email:boardMember.loginemail,
       phone:boardMember.phone,
       zoomlink:boardMember.zoomlink,
-      skypeId:boardMember.skypeId
+      skypeId:boardMember.skypeId,
+      _id:boardMember._id
     });
 
   } catch (err) {

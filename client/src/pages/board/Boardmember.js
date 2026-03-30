@@ -39,7 +39,7 @@ class Boardmember extends Component {
            .then((response) => {
                  console.log(response)
                 var userobj = {
-                    loginemail: response.data.loginemail,
+                    loginemail: response.data.email,
                     usertype: 'management',
                     invalid: false,
                     userfname:response.data.fname,
