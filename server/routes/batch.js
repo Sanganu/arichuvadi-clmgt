@@ -3,7 +3,7 @@ const router = Router()
 import Batchdetails from "../models/BatchDetails.js";
 
 const isLoggedIn = (req, res, next) => {
-    // console.log("Routes - req isloggedin", req)
+    console.log("Routes - req isloggedin", req.session.isLoggedIn  )
     if (!req.user ){
       // USer is not logged in
       // console.log("Routes isLoggedIn- No user data found", req.user)
@@ -42,7 +42,7 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
 
   // Get All batch details -- implemented
 router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
-  //  console.log("<<<<Check Session - teacher login", req.session.passport,req.body);//undefined
+  console.log("<<<<Check Session - teacher login", req.session);//undefined
     // console.log("=================<<<<<<<<<===============");
     Batchdetails.find({})
       .then((data) => {

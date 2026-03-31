@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import BatchAddClassDetails from './Addclassdetails.js';
 import Allstudents from '../student/displayallstudents.js';
 import Allclasses from '../batch/displayallclassdetails.js';
-// import Allbatches from './displayallbatchdetails.js';
+// import Allbatches from './Displayallbatchdetails.js';
 // import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
 import Homepage from '../general/Homepage.js';

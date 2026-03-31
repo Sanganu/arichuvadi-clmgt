@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import API from '../../API/Batch';
 import BatchRecord from './Getbatchdetails';
-import BatchInfo from './BatchInfo';
+// import BatchInfo from './BatchInfo';
 import Homepage from "../general/Homepage";
 import { connect } from 'react-redux';
 import moment from "moment";
+
 
 class Allbatches extends Component {
   state = {
@@ -44,39 +45,39 @@ class Allbatches extends Component {
    if (this.props.usertype === "management") {
       API.getAllBatch()
         .then(response => {
-          console.log("The Batch Details of  - axios call", response.json(), this.props);
-          if (response.data.length > 0) {
-            for (let i = 0; i < response.data.length; i++) {
-              // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
-              let currentrec = {
-                recid: response.data[i]._id,
-                recdesc: response.data[i].batchdesc,
-                recsubj: response.data[i].course,
-                reclevel: response.data[i].level,
-                teacher: response.data[i].teacher,
-                noofstu: response.data[i].students.length,
-                noofclasses: response.data[i].classid.length,
-                examDate: moment(response.data[i].examDate).format("MM-DD-YYYY")
-                //recstudents: response.data[i].students
-              }
-              batchrecords.push(currentrec);
-            } // end for
+          console.log("The Batch Details of  - axios call", response);
+          // if (response.data.length > 0) {
+          //   for (let i = 0; i < response.data.length; i++) {
+          //     // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
+          //     let currentrec = {
+          //       recid: response.data[i]._id,
+          //       recdesc: response.data[i].batchdesc,
+          //       recsubj: response.data[i].course,
+          //       reclevel: response.data[i].level,
+          //       teacher: response.data[i].teacher,
+          //       noofstu: response.data[i].students.length,
+          //       noofclasses: response.data[i].classid.length,
+          //       examDate: moment(response.data[i].examDate).format("MM-DD-YYYY")
+          //       //recstudents: response.data[i].students
+          //     }
+          //     batchrecords.push(currentrec);
+          //   } // end for
 
-            this.setState({
-              batchrecords: batchrecords,
-              allbatches: true
-            })
-            // ,() => { console.log("State of records") });
-          } else {
+          //   this.setState({
+          //     batchrecords: batchrecords,
+          //     allbatches: true
+          //   })
+          //   // ,() => { console.log("State of records") });
+          // } else {
 
-            console.log("Axios No records exist");
+          //   console.log("Axios No records exist");
 
-          }
+          // }c
         }) // end then
         .catch(error => {
           this.setState({ allbatches: false })
           console.log("Error in getting batch records!!!", error);
-          return (<Homepage msg="Please Login" />);
+          // return (<Homepage msg="Please Login" />);
         });
     }
     else {
@@ -158,12 +159,13 @@ class Allbatches extends Component {
                     </tbody>
                   </table>
              :  <>
-                    <BatchInfo
+                    <h4>No cohort's yet</h4>
+                  
+                    {/* <BatchInfo
                     batchdetails={this.state.batchdet}
                     newbatch={false}
-                    deleteBatch={this.deleteBatch}/>
-                  <h4>No batches yet</h4>
-                   </> 
+                    deleteBatch={this.deleteBatch}/>*/}
+                   </>  
               }
              </div>
            </div> //End container

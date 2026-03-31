@@ -4,7 +4,7 @@ import Addstudent from './Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
 import Allstudents from './displayallstudents.js';
 import Allclasses from './displayallclassdetails.js';
-import Allbatches from './displayallbatchdetails.js';
+import Allbatches from './Displayallbatchdetails.js';
 
 class BatchInfo extends Component {
   state = {

@@ -60,7 +60,7 @@ app.use(batchRoutes);
 app.use(boardRoutes);
 app.use(studentRoutes);
 //app.use(teacherRoutes)
-app.use(routes);
+//app.use(routes);
 
 //Production environment
 
