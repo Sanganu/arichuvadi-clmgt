@@ -6,16 +6,21 @@ import bcrypt from "bcrypt";
 
 
 const isLoggedIn = (req, res, next) => {
-    console.log("Routes - req isloggedin", req.session.user)
-    if (!req.session.user) {
-      // USer is not logged in
-      console.log("Routes isLoggedIn- No user data found", req.session.user)
-      res.redirect("/");
+    const sessionUser = req.session?.user;
+    const passportUser = req.user;
+    const user = sessionUser || passportUser;
+    const role = sessionUser?.role || passportUser?.usertype;
+
+    console.log("Routes - req isloggedin", user);
+    if (!user) {
+      return res.status(401).json({ error: "Not authenticated" });
     }
-    else {
-      console.log("Routes-IsloggedIn-USer logged in", req.session.user);
-      next();
+
+    if (role !== "board" && role !== "management") {
+      return res.status(403).json({ error: "Forbidden" });
     }
+
+    next();
   }
 
 
@@ -91,18 +96,25 @@ router.post("/api/board/login", async (req, res) => {
     req.session.isAuthenticated = true;
     console.log(req.session)
 
-    res.json({
-      message: "Login successful",
-      name:boardMember.fullName,
-      fname:boardMember.fname,
-      lname:boardMember.lname,
-      description:boardMember.description,
-      designation:boardMember.designation,
-      email:boardMember.loginemail,
-      phone:boardMember.phone,
-      zoomlink:boardMember.zoomlink,
-      skypeId:boardMember.skypeId,
-      _id:boardMember._id
+    req.session.save((saveErr) => {
+      if (saveErr) {
+        console.error("Session save error:", saveErr);
+        return res.status(500).json({ error: "Session error" });
+      }
+
+      return res.json({
+        message: "Login successful",
+        name:boardMember.fullName,
+        fname:boardMember.fname,
+        lname:boardMember.lname,
+        description:boardMember.description,
+        designation:boardMember.designation,
+        email:boardMember.loginemail,
+        phone:boardMember.phone,
+        zoomlink:boardMember.zoomlink,
+        skypeId:boardMember.skypeId,
+        _id:boardMember._id
+      });
     });
 
   } catch (err) {

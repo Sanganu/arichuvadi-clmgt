@@ -3,23 +3,23 @@ const router = Router()
 import Batchdetails from "../models/BatchDetails.js";
 
 const isLoggedIn = (req, res, next) => {
-    console.log("Routes - req isloggedin", req.session.isLoggedIn  )
-    if (!req.user ){
-      // USer is not logged in
-      // console.log("Routes isLoggedIn- No user data found", req.user)
-      res.redirect("/");
-    }
-    else {
-      if (req.user.usertype !=="management"){
-      console.log("Routes-IsloggedIn-USer logged in", req.user);
-      next();
-      }
-      else{
-        console.log("Only board member can edit")
-        res.redirect("/");
-      }
-    }
+  const sessionUser = req.session?.user;
+  const passportUser = req.user;
+  const user = sessionUser || passportUser;
+  const role = sessionUser?.role || passportUser?.usertype;
+
+  console.log("Routes - req isloggedin", user);
+  if (!user) {
+    return res.status(401).json({ error: "Not authenticated" });
   }
+
+  if (role !== "board" && role !== "management") {
+    console.log("Only board member can edit");
+    return res.status(403).json({ error: "Forbidden" });
+  }
+
+  next();
+}
 
 
   //Create new batch -- implemented

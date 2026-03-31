@@ -4,21 +4,22 @@ import Students from "../models/Students.js";
 
 
 const isLoggedIn = (req, res, next) => {
-    console.log("Routes - req isloggedin", req.user)
-    if (!req.user) {
-      // USer is not logged in
-      console.log("Routes isLoggedIn- No user data found", req.user)
-      res.redirect("/");
+    const sessionUser = req.session?.user;
+    const passportUser = req.user;
+    const user = sessionUser || passportUser;
+    const role = sessionUser?.role || passportUser?.usertype;
+
+    console.log("Routes - req isloggedin", user);
+    if (!user) {
+      return res.status(401).json({ error: "Not authenticated" });
     }
-    else {
-      if (req.user.usertype !=="student"){
-      console.log("Routes-IsloggedIn-USer logged in", req.user);
-      next();
-      }else{
-        console.log("Login is not a student");
-        res.redirect("/")
-      }
+
+    if (role !== "student") {
+      console.log("Login is not a student");
+      return res.status(403).json({ error: "Forbidden" });
     }
+
+    next();
   }
 
   // Add Student Record  without batch linking -- implemented

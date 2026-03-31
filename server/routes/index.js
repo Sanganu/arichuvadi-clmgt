@@ -11,21 +11,16 @@ import Board from "../models/Management.js";
 
 
 const isLoggedIn = (req, res, next) => {
-  console.log("Routes - req isloggedin", req.user)
-  if (!req.user) {
-    // USer is not logged in
-    console.log("Routes isLoggedIn- No user data found", req.user)
-    res.redirect("/");
+  const sessionUser = req.session?.user;
+  const passportUser = req.user;
+  const user = sessionUser || passportUser;
+
+  console.log("Routes - req isloggedin", user);
+  if (!user) {
+    return res.status(401).json({ error: "Not authenticated" });
   }
-  else {
-    if (req.user.usertype !=="management"){
-    console.log("Routes-IsloggedIn-USer logged in", req.user);
-    next();
-    }else {
-      console.log("Not management")
-      res.redirect("/")
-    }
-  }
+
+  next();
 }
 
 
