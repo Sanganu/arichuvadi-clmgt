@@ -6,14 +6,14 @@ import bcrypt from "bcrypt";
 
 
 const isLoggedIn = (req, res, next) => {
-    console.log("Routes - req isloggedin", req.user)
-    if (!req.user) {
+    console.log("Routes - req isloggedin", req.session.user)
+    if (!req.session.user) {
       // USer is not logged in
-      console.log("Routes isLoggedIn- No user data found", req.user)
+      console.log("Routes isLoggedIn- No user data found", req.session.user)
       res.redirect("/");
     }
     else {
-      console.log("Routes-IsloggedIn-USer logged in", req.user);
+      console.log("Routes-IsloggedIn-USer logged in", req.session.user);
       next();
     }
   }
@@ -89,6 +89,7 @@ router.post("/api/board/login", async (req, res) => {
     };
 
     req.session.isAuthenticated = true;
+    console.log(req.session)
 
     res.json({
       message: "Login successful",
