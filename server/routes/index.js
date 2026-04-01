@@ -176,7 +176,7 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
             })  
              .catch((err) => {
                   console.log("Batch error", err);
-                  res.error( err)
+                  res.status(500).json(err)
             });
       }).catch(studenterror => {
         console.log("Student Error",studenterror)

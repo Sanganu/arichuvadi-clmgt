@@ -11,21 +11,40 @@ class Masterkey extends Component {
         if(this.props.IdType === "instructor"){
             InstructorID.getAllInstructors()
             .then((records) => {
-                // console.log("Rec instructors id",records.data) 
-                this.setState({items:records.data,
-                masterID:records.data[0]._id || ""})
+                const items = records.data || [];
+                const first = items[0];
+                const masterID = first?._id != null ? String(first._id) : "";
+                this.setState({ items, masterID }, () => {
+                    if (first && this.props.passMasterId) {
+                        this.props.passMasterId({
+                            id: masterID,
+                            teacherModel: first.teacherModel || "Boarddetails"
+                        });
+                    }
+                });
             })
+            .catch((err) => {
+                console.error("getAllInstructors failed", err);
+                this.setState({ items: [], masterID: "" });
+            });
         }
         else if(this.props.IdType === "students"){
             StudentID.getAllStudentId()
             .then((records) => {
-                // console.log("Rec student ids",records.data) 
-                this.setState({items:records.data||[],
-                    masterID:records.data[0]._id || ""})
+                const items = records.data || [];
+                const first = items[0];
+                const masterID = first?._id != null ? String(first._id) : "";
+                this.setState({ items, masterID }, () => {
+                    if (first && this.props.passMasterId) {
+                        this.props.passMasterId(String(first._id));
+                    }
+                });
             })
+            .catch((err) => {
+                console.error("getAllStudentId failed", err);
+                this.setState({ items: [], masterID: "" });
+            });
         }
-        console.log(this.state.items)
-         // return(<Homepage msg="Please Login"/>);
     }
 
     handleInputChange = (event) => {
@@ -40,7 +59,15 @@ class Masterkey extends Component {
            masterID:value
         });
         console.log(value,display)
-        this.props.passMasterId(value)
+        if (this.props.IdType === "instructor") {
+            const rec = this.state.items.find((x) => String(x._id) === String(value));
+            this.props.passMasterId({
+                id: value,
+                teacherModel: rec?.teacherModel || "Boarddetails"
+            });
+        } else {
+            this.props.passMasterId(value);
+        }
     };
     render() {
         return (<React.Fragment>

@@ -24,9 +24,23 @@ const isLoggedIn = (req, res, next) => {
 
   //Create new batch -- implemented
 router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
-    var newrecord = req.body;
-    
-    // console.log("Check Session - teacher login", req.session.passport.user.user.userdata._id,req.body);
+    const { batchdesc, course, level, teacher, examDate, teacherModel } = req.body;
+
+    if (!teacher) {
+      return res.status(400).json({
+        error: 'Instructor is required. Select an instructor or add board/instructor accounts first.'
+      });
+    }
+
+    const newrecord = {
+      batchdesc,
+      course,
+      level,
+      teacher,
+      teacherModel: teacherModel === 'Instructor' ? 'Instructor' : 'Boarddetails',
+      ...(examDate ? { examDate: new Date(examDate) } : {})
+    };
+
     Batchdetails
       .create(newrecord)
       .then(function (dbdetails) {
@@ -34,15 +48,17 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
         res.json(dbdetails);
       })
       .catch(function (err) {
-        if (err) {
-          console.log(err)
-         res.error(err) 
-        }      }); //end catch section
+        console.log(err);
+        if (err.name === 'ValidationError') {
+          return res.status(400).json({ error: err.message, details: err.errors });
+        }
+        res.status(500).json({ error: err.message || 'Unable to create batch' });
+      });
   }); // end batchdetails -- create batch implemented
 
   // Get All batch details -- implemented
 router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
-  console.log("<<<<Check Session - teacher login", req.session);//undefined
+  console.log("<<<<Check Session - teacher login", req.session.user);//undefined
     // console.log("=================<<<<<<<<<===============");
     Batchdetails.find({})
       .then((data) => {

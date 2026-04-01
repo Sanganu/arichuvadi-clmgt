@@ -2,6 +2,7 @@
 import {Router} from "express";
 const router = Router()
 import Boarddetails from "../models/Management.js";
+import Instructordetails from "../models/Instructor.js";
 import bcrypt from "bcrypt";
 
 
@@ -48,15 +49,39 @@ router.post('/api/board/new', (req, res) => {
 //Router to get all Board Members only
 
 router.get('/api/board/all',(req,res)=>{
-Boarddetails.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
-  .then((results) => {
-     console.log("Records fetched for Boarddetails",results);
-     res.json(results);
-  })
-  .catch((error) => {
-    console.log("Error in fetching",error);
-    res.json(error);
-  });
+  Boarddetails.find({fname,lname,loginemail,designation,phone,zoomlink,skypeId})
+    .then((results) => {
+      console.log("Records fetched for Boarddetails",results);
+      res.json(results);
+    })
+    .catch((error) => {
+      console.log("Error in fetching",error);
+      res.json(error);
+    });
+});
+
+// List instructors: board members + instructor accounts (BatchDetails.teacherModel)
+router.get('/api/instructor/all', async (req, res) => {
+  try {
+    const [boardRows, instructorRows] = await Promise.all([
+      Boarddetails.find({}, 'fname lname').sort({ fname: 1, lname: 1 }).lean(),
+      Instructordetails.find({}, 'fname lname').sort({ fname: 1, lname: 1 }).lean()
+    ]);
+    const fromBoard = boardRows.map((rec) => ({
+      _id: rec._id,
+      Fullname: `${rec.fname} ${rec.lname}`.trim(),
+      teacherModel: 'Boarddetails'
+    }));
+    const fromInstructor = instructorRows.map((rec) => ({
+      _id: rec._id,
+      Fullname: `${rec.fname} ${rec.lname}`.trim(),
+      teacherModel: 'Instructor'
+    }));
+    res.json([...fromBoard, ...fromInstructor]);
+  } catch (error) {
+    console.log("Error in fetching instructors", error);
+    res.status(500).json({ error: "Unable to fetch instructors" });
+  }
 });
 
 
