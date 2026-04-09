@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
 // import Allstudents from '../general/displayrecords';
-import Allclasses from '../batch/displayallclassdetails.js';
+import Allclasses from '../batch//Displayallclassdetails.js';
 // import Allbatches from './Displayallbatchdetails.js'; 
 // import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
-import Homepage from '../general/Homepage.js';
+import Homepage from '../general/Homepage.js'; 
+
 // import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
 // import API from "../../API/Board";
 import BAPI from "../../API/Batch";
@@ -105,27 +106,7 @@ class BatchInfo extends Component {
       })
   } //End of delete batch
 
-  // studentInputValidation = () => {
-  //   if (!ValidatePhonenumber()) {
-
-  //   }
-  //   else if (!ValidateEmail()) {
-
-  //   }
-  //   else if (!CheckPassword()) {
-
-  //   }
-  // }
-
-  // batchInputValidation = () => {
-  //   if (!ValidateName(this.state.batchdesc)) {
-  //     return false;
-  //   }
-  //   else {
-  //     return true;
-  //   }
-  // }
-
+ 
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -173,15 +154,6 @@ class BatchInfo extends Component {
   } //End getStudent()
 
   componentDidMount = () => {
-
-
-    // MAPI.getAllInstructors()
-    //   .then((records) => {
-    //     console.log("Rec", records.data)
-    //     this.setState({ instructorList: records.data })
-    //   }) 
-    // console.log("The batch selected details received",this.props)
-    // if (this.props.newbatch === false || this.props.student.length >0) {
 
     this.getUpdatedBatchDetails()
     console.log(moment(this.props.batchdetails.examDate).format("MM/DD/YYYY") || '', )

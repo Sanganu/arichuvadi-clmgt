@@ -14,6 +14,7 @@ class Masterkey extends Component {
                 const items = records.data || [];
                 const first = items[0];
                 const masterID = first?._id != null ? String(first._id) : "";
+                console.log("Master ID", masterID);
                 this.setState({ items, masterID }, () => {
                     if (first && this.props.passMasterId) {
                         this.props.passMasterId({
