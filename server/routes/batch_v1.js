@@ -44,14 +44,9 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
     Batchdetails
       .create(newrecord)
       .then(async function (dbdetails) {
-        // Populate the teacher field to resolve teacherName virtual
-        const populatedBatch = await Batchdetails.findById(dbdetails._id)
-          .populate({
-            path: 'teacher',
-            model: newrecord.teacherModel
-          });
-     //   console.log("Inserted record details", populatedBatch);
-        res.json(populatedBatch);
+        const populateBatchTeacherModel = await Batchdetails.findById(dbdetails._id).populate({path'teacher',model:newrecord.teacherModel});
+        console.log("Inserted record details", populateBatchTeacherModel);
+        res.json(po);
       })
       .catch(function (err) {
         console.log(err);
@@ -63,29 +58,18 @@ router.post('/api/board/batch/new', isLoggedIn, function (req, res) {
   }); // end batchdetails -- create batch implemented
 
   // Get All batch details -- implemented
-router.get("/api/board/batch/all", isLoggedIn, async (req, res) => {
+router.get("/api/board/batch/all", isLoggedIn, (req, res) => {
   console.log("<<<<Check Session - teacher login", req.session.user);//undefined
-    try {
-      // Find all batches and populate teachers dynamically based on teacherModel
-      const batches = await Batchdetails.find({});
-      
-      // Populate each batch's teacher based on its teacherModel
-      const populatedBatches = await Promise.all(
-        batches.map(async (batch) => {
-          return await Batchdetails.findById(batch._id)
-            .populate({
-              path: 'teacher',
-              model: batch.teacherModel
-            });
-        })
-      );
-      
-      console.log("Batch details - ALL BATCHES", populatedBatches);
-      res.json(populatedBatches);
-    } catch (err) {
-      console.log("Error in fetching all batch details", err);
-      res.json(err);
-    }
+    // console.log("=================<<<<<<<<<===============");
+    Batchdetails.find({})
+      .then((data) => {
+       console.log("Batch details - ALL BATCHES", data);
+        res.json(data);
+      })
+      .catch((err) => {
+        console.log("Error in fetching all batch details", err);
+        res.json(err);
+      });
   }); // Get all batch details -- implemented
 
 
@@ -187,4 +171,3 @@ router.put('/api/batch/student/delete/', isLoggedIn, (req, res) => {
 
 
 export default router;
-

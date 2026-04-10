@@ -49,11 +49,6 @@ class BatchInfo extends Component {
       })
       .then(response => {
         //        console.log("Student Details deleted from Batch", response);
-        // for (let i = 0; i < this.state.studentrecs.length; i++) {
-        //   if (stdid !== this.state.studentrecs[i].stdid) {
-        //     studentrecs.push(this.state.studentrecs[i]);
-        //   }
-        // }
         studentrecs = this.state.studentrecs.filtere(student => (stdid !== student.stdid))
         this.setState({ studentrecs }, () => {
           console.log("The Updated State of studentrecs", this.state.studentrecs);
