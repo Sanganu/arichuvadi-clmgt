@@ -75,13 +75,14 @@ class Createbatch extends Component {
                         this.setState({ errmsg: "Fill all fields and select an instructor." });
                     }
                     else {
+                          console.log("************NEW BATCH++++++++++++",this.state)
 
                                 let newbatchdetails =
                                     {
                                         batchdesc: this.state.batchdesc,
                                         course: this.state.course,
                                         level: this.state.level,
-                                        teacher: this.state.instructor,
+                                        teacher: this.state.instructor.id,
                                         teacherModel: this.state.teacherModel,
                                         examDate:this.state.examdate
                                     }

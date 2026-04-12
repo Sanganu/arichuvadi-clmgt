@@ -15,7 +15,7 @@ const batchdetailsSchema = new Schema({
   },
   teacher: {
     type: Schema.Types.ObjectId,
-    ref: 'teacherModel',
+    refPath: 'teacherModel',
     required: true
   },
   teacherModel: {

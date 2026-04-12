@@ -93,7 +93,8 @@ router.get("/api/board/batch/all", isLoggedIn, async (req, res) => {
 
   // Update Batch --implemented
 router.put("/api/board/batch/update", isLoggedIn, (req, res) => {
-    // console.log("The batch id: ",req.body);
+     console.log("+++++++++++++++++++++++++++++++++++++++++")
+     console.log("=========The batch id: ",req.body,"================");
     Batchdetails.updateOne(
       { _id: req.body.batchid },
       {
@@ -101,7 +102,7 @@ router.put("/api/board/batch/update", isLoggedIn, (req, res) => {
           batchdesc: req.body.batchdesc,
           course: req.body.course,
           level: req.body.level,
-          teacher: req.body.teacher,
+          teacher: req.body.teacher.id,
           examDate:req.body.examDate
         }
       }
