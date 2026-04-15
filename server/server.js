@@ -59,8 +59,8 @@ app.use('/auth',auth);
 app.use(batchRoutes);
 app.use(boardRoutes);
 app.use(studentRoutes);
+app.use(routes);
 //app.use(teacherRoutes)
-//app.use(routes);
 
 //Production environment
 

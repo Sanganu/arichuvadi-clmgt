@@ -26,7 +26,7 @@ const isLoggedIn = (req, res, next) => {
 router.post("/api/student/new", (req, res) => {
   let insertedstudent = {};
   console.log(req.body)
-  Student
+  Students
     .create(req.body)
     .then(function (dbstudentdetails) {
       insertedstudent = {

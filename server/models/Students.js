@@ -15,7 +15,7 @@ const studentSchema = new Schema({
     type: String,
     required: true,
     alias: 'lastname',
-    match: [/^[A-Za-z\s]{2,50}$/, "First name should contain only characters"]
+    match: [/^[A-Za-z\s]{2,50}$/,"Last name should contain only characters"]
   },
   loginemail: {
     type: String,
@@ -23,18 +23,29 @@ const studentSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true,
-    match: [/^\w+([.-]?\w+)*@\w+([.+]?\w+)*(\.\w{2,3})+$/, "Please enter a valid address"]
+    match: [/^\w+([.-]?\w+)*@\w+([.+]?\w+)*(\.\w{2,3})+$/, "Please enter a valid email id"]
   },
-  parentname: {
+  parentname_1: {
     type: String,
     required: true,
   },
-  parentphonenumber: {
+  parentphonenumber_1: {
     type: String,
     required: true,
     alias: "Parent Name",
     required: true,
-    match: [/^[A-Za-z\s]{2,50}$/, "Last name should contain only alphabets"]
+    match: [/^[A-Za-z\s]{2,50}$/, "Phone number should contain only alphabets"]
+  },
+   parentname_2: {
+    type: String,
+    required: true,
+  },
+  parentphonenumber_2: {
+    type: String,
+    required: true,
+    alias: "Parent Name",
+    required: true,
+    match: [/^[A-Za-z\s]{2,50}$/, "Phone number should contain only alphabets"]
   },
   password: {
     type: String,
@@ -45,13 +56,19 @@ const studentSchema = new Schema({
       "Password must be at least 8 chars and should include upper, lower, number & symbol"
     ]
   },
-  levelcompleted: {
+  grade_completed: {
     type: String,
     // required:true
   },
+  course_completed:{
+    type:String,
+  },
   grade_enrolled: {
     type: String,
-    required: true
+    // required: true
+  },
+  course_enrolled:{
+    type:String
   },
   createdDate: {
     type: Date,

@@ -10,11 +10,15 @@ class Studentregistration extends Component {
         studentfname: "",
         studentlname: "",
         loginemail: "",
-        parentfname: "",
-        parentlname: "",
-        parentphonenumber: "",
+        parentname_1: "",
+        parentname_2: "",
+        parentphonenumber_1: "",
+        parentphonenumber_2:"",
         password: "",
-        levelcompleted: "",
+        grade_completed: "",
+        course_completed:"",
+        grade_enrolled:"",
+        course_enrolled:"", 
         errmsg: ''
     }
     handleInputChange = (event) => {
@@ -27,6 +31,7 @@ class Studentregistration extends Component {
             [name]: value
         });
     } // end od handleInputChange
+
     //Handle email
     setEmail = (email) => {
         this.setState({ loginemail: email })
@@ -56,11 +61,13 @@ class Studentregistration extends Component {
         if (this.state.studentfname === "" ||
             this.state.studentlname === "" ||
             this.state.loginemail === "" ||
-            this.state.parentname === "" ||
-            this.state.parentphonenumber === "" ||
+            this.state.parentname_1 === "" ||
+            this.state.grade_completed === "" ||
+            this.state.course_enrolled === "" ||
+            this.state.parentphonenumber_1 === "" ||
             this.state.password === "") {
             // console.log("Empty fields not accepted", this.state.studentfname.this.state.studentlname, this.state.loginemail, this.state.parentname, this.state.parentphonenumber, this.state.password);
-            this.setState({ errmsg: " Enter valid data in all fields " })
+            this.setState({ errmsg: " Enter valid data in the required fields " })
         }
         else {
             if (this.state.password === this.state.password1) {
@@ -69,10 +76,16 @@ class Studentregistration extends Component {
                 let newstudent = {
                     studentfname: this.state.studentfname,
                     studentlname: this.state.studentlname,
-                    parentname: this.state.parentfname + " " + this.state.parentlname,
+                    parentname_1: this.state.parentname,
+                    parentname_2:this.state.parentname,
                     loginemail: this.state.loginemail,
                     password: this.state.password,
-                    parentphonenumber: this.state.parentphonenumber
+                    parentphonenumber_1: this.state.parentphonenumber_1,
+                    parentphonenumber_2 : this.state.parentphonenumber_2,
+                    grade_completed: this.state.grade_completed,
+                    course_completed: this.state.course_completed,
+                    grade_enrolled: this.state.grade_enrolled,
+                    grade_completed:this.state.grade_completed
                 }
                 API.createNewStudent(newstudent)
                     .then(res => {
@@ -81,8 +94,8 @@ class Studentregistration extends Component {
                         this.setState({
                             studentfname: '',
                             studentlname: '',
-                            parentfname: '',
-                            parentlname: '',
+                            parentname_1: '',
+                            parentname_2:'',
                             loginemail: '',
                             parentphonenumber: '',
                             completedcourse: '',
@@ -203,7 +216,7 @@ class Studentregistration extends Component {
 
 
                         <button className="createbutton" name="clcreation" onClick={this.handleStudentCreation}>Create Student account</button>
-                        <p>Please consider donating at least $10 per level to cover the basic cost.</p>
+                        {/* <p>Please consider donating at least $10 per level to cover the basic cost.</p> */}
                     </Form>
                 </Container >
                 <br />

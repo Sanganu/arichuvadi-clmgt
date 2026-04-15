@@ -27,7 +27,7 @@ const isLoggedIn = (req, res, next) => {
 
 //Add New student And Update Batches table -- implemented 
 router.post('/api/board/batch/student/new', isLoggedIn, function (req, res) {
-  //console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);    
+  console.log("Check Session - teacher login",req.body,"___________________");    
   var newrecord = {
     studentfname: req.body.studentfname,
     studentlname: req.body.studentlname,

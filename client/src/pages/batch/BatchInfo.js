@@ -322,12 +322,12 @@ class BatchInfo extends Component {
 
             </div>
           </Col>
-          <Col lg={true} sm={8}>
+          {/* <Col lg={true} sm={8}>
             <h5 className="text-center border border-primary">Add Student not yet registered</h5>
             <Addstudent
               bid={this.state.bid}
               newStudent={this.getStudent} />
-          </Col>
+          </Col> */}
         </Row>
 
 
