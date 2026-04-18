@@ -32,20 +32,18 @@ const studentSchema = new Schema({
   parentphonenumber_1: {
     type: String,
     required: true,
-    alias: "Parent Name",
+    alias: "Parent Phone number",
     required: true,
-    match: [/^[A-Za-z\s]{2,50}$/, "Phone number should contain only alphabets"]
+     match: [/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/, "Enter a valid phone number"]
   },
    parentname_2: {
     type: String,
-    required: true,
+    alias:"Parent Name"
   },
   parentphonenumber_2: {
     type: String,
-    required: true,
-    alias: "Parent Name",
-    required: true,
-    match: [/^[A-Za-z\s]{2,50}$/, "Phone number should contain only alphabets"]
+    alias: "Parent Phone number",
+    match: [/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/, "Enter a valid phone number"]
   },
   password: {
     type: String,
@@ -53,7 +51,7 @@ const studentSchema = new Schema({
     select: false,
     match: [
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/,
-      "Password must be at least 8 chars and should include upper, lower, number & symbol"
+      "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
     ]
   },
   grade_completed: {

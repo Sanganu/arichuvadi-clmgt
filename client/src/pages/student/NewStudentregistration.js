@@ -55,22 +55,24 @@ class Studentregistration extends Component {
         this.setState({
             parentname_1: name
         })
+        //console.log(this.state.parentname_1)
     }
 
     setSecondParentName = (name) => {
         this.setState({
             parentname_2: name
         })
+        //console.log(this.state.parentname_2)
     }
 
     handleStudentCreation = (event) => {
         event.preventDefault();
-        //console.log("In Student Creation", this.state);
+        console.log("In Student Creation", this.state);
         if (this.state.studentfname === "" ||
             this.state.studentlname === "" ||
             this.state.loginemail === "" ||
             this.state.parentname_1 === "" ||
-            this.state.grade_completed === "" ||
+            this.state.grade_enrolled === "" ||
             this.state.course_enrolled === "" ||
             this.state.parentphonenumber_1 === "" ||
             this.state.password === "") {
@@ -81,8 +83,8 @@ class Studentregistration extends Component {
                 let newstudent = {
                     studentfname: this.state.studentfname,
                     studentlname: this.state.studentlname,
-                    parentname_1: this.state.parentname,
-                    parentname_2: this.state.parentname,
+                    parentname_1: this.state.parentname_1,
+                    parentname_2: this.state.parentname_2,
                     loginemail: this.state.loginemail,
                     password: this.state.password,
                     parentphonenumber_1: this.state.parentphonenumber_1,
@@ -130,10 +132,12 @@ class Studentregistration extends Component {
     render() {
         return (
             <>
-                <h3 className="subhead">New Student Registration</h3>
-                {this.state.errmsg}
                 <Container>
+                         <h4 className="subhead">
+                            {this.state.errmsg}
+                            </h4>
                     <Form>
+                        <h5>New Student Registration</h5>
                         <Row>
                             <Col>
                                 <Name
@@ -242,6 +246,7 @@ class Studentregistration extends Component {
                     </Form>
                 </Container >
                 <br />
+                <br/>
             </>
         ) //end return
     } // end render

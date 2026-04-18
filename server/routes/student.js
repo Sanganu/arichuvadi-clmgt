@@ -25,6 +25,10 @@ const isLoggedIn = (req, res, next) => {
 // Add Student Record  without batch linking -- implemented
 router.post("/api/student/new", (req, res) => {
   let insertedstudent = {};
+  let err_msg = ["Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    "Enter Valid phone number"]
+
+
   console.log("______________________ CREATE___________________",req.body)
   Students
     .create(req.body)
@@ -34,8 +38,8 @@ router.post("/api/student/new", (req, res) => {
         studentfname: dbstudentdetails.studentfname,
         studentlname: dbstudentdetails.studentlname,
         loginemail: dbstudentdetails.loginemail,
-        phonenumber: dbstudentdetails.parentphonenumber,
-        parentname: dbstudentdetails.parentname
+        phonenumber_1: dbstudentdetails.parentphonenumber_1,
+        parentname_1: dbstudentdetails.parentname_1
       };
       console.log("Inserted student record", insertedstudent);
       res.status(200).json(insertedstudent);
@@ -48,12 +52,12 @@ router.post("/api/student/new", (req, res) => {
         }
         else {
           console.log("Error in Creating Student details", err)
-          res.status(500).json(err);
+          res.status(500).json({error:err_msg});
         }
       }
       else {
         console.log("Exceptional Error: ", err)
-        res.status(500).json(err);
+        res.status(500).json({error:err_msg});
       }
     }); // end db studentdetails
 }); // End router to Student in StudentManagement -- implemented
