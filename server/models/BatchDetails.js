@@ -28,11 +28,11 @@ const batchdetailsSchema = new Schema({
   },
   students: [{
     type: Schema.Types.ObjectId,
-    ref: 'studentdetails'
+    ref: 'Student'
   }],
   classid: [{
     type: Schema.Types.ObjectId,
-    ref: 'classdetails'
+    ref: 'Classdetails'
   }],
   createdDate: {
     type: Date,

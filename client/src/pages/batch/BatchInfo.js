@@ -117,7 +117,7 @@ class BatchInfo extends Component {
       batchid: this.state.bid,
       studentid: nstudent
     }).then(result => {
-      console.log(result);
+      console.log("Student List",result);
       this.getUpdatedBatchDetails()
     })
   } // End handelNew Student()
@@ -138,15 +138,15 @@ class BatchInfo extends Component {
     this.getUpdatedBatchDetails()
   } // End getInstructor
 
-  getStudent = (student) => {
-    let studentrecs = this.state.studentrecs
-    studentrecs.push(student)
-    console.log(student)
-    this.setState({
-      studentrecs: studentrecs
-    })
-    this.getUpdatedBatchDetails()
-  } //End getStudent()
+  // getStudent = (student) => {
+  //   let studentrecs = this.state.studentrecs
+  //   studentrecs.push(student)
+  //   console.log(student)
+  //   this.setState({
+  //     studentrecs: studentrecs
+  //   })
+  //   this.getUpdatedBatchDetails()
+  // } //End getStudent()
 
   componentDidMount = () => {
 

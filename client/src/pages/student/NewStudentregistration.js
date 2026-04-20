@@ -15,30 +15,31 @@ class Studentregistration extends Component {
         parentphonenumber_1: "",
         parentphonenumber_2: "",
         password: "",
-        password1:"",
-        grade_completed: "",
-        course_completed: "",
-        grade_enrolled: "",
-        course_enrolled: "",
+        password1: "",
+        grade_completed: "None",
+        course_completed: "None",
+        grade_enrolled: "Beginner",
+        course_enrolled: "Written",
         errmsg: '',
     }
     handleInputChange = (event) => {
+        this.setState({ errmsg: "" })
         const target = event.target;
         const value = target.type === 'checkbox' ? target.name : target.value;
         const name = target.type === 'checkbox' ? 'daysofweek' : target.name;
-        //console.log('The Value in input change',value,name);
-
         this.setState({
             [name]: value
         });
-    } // end od handleInputChange
+    } // end of handleInputChange
 
     //Handle email
     setEmail = (email) => {
+        this.setState({ errmsg: "" })
         this.setState({ loginemail: email })
     }
 
     setPassword = (password) => {
+        this.setState({ errmsg: "" })
         this.setState({ password })
     }
     setFirstName = (name) => {
@@ -55,14 +56,12 @@ class Studentregistration extends Component {
         this.setState({
             parentname_1: name
         })
-        //console.log(this.state.parentname_1)
     }
 
     setSecondParentName = (name) => {
         this.setState({
             parentname_2: name
         })
-        //console.log(this.state.parentname_2)
     }
 
     handleStudentCreation = (event) => {
@@ -94,11 +93,10 @@ class Studentregistration extends Component {
                     grade_enrolled: this.state.grade_enrolled
                 }
 
-                console.log("NEW STUDENT",newstudent)
+                console.log("NEW STUDENT", newstudent)
                 API.createNewStudent(newstudent)
                     .then(res => {
                         console.log("The response from adding student", res);
-
                         this.setState({
                             studentfname: '',
                             studentlname: '',
@@ -109,10 +107,10 @@ class Studentregistration extends Component {
                             parentphonenumber_2: '',
                             course_completed: '',
                             grade_completed: '',
-                            grade_enrolled:'',
-                            course_enrolled:'',
+                            grade_enrolled: '',
+                            course_enrolled: '',
                             password: "",
-                            password1:'',
+                            password1: '',
                             errmsg: "Student details registered, A Board member will review your details and contact as soon as possible"
                         }, () => {
                             console.log("Student Created")
@@ -120,11 +118,13 @@ class Studentregistration extends Component {
                         })
                     })
                     .catch(error => {
-                        this.setState({ errmsg: "Student Email already exist" });
-                        console.log("Error!!!!", error)
+                        // this.setState({ errmsg: "Student Email already exist" });
+                        // console.log("Error!!!!", error)
+                        const message = error.response?.data?.message || "Something went wrong";
+                        this.setState({ errmsg: message });
                     }); // End of axios
             } else {
-                this.setState({ errmsg: "Password and Re-Type password doesn't match" });
+                this.setState({ errmsg: "Password and confirm password doesn't match" });
             }
         } //end if
     }; // end of handleStudentCreation
@@ -133,11 +133,11 @@ class Studentregistration extends Component {
         return (
             <>
                 <Container>
-                         <h4 className="subhead">
-                            {this.state.errmsg}
-                            </h4>
                     <Form>
                         <h5>New Student Registration</h5>
+                        <h6 className="subhead">
+                            {this.state.errmsg}
+                        </h6>
                         <Row>
                             <Col>
                                 <Name
@@ -173,7 +173,7 @@ class Studentregistration extends Component {
                                     <Form.Control type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} name="password" />
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label className="has-float-label">ReType Password</Form.Label>
+                                    <Form.Label className="has-float-label">ConfirmPassword</Form.Label>
                                     <Form.Control type="password" className="form-control" placeholder="Retype Password" value={this.state.password1} onChange={this.handleInputChange} name="password1" />
                                 </Form.Group>
                             </Col>
@@ -246,7 +246,7 @@ class Studentregistration extends Component {
                     </Form>
                 </Container >
                 <br />
-                <br/>
+                <br />
             </>
         ) //end return
     } // end render

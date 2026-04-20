@@ -237,7 +237,7 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
   // Batch Info - Get student and class for the specific batch --implemented
 
   router.get("/api/board/batch/detail/:bid", isLoggedIn,function(req,res){
-    console.log("batc",req.params.bid)
+    console.log("batch",req.params.bid)
   let batchdetails =[]
     Batchdetails.findById(req.params.bid)
      .populate(
@@ -247,12 +247,16 @@ router.get('/api/board/search/:str', isLoggedIn, (req, res) => {
       path:"classid",
       select:'lessoncovered homework classdate'})
     .then(function(records){
+      console.log("BATCH info",records)
       batchdetails.push(records)
-        Board.findById(records.teacher).select('fname lname').then(function(instructor){
-          batchdetails.push(instructor)
-          console.log("BATCH INFO",instructor)
-          res.json(batchdetails)
-        })
+      res.json(batchdetails)
+      // Board.findById(records.teacher)
+      // .select('fname lname')
+      // .then(function(instructor){
+      //     batchdetails.push(instructor)
+      //     console.log("BATCH INFO",instructor)
+      
+      // })
      
     })
     .catch(function(error){
