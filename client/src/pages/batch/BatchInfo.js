@@ -149,10 +149,8 @@ class BatchInfo extends Component {
   // } //End getStudent()
 
   componentDidMount = () => {
-
     this.getUpdatedBatchDetails()
     console.log(moment(this.props.batchdetails.examDate).format("MM/DD/YYYY") || '', )
-
   } // End componentDidMount()
 
   getUpdatedBatchDetails = () => {
@@ -161,12 +159,12 @@ class BatchInfo extends Component {
     let bid = this.state.bid || "";
     BAPI.getBatchDetail(bid)
       .then((records) => {
-        console.log("Batch Info Component did mount", records)
+        console.log("Batch Info Component did mount", records.data)
         let batchdetails = records.data
         this.setState(
           {
-            instructor: batchdetails[1].fname + " " + batchdetails[1].lname || "",
-            instructorID: records.data[0].teacher || ""
+            instructor: batchdetails[0].teacher.fullName,
+            instructorID: batchdetails[0].teacher._id
           })
         // console.log("BatchInfo",batchdetails[0].classid)
         if (batchdetails[0].classid.length > 0) {
@@ -197,7 +195,7 @@ class BatchInfo extends Component {
 
   render() {
     const studentrec = this.state.studentrecs;
-    if (this.props.usertype === "management") {
+    if (this.props.usertype === "management ") {
       return (<Container>
         <Row className="m-2 p-2">
           <Col>
