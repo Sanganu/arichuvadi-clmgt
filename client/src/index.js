@@ -1,11 +1,53 @@
- import React from 'react';
+//  import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
+// import App from './App';
+// import { createStore } from 'redux';
+// import { Provider } from 'react-redux';
+// import loginReducer from "./reduxReducers/loginReducer";
+
+// const store = createStore(loginReducer);
+
+// ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+
+
+import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import loginReducer from "./reduxReducers/loginReducer";
+import './index.css';
+import App from './App';
+import './API/axios';
+import loginReducer from './reduxReducers/loginReducer';
+import store from "./store";
 
-const store = createStore(loginReducer);
+// --- 1. preload state from localStorage (sync, runs before App mounts)
+const STORAGE_KEY = 'arichuvadi_auth';
+const loadState = () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return undefined;
+    return JSON.parse(raw);
+  } catch { return undefined; }
+};
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+const store = createStore(loginReducer, loadState());
+
+// --- 2. persist on every change (keep only safe fields)
+store.subscribe(() => {
+  const s = store.getState();
+  if (s.invalid) {
+    localStorage.removeItem(STORAGE_KEY);
+  } else {
+    const { loginemail, userid, usertype, userfname, userlname, invalid } = s;
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ loginemail, userid, usertype, userfname, userlname, invalid })
+    );
+  }
+});
+
+ReactDOM.render(
+  <Provider store={store}><App /></Provider>,
+  document.getElementById('root')
+);

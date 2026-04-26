@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Addstudent from '../student//Addstudent.js';
+// import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
 // import Allstudents from '../general/displayrecords';
 import Allclasses from '../batch//Displayallclassdetails.js';

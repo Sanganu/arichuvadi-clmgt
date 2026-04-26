@@ -1,29 +1,27 @@
 const initState = {
-    loginemail: "",
-    userid: "",
-    usertype : "",
-    userfname:"",
-    userlname:"",
-    invalid:true
-}
-const loginReducer = (state = initState,action) => {
-   // console.log("Redux the parameter received",action);
-    switch(action.type){
-     case 'SET_CREDENTIALS':{
-        console.log("Redux store values -- ",action.userCred);
-          return{
-             loginemail: action.userCred.loginemail,
-             userfname: action.userCred.userfname,
-             userlname: action.userCred.userlname,
-             usertype: action.userCred.usertype,
-             invalid: action.userCred.invalid,
-             userid: action.userCred.userid
-         }
-      }
-     default:
-       return state;
-    }
-}    
+  loginemail: "",
+  userid: "",
+  usertype: "",
+  userfname: "",
+  userlname: "",
+  invalid: true,
+  bootstrapped: false,   // NEW: have we tried /auth/me yet?
+};
+
+const loginReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'SET_CREDENTIALS':
+      return { ...state, ...action.userCred, invalid: false, bootstrapped: true };
+
+    case 'AUTH_BOOTSTRAPPED':         // hydration finished, no user found
+      return { ...state, bootstrapped: true };
+
+    case 'LOGOUT':                    // wipe everything cleanly
+      return { ...initState, bootstrapped: true };
+
+    default:
+      return state;
+  }
+};
 
 export default loginReducer;
-

@@ -14,11 +14,14 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "connect-mongo": "^6.0.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.0.0",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.4.1",
     "express-session": "^1.18.1",
+    "helmet": "^8.1.0",
     "moment": "^2.30.1",
-    "moongose": "^1.0.0",
+    "mongoose": "^8.23.1",
     "morgan": "^1.10.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
@@ -26,5 +29,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "nodemon": "^3.1.14"
   }
 }
