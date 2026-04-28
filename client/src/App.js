@@ -95,10 +95,7 @@ class App extends Component {
               <Iconbar />
             </div>
             <div className='col-sm-10 col-md-10 col-lg-11'>
-
-
-
-              <div className="col-sm-10 col-md-10 col-lg-11">
+           <div className="col-sm-10 col-md-10 col-lg-11">
                 {!bootstrapped ? (
                   <Loading testid="auth-bootstrapping" />
                 ) : (
@@ -204,4 +201,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  bootstrapped: state.bootstrapped,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCredentials: (cred) => dispatch(loginCredentials(cred)),
+  markBootstrapped: () => dispatch(authBootstrapped()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
