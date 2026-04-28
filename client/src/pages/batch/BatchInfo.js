@@ -138,16 +138,7 @@ class BatchInfo extends Component {
     this.getUpdatedBatchDetails()
   } // End getInstructor
 
-  // getStudent = (student) => {
-  //   let studentrecs = this.state.studentrecs
-  //   studentrecs.push(student)
-  //   console.log(student)
-  //   this.setState({
-  //     studentrecs: studentrecs
-  //   })
-  //   this.getUpdatedBatchDetails()
-  // } //End getStudent()
-
+ 
   componentDidMount = () => {
     this.getUpdatedBatchDetails()
     console.log(moment(this.props.batchdetails.examDate).format("MM/DD/YYYY") || '', )
@@ -304,28 +295,14 @@ class BatchInfo extends Component {
                     <tr key={index}>
                       <td>{data.studentfname}</td>
                       <td>{data.studentlname}</td>
-                      {/* <td> <button className="rowdbtn" onClick={this.deleteStudent}><i className="fa fa-trash fa-lg"></i></button></td> */}
-
-                    </tr>))}
-
-                  {/* {studentrec.map((data, index) => (
-                                    <Allstudents field1={data.studentfname}
-                                    field2={data.studentlname}
-                                      deleteStudentDetails={this.deleteStudent}
-                                      key={index}
-                                    />))} */}
+                                          </tr>))}
                 </tbody>
               </Table>
 
 
             </div>
           </Col>
-          {/* <Col lg={true} sm={8}>
-            <h5 className="text-center border border-primary">Add Student not yet registered</h5>
-            <Addstudent
-              bid={this.state.bid}
-              newStudent={this.getStudent} />
-          </Col> */}
+
         </Row>
 
 

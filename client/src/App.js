@@ -1,99 +1,207 @@
-import React from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
+import axios from './API/axios';
 
-//General
-import Homepage from "./pages/general/Homepage";
-import Search from "./pages/general/Search";
+import { loginCredentials, authBootstrapped } from "./reduxAction/dispatchLoginCredentials";
+//Critical components needed as soon as page loads
 import Appheader from "./components/Appheader";
 import Iconbar from "./navigation/Iconbar";
-import Ourteam from "./pages/general/Ourteam";
-import Alumni from "./pages/general/Alumni";
 import Footer from "./components/Stfooter";
-//Board Member
-import AddBoardMember from "./pages/board/AddBoardMember";
+import ErrorBoundary from "./errorHandlers/ErrorBoundary";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Loading from "./components/Loading";
+
+//Loading initial login pages for first paint
+import Homepage from "./pages/general/Homepage";
 import Boardmember from "./pages/board/Boardmember";
-
-
-
-//Instructor
-import Updateteacher from "./pages/instructor/Updateinstructor";
-import Allteachers from "./pages/instructor/Instructormanagement";
-//Student
 import Studentlogin from "./pages/student/Studentlogin";
-import StudentManagement from './pages/student/StudentManagement';
-import NewStudentregistration from "./pages/student/NewStudentregistration";
-import Addstudent from "./pages/student/Addstudent";
+import "./bootstrap.css";
 
-//Batch
+// LAzy loading
 
-// import Batchmain from "./pages/batch/Batchmain";
-import Createbatch from "./pages/batch/Createbatch";
-import Allbatches from "./pages/batch/Displayallbatchdetails";
-import Addclass from "./pages/batch/Addclassdetails";
-
-import Dashboard from "./pages/board/Dashboard";
-
-
-// teacher main page
+const Allbatches = lazy(() => import("./pages/batch/Displayallbatchdetails"));
+const Search = lazy(() => "./pages/general/Search");
+const Alumni = lazy(() => import("./pages/general/Alumni"));
+// coimport AddBoardMember from "./pages/board/AddBoardMember";
+const Updateteacher = lazy(() => import("./pages/instructor/Updateinstructor"));
+const Instructormanagement = lazy(() => import("./pages/instructor/Instructormanagement"));
+const StudentManagement = lazy(() => import('./pages/student/StudentManagement'));
+const NewStudentReg = lazy(() => import("./pages/student/NewStudentregistration"));
+const Addstudent = lazy(() => import("./pages/student/Addstudent"));
+const Createbatch = lazy(() => import("./pages/batch/Createbatch"));
+const Addclass = lazy(() => import("./pages/batch/Addclassdetails"));
+const Ourteam = lazy(() => import("../src/pages/general/Ourteam"));
 
 // import Resources from "./pages/Resources";
 
 
-import "./bootstrap.css";
 
 
-const App = () => {
+const RouteFallback = () => (<>
+  <div className="middlecontent">
+    <h5>Loading........</h5>
+  </div>
+</>)
 
-  return (
-    <Router>
-      <div>
-        <Appheader />
-        <div className='row'>
-                <div className='col-sm-2 col-md-2  col-lg-1'>
-                  <Iconbar />
-                </div>
-                <div className='col-sm-10 col-md-10 col-lg-11'>
-  
-                      <Switch>
-                        <Route exact path="/" render={() => <Homepage />} />
+const Bootstrapping = () => (<>
+  <div className="middlecontent">
+    <h5>Authenticating........</h5>
+  </div>
+</>)
+
+class App extends Component {
+  componentDidMount() {
+    this.bootstrapAuth()
+  }
+  bootstrapAuth = () => {
+    axios.get('/api/board/me')
+      .then((res) => {
+        this.props.setCredentials({
+          loginemail: res.data.loginemail || '',
+          userid: res.data.id || '',
+          userfname: res.data.name || '',
+          userlname: '',
+          usertype: 'management',
+          invaid: false
+        });
+      }).catch(() => {
+        axios.get('/auth')
+          .then((reply) => {
+            const user = reply.data && reply.data.user;
+            if (user && user.userdata) {
+              this.props.setCredentials({
+                loginemail: user.userdata.loginemail || '',
+                userid: user.userdata._id || '',
+                userfname: user.userdata.studentfname || user.userdata.fname || '',
+                userlname: user.userdata.studentlname || user.userdata.lname || '',
+                usertype: user.usertype || '',
+                invalid: false
+              })
+            } else {
+              this.props.markBootstrapped()
+            }
+          }).catch(err => this.props.markBootstrapped());
+      })
+  }
+  render() {
+    const { bootstrapped } = this.props;
+    return (
+      <Router>
+        <div>
+          <Appheader />
+          <div className='row'>
+            <div className='col-sm-2 col-md-2  col-lg-1'>
+              <Iconbar />
+            </div>
+            <div className='col-sm-10 col-md-10 col-lg-11'>
 
 
-                        <Route exact path="/board/searchrecords" component={Search} />
-                        <Route exact path="/board/allbatch/:displayall" render={props => <Allbatches {...props} displayall="true" />} />
-                        {/* <Route exact path="/board/batchmain" component={Batchmain} /> */}
-                        <Route exact path="/board/createbatch" render={props => <Createbatch {...props} />}/>
-                        <Route exact path="/board/dashboard" compoenent={props => <Dashboard {...props}/>} />
-                        <Route exact path="/board/addBoard" component={AddBoardMember} />
-                        <Route exact path="/board/login" render={props => <Boardmember {...props} />} />
-                        <Route exact path="/board/batch/addstudent/:batchid" render={props => <Addstudent {...props} />} />
-                        <Route exact path="/board/profile/update" render={props => <Updateteacher {...props} />} />
-                        {/* <Route exact path="/addboard" component={Allbatches} /> */}
 
+              <div className="col-sm-10 col-md-10 col-lg-11">
+                {!bootstrapped ? (
+                  <Loading testid="auth-bootstrapping" />
+                ) : (
+                  <Switch>
+                    {/* ====== PUBLIC routes (eager) ====== */}
+                    <Route exact path="/" component={Homepage} />
+                    <Route exact path="/board/login" component={Boardmember} />
+                    <Route exact path="/student/loginpg" component={Studentlogin} />
+                    <Route exact path="/ourteam" component={Ourteam} />
+                    <Route exact path="/alumni" component={Alumni} />
 
-                        <Route exact path="/teacher/allteacher" component={Allteachers} />
-                        <Route exact path="/teacher/batch/addclass" component={Addclass} />
+                    {/* ====== AUTHENTICATED + LAZY routes ======
+                    ErrorBoundary → Suspense → ProtectedRoute → Page
+                    Order matters: boundary outside Suspense so chunk-load
+                    failures are caught and reported instead of white-screening.
+                */}
+                    <Route
+                      render={() => (
+                        <ErrorBoundary scope="lazy-routes">
+                          <Suspense fallback={<Loading testid="route-loading" />}>
+                            <Switch>
+                              {/* ----- Admin (Board Member) ----- */}
+                              {/* <ProtectedRoute
+                                    role="management"
+                                    exact
+                                    path="/board/dashboard"
+                                    component={Dashboard}
+                                  /> */}
+                              <ProtectedRoute
+                                role="management"
+                                exact
+                                path="/board/createbatch"
+                                component={Createbatch}
+                              />
+                              <ProtectedRoute
+                                role="management"
+                                exact
+                                path="/board/allbatch/:displayall"
+                                render={(p) => <Allbatches {...p} displayall="true" />}
+                              />
+                              <ProtectedRoute
+                                role="management"
+                                exact
+                                path="/board/addTeacher"
+                                component={Instructormanagement}
+                              />
+                              <ProtectedRoute
+                                role="management"
+                                exact
+                                path="/board/searchrecords"
+                                component={Search}
+                              />
+                              <ProtectedRoute
+                                role="management"
+                                exact
+                                path="/board/batch/addstudent/:batchid"
+                                component={Addstudent}
+                              />
+                              <ProtectedRoute
+                                role="management"
+                                exact
+                                path="/board/profile/update"
+                                component={Updateteacher}
+                              />
+                              <ProtectedRoute
+                                role="management"
+                                exact
+                                path="/teacher/batch/addclass"
+                                component={Addclass}
+                              />
 
-                        <Route exact path="/student/newstudent" component={NewStudentregistration} />
-                        <Route exact path="/student/studentmanagement" component={StudentManagement} />
-                        <Route exact path="/student/loginpg" render={props => <Studentlogin {...props} />} />
+                              {/* ----- Student ----- */}
+                              <ProtectedRoute
+                                role="student"
+                                exact
+                                path="/student/newstudent"
+                                component={NewStudentReg}
+                              />
+                              <ProtectedRoute
+                                role="student"
+                                exact
+                                path="/student/studentmanagement"
+                                component={StudentManagement}
+                              />
 
+                              {/* Fallback for any unknown path */}
+                              <Route path="*" component={Homepage} />
+                            </Switch>
+                          </Suspense>
+                        </ErrorBoundary>
+                      )}
+                    />
+                  </Switch>
+                )}
+              </div>
 
-
-                        {/* <Route exact path="/resources" component={Resources} />
-                            <Route exact path="/users/videos" component={Videoreference} /> */}
-                        <Route exact path="/ourteam" component={Ourteam} />
-                        <Route exact path="/alumni" component={Alumni} />
-
-                        <Switch>
-                          <Route path="*" render={props => <Homepage {...props} />} />
-                        </Switch>
-                      </Switch>
-                  </div>
-                </div>
-        <Footer />
-      </div>
-    </Router>
-  )
+            </div>
+          </div>
+          <Footer />
+        </div>
+      </Router>
+    )
+  }
 }
 
 export default App;
