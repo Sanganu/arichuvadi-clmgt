@@ -1,46 +1,109 @@
 import React, { Component } from 'react';
-// import Addstudent from '../student//Addstudent.js';
 import BatchAddClassDetails from './Addclassdetails.js';
-// import Allstudents from '../general/displayrecords';
 import Allclasses from '../batch//Displayallclassdetails.js';
-// import Allbatches from './Displayallbatchdetails.js'; 
-// import StudentID from './StudentID.js';
 import { connect } from 'react-redux';
-import Homepage from '../general/Homepage.js'; 
-
-// import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
-// import API from "../../API/Board";
 import BAPI from "../../API/Batch";
-// import MasterKey from "../../components/Masterkey";  
-// import MAPI from "../../API/Multi";
 import Modal from "../general/Modal";
 import SAPI from "../../API/Student";
 import { Form, Table, Container, Row, Col } from "react-bootstrap";
 import Buttons from "../../components/Buttons";
 import moment from "moment";
 
+// import Addstudent from '../student//Addstudent.js';
+// import Allstudents from '../general/displayrecords';
+// import Allbatches from './DisplayallbatchDetails.js'; 
+// import StudentID from './StudentID.js';
+// import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
+// import API from "../../API/Board";
+// import MasterKey from "../../components/Masterkey";  
+// import MAPI from "../../API/Multi";
+
 
 
 class BatchInfo extends Component {
   state = {
-    bid: this.props.batchdetails.bid || '',
-    bdesc: this.props.batchdetails.batchdesc || '',
-    instructorID: "",
-    instructor: this.props.batchdetails.teacher || '',
-    level: this.props.batchdetails.level || '',
-    course: this.props.batchdetails.course || '',
-    examdate: moment(this.props.batchdetails.examDate).format("YYYY-MM-DD") || '',
+    bid: this.props.batchDetails?.bid || '',
+    bdesc: this.props.batchDetails?.batchdesc || '',
+    instructorID: this.props.batchDetails?.teacher_id ||"",
+    instructor: this.props.batchDetails?.teacher || '',
+    level: this.props.batchDetails?.level || '',
+    course: this.props.batchDetails?.course || '',
+    examdate: this.props.batchDetails?.examDate
+      ? moment(this.props.batchDetails.examDate).format('YYYY-MM-DD')
+      : '',
     students: '',
-    // bdescription: '',
     studentrecs: [],
     classrecs: [],
     delstdid: '',
     instructorList: []
+  }// End of State
+
+    handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  } //End handle Input change
+
+  componentDidMount = () => {
+    this.getUpdatedbatchDetails()
+  } // End componentDidMount()
+
+
+  getUpdatedbatchDetails = () => {
+    console.log("=====Updated Batch Details======")
+    const bid = this.state.bid;
+    if (!bid) return;
+
+    BAPI.getBatchDetail(bid)
+      .then((records) => {
+        console.log(`batch details ${records.data}`)
+        const batch = records[0]
+       
+        const instructorRec = records.data[0].teacher;
+        if (!batch) {
+          this.setState({ errmsg: "Batch not found" });
+          return;
+        }
+        console.log("Batch Info Component did mount", records.data)
+        // this.setState(
+        //   {
+        //     instructor: batchDetails[0].teacher.fullName,
+        //     instructorID: batchDetails[0].teacher._id
+        //   })
+
+        this.setState({
+          instructor: instructorRec ? `${instructorRec.fullName}`.trim() : "Not Assigned",
+          instructorID: instructorRec._id,
+          classrecs: Array.isArray(batch.classid) ? batch.classid : [],
+          studenrecs: Array.isArray(batch.students) ? batch.students : []
+        }).catch((err) => {
+          console.error(`Error in fetching batch details in BatchInfo component -----: ${err}`)
+          this.setState({
+            errmsg: "Unable to load batch details"
+          });
+        })
+      });
   }
+  // console.log("BatchInfo",batchDetails[0].classid)
+  // if (batchDetails[0].classid.length > 0) {
+
+  //   this.setState({ classrecs: batchDetails[0].classid })
+  //   console.log("Hello Class Records", this.state.classrecs)
+  // }
+  // // console.log("BatchInfo", batchDetails[0].students)
+  // if (batchDetails[0].students.length > 0) {
+
+  //   this.setState({ studentrecs: batchDetails[0].students })
+  //   console.log("Hello Student Records", this.state.studentrecs)
+  // }
 
 
   deleteStudent = (stdid) => {
-    //  console.log("Student to be deleted", stdid, this.state.bid);//his.props.batchdetails.bid);
+    console.log("Student to be deleted", stdid, this.state.bid);
+
     let studentrecs = 0;
     BAPI.deleteStudentFromBatch(
       {
@@ -60,7 +123,7 @@ class BatchInfo extends Component {
   } //end of delete student
 
   updateBatch = (event) => {
-    event.preventDefault();
+    if(event && event.preventDefault()) event.preventDefault();
     //console.log("Batch Update:",this.state.bid,this.state.bdesc,this.state.level,this.state.subject,this.state.students);
     // if (this.batchInputValidation()) {
     BAPI.updateBatch(
@@ -101,15 +164,8 @@ class BatchInfo extends Component {
       })
   } //End of delete batch
 
- 
-  handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    });
-  } //End handle Input change
+
+
 
   handleNewStudent = (nstudent, stdname) => {
     console.log("The student records", nstudent);
@@ -117,8 +173,8 @@ class BatchInfo extends Component {
       batchid: this.state.bid,
       studentid: nstudent
     }).then(result => {
-      console.log("Student List",result);
-      this.getUpdatedBatchDetails()
+      console.log("Student List", result);
+      this.getUpdatedbatchDetails()
     })
   } // End handelNew Student()
 
@@ -135,42 +191,12 @@ class BatchInfo extends Component {
     })
     console.log("Instructor", value);
     this.updateBatch()
-    this.getUpdatedBatchDetails()
+    this.getUpdatedbatchDetails()
   } // End getInstructor
 
- 
-  componentDidMount = () => {
-    this.getUpdatedBatchDetails()
-    console.log(moment(this.props.batchdetails.examDate).format("MM/DD/YYYY") || '', )
-  } // End componentDidMount()
 
-  getUpdatedBatchDetails = () => {
-    // let strecs = this.state.studentrecs || [];
-    // let clrecs = this.state.classrecs || [];
-    let bid = this.state.bid || "";
-    BAPI.getBatchDetail(bid)
-      .then((records) => {
-        console.log("Batch Info Component did mount", records.data)
-        let batchdetails = records.data
-        this.setState(
-          {
-            instructor: batchdetails[0].teacher.fullName,
-            instructorID: batchdetails[0].teacher._id
-          })
-        // console.log("BatchInfo",batchdetails[0].classid)
-        if (batchdetails[0].classid.length > 0) {
 
-          this.setState({ classrecs: batchdetails[0].classid })
-          console.log("Hello Class Records", this.state.classrecs)
-        }
-        // console.log("BatchInfo", batchdetails[0].students)
-        if (batchdetails[0].students.length > 0) {
 
-          this.setState({ studentrecs: batchdetails[0].students })
-          console.log("Hello Student Records", this.state.studentrecs)
-        }
-      })
-  }
 
 
   handleChangeInstructor = (instructorIdn) => {
@@ -178,7 +204,7 @@ class BatchInfo extends Component {
     this.setState({
       instructorID: instructorIdn
     }, () => {
-      console.log(instructorIdn,this.state.instructorID, this.state.instructor)
+      console.log(instructorIdn, this.state.instructorID, this.state.instructor)
 
     })
   }
@@ -186,7 +212,8 @@ class BatchInfo extends Component {
 
   render() {
     const studentrec = this.state.studentrecs;
-    if (this.props.usertype === "management ") {
+    console.log(this.props,"++++++++")
+    //if (this.props.usertype === "management ") {
       return (<Container>
         <Row className="m-2 p-2">
           <Col>
@@ -253,7 +280,7 @@ class BatchInfo extends Component {
                   <Buttons onButton={this.deleteBatch}><i className="fa fa-trash fa-lg"></i>Delete</Buttons>
                 </Col>
               </Row>
-              <Row className="m-2 p-2">
+              <Row className="m-5 p-5">
                 <Modal
                   Title="Change Instructor"
                   IdType="instructor"
@@ -295,7 +322,7 @@ class BatchInfo extends Component {
                     <tr key={index}>
                       <td>{data.studentfname}</td>
                       <td>{data.studentlname}</td>
-                                          </tr>))}
+                    </tr>))}
                 </tbody>
               </Table>
 
@@ -326,16 +353,17 @@ class BatchInfo extends Component {
 
           <Col>
             <h5>Add Class Details</h5>
-            <BatchAddClassDetails batchdet={this.props.batchdetails}
+            <BatchAddClassDetails batchdet={this.props.batchDetails}
               newClassDetails={this.handleClassDetails} />
           </Col>
         </Row>
       </Container>
       ) // End Return
-    } // End if
-    else {
-      return <Homepage msg="Please Login" />
-    }
+   // } // End if
+    // else {
+    //   console.log("-------------------BATCH INFO---------------------------------------------------------")
+    //   return <Homepage msg="Please Login" />
+    // }
   } // end of render
 } //end component
 

@@ -7,7 +7,8 @@ class BatchRecAddclass extends Component {
       course: this.props.bsubj,
       level: this.props.blevel,
       teacher: this.props.teacher,
-      examDate: this.props.examDate
+      examDate: this.props.examDate,
+      teacher_id:this.props.teacher_id
     }
     console.log("get batch details",newbatch)
     this.props.getBatchDetails(newbatch)
