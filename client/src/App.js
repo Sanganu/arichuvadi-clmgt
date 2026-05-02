@@ -23,7 +23,6 @@ import "./bootstrap.css";
 const Allbatches = lazy(() => import("./pages/batch/Displayallbatchdetails"));
 const Search = lazy(() => "./pages/general/Search");
 const Alumni = lazy(() => import("./pages/general/Alumni"));
-// coimport AddBoardMember from "./pages/board/AddBoardMember";
 const Updateteacher = lazy(() => import("./pages/instructor/Updateinstructor"));
 const Instructormanagement = lazy(() => import("./pages/instructor/Instructormanagement"));
 const StudentManagement = lazy(() => import('./pages/student/StudentManagement'));
@@ -66,21 +65,17 @@ class App extends Component {
           invaid: false
         });
       }).catch(() => {
-        axios.get('/auth')
+        axios.get('/api/student/me')
           .then((reply) => {
-            const user = reply.data && reply.data.user;
-            if (user && user.userdata) {
+            console.log("RESPONSE - auth stu/boar",reply)
               this.props.setCredentials({
-                loginemail: user.userdata.loginemail || '',
-                userid: user.userdata._id || '',
-                userfname: user.userdata.studentfname || user.userdata.fname || '',
-                userlname: user.userdata.studentlname || user.userdata.lname || '',
-                usertype: user.usertype || '',
+                loginemail: reply.userdata.loginemail || '',
+                userid: reply.userdata._id || '',
+                userfname: reply.userdata.studentfname || reply.userdata.fname || '',
+                userlname: reply.userdata.studentlname || reply.userdata.lname || '',
+                usertype: reply.usertype || '',
                 invalid: false
               })
-            } else {
-              this.props.markBootstrapped()
-            }
           }).catch(err => this.props.markBootstrapped());
       })
   }
@@ -91,109 +86,109 @@ class App extends Component {
         <div>
           <Appheader />
           <div className='row'>
-            <div className='col-sm-2 col-md-2  col-lg-1'>
+            <div className='col-sm-2 col-md-2  col-lg-2'>
               <Iconbar />
             </div>
-            <div className='col-sm-10 col-md-10 col-lg-11'>
-           <div className="col-sm-10 col-md-10 col-lg-11">
-                {!bootstrapped ? (
-                  <Loading testid="auth-bootstrapping" />
-                ) : (
-                  <Switch>
-                    {/* ====== PUBLIC routes (eager) ====== */}
-                    <Route exact path="/" component={Homepage} />
-                    <Route exact path="/board/login" component={Boardmember} />
-                    <Route exact path="/student/loginpg" component={Studentlogin} />
-                    <Route exact path="/ourteam" component={Ourteam} />
-                    <Route exact path="/alumni" component={Alumni} />
 
-                    {/* ====== AUTHENTICATED + LAZY routes ======
+            <div className="col-sm-10 col-md-10 col-lg-10">
+              {!bootstrapped ? (
+                <Loading testid="auth-bootstrapping" />
+              ) : (
+                <Switch>
+                  {/* ====== PUBLIC routes (eager) ====== */}
+                  <Route exact path="/" component={Homepage} />
+                  <Route exact path="/board/login" component={Boardmember} />
+                  <Route exact path="/student/loginpg" component={Studentlogin} />
+                  <Route exact path="/ourteam" component={Ourteam} />
+                  <Route exact path="/alumni" component={Alumni} />
+
+                  {/* ====== AUTHENTICATED + LAZY routes ======
                     ErrorBoundary → Suspense → ProtectedRoute → Page
                     Order matters: boundary outside Suspense so chunk-load
                     failures are caught and reported instead of white-screening.
                 */}
-                    <Route
-                      render={() => (
-                        <ErrorBoundary scope="lazy-routes">
-                          <Suspense fallback={<Loading testid="route-loading" />}>
-                            <Switch>
-                              {/* ----- Admin (Board Member) ----- */}
-                              {/* <ProtectedRoute
+                  <Route
+                    render={() => (
+                      <ErrorBoundary scope="lazy-routes">
+                        <Suspense fallback={<Loading testid="route-loading" />}>
+                          <Switch>
+                            {/* ----- Admin (Board Member) ----- */}
+                            {/* <ProtectedRoute
                                     role="management"
                                     exact
                                     path="/board/dashboard"
                                     component={Dashboard}
                                   /> */}
-                              <ProtectedRoute
-                                role="management"
-                                exact
-                                path="/board/createbatch"
-                                component={Createbatch}
-                              />
-                              <ProtectedRoute
-                                role="management"
-                                exact
-                                path="/board/allbatch/:displayall"
-                                render={(p) => <Allbatches {...p} displayall="true" />}
-                              />
-                              <ProtectedRoute
-                                role="management"
-                                exact
-                                path="/board/addTeacher"
-                                component={Instructormanagement}
-                              />
-                              <ProtectedRoute
-                                role="management"
-                                exact
-                                path="/board/searchrecords"
-                                component={Search}
-                              />
-                              <ProtectedRoute
-                                role="management"
-                                exact
-                                path="/board/batch/addstudent/:batchid"
-                                component={Addstudent}
-                              />
-                              <ProtectedRoute
-                                role="management"
-                                exact
-                                path="/board/profile/update"
-                                component={Updateteacher}
-                              />
-                              <ProtectedRoute
-                                role="management"
-                                exact
-                                path="/teacher/batch/addclass"
-                                component={Addclass}
-                              />
+                            <ProtectedRoute
+                              role="management"
+                              exact
+                              path="/board/createbatch"
+                              component={Createbatch}
+                            />
+                            <ProtectedRoute
+                              role="management"
+                              exact
+                              path="/board/allbatch/:displayall"
+                              render={(p) => <Allbatches {...p} displayall="true" />}
+                            />
+                            <ProtectedRoute
+                              role="management"
+                              exact
+                              path="/board/addTeacher"
+                              component={Instructormanagement}
+                            />
+                            <ProtectedRoute
+                              role="management"
+                              exact
+                              path="/board/searchrecords"
+                              component={Search}
+                            />
+                            <ProtectedRoute
+                              role="management"
+                              exact
+                              path="/board/batch/addstudent/:batchid"
+                              component={Addstudent}
+                            />
+                            <ProtectedRoute
+                              role="management"
+                              exact
+                              path="/board/profile/update"
+                              component={Updateteacher}
+                            />
+                            <ProtectedRoute
+                              role="management"
+                              exact
+                              path="/teacher/batch/addclass"
+                              component={Addclass}
+                            />
 
-                              {/* ----- Student ----- */}
-                              <ProtectedRoute
-                                role="student"
-                                exact
-                                path="/student/newstudent"
-                                component={NewStudentReg}
-                              />
-                              <ProtectedRoute
-                                role="student"
-                                exact
-                                path="/student/studentmanagement"
-                                component={StudentManagement}
-                              />
+                            {/* ----- Student ----- */}
+                            <ProtectedRoute
+                              role="student"
+                              exact
+                              path="/student/newstudent"
+                              component={NewStudentReg}
+                            />
+                            <ProtectedRoute
+                              role="student"
+                              exact
+                              path="/student/studentmanagement"
+                              component={StudentManagement}
+                            />
 
-                              {/* Fallback for any unknown path */}
-                              <Route path="*" component={Homepage} />
-                            </Switch>
-                          </Suspense>
-                        </ErrorBoundary>
-                      )}
-                    />
-                  </Switch>
-                )}
-              </div>
-
+                            {/* Fallback for any unknown path */}
+                            <Route path="*" component={Homepage} />
+                          </Switch>
+                        </Suspense>
+                      </ErrorBoundary>
+                    )}
+                  />
+                </Switch>
+              )}
             </div>
+
           </div>
+
           <Footer />
         </div>
       </Router>

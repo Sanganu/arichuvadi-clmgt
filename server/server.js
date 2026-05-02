@@ -6,7 +6,7 @@ import session from 'express-session';
 import { db } from './config/connection.js';
 import passport from "./passport/index.js";
 import routes from "./routes/index.js";
-import auth from "./auth/index.js";
+// import auth from "./auth/index.js";
 import batchRoutes from "./routes/batch.js";
 import boardRoutes from "./routes/board.js";
 import studentRoutes from "./routes/student.js";
@@ -68,6 +68,7 @@ app.use("/auth", rateLimit({ windowMs: 15 * 60 * 1000, max: 20 }));
 
 // Express app & auth routes
 // app.use('/auth',auth);
+
 app.use(batchRoutes);
 app.use(boardRoutes);
 app.use(studentRoutes);

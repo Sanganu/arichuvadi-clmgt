@@ -30,13 +30,12 @@ class Allbatches extends Component {
     batchdet: {
       bid: '',
       batchdesc: '',
-      batchdetails: {
-        teacher: '',
-        teacher_id:'',
-        level: '',
-        course: '',
-        examDate: ''
-      }
+      teacher: '',
+      teacher_id: '',
+      level: '',
+      course: '',
+      examDate: ''
+
     }
   }
 
@@ -103,7 +102,7 @@ class Allbatches extends Component {
 
   getBatchDetails = (batchselected) => {
     //let bid = batchselected.bid;      
-    console.log("SELECTED BATCH", batchselected)
+    console.log("SELECTED BATCH---------------------", batchselected)
     this.setState({
       batchdet: batchselected,
       details: true,

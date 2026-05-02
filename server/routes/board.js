@@ -162,7 +162,7 @@ router.post("/api/board/logout", (req, res) => {
 
 router.get("/api/board/me", (req, res) => {
   if (!req.session.isAuthenticated) {
-    return res.status(401).json({ error: "Not logged in" });
+    return res.status(401).json({ error: "Not logged in, Please login!" });
   }
 
   res.json(req.session.user);

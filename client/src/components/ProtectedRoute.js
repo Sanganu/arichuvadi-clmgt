@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Loading from './Loading';
 
 /**
- * Role-aware route guard.
+ * Role based access - restricting control to different components based on board / student
  *
  * Props:
  *   role        string | string[]   Required role(s). Omit = auth-only.
@@ -25,6 +25,7 @@ import Loading from './Loading';
  *   3. Authenticated, wrong role → redirect to "/" (Homepage)
  *   4. Authenticated, role OK    → render the target component
  */
+
 class ProtectedRoute extends Component {
   resolveLoginPath = () => {
     const { role } = this.props;

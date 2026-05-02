@@ -22,14 +22,14 @@ import moment from "moment";
 
 class BatchInfo extends Component {
   state = {
-    bid: this.props.batchDetails?.bid || '',
-    bdesc: this.props.batchDetails?.batchdesc || '',
-    instructorID: this.props.batchDetails?.teacher_id ||"",
-    instructor: this.props.batchDetails?.teacher || '',
-    level: this.props.batchDetails?.level || '',
-    course: this.props.batchDetails?.course || '',
-    examdate: this.props.batchDetails?.examDate
-      ? moment(this.props.batchDetails.examDate).format('YYYY-MM-DD')
+    bid: this.props.batchdetails?.bid || '',
+    bdesc: this.props.batchdetails?.batchdesc || '',
+    instructorID: this.props.batchdetails?.teacher_id ||"",
+    instructor: this.props.batchdetails?.teacher || '',
+    level: this.props.batchdetails?.level || '',
+    course: this.props.batchdetails?.course || '',
+    examdate: this.props.batchdetails?.examDate
+      ? moment(this.props.batchdetails.examDate).format('YYYY-MM-DD')
       : '',
     students: '',
     studentrecs: [],
@@ -53,9 +53,9 @@ class BatchInfo extends Component {
 
 
   getUpdatedbatchDetails = () => {
-    console.log("=====Updated Batch Details======")
+    console.log("=====Updated Batch Details======",this.state.bid,this.props)
     const bid = this.state.bid;
-    if (!bid) return;
+    // if (!bid) return;
 
     BAPI.getBatchDetail(bid)
       .then((records) => {
@@ -87,19 +87,7 @@ class BatchInfo extends Component {
         })
       });
   }
-  // console.log("BatchInfo",batchDetails[0].classid)
-  // if (batchDetails[0].classid.length > 0) {
-
-  //   this.setState({ classrecs: batchDetails[0].classid })
-  //   console.log("Hello Class Records", this.state.classrecs)
-  // }
-  // // console.log("BatchInfo", batchDetails[0].students)
-  // if (batchDetails[0].students.length > 0) {
-
-  //   this.setState({ studentrecs: batchDetails[0].students })
-  //   console.log("Hello Student Records", this.state.studentrecs)
-  // }
-
+ 
 
   deleteStudent = (stdid) => {
     console.log("Student to be deleted", stdid, this.state.bid);

@@ -204,5 +204,78 @@ router.get("/api/students/batch/all", isLoggedIn, (req, res) => {
     });
 }); // Get all student details --implemented
 
+
+router.get("/api/student/me", (req, res) => {
+  if (!req.session.isAuthenticated) {
+    return res.status(401).json({ error: "Not logged in, Please login!" });
+  }
+
+  res.json(req.session.user);
+});
+
+
+router.post("/api/board/login", async (req, res) => {
+  try {
+    const { loginemail, password } = req.body;
+    console.log("POST LOGIN ROUTe",loginemail,password)
+
+    const studentDetails = await Student.findOne({ loginemail }).select(
+      "+password"
+    );
+    if (!studentDetails) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    if (
+      typeof password !== "string" ||
+      typeof studentDetails.password !== "string"
+    ) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    const isMatch = await bcrypt.compare(password, studentDetails.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    // ✅ Set session values
+    req.session.user = {
+      id: studentDetails._id,
+      loginemail: studentDetails.loginemail,
+      role: "student",
+      name:studentDetails.fullName
+    };
+
+    req.session.isAuthenticated = true;
+    console.log(req.session)
+
+    req.session.save((saveErr) => {
+      if (saveErr) {
+        console.error("Session save error:", saveErr);
+        return res.status(500).json({ error: "Session error" });
+      }
+
+      return res.json({
+        message: "Login successful",
+        name:studentDetails.fullName,
+        fname:studentDetails.fname,
+        lname:studentDetails.lname,
+        description:studentDetails.description,
+        designation:studentDetails.designation,
+        email:studentDetails.loginemail,
+        phone:studentDetails.phone,
+        zoomlink:studentDetails.zoomlink,
+        skypeId:studentDetails.skypeId,
+        _id:studentDetails._id
+      });
+    });
+
+  } catch (err) {
+    console.error("Login error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
 export default router;
 
