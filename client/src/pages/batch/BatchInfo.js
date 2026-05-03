@@ -68,12 +68,6 @@ class BatchInfo extends Component {
           return;
         }
         console.log("Batch Info Component did mount", records.data)
-        // this.setState(
-        //   {
-        //     instructor: batchDetails[0].teacher.fullName,
-        //     instructorID: batchDetails[0].teacher._id
-        //   })
-
         this.setState({
           instructor: instructorRec ? `${instructorRec.fullName}`.trim() : "Not Assigned",
           instructorID: instructorRec._id,
