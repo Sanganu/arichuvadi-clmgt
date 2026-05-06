@@ -38,7 +38,7 @@ const AddModal = (props) => {
               Close
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              Save Changes
+              Select {props.IdType}
             </Button>
           </Modal.Footer>
         </Modal>

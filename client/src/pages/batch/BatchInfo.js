@@ -9,21 +9,12 @@ import { Form, Table, Container, Row, Col } from "react-bootstrap";
 import Buttons from "../../components/Buttons";
 import moment from "moment";
 
-// import Addstudent from '../student//Addstudent.js';
-// import Allstudents from '../general/displayrecords';
-// import Allbatches from './DisplayallbatchDetails.js'; 
-// import StudentID from './StudentID.js';
-// import { ValidateEmail, ValidateName, CheckPassword, ValidatePhonenumber } from '../../util/Inputvalidations.js'
-// import API from "../../API/Board";
-// import MasterKey from "../../components/Masterkey";  
-// import MAPI from "../../API/Multi";
-
-
 
 class BatchInfo extends Component {
   state = {
     bid: this.props.batchdetails?.bid || '',
     bdesc: this.props.batchdetails?.batchdesc || '',
+    firstInstructor:this.props.batchdetails?.teacher || '',
     instructorID: this.props.batchdetails?.teacher_id || "",
     instructor: this.props.batchdetails?.teacher || '',
     level: this.props.batchdetails?.level || '',
@@ -35,7 +26,9 @@ class BatchInfo extends Component {
     studentrecs: [],
     classrecs: [],
     delstdid: '',
-    instructorList: []
+    instructorList: [],
+    statusMsg:"",
+    isDirty:false
   }// End of State
 
   handleInputChange = (event) => {
@@ -43,9 +36,11 @@ class BatchInfo extends Component {
     const value = target.value;
     const name = target.name;
     this.setState({
-      [name]: value 
+      [name]: value,
+      isDirty:true,
+      statusMsg:""
     });
-  } //End handle Input change
+    } //End handle Input change
 
   componentDidMount = () => {
     this.getUpdatedbatchDetails()
@@ -149,6 +144,7 @@ class BatchInfo extends Component {
     return BAPI.updateBatch(this.batchUpdatePayload(teacherExtras || null))
       .then((response) => {
         console.log("The response from update", response);
+        this.setState({isDirty : false, statusMsg:"Cohort Details Updated"})
         return response;
       })
       .catch((error) => {
@@ -230,7 +226,7 @@ class BatchInfo extends Component {
 
     if (!instructorId) return;
 
-    this.setState({ instructorID: instructorId }, () => {
+    this.setState({ instructorID: instructorId,isDirty:true }, () => {
       this.updateBatch(undefined, teacherModel ? { teacherModel } : null)
         .then(() => this.getUpdatedbatchDetails())
         .catch(() => {});
@@ -245,7 +241,8 @@ class BatchInfo extends Component {
     return (<Container>
       <Row className="m-2 p-2">
         <Col>
-          <h4 className="text-center">{this.state.instructor}'s {this.state.bdesc} Cohort</h4>
+          
+          <h4 className="text-center">{this.state.firstInstructor}'s Cohort</h4>
           <Form className="inputsection">
             <Form.Group controlId="formBasicText">
               <label className="has-float-label">Instructor </label>
@@ -258,7 +255,7 @@ class BatchInfo extends Component {
 
               <label className="has-float-label"
                 htmlFor="bdesc">
-                Batch Name </label>
+                Cohort Name </label>
               <input value={this.state.bdesc}
                 placeholder={this.state.bdesc}
                 name="bdesc"
@@ -321,8 +318,12 @@ class BatchInfo extends Component {
               passIdToMaster={this.handleNewStudent} />
           </Row>
           <Row className="m-2 p-2">
+         
             <Buttons
-              onButton={this.updateBatch}><i className="fa fa-edit fa-lg"></i>Update</Buttons>
+              onButton={this.updateBatch} 
+             variant= {this.state.isDirty ? "bg-danger":"bg-secondary"}>
+              <i className="fa fa-edit fa-lg "></i>Update</Buttons>
+             
           </Row>
           <Row className="m-2 p-2">
             <Buttons onButton={this.deleteBatch}><i className="fa fa-trash fa-lg"></i>Delete</Buttons>
