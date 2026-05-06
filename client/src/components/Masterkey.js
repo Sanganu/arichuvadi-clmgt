@@ -12,14 +12,18 @@ class Masterkey extends Component {
             InstructorID.getAllInstructors()
             .then((records) => {
                 const items = records.data || [];
-                const first = items[0];
-                const masterID = first?._id != null ? String(first._id) : "";
-                console.log("Master ID", masterID);
+                const matched =
+                  (this.props.Id != null &&
+                    this.props.Id !== "" &&
+                    items.find((x) => String(x._id) === String(this.props.Id))) ||
+                  items[0];
+                const masterID = matched?._id != null ? String(matched._id) : "";
+                console.log("Master ID", masterID,matched);
                 this.setState({ items, masterID }, () => {
-                    if (first && this.props.passMasterId) {
+                    if (matched && this.props.passMasterId) {
                         this.props.passMasterId({
                             id: masterID,
-                            teacherModel: first.teacherModel || "Boarddetails"
+                            teacherModel: matched.teacherModel || "Boarddetails"
                         });
                     }
                 });

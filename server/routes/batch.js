@@ -93,27 +93,56 @@ router.get("/api/board/batch/all", isLoggedIn, async (req, res) => {
 
   // Update Batch --implemented
 router.put("/api/board/batch/update", isLoggedIn, (req, res) => {
-     console.log("+++++++++++++++++++++++++++++++++++++++++")
-     console.log("=========The batch id: ",req.body,"================");
-    Batchdetails.updateOne(
-      { _id: req.body.batchid },
-      {
-        $set: {
-          batchdesc: req.body.batchdesc,
-          course: req.body.course,
-          level: req.body.level,
-          teacher: req.body.teacher.id,
-          examDate:req.body.examDate
-        }
-      }
-    ).then((data) => {
-      console.log("Updated Batch detils", data)
-      res.json(data)
-    }).catch((error) => {
+  const rawTeacher = req.body.teacher;
+  const teacherId =
+    rawTeacher &&
+    typeof rawTeacher === "object" &&
+    rawTeacher.id !== undefined &&
+    rawTeacher.id !== null
+      ? rawTeacher.id
+      : rawTeacher;
+
+  let teacherModel = req.body.teacherModel;
+  if (
+    !teacherModel &&
+    rawTeacher &&
+    typeof rawTeacher === "object" &&
+    rawTeacher.teacherModel
+  ) {
+    teacherModel =
+      rawTeacher.teacherModel === "Instructor" ? "Instructor" : "Boarddetails";
+  }
+
+  const $set = {
+    batchdesc: req.body.batchdesc,
+    course: req.body.course,
+    level: req.body.level,
+    teacher: teacherId,
+    examDate: req.body.examDate,
+  };
+  if (teacherModel === "Instructor" || teacherModel === "Boarddetails") {
+    $set.teacherModel = teacherModel;
+  }
+
+  console.log(
+    "========= batch update:",
+    req.body.batchid,
+    "teacher:",
+    teacherId,
+    "teacherModel:",
+    $set.teacherModel
+  );
+
+  Batchdetails.updateOne({ _id: req.body.batchid }, { $set })
+    .then((data) => {
+      console.log("Updated Batch details", data);
+      res.json(data);
+    })
+    .catch((error) => {
       console.log("Error", error);
-      res.json("Error in updating batch details", error)
+      res.json("Error in updating batch details", error);
     });
-  }); 
+});
 
 //trying this ----Delete student details from a batch-- v1 v2 -- working??
 router.put('/api/board/batch/student/delete/',isLoggedIn, (req, res) => {
