@@ -321,7 +321,7 @@ class BatchInfo extends Component {
          
             <Buttons
               onButton={this.updateBatch} 
-             variant= {this.state.isDirty ? "bg-danger":"bg-secondary"}>
+             className = {this.state.isDirty ? "is-dirty":""}>
               <i className="fa fa-edit fa-lg "></i>Update</Buttons>
              
           </Row>
@@ -387,12 +387,7 @@ class BatchInfo extends Component {
         </Col>
       </Row>
     </Container>
-    ) // End Return
-    // } // End if
-    // else {
-    //   console.log("-------------------BATCH INFO---------------------------------------------------------")
-    //   return <Homepage msg="Please Login" />
-    // }
+    ) 
   } // end of render
 } //end component
 

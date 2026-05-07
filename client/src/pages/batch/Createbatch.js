@@ -169,9 +169,7 @@ class Createbatch extends Component {
         }
 
         return (
-
             <div className="middlecontent">
-
                 <Form className="inputsection">
                     <h5 className="subhead">New Cohort</h5>
                     <h6 className="msg">{this.state.message}</h6>
