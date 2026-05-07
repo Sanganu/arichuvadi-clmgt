@@ -56,7 +56,8 @@ class Createbatch extends Component {
         //console.log('The Value in input change',value,name);
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errmsg:""
         });
     };
 
@@ -77,12 +78,17 @@ class Createbatch extends Component {
                     else {
                           console.log("************NEW BATCH++++++++++++",this.state)
 
+                                const instructorId =
+                                    this.state.instructor && typeof this.state.instructor === "object"
+                                        ? this.state.instructor.id
+                                        : this.state.instructor;
+
                                 let newbatchdetails =
                                     {
                                         batchdesc: this.state.batchdesc,
                                         course: this.state.course,
                                         level: this.state.level,
-                                        teacher: this.state.instructor.id,
+                                        teacher: instructorId,
                                         teacherModel: this.state.teacherModel,
                                         examDate:this.state.examdate
                                     }
