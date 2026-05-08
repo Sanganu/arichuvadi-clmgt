@@ -120,7 +120,10 @@ class Studentregistration extends Component {
                     .catch(error => {
                         // this.setState({ errmsg: "Student Email already exist" });
                         // console.log("Error!!!!", error)
-                        const message = error.response?.data?.message || "Something went wrong";
+                        const message =
+                            error.response?.data?.error ||
+                            error.response?.data?.message ||
+                            "Something went wrong";
                         this.setState({ errmsg: message });
                     }); // End of axios
             } else {

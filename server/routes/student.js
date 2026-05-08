@@ -1,6 +1,8 @@
 import { Router } from "express";
 const router = Router()
 import Students from "../models/Students.js";
+import Batchdetails from "../models/BatchDetails.js";
+import bcrypt from "bcrypt";
 
 
 const isLoggedIn = (req, res, next) => {
@@ -43,6 +45,13 @@ router.post("/api/student/new", (req, res) => {
       res.status(200).json(insertedstudent);
     }).catch(function (err) {
       console.log("error in student batch", err)
+      if (err.name === "ValidationError") {
+        const messages = Object.values(err.errors || {}).map((fieldError) => fieldError.message);
+        return res.status(400).json({
+          error: messages.join(" "),
+          details: err.errors
+        });
+      }
       if (err.errmsg) {
         if ((err.errmsg).substr(0, 6) === 'E11000') {
           console.log("Student Login - already exist");
@@ -214,12 +223,12 @@ router.get("/api/student/me", (req, res) => {
 });
 
 
-router.post("/api/board/login", async (req, res) => {
+router.post("/api/student/login", async (req, res) => {
   try {
     const { loginemail, password } = req.body;
-    console.log("POST LOGIN ROUTe",loginemail,password)
+    console.log("POST STUDENT LOGIN ROUTE", loginemail);
 
-    const studentDetails = await Student.findOne({ loginemail }).select(
+    const studentDetails = await Students.findOne({ loginemail: loginemail?.toLowerCase() }).select(
       "+password"
     );
     if (!studentDetails) {
@@ -255,19 +264,32 @@ router.post("/api/board/login", async (req, res) => {
         return res.status(500).json({ error: "Session error" });
       }
 
-      return res.json({
-        message: "Login successful",
-        name:studentDetails.fullName,
-        fname:studentDetails.fname,
-        lname:studentDetails.lname,
-        description:studentDetails.description,
-        designation:studentDetails.designation,
-        email:studentDetails.loginemail,
-        phone:studentDetails.phone,
-        zoomlink:studentDetails.zoomlink,
-        skypeId:studentDetails.skypeId,
-        _id:studentDetails._id
-      });
+      Promise.resolve(studentDetails.batchid ? Batchdetails.findById(studentDetails.batchid)
+        .populate({ path: "classid", select: "homework lessoncovered classdate" }) : null)
+        .then((batch) => {
+          const studentrecord = {
+            stdid: studentDetails._id,
+            fname: studentDetails.studentfname,
+            lname: studentDetails.studentlname,
+            parent: studentDetails.parentname_1,
+            phone: studentDetails.parentphonenumber_1,
+            email: studentDetails.loginemail,
+            batch: batch?.batchdesc || "Student not enrolled in any batch contact Teacher",
+            subject: batch?.course || "Please contact Board members",
+            level: batch?.level || "N/A",
+            teacher: batch?.teacher || "N/A"
+          };
+
+          return res.json({
+            message: "Login successful",
+            studentrecord,
+            classes: batch?.classid || [{ homework: "Please contact Board members.", lessoncovered: "for Batch Enrollment" }]
+          });
+        })
+        .catch((detailsErr) => {
+          console.error("Student login detail fetch error:", detailsErr);
+          return res.status(500).json({ error: "Unable to load student details" });
+        });
     });
 
   } catch (err) {
