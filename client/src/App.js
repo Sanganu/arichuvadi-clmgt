@@ -21,7 +21,7 @@ import "./bootstrap.css";
 // LAzy loading
 
 const Allbatches = lazy(() => import("./pages/batch/Displayallbatchdetails"));
-const Search = lazy(() => "./pages/general/Search");
+const Search = lazy(() => import("./pages/general/Search"));
 const Alumni = lazy(() => import("./pages/general/Alumni"));
 const Updateteacher = lazy(() => import("./pages/instructor/Updateinstructor"));
 const Instructormanagement = lazy(() => import("./pages/instructor/Instructormanagement"));
@@ -98,11 +98,13 @@ class App extends Component {
               {!bootstrapped ? (
                 <Loading testid="auth-bootstrapping" />
               ) : (
+                <Suspense fallback={<Loading testid="route-loading" />}>
                 <Switch>
                   {/* ====== PUBLIC routes  ====== */}
                   <Route exact path="/" component={Homepage} />
                   <Route exact path="/board/login" component={Boardmember} />
                   <Route exact path="/student/loginpg" component={Studentlogin} />
+                  <Route exact path="/student/newstudent" component={NewStudentReg} />
                   <Route exact path="/ourteam" component={Ourteam} />
                   <Route exact path="/alumni" component={Alumni} />
 
@@ -170,12 +172,6 @@ class App extends Component {
                             <ProtectedRoute
                               role="student"
                               exact
-                              path="/student/newstudent"
-                              component={NewStudentReg}
-                            />
-                            <ProtectedRoute
-                              role="student"
-                              exact
                               path="/student/studentmanagement"
                               component={StudentManagement}
                             />
@@ -188,6 +184,7 @@ class App extends Component {
                     )}
                   />
                 </Switch>
+                </Suspense>
               )}
             </div>
 
