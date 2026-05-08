@@ -57,7 +57,8 @@ class Createbatch extends Component {
 
         this.setState({
             [name]: value,
-            errmsg:""
+            errmsg:"",
+            message:""
         });
     };
 

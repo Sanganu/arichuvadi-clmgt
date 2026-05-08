@@ -309,32 +309,26 @@ class BatchInfo extends Component {
               Value={this.state.instructor}
               passIdToMaster={this.handleChangeInstructor} />
           </Row>
-
           <Row className="m-2 p-2">
-
+            <Buttons
+              onButton={this.updateBatch} 
+             className = {this.state.isDirty ? "is-dirty":""}>
+              <i className="fa fa-edit fa-lg "></i>Update</Buttons>
+          </Row>
+          <Row className="m-2 p-2">
+            <Buttons onButton={this.deleteBatch}><i className="fa fa-trash fa-lg"></i>Delete</Buttons>
+          </Row>
+          <Row className="m-2 p-2">
             <Modal
               Title="Add Registered students"
               IdType="students"
               passIdToMaster={this.handleNewStudent} />
           </Row>
-          <Row className="m-2 p-2">
-         
-            <Buttons
-              onButton={this.updateBatch} 
-             className = {this.state.isDirty ? "is-dirty":""}>
-              <i className="fa fa-edit fa-lg "></i>Update</Buttons>
-             
-          </Row>
-          <Row className="m-2 p-2">
-            <Buttons onButton={this.deleteBatch}><i className="fa fa-trash fa-lg"></i>Delete</Buttons>
-          </Row>
-
         </Col>
       </Row>
       <Row className="m-2 p-2">
         <Col lg={true} sm={12}>
           <div className="table-responsive">
-
             <h4 className="text-center">Students in this Cohort</h4>
             <Table responsive striped bordered hover variant="dark" >
               <thead>
@@ -382,7 +376,7 @@ class BatchInfo extends Component {
 
         <Col>
           <h5>Add Class Details</h5>
-          <BatchAddClassDetails batchdet={this.props.batchDetails}
+          <BatchAddClassDetails batchdet={this.props.batchdetails}
             newClassDetails={this.handleClassDetails} />
         </Col>
       </Row>

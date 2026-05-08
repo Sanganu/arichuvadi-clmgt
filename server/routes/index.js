@@ -305,7 +305,7 @@ router.delete("/api/board/batch/delete/:batchid", isLoggedIn, (req, res) => {
   }
   else {
     console.log("The result-n", result);
-    const respdelclass = Classdetails.deleteMany({ batch: req.body.batchid }).exec();
+    const respdelclass = Classdetails.deleteMany({ batch: req.params.batchid }).exec();
     if (respdelclass.n === 0) {
       console.log("Error", error);
       res.status(404).error({ "Error": "Error in deleting class" + errror })

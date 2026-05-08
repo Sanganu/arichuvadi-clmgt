@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
-import axios from './API/axios';
+import axios from 'axios';
 
 import { loginCredentials, authBootstrapped } from "./reduxAction/dispatchLoginCredentials";
 //Critical components needed as soon as page loads
@@ -37,46 +37,50 @@ const Ourteam = lazy(() => import("../src/pages/general/Ourteam"));
 
 
 
-const RouteFallback = () => (<>
-  <div className="middlecontent">
-    <h5>Loading........</h5>
-  </div>
-</>)
-
-const Bootstrapping = () => (<>
-  <div className="middlecontent">
-    <h5>Authenticating........</h5>
-  </div>
-</>)
-
 class App extends Component {
   componentDidMount() {
     this.bootstrapAuth()
   }
   bootstrapAuth = () => {
-    axios.get('/api/board/me')
+    const authProbe = axios.create({
+      withCredentials: true,
+      validateStatus: (status) => status < 500
+    });
+
+    authProbe.get('/api/board/me')
       .then((res) => {
+        if (res.status !== 200) {
+          return authProbe.get('/api/student/me');
+        }
+
         this.props.setCredentials({
           loginemail: res.data.loginemail || '',
           userid: res.data.id || '',
           userfname: res.data.name || '',
           userlname: '',
           usertype: 'management',
-          invaid: false
+          invalid: false
+        });
+        return null;
+      }).then((reply) => {
+        if (!reply) return;
+
+        if (reply.status !== 200) {
+          this.props.markBootstrapped();
+          return;
+        }
+
+        console.log("RESPONSE - auth stu/boar", reply);
+        this.props.setCredentials({
+          loginemail: reply.data.loginemail || '',
+          userid: reply.data.id || reply.data._id || '',
+          userfname: reply.data.studentfname || reply.data.fname || reply.data.name || '',
+          userlname: reply.data.studentlname || reply.data.lname || '',
+          usertype: reply.data.role || '',
+          invalid: false
         });
       }).catch(() => {
-        axios.get('/api/student/me')
-          .then((reply) => {
-            console.log("RESPONSE - auth stu/boar",reply)
-              this.props.setCredentials({
-                loginemail: reply.userdata.loginemail || '',
-                userid: reply.userdata._id || '',
-                userfname: reply.userdata.studentfname || reply.userdata.fname || '',
-                userlname: reply.userdata.studentlname || reply.userdata.lname || '',
-                usertype: reply.usertype || '',
-                invalid: false
-              })
-          }).catch(err => this.props.markBootstrapped());
+        this.props.markBootstrapped();
       })
   }
   render() {
@@ -95,7 +99,7 @@ class App extends Component {
                 <Loading testid="auth-bootstrapping" />
               ) : (
                 <Switch>
-                  {/* ====== PUBLIC routes (eager) ====== */}
+                  {/* ====== PUBLIC routes  ====== */}
                   <Route exact path="/" component={Homepage} />
                   <Route exact path="/board/login" component={Boardmember} />
                   <Route exact path="/student/loginpg" component={Studentlogin} />
@@ -129,7 +133,7 @@ class App extends Component {
                               role="management"
                               exact
                               path="/board/allbatch/:displayall"
-                              render={(p) => <Allbatches {...p} displayall="true" />}
+                              render={(p) => <Allbatches key={p.location.key} {...p} displayall="true" />}
                             />
                             <ProtectedRoute
                               role="management"

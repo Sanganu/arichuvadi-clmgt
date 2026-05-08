@@ -14,8 +14,8 @@ const isLoggedIn = (req, res, next) => {
     return res.status(401).json({ error: "Not authenticated" });
   }
 
-  if (role !== "student") {
-    console.log("Login is not a student");
+  if (role !== "student" && role !== "board" && role !== "management") {
+    console.log("Login is not allowed to access student records");
     return res.status(403).json({ error: "Forbidden" });
   }
 

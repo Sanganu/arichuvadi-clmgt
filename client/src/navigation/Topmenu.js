@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class Topmenu extends Component {
     logoutapp = () => {
-        axios.post("/auth/logout")
+        axios.post("/api/board/logout")
         .then((response)=> {
           console.log("Response from logout",response);
           window.location = "/";

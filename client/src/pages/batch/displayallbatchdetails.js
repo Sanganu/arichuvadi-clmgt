@@ -16,7 +16,7 @@ class Allbatches extends Component {
     recsubj: '',
     reclevel: '',
     recrate: '',
-    allbatches: this.props.displayall || this.props.location.displayall || true,
+    allbatches: this.props.displayall || this.props.location?.displayall || true,
     sbatchid: '',
     sbdesc: '',
     srate: '',
@@ -41,11 +41,26 @@ class Allbatches extends Component {
 
   componentDidMount = () => {
     console.log("displayallbatchdetails -- component before axios call", this.props);
-    let batchrecords = this.state.batchrecords;
+    this.loadBatches();
+  } // end component did mount
+
+  componentDidUpdate = (prevProps) => {
+    if (
+      prevProps.location?.key !== this.props.location?.key &&
+      this.props.match?.params?.displayall === "alltrue"
+    ) {
+      this.showAllBatches();
+    }
+  }
+
+
+
+  loadBatches = () => {
     if (this.props.usertype === "management") {
       API.getAllBatch()
         .then(response => {
           //console.log("The Batch Details of  - axios call", response.data);
+          let batchrecords = [];
           if (response.data.length > 0) {
             for (let i = 0; i < response.data.length; i++) {
               // console.log("Records", response.data[i]._id, response.data[i].batchdesc, response.data[i].level, response.data[i].teacher);
@@ -88,16 +103,15 @@ class Allbatches extends Component {
       console.log("Console error", this.props.usertype, "----------------------------")
       return (<Homepage msg="Please Login" />);
     }
-  } // end component did mount
+  }
 
-
-  componentWillReceiveProps = (nextprops) => {
-    // console.log("NextProps",nextprops)
-    const { displayall } = this.props.match.params
-
-    if (displayall === "alltrue") {
-      this.setState({ allbatches: true }, () => console.log("state allbatches", this.setdisplayall.displayall))
-    }
+  showAllBatches = () => {
+    this.setState({
+      details: false,
+      allbatches: true,
+      batchSelected: false
+    });
+    this.loadBatches();
   }
 
   getBatchDetails = (batchselected) => {
@@ -121,8 +135,18 @@ class Allbatches extends Component {
         });
         this.setState({
           batchrecords: batchrecords,
-          allbatches: batchrecords.length > 0
-        });
+          allbatches: batchrecords.length > 0,
+          batchSelected: false,
+          batchdet: {
+            bid: '',
+            batchdesc: '',
+            teacher: '',
+            teacher_id: '',
+            level: '',
+            course: '',
+            examDate: ''
+         }
+       });
       })
   }
 
