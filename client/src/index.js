@@ -9,7 +9,6 @@ import './index.css';
 import App from './App';
 import './API/axios';
 import loginReducer from './reduxReducers/loginReducer';
-// import store from "./store";
 
 // --- 1. preload state from localStorage (sync, runs before App mounts)
 const STORAGE_KEY = 'arichuvadi_auth';

@@ -72,7 +72,7 @@ router.post("/api/student/new", (req, res) => {
 
 // Get All Student Details -- implemented
 router.get("/api/students/all", isLoggedIn, (req, res) => {
-  console.log("Check Session - teacher login", req.session.passport.user.user.userdata._id);
+  console.log("Check Session - student list", req.session.user?.id);
   Students
     .find()
     .then((data) => {
@@ -197,7 +197,6 @@ router.delete('/api/student/delete/:id', isLoggedIn, (req, res) => {
 
 // Get All Student Details -- implemented
 router.get("/api/students/batch/all", isLoggedIn, (req, res) => {
-  //console.log("Check Session - teacher login",req.session.passport.user.user.userdata._id);
   Students.find({})
     .populate({
       path: 'batchid',

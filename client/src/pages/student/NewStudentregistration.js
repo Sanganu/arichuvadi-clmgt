@@ -22,6 +22,7 @@ class Studentregistration extends Component {
         course_enrolled: "Written",
         errmsg: '',
     }
+    
     handleInputChange = (event) => {
         this.setState({ errmsg: "" })
         const target = event.target;

@@ -4,17 +4,13 @@ import path from "path";
 import morgan from 'morgan';
 import session from 'express-session';
 import { db } from './config/connection.js';
-import passport from "./passport/index.js";
 import routes from "./routes/index.js";
-// import auth from "./auth/index.js";
 import batchRoutes from "./routes/batch.js";
 import boardRoutes from "./routes/board.js";
 import studentRoutes from "./routes/student.js";
-//import teacherRoutes from "./routes/teacher.js"
 import MongoStore from "connect-mongo";
 import helmet from "helmet";
 import cors from "cors";
-import rateLimit from "express-rate-limit";
 
 
 await db();
@@ -55,25 +51,14 @@ app.use(
     }
   })
 );
-// Passport setup
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.set("trust proxy", 1);                // behind Heroku/Render/NGINX
 app.use(helmet());
 app.use(cors({ origin: process.env.CLIENT_ORIGIN, credentials: true }));
-
-// Throttle auth endpoints specifically
-app.use("/auth", rateLimit({ windowMs: 15 * 60 * 1000, max: 20 }));
-
-// Express app & auth routes
-// app.use('/auth',auth);
 
 app.use(batchRoutes);
 app.use(boardRoutes);
 app.use(studentRoutes);
 app.use(routes);
-//app.use(teacherRoutes)
 
 //Production environment
 

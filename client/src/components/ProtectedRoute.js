@@ -17,7 +17,7 @@ import Loading from './Loading';
  * Redux state consumed (from loginReducer):
  *   invalid       boolean   true = not authenticated
  *   usertype      string    e.g. "management" | "student"
- *   bootstrapped  boolean   true after App's /api/board/me + /auth probe finished
+ *   bootstrapped  boolean   true after App's session probe finished
  *
  * Behaviour:
  *   1. Bootstrap in flight       → render <Loading />  (avoids a flash-redirect)

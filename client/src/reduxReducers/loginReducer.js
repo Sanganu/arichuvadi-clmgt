@@ -5,7 +5,7 @@ const initState = {
   userfname: "",
   userlname: "",
   invalid: true,
-  bootstrapped: false,   // NEW: have we tried /auth/me yet?
+  bootstrapped: false,
 };
 
 const loginReducer = (state = initState, action) => {

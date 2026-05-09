@@ -91,7 +91,7 @@ router.post('/api/board/batch/student/new', isLoggedIn, function (req, res) {
 router.get('/api/batch/student/class/details/:bid', isLoggedIn, (req, res) => {
   let batchid = req.params.bid;
   let studentrecords = [];
-  console.log("The Session data ", req.session.passport.user, req.session.passport.user.user.userdata._id);
+  console.log("The Session data ", req.session.user);
 
   Studentdetails.find({
     batchid: batchid
