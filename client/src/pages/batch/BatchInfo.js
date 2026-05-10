@@ -14,7 +14,7 @@ class BatchInfo extends Component {
   state = {
     bid: this.props.batchdetails?.bid || '',
     bdesc: this.props.batchdetails?.batchdesc || '',
-    firstInstructor:this.props.batchdetails?.teacher || '',
+    firstInstructor: this.props.batchdetails?.teacher || '',
     instructorID: this.props.batchdetails?.teacher_id || "",
     instructor: this.props.batchdetails?.teacher || '',
     level: this.props.batchdetails?.level || '',
@@ -27,8 +27,8 @@ class BatchInfo extends Component {
     classrecs: [],
     delstdid: '',
     instructorList: [],
-    statusMsg:"",
-    isDirty:false
+    statusMsg: "",
+    isDirty: false
   }// End of State
 
   handleInputChange = (event) => {
@@ -37,10 +37,10 @@ class BatchInfo extends Component {
     const name = target.name;
     this.setState({
       [name]: value,
-      isDirty:true,
-      statusMsg:""
+      isDirty: true,
+      statusMsg: ""
     });
-    } //End handle Input change
+  } //End handle Input change
 
   componentDidMount = () => {
     this.getUpdatedbatchDetails()
@@ -64,19 +64,19 @@ class BatchInfo extends Component {
         const instructorRec = batch.teacher;
         const instructorName =
           instructorRec &&
-          typeof instructorRec === "object" &&
-          (instructorRec.fname || instructorRec.lname)
+            typeof instructorRec === "object" &&
+            (instructorRec.fname || instructorRec.lname)
             ? `${instructorRec.fname || ""} ${instructorRec.lname || ""}`.trim()
             : "";
-
+        const resolvedName = instructorName ||
+          (typeof instructorRec === "object" && instructorRec?.fullName
+            ? `${instructorRec.fullName}`.trim()
+            : "Not Assigned")
         this.setState({
-          instructor:
-            instructorName ||
-            (typeof instructorRec === "object" && instructorRec?.fullName
-              ? `${instructorRec.fullName}`.trim()
-              : "Not Assigned"),
+          instructor: resolvedName,
+          firstInstructor: resolvedName,
           instructorID:
-            instructorRec && typeof instructorRec === "object" && instructorRec._id != null
+            instructorRec && typeof instructorRec === "object" && instructorRec._id !== null
               ? String(instructorRec._id)
               : this.state.instructorID,
           classrecs: Array.isArray(batch.classid) ? batch.classid : [],
@@ -144,7 +144,7 @@ class BatchInfo extends Component {
     return BAPI.updateBatch(this.batchUpdatePayload(teacherExtras || null))
       .then((response) => {
         console.log("The response from update", response);
-        this.setState({isDirty : false, statusMsg:"Cohort Details Updated"})
+        this.setState({ isDirty: false, statusMsg: "Cohort Details Updated" })
         return response;
       })
       .catch((error) => {
@@ -162,18 +162,12 @@ class BatchInfo extends Component {
   };
 
   //Batch delete
-  deleteBatch = (event) => {
-    event.preventDefault();
-    console.log("Delete  batch id", this.state.bid)
-    BAPI.deleteBatch(this.state.bid)
-      .then((response) => {
-        console.log("Batch deleted", response);
+deleteBatch = (event) => {
+    if (event && event.preventDefault) event.preventDefault();
+    if (!this.state.bid) return;
+    if (typeof this.props.deleteBatch === "function") {
         this.props.deleteBatch(this.state.bid);
-      })
-      .catch(error => {
-        console.log("Error in deleting Batch records: ", error);
-
-      })
+    }
   } //End of delete batch
 
 
@@ -215,34 +209,49 @@ class BatchInfo extends Component {
   handleChangeInstructor = (payload) => {
     let instructorId = "";
     let teacherModel;
+    let instructorName = "";
 
     if (payload && typeof payload === "object" && payload.id != null) {
       instructorId = String(payload.id).trim();
+      instructorName = payload.name || "";
       teacherModel =
         payload.teacherModel === "Instructor" ? "Instructor" : "Boarddetails";
-    } else if (payload != null && payload !== "") {
+    } else if (payload !== null && payload !== "") {
       instructorId = String(payload).trim();
     }
 
     if (!instructorId) return;
 
-    this.setState({ instructorID: instructorId,isDirty:true }, () => {
+    this.setState({
+      instructorID: instructorId,
+      instructor: instructorName || this.state.instructor,
+      firstInstructor: instructorName || this.state.firstInstructor,
+      isDirty: true
+    }, () => {
       this.updateBatch(undefined, teacherModel ? { teacherModel } : null)
         .then(() => this.getUpdatedbatchDetails())
-        .catch(() => {});
+        .catch(() => { });
     });
   };
 
 
   render() {
     const studentrec = this.state.studentrecs;
-    console.log(this.props, "++++++++")
     //if (this.props.usertype === "management ") {
     return (<Container>
       <Row className="m-2 p-2">
         <Col>
-          
           <h4 className="text-center">{this.state.firstInstructor}'s Cohort</h4>
+          {this.state.statusMsg && (
+            <div className={`alert ${this.state.isDirty ? "alert-warning" : "alert-success"} py-2 text-center`}>
+              {this.state.statusMsg}
+            </div>
+          )}
+          {this.state.isDirty && !this.state.statusMsg && (
+            <div className="alert alert-warning py-2 text-center">
+              Unsaved changes — click <strong>Update</strong> to save.
+            </div>
+          )}
           <Form className="inputsection">
             <Form.Group controlId="formBasicText">
               <label className="has-float-label">Instructor </label>
@@ -311,8 +320,8 @@ class BatchInfo extends Component {
           </Row>
           <Row className="m-2 p-2">
             <Buttons
-              onButton={this.updateBatch} 
-             className = {this.state.isDirty ? "is-dirty":""}>
+              onButton={this.updateBatch}
+              className={this.state.isDirty ? "is-dirty" : ""}>
               <i className="fa fa-edit fa-lg "></i>Update</Buttons>
           </Row>
           <Row className="m-2 p-2">
@@ -381,7 +390,7 @@ class BatchInfo extends Component {
         </Col>
       </Row>
     </Container>
-    ) 
+    )
   } // end of render
 } //end component
 

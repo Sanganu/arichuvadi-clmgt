@@ -90,8 +90,9 @@ class Studentregistration extends Component {
                     parentphonenumber_1: this.state.parentphonenumber_1,
                     parentphonenumber_2: this.state.parentphonenumber_2,
                     grade_completed: this.state.grade_completed,
-                    course_completed: this.state.course_completed,
-                    grade_enrolled: this.state.grade_enrolled
+                    course_completed: this.state.course_completed||"",
+                    grade_enrolled: this.state.grade_enrolled||"",
+                    course_enrolled:this.state.course_enrolled || ""
                 }
 
                 console.log("NEW STUDENT", newstudent)

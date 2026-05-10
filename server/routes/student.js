@@ -264,8 +264,14 @@ router.post("/api/student/login", async (req, res) => {
       }
 
       Promise.resolve(studentDetails.batchid ? Batchdetails.findById(studentDetails.batchid)
+        .populate("teacher")
         .populate({ path: "classid", select: "homework lessoncovered classdate" }) : null)
         .then((batch) => {
+          const teacherName =
+            batch?.teacher && typeof batch.teacher === "object"
+              ? `${batch.teacher.fname || ""} ${batch.teacher.lname || ""}`.trim()
+              : "";
+
           const studentrecord = {
             stdid: studentDetails._id,
             fname: studentDetails.studentfname,
@@ -276,7 +282,7 @@ router.post("/api/student/login", async (req, res) => {
             batch: batch?.batchdesc || "Student not enrolled in any batch contact Teacher",
             subject: batch?.course || "Please contact Board members",
             level: batch?.level || "N/A",
-            teacher: batch?.teacher || "N/A"
+            teacher: teacherName || "N/A"
           };
 
           return res.json({

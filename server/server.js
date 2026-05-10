@@ -1,36 +1,43 @@
 import { fileURLToPath } from "url";
 import express from "express";
 import path from "path";
-import morgan from 'morgan';
-import session from 'express-session';
-import { db } from './config/connection.js';
+import morgan from "morgan";
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import helmet from "helmet";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
+
+import { db } from "./config/connection.js";
 import routes from "./routes/index.js";
 import batchRoutes from "./routes/batch.js";
 import boardRoutes from "./routes/board.js";
 import studentRoutes from "./routes/student.js";
-import MongoStore from "connect-mongo";
-import helmet from "helmet";
-import cors from "cors";
-import rateLimit from 'express-rate-limit';
 
 const PORT = process.env.PORT || 5000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 async function main() {
   await db();
+
   const app = express();
-  app.set("trust proxy", 1);                // behind Heroku/Render/NGINX
+  const isProd = process.env.NODE_ENV === "production";
+
+  // Trust proxy MUST be set BEFORE session middleware so secure cookies
+  // work behind Heroku/Render/NGINX.
+  app.set("trust proxy", 1);
+
   app.use(helmet());
 
-  // Configure
+  // Body parsers
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-
-  //Client in production
-  if (process.env.NODE_ENV === "production" && !process.env.CLIENT_ORIGIN) {
-    console.warn("Client is not set; cross-origin SPA(React) calls will fail.");
+  // CORS — single mount; fails noisily if origin is missing in prod.
+  if (isProd && !process.env.CLIENT_ORIGIN) {
+    console.warn("⚠️  CLIENT_ORIGIN is not set — cross-origin SPA calls will fail.");
   }
   app.use(
     cors({
@@ -39,12 +46,9 @@ async function main() {
     })
   );
 
-  //Middleware - Logger
-  app.use(morgan('dev'))
+  app.use(morgan("dev"));
 
-
-  // Express session
-  const isProd = process.env.NODE_ENV === "production";
+  // Sessions stored in MongoDB
   app.use(
     session({
       name: "board.sid",
@@ -53,49 +57,62 @@ async function main() {
       saveUninitialized: false,
       store: new MongoStore({
         mongoUrl: process.env.MONGODB_URI,
-        collectionName: "sessions"
+        collectionName: "sessions",
       }),
       cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.isProd ? "none" : "lax",
-        maxAge: 4 * 60 * 60 * 1000 // 4 hours
-      }
+        secure: isProd,
+        sameSite: isProd ? "none" : "lax",          // ← fixed: was process.env.isProd
+        maxAge: 4 * 60 * 60 * 1000, // 4 hours
+      },
     })
   );
 
-  app.use(cors({ origin: process.env.CLIENT_ORIGIN, credentials: true }));
+  // Rate-limit the actual auth endpoints
+  const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 20,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: "Too many attempts. Please try again later." },
+  });
+  app.use(
+    ["/api/board/login", "/api/student/login", "/api/board/new"],
+    authLimiter
+  );
 
+  // Routes
   app.use(batchRoutes);
   app.use(boardRoutes);
   app.use(studentRoutes);
   app.use(routes);
 
-  //Production environment
-
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, "../client/build")))
-
+  // Static SPA in production
+  if (isProd) {
+    app.use(express.static(path.join(__dirname, "../client/build")));
     app.get("/*", (_req, res) =>
-      res.sendFile(path.join(__dirname, "../client/build/index.html")))
+      res.sendFile(path.join(__dirname, "../client/build/index.html"))
+    );
   }
 
-  // ====== Error
-  app.use(function (err, req, res, next) {
-    console.log('====== ERROR =======')
-    console.error(err.stack)
-    res.status(500)
-  })
-
-  // Start the API server 
-  app.listen(PORT, function () {
-    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-
+  // Centralized error handler — actually sends a response
+  app.use((err, req, res, _next) => {
+    console.error("====== ERROR =======");
+    console.error(err.stack || err);
+    if (err.name === "ValidationError") {
+      return res.status(400).json({ error: err.message, details: err.errors });
+    }
+    res.status(err.status || 500).json({
+      error: isProd ? "Internal server error" : err.message || "Server error",
+    });
   });
 
+  app.listen(PORT, () => {
+    console.log(`🌎  API listening on PORT ${PORT}`);
+  });
 }
 
 main().catch((err) => {
-  console.error("Error starting API server", err);
-  process.exit(1)
-})
+  console.error("Fatal startup error:", err);
+  process.exit(1);
+});

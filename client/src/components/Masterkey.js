@@ -23,7 +23,8 @@ class Masterkey extends Component {
                     if (matched && this.props.passMasterId) {
                         this.props.passMasterId({
                             id: masterID,
-                            teacherModel: matched.teacherModel || "Boarddetails"
+                            teacherModel: matched.teacherModel || "Boarddetails",
+                            name:matched.Fullname || ""
                         });
                     }
                 });
@@ -44,7 +45,7 @@ class Masterkey extends Component {
                         this.props.passMasterId(String(first._id));
                     }
                 });
-            })
+            }) 
             .catch((err) => {
                 console.error("getAllStudentId failed", err);
                 this.setState({ items: [], masterID: "" });
@@ -68,7 +69,8 @@ class Masterkey extends Component {
             const rec = this.state.items.find((x) => String(x._id) === String(value));
             this.props.passMasterId({
                 id: value,
-                teacherModel: rec?.teacherModel || "Boarddetails"
+                teacherModel: rec?.teacherModel || "Boarddetails",
+                name: rec?.Fullname || display || ""
             });
         } else {
             this.props.passMasterId(value);
