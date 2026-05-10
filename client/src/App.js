@@ -18,7 +18,7 @@ import Boardmember from "./pages/board/Boardmember";
 import Studentlogin from "./pages/student/Studentlogin";
 import "./bootstrap.css";
 
-// LAzy loading
+
 
 const Allbatches = lazy(() => import("./pages/batch/Displayallbatchdetails"));
 const Search = lazy(() => import("./pages/general/Search"));
@@ -207,3 +207,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+

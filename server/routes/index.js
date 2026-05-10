@@ -317,3 +317,4 @@ router.delete("/api/board/batch/delete/:batchid", isLoggedIn, (req, res) => {
 });
 
 export default router;
+ 

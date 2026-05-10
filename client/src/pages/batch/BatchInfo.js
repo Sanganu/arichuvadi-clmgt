@@ -321,7 +321,7 @@ class BatchInfo extends Component {
           <Row className="m-2 p-2">
             <Modal
               Title="Add Registered students"
-              IdType="students"
+              IdType="student"
               passIdToMaster={this.handleNewStudent} />
           </Row>
         </Col>

@@ -33,7 +33,7 @@ class Masterkey extends Component {
                 this.setState({ items: [], masterID: "" });
             });
         }
-        else if(this.props.IdType === "students"){
+        else if(this.props.IdType === "student"){
             StudentID.getAllStudentId()
             .then((records) => {
                 const items = records.data || [];
