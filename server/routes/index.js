@@ -22,7 +22,6 @@ router.post("/api/board/batch/student/new", onlyBoard, async (req, res, next) =>
       batchid: req.body.batchid,
       parentphonenumber_1:
         req.body.parentphonenumber || req.body.parentphonenumber_1,
-        parentphonenumber_2:req.bodu.parentphonenumber_2 || "",
       grade_completed: req.body.levelcompleted || "",
       grade_enrolled: req.body.levelrequested || "",
       course_completed: req.body.course_completed || "",
