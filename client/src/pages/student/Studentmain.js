@@ -30,7 +30,7 @@ class Studentmain extends Component
      };
 
      logoutapp = () => {
-      axios.post("/auth/logout")
+      axios.post("/api/board/logout")
       .then((response)=> {
         console.log("Response from logout",response);
         window.location = "/";

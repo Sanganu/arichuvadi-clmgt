@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class Topmenu extends Component {
     logoutapp = () => {
-        axios.post("/auth/logout")
+        axios.post("/api/board/logout")
         .then((response)=> {
           console.log("Response from logout",response);
           window.location = "/";
@@ -26,7 +26,7 @@ class Topmenu extends Component {
                               
                               <li  className = "list-group-item"><Link to = '/board/allbatch/alltrue' className  = 'sidemenulink' ><i className="fa fa-th fa-2x"></i><p>Cohort Management</p></Link></li>
                          
-                              <li  className = "list-group-item"><Link to = '/board/dashboard' className  = 'sidemenulink' ><i className="fa  icon-dashboard fa-2x"></i><p>Dashboard</p></Link></li>
+                              {/* <li  className = "list-group-item"><Link to = '/board/dashboard' className  = 'sidemenulink' ><i className="fa  icon-dashboard fa-2x"></i><p>Dashboard</p></Link></li> */}
                          
                               <li  className = "list-group-item"><Link to = '/board/createbatch' className = 'sidemenulink'><i  className="fa fa-user-circle fa-2x"></i><p className="linkinwords">New Batch</p></Link></li>
                               <li className = "list-group-item"><Link to = '/board/searchrecords' className = 'sidemenulink' data-toggle ='Search' data-title = "Search"><i  className="fa fa-search fa-2x"></i><p className ="linkinwords">Search</p></Link></li>

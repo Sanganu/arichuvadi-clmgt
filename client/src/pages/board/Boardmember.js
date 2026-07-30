@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Allbatches from '../batch/displayallbatchdetails';
+import Allbatches from '../batch/Displayallbatchdetails';
 import API from "../../API/Board";
 // import { Menubar } from '../components/Menubar';
 import { connect } from 'react-redux';
@@ -37,9 +37,9 @@ class Boardmember extends Component {
         }
         API.boardMemberLogin(authdetails)
            .then((response) => {
-                // console.log(response)
+                 console.log(response)
                 var userobj = {
-                    loginemail: response.data.loginemail,
+                    loginemail: response.data.email,
                     usertype: 'management',
                     invalid: false,
                     userfname:response.data.fname,

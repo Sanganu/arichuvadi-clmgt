@@ -4,23 +4,23 @@
   "description": "Arichuvadi app MERN stack",
   "main": "server.js",
   "dependencies": {
-  
+    "bcrypt": "^6.0.0",
+    "express-rate-limit": "^8.5.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.0"
-   
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server/server.js",
     "start:dev": "concurrently \"cd server && npm run dev\" \"npm run client\"",
-    "client": "cd client && npm run start",
+    "client": "cd client     && npm run start",
     "seed": "node server/seeds/index.js",
     "install": "concurrently \"cd server && npm i \" \"cd client && npm install\"",
-    "build": "client &&  npm run build",
-    "heroku-postbuild": "npm run build",
+    "build": "cd client &&  npm run build",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
-    },
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Sanganu/arichuvadi-clmgt.git"

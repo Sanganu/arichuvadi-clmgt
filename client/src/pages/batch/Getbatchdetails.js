@@ -6,8 +6,9 @@ class BatchRecAddclass extends Component {
       batchdesc: this.props.bdesc,
       course: this.props.bsubj,
       level: this.props.blevel,
-      instructor: this.props.teacher,
-      examDate: this.props.examDate
+      teacher: this.props.teacher,
+      examDate: this.props.examDate,
+      teacher_id:this.props.teacher_id || "Not available"
     }
     console.log("get batch details",newbatch)
     this.props.getBatchDetails(newbatch)
@@ -21,8 +22,12 @@ class BatchRecAddclass extends Component {
       <td>{this.props.examDate}</td>
       <td>{this.props.students}</td>
       <td>{this.props.classes}</td>
-      {/* <td>{this.props.teacher}</td> */}
-      <td><button onClick={()=>this.props.deleteBatch(this.props.bid)}>Delete</button></td>
+      <td>{this.props.teacher}</td>
+      <td>
+        <button onClick={(e) => { e.stopPropagation(); this.props.deleteBatch(this.props.bid); }}>
+          Delete
+        </button>
+      </td>
     </tr>) //end return
   } // end render
 } // end component

@@ -49,9 +49,9 @@ class Homepage extends Component {
                                 <div className="card-body box">
                                     <Link to="/student/newstudent" className="mainlink">New Student Registration</Link><br />
                                 </div>
-                                <div className="card-body box">
+                                {/* <div className="card-body box">
                                     <Link to="/board/addBoard" className="mainlink">Register as Teacher</Link>
-                                </div>
+                                </div> */}
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>

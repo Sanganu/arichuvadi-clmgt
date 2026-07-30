@@ -111,7 +111,7 @@ class Studentregistration extends Component {
           <input type="text" placeholder="Student Last name" value={this.state.studentlname} onChange={this.handleInputChange} name="studentlname" />
           <input type="text" placeholder="Parent Name" value={this.state.parentname} onChange={this.handleInputChange} name="parentname" />
           <input type="text" placeholder="Login Email" value={this.state.loginemail} onChange={this.handleInputChange} name="loginemail" />
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} name="password" />
+          <input type="password" placeholder="Password length should be >= 8 with Uppercase Lowercase Numbers and Symbols " value={this.state.password} onChange={this.handleInputChange} name="password" />
           <input type="password" placeholder="Retype Password" value={this.state.password1} onChange={this.handleInputChange} name="password1" />
           <input type="text" placeholder="Phone number" value={this.state.parentphonenumber} onChange={this.handleInputChange} name="parentphonenumber" />
           <h1>Studentregistration</h1>

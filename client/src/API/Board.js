@@ -17,6 +17,10 @@ export default {
     },
     getBoardMemberAllDetails: function(memberDetails){
         return axios.get('/api/board/dashboard/',(memberDetails))
+    },
+    /** Session from express-session (board login); use to restore Redux after refresh */
+    getBoardMe: function () {
+        return axios.get('/api/board/me', { withCredentials: true })
     }
 
     

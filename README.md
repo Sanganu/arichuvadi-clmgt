@@ -6,7 +6,7 @@ A Tamil Volunteer organization, which conducts classes and teach Tamil for next 
 
 #### Founder and Board of Directors: 
   - *Anou Manavalan*, Director, Charles Schwab
-  -  *Yamini Ramesh*, Medical Coder at Univeristy of Colorado
+  -  *Yamini Ramesh*, Medical Coder at University of Colorado
   -  *Helen Samuel* , Special needs teacher, Cherry creek Schools
   -  *Chitra Saravanan*
  

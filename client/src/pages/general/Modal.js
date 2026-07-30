@@ -29,14 +29,16 @@ const AddModal = (props) => {
           <Modal.Body>
           <MasterKey
             IdType={props.IdType}
-            passMasterId={getMasterKey}/>
+            Id={props.Id}
+            passMasterId={getMasterKey}
+          />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              Save Changes
+              Select {props.IdType}
             </Button>
           </Modal.Footer>
         </Modal>

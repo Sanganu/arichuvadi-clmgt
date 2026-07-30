@@ -48,7 +48,7 @@ class Addstudent extends Component {
            this.setState({errmsg: " Mismatch Password and Confirm password"})
         }
          else {
-           console.log("Add student",this.props);
+           console.log("Add student",this.props,this.state );
            API.addNewStudentToBatch(
                   {   
                     studentfname: this.state.studentfname,
@@ -92,7 +92,7 @@ class Addstudent extends Component {
                       parentphonenumber: '',
                       levelcompleted:"",
                       levelrequested:"",
-                      errmsg:"Student Email already exist"
+                      errmsg: error//"Student Email already exist"
                       }); // Set state
                      console.log("Error - student email already exist !!!!",error)}
                 ); // End of axios

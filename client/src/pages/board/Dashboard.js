@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import API from '../../API/Board';
 import { connect } from 'react-redux';
 
 class  Dashboard  extends Component{

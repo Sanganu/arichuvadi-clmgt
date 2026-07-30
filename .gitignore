@@ -72,3 +72,7 @@ frontend
 notes_changes
 old
 old/*
+note.md
+
+change.md
+server/routes/board_1.js

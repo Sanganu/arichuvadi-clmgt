@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import API from '../../API/Batch';
+import BoardAPI from '../../API/Board';
 import Instructor from "../../components/Masterkey";
 import { connect } from "react-redux";
 import { Form } from "react-bootstrap";
 import Buttons from "../../components/Buttons";
+import { loginCredentials } from '../../reduxAction/dispatchLoginCredentials';
 
 
 class Createbatch extends Component {
@@ -12,12 +14,39 @@ class Createbatch extends Component {
         course: "Beginner",
         level: "Level-2",
         instructor: '',
+        teacherModel: 'Boarddetails',
         batchdet: '',
         errmsg: '',
         ids: [],
         newbatch: "true",
         message: "",
-        examdate:""
+        examdate:"",
+        sessionResolved: false
+    }
+
+    componentDidMount() {
+        if (this.props.usertype === "management") {
+            this.setState({ sessionResolved: true });
+            return;
+        }
+        BoardAPI.getBoardMe()
+            .then((res) => {
+                const u = res.data;
+                if (u && u.role === "board") {
+                    this.props.setCredentials({
+                        loginemail: u.loginemail,
+                        usertype: "management",
+                        invalid: false,
+                        userid: u.id,
+                        userfname: "",
+                        userlname: ""
+                    });
+                }
+            })
+            .catch(() => {})
+            .finally(() => {
+                this.setState({ sessionResolved: true });
+            });
     }
 
     handleInputChange = (event) => {
@@ -27,7 +56,9 @@ class Createbatch extends Component {
         //console.log('The Value in input change',value,name);
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errmsg:"",
+            message:""
         });
     };
 
@@ -40,19 +71,26 @@ class Createbatch extends Component {
         if (this.props.usertype === "management") {
                     if (this.state.batchdesc === "" ||
                         this.state.course === "" ||
-                        this.state.level === "") {
-                        // || this.state.instructor === "") {
+                        this.state.level === "" ||
+                        !this.state.instructor) {
                         console.log("No Empty Fields Enter valid data");
-                        this.setState({ errmsg: "No Empty Fields Enter valid data" });
+                        this.setState({ errmsg: "Fill all fields and select an instructor." });
                     }
                     else {
+                          console.log("************NEW BATCH++++++++++++",this.state)
+
+                                const instructorId =
+                                    this.state.instructor && typeof this.state.instructor === "object"
+                                        ? this.state.instructor.id
+                                        : this.state.instructor;
 
                                 let newbatchdetails =
                                     {
                                         batchdesc: this.state.batchdesc,
                                         course: this.state.course,
                                         level: this.state.level,
-                                        teacher: this.state.instructor,
+                                        teacher: instructorId,
+                                        teacherModel: this.state.teacherModel,
                                         examDate:this.state.examdate
                                     }
        
@@ -77,9 +115,13 @@ class Createbatch extends Component {
 
 
                                         }).catch(error => {
-                                            this.setState({ errmsg: error.errstring + " Please reach out to Board member - Error in process" },
+                                            const apiMsg = error.response?.data?.error
+                                                || error.response?.data?.message
+                                                || (typeof error.response?.data === 'string' ? error.response.data : null);
+                                            const msg = apiMsg || error.message || "Error creating batch";
+                                            this.setState({ errmsg: msg },
                                                 () => {
-                                                    console.log("Error in Adding Batch", error.err);
+                                                    console.log("Error in Adding Batch", error.response?.data || error.message);
                                                 });
 
                                         }); //end new batch creation - axios ncall
@@ -97,17 +139,38 @@ class Createbatch extends Component {
 
 
     getInstructor = (value) => {
-        this.setState({
-            instructor: value
-        })
+        if (value && typeof value === "object") {
+            this.setState({
+                instructor: value.id || "",
+                teacherModel: value.teacherModel || "Boarddetails"
+            });
+        } else {
+            this.setState({ instructor: value || "", teacherModel: "Boarddetails" });
+        }
         console.log("Instructor", value)
     }
 
     render() {
+        if (!this.state.sessionResolved) {
+            return (
+                <div className="middlecontent">
+                    <p className="msg">Checking your session…</p>
+                </div>
+            );
+        }
+
+        if (this.props.usertype !== "management") {
+            return (
+                <div className="middlecontent">
+                    <h6 className="errmsg">
+                        Please log in as a board member (Board Member login). If you already logged in, try refreshing the page.
+                    </h6>
+                </div>
+            );
+        }
+
         return (
-
             <div className="middlecontent">
-
                 <Form className="inputsection">
                     <h5 className="subhead">New Cohort</h5>
                     <h6 className="msg">{this.state.message}</h6>
@@ -178,4 +241,9 @@ const mapStateToProps = (state) => {
     }
 
 }
-export default connect(mapStateToProps)(Createbatch);
+
+const mapDispatchToProps = (dispatch) => ({
+    setCredentials: (userCred) => dispatch(loginCredentials(userCred))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Createbatch);

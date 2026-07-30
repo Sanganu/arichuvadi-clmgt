@@ -49,7 +49,7 @@ class Studentlogin extends Component {
     }
     else {
       this.setState({ errmsg: "" });
-      axios.post('/auth/login',
+      axios.post('/api/student/login',
         {
           loginemail: this.state.vemail,
           password: this.state.vpword,
