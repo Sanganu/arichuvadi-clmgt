@@ -1,0 +1,176 @@
+
+What this does:
+
+On every push to production-stable or develop-modern, and on every PR targeting production-stable, run two jobs in parallel: one for the React build, one for the Node server.
+The client job installs deps, lints if a lint script exists, and builds. If the build fails, the PR can't be merged (when you turn on branch protection — see below).
+The server job installs deps and syntax-checks the entry file. A real test suite would replace this when you add Vitest.
+What you see when this runs
+After pushing, click the Actions tab on GitHub. You'll see a row for each push:
+
+🟡 yellow circle = running
+✅ green check = passed
+❌ red X = failed (click it, read the logs, fix)
+The green check shows up on the commit too. On a PR, you'll see "All checks have passed" before the merge button.
+
+CD workflow for Azure — .github/workflows/deploy.yml
+Azure auto-generates one of these for you when you set up App Service deployment. But here's what a clean unified one looks like:
+
+name: Deploy
+
+on:
+  push:
+    branches: [production-stable]
+  workflow_dispatch:
+
+jobs:
+  deploy-api:
+    name: Deploy API to Azure App Service
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/production-stable'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install API deps
+        working-directory: server
+        run: npm ci --omit=dev
+
+      - name: Deploy to Azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: arichuvadi-api          # your App Service name
+          slot-name: production
+          package: ./server
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+
+  deploy-spa:
+    name: Deploy SPA to Static Web Apps
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/production-stable'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: client
+          output_location: build
+          app_build_command: "CI=false NODE_OPTIONS=--openssl-legacy-provider yarn build"
+The two secrets.AZURE_* references are what tie GitHub Actions to your Azure account.
+
+Getting the secrets into the repo
+For App Service:
+
+In Azure Portal, open your arichuvadi-api web app.
+Top menu → Get publish profile (downloads an XML file).
+Open the file, copy the entire content.
+In GitHub: repo → Settings → Secrets and variables → Actions → New repository secret.
+Name: AZURE_PUBLISH_PROFILE, value: the XML content.
+For Static Web Apps:
+
+In Azure Portal, open your Static Web App resource.
+Left menu → Overview → top button Manage deployment token → copy.
+In GitHub: same Secrets page → new secret named AZURE_SWA_TOKEN.
+That's all the wiring. From now on, git push origin production-stable triggers both a deploy to App Service and to Static Web Apps in parallel. About 3-5 minutes end to end.
+
+Branch protection — the senior touch
+Once CI is green, you can require it to stay green before any merge.
+
+Repo → Settings → Branches → Branch protection rules → Add rule:
+
+Branch name pattern: production-stable
+✅ Require a pull request before merging
+✅ Require status checks to pass before merging
+Select: Frontend build, Backend checks (after they've run at least once and appear in the list)
+✅ Require branches to be up to date before merging
+✅ Do not allow bypassing the above settings (even by you)
+Now you literally cannot push broken code to production-stable. CI must pass first. This is what real production engineering looks like.
+
+The full flow, end to end
+You make a change locally
+    ↓
+git checkout -b fix/something
+    ↓
+git commit -m "fix: ... Closes #1"
+    ↓
+git push origin fix/something
+    ↓
+Open a PR on GitHub  →  CI runs automatically  →  green ✅
+    ↓
+Click "Merge pull request"
+    ↓
+Push happens on production-stable
+    ↓
+CI runs again on production-stable  →  green ✅
+    ↓
+CD workflow triggers
+    ↓
+Frontend builds + deploys to Azure Static Web Apps
+Backend installs + deploys to Azure App Service
+    ↓
+Site updates within 3-5 minutes
+    ↓
+Issue #1 auto-closes (because the commit message said "Closes #1")
+You did one git push. Everything else happened on its own.
+
+Smoke test after deploy — the senior touch on top
+Add a final job that runs after deploy and verifies the live site responds:
+
+  smoke-test:
+    name: Post-deploy smoke test
+    needs: [deploy-api, deploy-spa]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for App Service to be ready
+        run: sleep 30
+
+      - name: Smoke test API
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+                   https://arichuvadi-api.azurewebsites.net/api/board/me)
+          if [ "$STATUS" != "401" ]; then
+            echo "API smoke test failed: got $STATUS, expected 401"
+            exit 1
+          fi
+          echo "✅ API responding"
+
+      - name: Smoke test SPA
+        run: |
+          curl -sf https://arichuvadi.azurestaticapps.net > /tmp/spa.html
+          grep -q "<title>" /tmp/spa.html && echo "✅ SPA serving" || exit 1
+Now if a deploy lands but the site doesn't actually work, the workflow fails red. You get a GitHub notification. You fix it.
+
+What you'll see in a portfolio review
+The hiring manager opens your repo and clicks:
+
+Issues tab → sees 8 closed and 4 open, with labels and a milestone. Signal: this person tracks work.
+Actions tab → sees CI and Deploy workflows running on every push, mostly green. Signal: this person automates.
+Branches → sees the production-stable branch is protected, requires CI to pass. Signal: this person operates safely.
+Latest commit → sees Closes #4 in the message, can click through to read the issue and PR. Signal: this person works traceably.
+All four of those signals come from < 2 hours of one-time setup. They're disproportionately strong for the effort.
+
+What to do this week
+In order:
+
+(15 min) Create the 12 issues I listed. You don't have to fill them in fully — even just the titles + labels is a signal.
+(10 min) Knock out #1–4 with the fixes I gave you in earlier replies. Push with Closes #1, #2, #3, #4 in the commit message. Watch four issues auto-close.
+(20 min) Create .github/workflows/ci.yml. Push. Watch it run. Fix anything red.
+(30 min) Create .github/workflows/deploy.yml. Add the two Azure secrets. Push. Watch your site deploy automatically.
+(5 min) Turn on branch protection on production-stable.
+(10 min) Tag v1.0.0. Issue #6 closes.
+By Sunday night you have automated CI/CD, a tracked backlog, a tagged release, and a portfolio link that re-deploys on every commit. That's the senior baseline.
+
+When you hit the inevitable first failed workflow, the Actions tab logs will tell you exactly which step broke. Paste me the error, I'll help you read it.
+
+May 12, 10:17 AM
+
+Rollback
+
+
+Running low on credits?

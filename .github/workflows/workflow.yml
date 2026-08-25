@@ -1,0 +1,26 @@
+name: A human name for this workflow
+
+on:                       # When does it run?
+  push:
+    branches: [production-stable]
+  pull_request:
+    branches: [production-stable]
+  workflow_dispatch:      # Manually triggerable from the Actions tab
+
+jobs:                     # Independent units of work, can run in parallel
+  the-job-name:
+    runs-on: ubuntu-latest   # Linux VM provided by GitHub
+    steps:                   # Sequential within a job
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint

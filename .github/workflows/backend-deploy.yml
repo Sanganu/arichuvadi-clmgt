@@ -1,0 +1,49 @@
+name: Lint and Test workflow
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - staging
+      - testing
+  push:
+    branches:
+     - main
+     - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 21.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21.x
+
+      # Install dependencies
+      - name: 🧰 Install Deps
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Build
+        run: npm run build
+
+      # 👉 COMPONENT TESTS
+      - name: 🧪 Run Cypress Component Tests
+        run: npx cypress run --component
+
+      # 👉 START DEV SERVER FOR E2E TESTS
+      - name: Start Dev Server
+        run: |
+          npm run dev &
+          npx wait-on http://localhost:5173 --timeout 60000
+
+      # 👉 E2E TESTS
+      - name: 🧪 Run Cypress E2E Tests
+        run: npx cypress run --spec "cypress/e2e/smoke/*.cy.ts"
