@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Allbatches from '../batch/Displayallbatchdetails';
+import Allbatches from '../batch/displayallbatchdetails';
 import API from "../../API/Board";
 // import { Menubar } from '../components/Menubar';
 import { connect } from 'react-redux';

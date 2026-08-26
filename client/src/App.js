@@ -20,7 +20,7 @@ import "./bootstrap.css";
 
 // Using Lazy loading
 
-const Allbatches = lazy(() => import("./pages/batch/Displayallbatchdetails"));
+const Allbatches = lazy(() => import("./pages/batch/displayallbatchdetails"));
 const Search = lazy(() => import("./pages/general/Search"));
 const Alumni = lazy(() => import("./pages/general/Alumni"));
 const Updateteacher = lazy(() => import("./pages/instructor/Updateinstructor"));

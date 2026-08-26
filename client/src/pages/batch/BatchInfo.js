@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BatchAddClassDetails from './Addclassdetails.js';
-import Allclasses from '../batch//Displayallclassdetails.js';
+import Allclasses from '../batch//displayallclassdetails.js';
 import { connect } from 'react-redux';
 import BAPI from "../../API/Batch";
 import Modal from "../general/Modal";
