@@ -90,7 +90,7 @@ async function main() {
   // Static SPA in production
   if (isProd) {
     app.use(express.static(path.join(__dirname, "../client/build")));
-    app.get("/*splat", (_req, res) =>
+    app.get("/{*splat}", (_req, res) =>
       res.sendFile(path.join(__dirname, "../client/build/index.html"))
     );
   }
