@@ -7,7 +7,7 @@ import MongoStore from "connect-mongo";
 import helmet from "helmet";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-
+import mongoose from "mongoose";
 import { db } from "./config/connection.js";
 import routes from "./routes/index.js";
 import batchRoutes from "./routes/batch.js";
@@ -80,6 +80,18 @@ async function main() {
     ["/api/board/login", "/api/student/login", "/api/board/new"],
     authLimiter
   );
+
+  //Add /health end point for render and mongoDB atlas issues
+    app.get("/health", async (_req, res) => {
+    try {
+      // Actively touches MongoDB, not just checks a cached "connected" flag.
+      await mongoose.connection.db.admin().ping();
+      res.status(200).json({ status: "ok", db: "connected" });
+    } catch (err) {
+      console.error("Health check DB ping failed:", err.message);
+      res.status(503).json({ status: "error", db: "unreachable" });
+    }
+  });
 
   // Routes
   app.use(batchRoutes);
