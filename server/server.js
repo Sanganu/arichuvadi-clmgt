@@ -29,8 +29,17 @@ async function main() {
   // work behind Heroku/Render/NGINX.
   app.set("trust proxy", 1);
 
-  app.use(helmet());
-
+  //app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+          "script-src": ["'self'", "'unsafe-inline'"],
+        },
+      },
+    })
+  );
   // Body parsers
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
@@ -82,7 +91,7 @@ async function main() {
   );
 
   //Add /health end point for render and mongoDB atlas issues
-    app.get("/health", async (_req, res) => {
+  app.get("/health", async (_req, res) => {
     try {
       // Actively touches MongoDB, not just checks a cached "connected" flag.
       await mongoose.connection.db.admin().ping();

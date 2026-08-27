@@ -249,3 +249,6 @@ MIT. See [`LICENSE`](./LICENSE).
 
 - Built and maintained by Sangeetha Kp. Original MVP work and ongoing requirements by Board members - Yamini, Anou, Chithra, Helen.
 - Tamil curriculum and pedagogy by the Arichuvadi teaching faculty.
+
+
+--- uptimerobot.com
