@@ -20,10 +20,11 @@ Web app used by Arichuvadi, a volunteer-run Tamil language school affiliated wit
 
 This is the actual code running in production. {{N volunteer board members}} use it weekly, and {{~N students}} log in to see their batch and assignments.
 
-**Live demo:** {{https://arichuvadi.azurestaticapps.net}}
+**Live demo:** {{https://arichuvadi-clmgt-1.onrender.com}}
 **Demo board login:** `demo@arichuvadi.org` / `Demo@2026`
 
-> The free Azure App Service tier sleeps after 20 minutes of inactivity, so the first request after a long pause can take 30–60 seconds. After that it's snappy.
+> The free render App Service tier sleeps after 20 minutes of inactivity, so the first request after a long pause can take 30–60 seconds. After that it's snappy.
+> This is 
 
 ---
 
@@ -59,7 +60,7 @@ Node.js 20, Express 5, Mongoose 8. Sessions are HttpOnly cookies backed by `conn
 MongoDB Atlas (M0 free tier in production, local Mongo for development).
 
 **Hosting**
-Azure Static Web Apps for the React build, Azure App Service Linux F1 for the API. Both free-tier. Atlas for the data. CI/CD via GitHub Actions on push to `production-stable`.
+Render`.
 
 A few choices worth explaining:
 
@@ -168,18 +169,7 @@ curl -s http://localhost:5000/api/board/me
 
 ---
 
-## Deploying to Azure
 
-Frontend goes to **Azure Static Web Apps**, API goes to **Azure App Service Linux F1**, database is **MongoDB Atlas M0**. All three are free-tier.
-
-The full step-by-step is in [`docs/deploy-azure.md`](./docs/deploy-azure.md) {{or remove this line if you don't want a separate doc}}. Short version:
-
-1. Atlas — create an M0 cluster, allow `0.0.0.0/0` (or just the Azure egress IPs for tighter posture), grab the connection string.
-2. App Service — create a Node 20 Linux F1 web app, set env vars (`MONGODB_URI`, `APP_SECRET`, `CLIENT_ORIGIN`, `NODE_ENV=production`), connect GitHub. The auto-generated workflow needs `working-directory: server` and `package: server` added.
-3. Static Web Apps — create one pointed at this repo, app location `/client`, output `build`. Done in ~5 minutes.
-4. Update `client/staticwebapp.config.json` to rewrite `/api/*` to the App Service URL.
-5. Seed an admin via the bootstrap curl above (only works once per database).
-6. Optional but recommended: set up UptimeRobot to ping `/api/board/me` every 5 minutes to keep the F1 dyno warm.
 
 ---
 
